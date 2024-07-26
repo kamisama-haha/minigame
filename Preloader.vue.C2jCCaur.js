@@ -1,0 +1,1 @@
+import{d as r,o as c,a as t,e,b as s,Z as o}from"./entry.BmXwiSXY.js";const _={class:"preloader"},n=["src"],a=["src"],l=["src"],u=r({__name:"Preloader",setup(i){return(d,m)=>(c(),t("div",_,[e("img",{src:s(o)},null,8,n),e("img",{src:s(o)},null,8,a),e("img",{src:s(o)},null,8,l)]))}});export{u as _};
