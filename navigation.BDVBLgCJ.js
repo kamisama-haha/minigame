@@ -52,12 +52,18 @@ const U = Symbol.for("nuxt:client-only")
                     promoCode: l
                 }
             }).then(e => {
-                console.log('Server response:', e); // 打印服务器返回的完整数据
+                console.log('Server response:', e); // 打印服务器返回的成功响应数据
                 _().setUserResponseData(e); // 处理服务器返回的数据
                 this.setSingleState(e.promoState); // 更新 Vuex 状态
                 return e; // 返回响应数据
+            }).catch(error => {
+                console.error('Error response:', error); // 打印错误响应数据
+                // 这里可以处理错误，例如显示错误消息或更新状态
+                // 可以根据实际需要对 error 对象进行处理
+                return Promise.reject(error); // 将错误重新抛出，以便在调用方处理
             });
         }
+
 
         setPromos(l) {
             this.promos = l
