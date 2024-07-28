@@ -1,5 +1,7 @@
-import {d as H, r as F, q as E, ap as q, a as G, a0 as R, a1 as O, i as _} from "./entry.Dv1IsjD4.js";
-import {m as y, e as K, b as D, c as j, d as N} from "./effect-fade.aa3pNKSS.js";
+const ABSOLUTE_PATH = 'https://hamsterkombatgame.io/_nuxt/';
+
+import {d as H, r as F, q as E, ap as q, a as G, a0 as R, a1 as O, i as _} from "https://hamsterkombatgame.io/_nuxt/entry.Dv1IsjD4.js";
+import {m as y, e as K, b as D, c as j, d as N} from "https://hamsterkombatgame.io/_nuxt/effect-fade.aa3pNKSS.js";
 const U = Symbol.for("nuxt:client-only")
   , J = H({
     name: "ClientOnly",
@@ -49,11 +51,14 @@ const U = Symbol.for("nuxt:client-only")
         async postApplyPromocode(l) {
             return await O.post("/clicker/apply-promo", {
                 body: {
-                    promoCode: l
+                        promoCode: l
                 }
-            }).then(e=>(_().setUserResponseData(e),
-            this.setSingleState(e.promoState),
-            e))
+                }).then(e => {
+                    console.log('Server response:', e); // 打印服务器返回的完整数据
+                    _().setUserResponseData(e); // 保留此方法调用以处理完整的响应数据
+                    this.setSingleState(e.promoState); // 更新 promoState 状态
+                    return e; // 返回响应数据
+                })
         },
         setPromos(l) {
             this.promos = l
