@@ -1,14 +1,14 @@
-import {d as U, a3 as de, u as E, r as y, Z as re, o as t, l as N, a9 as I, b as s, p as L, R as Te, e, a as m, w as b, a4 as ke, t as k, U as ee, i as F, k as u, H as _e, s as me, B as j, aa as Le, ab as we, W as se, n as Ce, m as C, K as ne, q as ie, _ as q, y as ue, a5 as O, c as $, x as Se, j as Ae, ac as He, V as Re, Q as Ee, ad as pe, T as Ue, a2 as xe, ae, O as Ge, C as G, v as ce, F as Ne, D as De, z as le} from "./entry.Dv1IsjD4.js";
-import {a as Ie, _ as he} from "./Price.vue.Cny252bW.js";
-import {_ as Oe} from "./Preloader.vue.EL_BqhER.js";
-import {u as Be, P as Ke, _ as Pe} from "./navigation.BDVBLgCJ.js";
-import {_ as We, a as je, b as Ze} from "./Earn.vue.BvwXnsf7.js";
-import {S as Fe, a as X, N as Ve, E as ze} from "./effect-fade.aa3pNKSS.js";
-import {u as ge} from "./earn.DGl--UTU.js";
-import {_ as Ye} from "./MiniGameLose.vue.BfjL6Z8P.js";
-import {_ as Xe} from "./BalanceLarge.vue.CUoPNMix.js";
-import "./image.vue.z4uqTG5J.js";
-import "./Hamster.vue.o-XLjD0K.js";
+import {d as U, a3 as de, u as E, r as y, Z as re, o as t, l as N, a9 as I, b as s, p as L, R as Te, e, a as m, w as b, a4 as ke, t as k, U as ee, i as F, k as u, H as _e, s as me, B as j, aa as Le, ab as we, W as se, n as Ce, m as C, K as ne, q as ie, _ as q, y as ue, a5 as O, c as $, x as Se, j as Ae, ac as He, V as Re, Q as Ee, ad as pe, T as Ue, a2 as xe, ae, O as Ge, C as G, v as ce, F as Ne, D as De, z as le} from "https://hamsterkombatgame.io/_nuxt/entry.Dv1IsjD4.js";
+import {a as Ie, _ as he} from "https://hamsterkombatgame.io/_nuxt/Price.vue.Cny252bW.js";
+import {_ as Oe} from "https://hamsterkombatgame.io/_nuxt/Preloader.vue.EL_BqhER.js";
+import {u as Be, P as Ke, _ as Pe} from "https://hamsterkombatgame.io/_nuxt/navigation.BDVBLgCJ.js";
+import {_ as We, a as je, b as Ze} from "https://hamsterkombatgame.io/_nuxt/Earn.vue.BvwXnsf7.js";
+import {S as Fe, a as X, N as Ve, E as ze} from "https://hamsterkombatgame.io/_nuxt/effect-fade.aa3pNKSS.js";
+import {u as ge} from "https://hamsterkombatgame.io/_nuxt/earn.DGl--UTU.js";
+import {_ as Ye} from "https://hamsterkombatgame.io/_nuxt/MiniGameLose.vue.BfjL6Z8P.js";
+import {_ as Xe} from "https://hamsterkombatgame.io/_nuxt/BalanceLarge.vue.CUoPNMix.js";
+import "https://hamsterkombatgame.io/_nuxt/image.vue.z4uqTG5J.js";
+import "https://hamsterkombatgame.io/_nuxt/Hamster.vue.o-XLjD0K.js";
 const qe = "" + globalThis.__publicAssetsURL("images/_skin.webp")
   , Je = "" + globalThis.__publicAssetsURL("images/_skin.png")
   , Qe = qe
