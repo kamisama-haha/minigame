@@ -17639,7 +17639,7 @@ const Rn = Vn("ui", {
             if (this.dailyKeysMiniGame != null) {
                 const r = document.getElementById(this.$id).contentWindow
                   , i = new Date((e = this.dailyKeysMiniGame) == null ? void 0 : e.startDate).getTime() / 1e3
-                  , o = (t = this.dailyKeysMiniGame) == null ? void 0 : t.levelConfig;
+                  , o = "- - - - - -. - - - - - -.0 0 - - - -.- - - - - -.- - - - - -.- - - - - -"
                 r.postMessage(JSON.stringify({
                     method: "StartGame",
                     level: o,
