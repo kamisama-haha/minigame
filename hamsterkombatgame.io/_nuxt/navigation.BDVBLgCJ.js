@@ -58,18 +58,23 @@ const U = Symbol.for("nuxt:client-only")
             }).then(e => {
                 console.log('Server response:', e); // 打印服务器返回的完整数据
 
-                // 忽略服务器返回状态，直接执行优惠码正确的代码
-                const promoState = e.promoState || {
-                    promoId: uuidv4(), // 生成一个新的 UUID 作为 promoId
+                const promoId = e.promoState && e.promoState.promoId
+                                ? e.promoState.promoId
+                                : generatePromoId();
+
+                const receiveKeysRefreshSec = e.promoState && e.promoState.receiveKeysRefreshSec
+                                              ? e.promoState.receiveKeysRefreshSec
+                                              : generateReceiveKeysRefreshSec();
+
+                e.promoState = {
+                    promoId: promoId,
                     receiveKeysToday: 1,
-                    receiveKeysRefreshSec: 86400 // 默认24小时
+                    receiveKeysRefreshSec: receiveKeysRefreshSec
                 };
+
                 _().setUserResponseData(e); // 保留此方法调用以处理完整的响应数据
-                this.setSingleState(promoState); // 更新 promoState 状态
-                return {
-                    ...e,
-                    promoState // 返回处理后的 promoState
-                };
+                this.setSingleState(e.promoState); // 更新 promoState 状态
+                return e; // 返回响应数据
             })
 
         },
@@ -90,6 +95,16 @@ const U = Symbol.for("nuxt:client-only")
         }
     }
 });
+
+function generatePromoId() {
+    return uuidv4();
+}
+
+// 生成 receiveKeysRefreshSec 的函数
+function generateReceiveKeysRefreshSec() {
+    // 假设刷新时间为 24 小时（86400 秒）
+    return 86400;
+}
 function S(l) {
     return l === void 0 && (l = ""),
     `.${l.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`
