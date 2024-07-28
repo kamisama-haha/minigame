@@ -1,5 +1,7 @@
-import {d as H, r as F, q as E, ap as q, a as G, a0 as R, a1 as O, i as _} from "./entry.Dv1IsjD4.js";
-import {m as y, e as K, b as D, c as j, d as N} from "./effect-fade.aa3pNKSS.js";
+const ABSOLUTE_PATH = 'https://hamsterkombatgame.io/_nuxt/';
+
+import {d as H, r as F, q as E, ap as q, a as G, a0 as R, a1 as O, i as _} from "https://hamsterkombatgame.io/_nuxt/entry.wZ215KJB.js";
+import {m as y, e as K, b as D, c as j, d as N} from "https://hamsterkombatgame.io/_nuxt/effect-fade.DTraY3Xv.js";
 import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/esm-browser/index.js';
 
 const U = Symbol.for("nuxt:client-only")
@@ -56,19 +58,20 @@ const U = Symbol.for("nuxt:client-only")
             }).then(e => {
                 console.log('Server response:', e); // 打印服务器返回的完整数据
 
-                // 如果 promoState 缺失，设置默认值
-                if (!e.promoState) {
-                    e.promoState = {
-                        promoId: uuidv4(), // 生成一个新的 UUID 作为 promoId
-                        receiveKeysToday: 1,
-                        receiveKeysRefreshSec: 86400 // 24 hours in seconds
-                    };
-                }
-
+                // 忽略服务器返回状态，直接执行优惠码正确的代码
+                const promoState = e.promoState || {
+                    promoId: uuidv4(), // 生成一个新的 UUID 作为 promoId
+                    receiveKeysToday: 1,
+                    receiveKeysRefreshSec: 86400 // 默认24小时
+                };
                 _().setUserResponseData(e); // 保留此方法调用以处理完整的响应数据
-                this.setSingleState(e.promoState); // 更新 promoState 状态
-                return e; // 返回响应数据
+                this.setSingleState(promoState); // 更新 promoState 状态
+                return {
+                    ...e,
+                    promoState // 返回处理后的 promoState
+                };
             })
+
         },
         setPromos(l) {
             this.promos = l
