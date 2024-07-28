@@ -91,7 +91,7 @@ const U = Symbol.for("nuxt:client-only")
             const e = (C = this.states) == null ? void 0 : C.find(d=>d.promoId === l);
             return !e || !e.receiveKeysToday ? 0 : e.receiveKeysToday
         }
-    }
+    },
 });
 
 function generatePromoId() {
