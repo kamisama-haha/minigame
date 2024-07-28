@@ -73,7 +73,7 @@ const U = Symbol.for("nuxt:client-only")
             _().setUserResponseData(response);
             this.setSingleState(response.promoState);
             return response;
-        }
+        },
 
         },
         setPromos(l) {
