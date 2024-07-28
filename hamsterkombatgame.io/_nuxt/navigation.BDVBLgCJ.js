@@ -118,7 +118,7 @@ const U = Symbol.for("nuxt:client-only"),
                             earnPassivePerSec: 15.7331,
                             earnPassivePerHour: 56639,
                             lastPassiveEarn: 5789.7808,
-                            tapsRecoverPerSec: 3,
+                            tapsRecoverPerSec: 2,
                             createdAt: "2024-07-25T16:20:30.294Z",
                             skin: {
                                 available: [{ skinId: "skin0", buyAt: "2024-07-25T16:20:30.294Z" }],
