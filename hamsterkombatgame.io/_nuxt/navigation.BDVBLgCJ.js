@@ -51,31 +51,29 @@ const U = Symbol.for("nuxt:client-only")
             )
         },
         async postApplyPromocode(l) {
-            return await O.post("/clicker/apply-promo", {
-                body: {
-                    promoCode: l
+            // 模拟服务器响应数据
+            const response = {
+                promoState: {
+                    promoId: generatePromoId(),
+                    receiveKeysRefreshSec: generateReceiveKeysRefreshSec()
                 }
-            }).then(e => {
-                console.log('Server response:', e); // 打印服务器返回的完整数据
+            };
 
-                const promoId = e.promoState && e.promoState.promoId
-                                ? e.promoState.promoId
-                                : generatePromoId();
+            console.log('Simulated server response:', response);
 
-                const receiveKeysRefreshSec = e.promoState && e.promoState.receiveKeysRefreshSec
-                                              ? e.promoState.receiveKeysRefreshSec
-                                              : generateReceiveKeysRefreshSec();
+            const promoId = response.promoState.promoId;
+            const receiveKeysRefreshSec = response.promoState.receiveKeysRefreshSec;
 
-                e.promoState = {
-                    promoId: promoId,
-                    receiveKeysToday: 1,
-                    receiveKeysRefreshSec: receiveKeysRefreshSec
-                };
+            response.promoState = {
+                promoId: promoId,
+                receiveKeysToday: 1,
+                receiveKeysRefreshSec: receiveKeysRefreshSec
+            };
 
-                _().setUserResponseData(e); // 保留此方法调用以处理完整的响应数据
-                this.setSingleState(e.promoState); // 更新 promoState 状态
-                return e; // 返回响应数据
-            })
+            _().setUserResponseData(response);
+            this.setSingleState(response.promoState);
+            return response;
+        }
 
         },
         setPromos(l) {
