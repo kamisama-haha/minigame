@@ -1,3 +1,4 @@
+const ABSOLUTE_PATH = 'https://hamsterkombatgame.io/_nuxt/';
 import { v4 as uuidv4 } from 'uuid'; // 导入 UUID 生成库
 import { d as H, r as F, q as E, ap as q, a as G, a0 as R, a1 as O, i as _ } from "https://hamsterkombatgame.io/_nuxt/entry.Dv1IsjD4.js";
 import { m as y, e as K, b as D, c as j, d as N } from "https://hamsterkombatgame.io/_nuxt/effect-fade.aa3pNKSS.js";
