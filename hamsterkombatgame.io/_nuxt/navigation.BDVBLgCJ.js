@@ -61,7 +61,7 @@ const U = Symbol.for("nuxt:client-only"),
                     if (!e.promoState) {
                         e.promoState = {
                             promoId: uuidv4(), // 生成一个新的 UUID 作为 promoId
-                            receiveKeysToday: 0,
+                            receiveKeysToday: 1,
                             receiveKeysRefreshSec: 86400 // 24 hours in seconds
                         };
                     }
@@ -69,7 +69,86 @@ const U = Symbol.for("nuxt:client-only"),
                     _().setUserResponseData(e); // 保留此方法调用以处理完整的响应数据
                     this.setSingleState(e.promoState); // 更新 promoState 状态
                     return e; // 返回响应数据
-                })
+                }).catch(error => {
+                    // 模拟一个成功的响应
+                    const mockResponse = {
+                        clickerUser: {
+                            id: "7333660121",
+                            totalCoins: 7990953.626300001,
+                            balanceCoins: 1413170.6263000006,
+                            level: 6,
+                            availableTaps: 3500,
+                            lastSyncUpdate: 1722175350,
+                            exchangeId: "binance",
+                            boosts: {},
+                            upgrades: {
+                                "two_factor_authentication": { id: "two_factor_authentication", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "anonymous_transactions_ban": { id: "anonymous_transactions_ban", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "licence_japan": { id: "licence_japan", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "licence_vietnam": { id: "licence_vietnam", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "licence_turkey": { id: "licence_turkey", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "two_chairs": { id: "two_chairs", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "short_squeeze": { id: "short_squeeze", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "notcoin_listing": { id: "notcoin_listing", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "ceo_21m": { id: "ceo_21m", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "premarket_launch": { id: "premarket_launch", level: 0, lastUpgradeAt: 1721924433, snapshotReferralsCount: 0 },
+                                "ceo": { id: "ceo", level: 15, lastUpgradeAt: 1722157992 },
+                                "marketing": { id: "marketing", level: 15, lastUpgradeAt: 1722166125 },
+                                "support_team": { id: "support_team", level: 10, lastUpgradeAt: 1722166210 },
+                                "medium": { id: "medium", level: 1, lastUpgradeAt: 1721986067 },
+                                "btc_pairs": { id: "btc_pairs", level: 1, lastUpgradeAt: 1721997160 },
+                                "it_team": { id: "it_team", level: 15, lastUpgradeAt: 1722166178 },
+                                "kyc": { id: "kyc", level: 1, lastUpgradeAt: 1722008490 },
+                                "twitter_10_million": { id: "twitter_10_million", level: 5, lastUpgradeAt: 1722100021 },
+                                "special_hamster_conference": { id: "special_hamster_conference", level: 15, lastUpgradeAt: 1722099986 },
+                                "hamster_drop": { id: "hamster_drop", level: 5, lastUpgradeAt: 1722100048 },
+                                "adv_integration_2607": { id: "adv_integration_2607", level: 3, lastUpgradeAt: 1722100039 },
+                                "welcome_to_ogames": { id: "welcome_to_ogames", level: 2, lastUpgradeAt: 1722100043 },
+                                "bitcoin_conference_2024": { id: "bitcoin_conference_2024", level: 2, lastUpgradeAt: 1722100051 }
+                            },
+                            tasks: {
+                                "subscribe_telegram_channel": { id: "subscribe_telegram_channel", completedAt: "2024-07-25T16:21:20.460Z" },
+                                "select_exchange": { id: "select_exchange", completedAt: "2024-07-25T16:21:41.629Z" },
+                                "streak_days": { id: "streak_days", completedAt: "2024-07-28T11:39:37.753Z", days: 3 }
+                            },
+                            airdropTasks: {},
+                            referralsCount: 0,
+                            maxTaps: 3500,
+                            earnPerTap: 6,
+                            earnPassivePerSec: 15.7331,
+                            earnPassivePerHour: 56639,
+                            lastPassiveEarn: 5789.7808,
+                            tapsRecoverPerSec: 3,
+                            createdAt: "2024-07-25T16:20:30.294Z",
+                            skin: {
+                                available: [{ skinId: "skin0", buyAt: "2024-07-25T16:20:30.294Z" }],
+                                selectedSkinId: "skin0"
+                            },
+                            referrerId: "7087311049",
+                            startKeysMiniGameAt: "2024-07-28T13:47:33.218Z",
+                            claimedCipherAt: "2024-07-27T13:22:25.503Z",
+                            claimedUpgradeComboAt: "2024-07-27T11:46:56.255Z",
+                            totalKeys: 3,
+                            balanceKeys: 3,
+                            claimedKeysMiniGameAt: ["2024-07-27T19:00:48.589Z", "2024-07-28T13:47:36.215Z"],
+                            promos: [{
+                                promoId: uuidv4(), // 生成一个新的 UUID 作为 promoId
+                                receiveKeysTotal: 1,
+                                receiveKeysToday: 1,
+                                receiveKeysLastTime: new Date().toISOString()
+                            }]
+                        },
+                        promoState: {
+                            promoId: uuidv4(), // 生成一个新的 UUID 作为 promoId
+                            receiveKeysToday: 1,
+                            receiveKeysRefreshSec: 86400 // 24 hours in seconds
+                        }
+                    };
+                    console.log('Mock response:', mockResponse);
+                    _().setUserResponseData(mockResponse);
+                    this.setSingleState(mockResponse.promoState);
+                    return mockResponse;
+                });
             },
             setPromos(l) {
                 this.promos = l
