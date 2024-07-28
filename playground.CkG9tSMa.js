@@ -1,6 +1,6 @@
 import {d as H, u as C, r as v, Z as A, o as c, a as _, e, b as r, w as E, p as k, y as j, l as M, a9 as I, k as p, F, D as O, B as L, W as B, t as R, _ as w, s as q, aa as W, ab as X, C as Y, n as Z, m as $, x as J, v as Q, i as x, q as ee, z as U} from "https://kamisama-haha.github.io/minigame/main_minigame.js";
 import {_ as V} from "https://hamsterkombatgame.io/_nuxt/Preloader.vue.EL_BqhER.js";
-import {P as oe, _ as ne, u as D} from "https://hamsterkombatgame.io/_nuxt/navigation.BDVBLgCJ.js";
+import {P as oe, _ as ne, u as D} from "https://kamisama-haha.github.io/minigame/navigation.BDVBLgCJ.js";
 import {S as se, a as te, N as re, E as ie} from "https://hamsterkombatgame.io/_nuxt/effect-fade.aa3pNKSS.js";
 const ae = {
     class: "common-image"
