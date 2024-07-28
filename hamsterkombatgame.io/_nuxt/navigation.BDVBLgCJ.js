@@ -1,30 +1,34 @@
+import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/esm-browser/index.js';
+
 const ABSOLUTE_PATH = 'https://hamsterkombatgame.io/_nuxt/';
-import { v4 as uuidv4 } from 'uuid'; // 导入 UUID 生成库
+
 import { d as H, r as F, q as E, ap as q, a as G, a0 as R, a1 as O, i as _ } from "https://hamsterkombatgame.io/_nuxt/entry.Dv1IsjD4.js";
 import { m as y, e as K, b as D, c as j, d as N } from "https://hamsterkombatgame.io/_nuxt/effect-fade.aa3pNKSS.js";
 
-const U = Symbol.for("nuxt:client-only"),
+const U = Symbol.for("nuxt:client-only"), 
     J = H({
-        name: "ClientOnly",
-        inheritAttrs: !1,
-        props: ["fallback", "placeholder", "placeholderTag", "fallbackTag"],
-        setup(l, { slots: e, attrs: C }) {
-            const d = F(!1);
-            return E(() => {
-                d.value = !0;
-            }),
+    name: "ClientOnly",
+    inheritAttrs: !1,
+    props: ["fallback", "placeholder", "placeholderTag", "fallbackTag"],
+    setup(l, { slots: e, attrs: C }) {
+        const d = F(!1);
+        return E(() => {
+            d.value = !0
+        }),
             q(U, !0),
             u => {
                 var L;
-                if (d.value) return (L = e.default) == null ? void 0 : L.call(e);
+                if (d.value)
+                    return (L = e.default) == null ? void 0 : L.call(e);
                 const o = e.fallback || e.placeholder;
-                if (o) return o();
+                if (o)
+                    return o();
                 const b = u.fallback || u.placeholder || "",
                     h = u.fallbackTag || u.placeholderTag || "span";
-                return G(h, C, b);
-            };
-        }
-    }),
+                return G(h, C, b)
+            }
+    }
+}),
     Q = R("promo", {
         state: () => ({
             promos: [],
@@ -36,14 +40,14 @@ const U = Symbol.for("nuxt:client-only"),
                     try {
                         if (l) {
                             const { promos: e, states: C } = l;
-                            this.setPromos(e);
-                            this.setStates(C);
+                            this.setPromos(e),
+                                this.setStates(C)
                         }
                     } catch (e) {
-                        console.log(e);
+                        console.log(e)
                     }
-                    return l;
-                });
+                    return l
+                })
             },
             async postApplyPromocode(l) {
                 return await O.post("/clicker/apply-promo", {
@@ -53,57 +57,41 @@ const U = Symbol.for("nuxt:client-only"),
                 }).then(e => {
                     console.log('Server response:', e); // 打印服务器返回的完整数据
 
-                    const promoId = e.promoState && e.promoState.promoId
-                                    ? e.promoState.promoId
-                                    : generatePromoId();
-
-                    const receiveKeysRefreshSec = e.promoState && e.promoState.receiveKeysRefreshSec
-                                                  ? e.promoState.receiveKeysRefreshSec
-                                                  : generateReceiveKeysRefreshSec();
-
-                    e.promoState = {
-                        promoId: promoId,
-                        receiveKeysToday: 1,
-                        receiveKeysRefreshSec: receiveKeysRefreshSec
-                    };
+                    // 如果 promoState 缺失，设置默认值
+                    if (!e.promoState) {
+                        e.promoState = {
+                            promoId: uuidv4(), // 生成一个新的 UUID 作为 promoId
+                            receiveKeysToday: 0,
+                            receiveKeysRefreshSec: 86400 // 24 hours in seconds
+                        };
+                    }
 
                     _().setUserResponseData(e); // 保留此方法调用以处理完整的响应数据
                     this.setSingleState(e.promoState); // 更新 promoState 状态
                     return e; // 返回响应数据
-                });
+                })
             },
             setPromos(l) {
-                this.promos = l;
+                this.promos = l
             },
             setStates(l) {
-                this.states = l;
+                this.states = l
             },
             setSingleState(l) {
-                this.states.length === 0 && (this.states = [l]);
-                this.states = this.states.map(e => e.promoId === l.promoId ? l : e);
+                this.states.length === 0 && (this.states = [l]),
+                    this.states = this.states.map(e => e.promoId === l.promoId ? l : e)
             },
             getReceiveKeysToday(l) {
                 var C;
                 const e = (C = this.states) == null ? void 0 : C.find(d => d.promoId === l);
-                return !e || !e.receiveKeysToday ? 0 : e.receiveKeysToday;
+                return !e || !e.receiveKeysToday ? 0 : e.receiveKeysToday
             }
         }
     });
 
-// 生成新的 promoId 的函数
-function generatePromoId() {
-    return uuidv4();
-}
-
-// 生成 receiveKeysRefreshSec 的函数
-function generateReceiveKeysRefreshSec() {
-    // 假设刷新时间为 24 小时（86400 秒）
-    return 86400;
-}
-
 function S(l) {
     return l === void 0 && (l = ""),
-    `.${l.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
+        `.${l.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`
 }
 
 function V(l) {
@@ -140,37 +128,43 @@ function V(l) {
             paginationDisabledClass: `${o}-disabled`
         }
     }),
-    e.pagination = {
-        el: null,
-        bullets: []
-    };
+        e.pagination = {
+            el: null,
+            bullets: []
+        };
     let b, h = 0;
+
     function L() {
-        return !e.params.pagination.el || !e.pagination.el || Array.isArray(e.pagination.el) && e.pagination.el.length === 0;
+        return !e.params.pagination.el || !e.pagination.el || Array.isArray(e.pagination.el) && e.pagination.el.length === 0
     }
+
     function B(a, t) {
         const { bulletActiveClass: s } = e.params.pagination;
         a && (a = a[`${t === "prev" ? "previous" : "next"}ElementSibling`],
-        a && (a.classList.add(`${s}-${t}`),
-        a = a[`${t === "prev" ? "previous" : "next"}ElementSibling`],
-        a && a.classList.add(`${s}-${t}-${t}`)));
+            a && (a.classList.add(`${s}-${t}`),
+                a = a[`${t === "prev" ? "previous" : "next"}ElementSibling`],
+                a && a.classList.add(`${s}-${t}-${t}`)))
     }
+
     function z(a) {
         const t = a.target.closest(S(e.params.pagination.bulletClass));
-        if (!t) return;
+        if (!t)
+            return;
         a.preventDefault();
         const s = D(t) * e.params.slidesPerGroup;
         if (e.params.loop) {
-            if (e.realIndex === s) return;
-            e.slideToLoop(s);
-        } else {
-            e.slideTo(s);
-        }
+            if (e.realIndex === s)
+                return;
+            e.slideToLoop(s)
+        } else
+            e.slideTo(s)
     }
+
     function v() {
         const a = e.rtl,
             t = e.params.pagination;
-        if (L()) return;
+        if (L())
+            return;
         let s = e.pagination.el;
         s = y(s);
         let i, f;
@@ -178,14 +172,14 @@ function V(l) {
             P = e.params.loop ? Math.ceil($ / e.params.slidesPerGroup) : e.snapGrid.length;
         if (e.params.loop ? (f = e.previousRealIndex || 0,
             i = e.params.slidesPerGroup > 1 ? Math.floor(e.realIndex / e.params.slidesPerGroup) : e.realIndex) : typeof e.snapIndex < "u" ? (i = e.snapIndex,
-            f = e.previousSnapIndex) : (f = e.previousIndex || 0,
-            i = e.activeIndex || 0),
+                f = e.previousSnapIndex) : (f = e.previousIndex || 0,
+                    i = e.activeIndex || 0),
             t.type === "bullets" && e.pagination.bullets && e.pagination.bullets.length > 0) {
             const n = e.pagination.bullets;
             let g, m, k;
             if (t.dynamicBullets && (b = K(n[0], e.isHorizontal() ? "width" : "height", !0),
                 s.forEach(r => {
-                    r.style[e.isHorizontal() ? "width" : "height"] = `${b * (t.dynamicMainBullets + 4)}px`;
+                    r.style[e.isHorizontal() ? "width" : "height"] = `${b * (t.dynamicMainBullets + 4)}px`
                 }),
                 t.dynamicMainBullets > 1 && f !== void 0 && (h += i - (f || 0),
                     h > t.dynamicMainBullets - 1 ? h = t.dynamicMainBullets - 1 : h < 0 && (h = 0)),
@@ -194,7 +188,7 @@ function V(l) {
                 k = (m + g) / 2),
                 n.forEach(r => {
                     const c = [...["", "-next", "-next-next", "-prev", "-prev-prev", "-main"].map(p => `${t.bulletActiveClass}${p}`)].map(p => typeof p == "string" && p.includes(" ") ? p.split(" ") : p).flat();
-                    r.classList.remove(...c);
+                    r.classList.remove(...c)
                 }),
                 s.length > 1)
                 n.forEach(r => {
@@ -202,13 +196,13 @@ function V(l) {
                     c === i ? r.classList.add(...t.bulletActiveClass.split(" ")) : e.isElement && r.setAttribute("part", "bullet"),
                         t.dynamicBullets && (c >= g && c <= m && r.classList.add(...`${t.bulletActiveClass}-main`.split(" ")),
                             c === g && B(r, "prev"),
-                            c === m && B(r, "next"));
+                            c === m && B(r, "next"))
                 });
             else {
                 const r = n[i];
                 if (r && r.classList.add(...t.bulletActiveClass.split(" ")),
                     e.isElement && n.forEach((c, p) => {
-                        c.setAttribute("part", p === i ? "bullet-active" : "bullet");
+                        c.setAttribute("part", p === i ? "bullet-active" : "bullet")
                     }),
                     t.dynamicBullets) {
                     const c = n[g],
@@ -216,7 +210,7 @@ function V(l) {
                     for (let x = g; x <= m; x += 1)
                         n[x] && n[x].classList.add(...`${t.bulletActiveClass}-main`.split(" "));
                     B(c, "prev"),
-                        B(p, "next");
+                        B(p, "next")
                 }
             }
             if (t.dynamicBullets) {
@@ -224,16 +218,16 @@ function V(l) {
                     c = (b * r - b) / 2 - k * b,
                     p = a ? "right" : "left";
                 n.forEach(x => {
-                    x.style[e.isHorizontal() ? p : "top"] = `${c}px`;
-                });
+                    x.style[e.isHorizontal() ? p : "top"] = `${c}px`
+                })
             }
         }
         s.forEach((n, g) => {
             if (t.type === "fraction" && (n.querySelectorAll(S(t.currentClass)).forEach(m => {
-                m.textContent = t.formatFractionCurrent(i + 1);
+                m.textContent = t.formatFractionCurrent(i + 1)
             }),
                 n.querySelectorAll(S(t.totalClass)).forEach(m => {
-                    m.textContent = t.formatFractionTotal(P);
+                    m.textContent = t.formatFractionTotal(P)
                 })),
                 t.type === "progressbar") {
                 let m;
@@ -244,18 +238,20 @@ function V(l) {
                 m === "horizontal" ? r = k : c = k,
                     n.querySelectorAll(S(t.progressbarFillClass)).forEach(p => {
                         p.style.transform = `translate3d(0,0,0) scaleX(${r}) scaleY(${c})`,
-                            p.style.transitionDuration = `${e.params.speed}ms`;
-                    });
+                            p.style.transitionDuration = `${e.params.speed}ms`
+                    })
             }
             t.type === "custom" && t.renderCustom ? (n.innerHTML = t.renderCustom(e, i + 1, P),
                 g === 0 && u("paginationRender", n)) : (g === 0 && u("paginationRender", n),
-                u("paginationUpdate", n)),
-                e.params.watchOverflow && e.enabled && n.classList[e.isLocked ? "add" : "remove"](t.lockClass);
-        });
+                    u("paginationUpdate", n)),
+                e.params.watchOverflow && e.enabled && n.classList[e.isLocked ? "add" : "remove"](t.lockClass)
+        })
     }
+
     function A() {
         const a = e.params.pagination;
-        if (L()) return;
+        if (L())
+            return;
         const t = e.virtual && e.params.virtual.enabled ? e.virtual.slides.length : e.grid && e.params.grid.rows > 1 ? e.slides.length / Math.ceil(e.params.grid.rows) : e.slides.length;
         let s = e.pagination.el;
         s = y(s);
@@ -264,23 +260,25 @@ function V(l) {
             let f = e.params.loop ? Math.ceil(t / e.params.slidesPerGroup) : e.snapGrid.length;
             e.params.freeMode && e.params.freeMode.enabled && f > t && (f = t);
             for (let $ = 0; $ < f; $ += 1)
-                a.renderBullet ? i += a.renderBullet.call(e, $, a.bulletClass) : i += `<${a.bulletElement} ${e.isElement ? 'part="bullet"' : ""} class="${a.bulletClass}"></${a.bulletElement}>`;
+                a.renderBullet ? i += a.renderBullet.call(e, $, a.bulletClass) : i += `<${a.bulletElement} ${e.isElement ? 'part="bullet"' : ""} class="${a.bulletClass}"></${a.bulletElement}>`
         }
         a.type === "fraction" && (a.renderFraction ? i = a.renderFraction.call(e, a.currentClass, a.totalClass) : i = `<span class="${a.currentClass}"></span> / <span class="${a.totalClass}"></span>`),
             a.type === "progressbar" && (a.renderProgressbar ? i = a.renderProgressbar.call(e, a.progressbarFillClass) : i = `<span class="${a.progressbarFillClass}"></span>`),
             e.pagination.bullets = [],
             s.forEach(f => {
                 a.type !== "custom" && (f.innerHTML = i || ""),
-                    a.type === "bullets" && e.pagination.bullets.push(...f.querySelectorAll(S(a.bulletClass)));
+                    a.type === "bullets" && e.pagination.bullets.push(...f.querySelectorAll(S(a.bulletClass)))
             }),
-            a.type !== "custom" && u("paginationRender", s[0]);
+            a.type !== "custom" && u("paginationRender", s[0])
     }
+
     function I() {
         e.params.pagination = j(e, e.originalParams.pagination, e.params.pagination, {
             el: "swiper-pagination"
         });
         const a = e.params.pagination;
-        if (!a.el) return;
+        if (!a.el)
+            return;
         let t;
         typeof a.el == "string" && e.isElement && (t = e.el.querySelector(a.el)),
             !t && typeof a.el == "string" && (t = [...document.querySelectorAll(a.el)]),
@@ -301,12 +299,14 @@ function V(l) {
                             a.dynamicMainBullets < 1 && (a.dynamicMainBullets = 1)),
                         a.type === "progressbar" && a.progressbarOpposite && s.classList.add(a.progressbarOppositeClass),
                         a.clickable && s.addEventListener("click", z),
-                        e.enabled || s.classList.add(a.lockClass);
-                }));
+                        e.enabled || s.classList.add(a.lockClass)
+                }))
     }
+
     function M() {
         const a = e.params.pagination;
-        if (L()) return;
+        if (L())
+            return;
         let t = e.pagination.el;
         t && (t = y(t),
             t.forEach(s => {
@@ -314,54 +314,56 @@ function V(l) {
                     s.classList.remove(a.modifierClass + a.type),
                     s.classList.remove(e.isHorizontal() ? a.horizontalClass : a.verticalClass),
                     a.clickable && (s.classList.remove(...(a.clickableClass || "").split(" ")),
-                        s.removeEventListener("click", z));
+                        s.removeEventListener("click", z))
             })),
-            e.pagination.bullets && e.pagination.bullets.forEach(s => s.classList.remove(...a.bulletActiveClass.split(" ")));
+            e.pagination.bullets && e.pagination.bullets.forEach(s => s.classList.remove(...a.bulletActiveClass.split(" ")))
     }
     d("changeDirection", () => {
-        if (!e.pagination || !e.pagination.el) return;
+        if (!e.pagination || !e.pagination.el)
+            return;
         const a = e.params.pagination;
         let { el: t } = e.pagination;
         t = y(t),
             t.forEach(s => {
                 s.classList.remove(a.horizontalClass, a.verticalClass),
-                    s.classList.add(e.isHorizontal() ? a.horizontalClass : a.verticalClass);
-            });
+                    s.classList.add(e.isHorizontal() ? a.horizontalClass : a.verticalClass)
+            })
     }),
         d("init", () => {
             e.params.pagination.enabled === !1 ? T() : (I(),
                 A(),
-                v());
+                v())
         }),
         d("activeIndexChange", () => {
-            typeof e.snapIndex > "u" && v();
+            typeof e.snapIndex > "u" && v()
         }),
         d("snapIndexChange", () => {
-            v();
+            v()
         }),
         d("snapGridLengthChange", () => {
             A(),
-                v();
+                v()
         }),
         d("destroy", () => {
-            M();
+            M()
         }),
         d("enable disable", () => {
             let { el: a } = e.pagination;
             a && (a = y(a),
-                a.forEach(t => t.classList[e.enabled ? "remove" : "add"](e.params.pagination.lockClass)));
+                a.forEach(t => t.classList[e.enabled ? "remove" : "add"](e.params.pagination.lockClass)))
         }),
         d("lock unlock", () => {
-            v();
+            v()
         }),
         d("click", (a, t) => {
             const s = t.target,
                 i = y(e.pagination.el);
             if (e.params.pagination.el && e.params.pagination.hideOnClick && i && i.length > 0 && !s.classList.contains(e.params.pagination.bulletClass)) {
-                if (e.navigation && (e.navigation.nextEl && s === e.navigation.nextEl || e.navigation.prevEl && s === e.navigation.prevEl)) return;
+                if (e.navigation && (e.navigation.nextEl && s === e.navigation.nextEl || e.navigation.prevEl && s === e.navigation.prevEl))
+                    return;
                 const f = i[0].classList.contains(e.params.pagination.hiddenClass);
                 u(f === !0 ? "paginationShow" : "paginationHide"),
-                    i.forEach($ => $.classList.toggle(e.params.pagination.hiddenClass));
+                    i.forEach($ => $.classList.toggle(e.params.pagination.hiddenClass))
             }
         });
     const w = () => {
@@ -371,14 +373,14 @@ function V(l) {
             a.forEach(t => t.classList.remove(e.params.pagination.paginationDisabledClass))),
             I(),
             A(),
-            v();
+            v()
     },
         T = () => {
             e.el.classList.add(e.params.pagination.paginationDisabledClass);
             let { el: a } = e.pagination;
             a && (a = y(a),
                 a.forEach(t => t.classList.add(e.params.pagination.paginationDisabledClass))),
-                M();
+                M()
         };
     Object.assign(e.pagination, {
         enable: w,
@@ -387,7 +389,7 @@ function V(l) {
         update: v,
         init: I,
         destroy: M
-    });
+    })
 }
 
 export { V as P, J as _, Q as u };
