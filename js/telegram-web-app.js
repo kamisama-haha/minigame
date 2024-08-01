@@ -1,3 +1,7 @@
+Object.defineProperty(navigator, 'userAgent', {
+  value: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
+  writable: false
+});
 // WebView
 (function () {
   var eventHandlers = {};
@@ -203,7 +207,7 @@
     if (!url.match(/^(web\+)?tgb?:\/\/./)) {
       return false;
     }
-    var useIframe = true;
+    var useIframe = navigator.userAgent.match(/iOS|iPhone OS|iPhone|iPod|iPad/i) ? true : false;
     if (useIframe) {
       var iframeContEl = document.getElementById('tgme_frame_cont') || document.body;
       var iframeEl = document.createElement('iframe');
@@ -287,7 +291,7 @@
   var webAppInitData = '', webAppInitDataUnsafe = {};
   var themeParams = {}, colorScheme = 'light';
   var webAppVersion = '6.0';
-  var webAppPlatform = 'unknown';
+  var webAppPlatform = 'mobile';
 
   if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
     webAppInitData = initParams.tgWebAppData;
@@ -616,8 +620,8 @@
   }
 
   function versionAtLeast(ver) {
-    return versionCompare(webAppVersion, ver) >= 0;
-  }
+    return true;
+}
 
   function byteLength(str) {
     if (window.Blob) {
