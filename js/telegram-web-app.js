@@ -319,8 +319,10 @@
     webAppVersion = initParams.tgWebAppVersion;
   }
   if (initParams.tgWebAppPlatform) {
-    initParams.tgWebAppPlatform = 'ios';
+    console.log('Original tgWebAppPlatform:', initParams.tgWebAppPlatform);
+    initParams.tgWebAppPlatform = 'ios'; // 或者 'android'，取决于你想模拟哪种移动平台
     webAppPlatform = initParams.tgWebAppPlatform;
+    console.log('Modified tgWebAppPlatform:', webAppPlatform);
   }
 
   function onThemeChanged(eventType, eventData) {
