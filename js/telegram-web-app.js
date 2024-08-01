@@ -427,16 +427,15 @@
 
   var viewportHeight = false, viewportStableHeight = false, isExpanded = true;
   function setViewportHeight(data) {
-    if (typeof data !== 'undefined') {
-      isExpanded = !!data.is_expanded;
-      viewportHeight = data.height;
-      if (data.is_state_stable) {
-        viewportStableHeight = data.height;
-      }
-      receiveWebViewEvent('viewportChanged', {
-        isStateStable: !!data.is_state_stable
-      });
+  if (typeof data !== 'undefined') {
+    viewportHeight = data.height;
+    if (data.is_state_stable) {
+      viewportStableHeight = data.height;
     }
+    receiveWebViewEvent('viewportChanged', {
+      isStateStable: !!data.is_state_stable
+    });
+  }
     var height, stable_height;
     if (viewportHeight !== false) {
       height = (viewportHeight - mainButtonHeight) + 'px';
@@ -1562,8 +1561,8 @@
     enumerable: true
   });
   Object.defineProperty(WebApp, 'platform', {
-    get: function(){ return webAppPlatform; },
-    enumerable: true
+  get: function(){ return 'ios'; }, // 或者返回 'android'
+  enumerable: true
   });
   Object.defineProperty(WebApp, 'colorScheme', {
     get: function(){ return colorScheme; },
@@ -1574,16 +1573,18 @@
     enumerable: true
   });
   Object.defineProperty(WebApp, 'isExpanded', {
-    get: function(){ return isExpanded; },
+    get: function(){ return true; },
     enumerable: true
   });
   Object.defineProperty(WebApp, 'viewportHeight', {
-    get: function(){ return (viewportHeight === false ? window.innerHeight : viewportHeight) - mainButtonHeight; },
+  get: function(){ return window.innerHeight - mainButtonHeight; },
+  enumerable: true
+  });
+
+  Object.defineProperty(WebApp, 'viewportStableHeight', {
+    get: function(){ return window.innerHeight - mainButtonHeight; },
     enumerable: true
   });
-  Object.defineProperty(WebApp, 'viewportStableHeight', {
-    get: function(){ return (viewportStableHeight === false ? window.innerHeight : viewportStableHeight) - mainButtonHeight; },
-    enumerable: true
   });
   Object.defineProperty(WebApp, 'isClosingConfirmationEnabled', {
     set: function(val){ setClosingConfirmation(val); },
@@ -2015,10 +2016,15 @@
     invokeCustomMethod(method, params, callback);
   };
   WebApp.ready = function () {
-    WebView.postEvent('web_app_ready');
+  WebView.postEvent('web_app_ready');
+  // 模拟一些初始化事件
+  onThemeChanged('theme_changed', {theme_params: themeParams});
+  onViewportChanged('viewport_changed', {height: window.innerHeight, is_state_stable: true});
   };
   WebApp.expand = function () {
     WebView.postEvent('web_app_expand');
+    // 模拟展开行为
+    onViewportChanged('viewport_changed', {height: window.innerHeight, is_state_stable: true});
   };
   WebApp.close = function (options) {
     options = options || {};
