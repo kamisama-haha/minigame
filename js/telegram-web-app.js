@@ -204,6 +204,8 @@
       return false;
     }
     var useIframe = navigator.userAgent.match(/iOS|iPhone OS|iPhone|iPod|iPad/i) ? true : false;
+    console.log('User Agent:', navigator.userAgent);
+    console.log('useIframe:', useIframe);
     if (useIframe) {
       var iframeContEl = document.getElementById('tgme_frame_cont') || document.body;
       var iframeEl = document.createElement('iframe');
@@ -320,9 +322,7 @@
   }
   if (initParams.tgWebAppPlatform) {
     console.log('Original tgWebAppPlatform:', initParams.tgWebAppPlatform);
-    initParams.tgWebAppPlatform = 'ios'; // 或者 'android'，取决于你想模拟哪种移动平台
     webAppPlatform = initParams.tgWebAppPlatform;
-    console.log('Modified tgWebAppPlatform:', webAppPlatform);
   }
 
   function onThemeChanged(eventType, eventData) {
