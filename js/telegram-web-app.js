@@ -203,9 +203,12 @@
     if (!url.match(/^(web\+)?tgb?:\/\/./)) {
       return false;
     }
-    var useIframe = true;
-    console.log('User Agent:', navigator.userAgent);
-    console.log('useIframe:', useIframe);
+    Object.defineProperty(navigator, 'userAgent', {
+      get: function () {
+        return 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1';
+      }
+    });
+    var useIframe = navigator.userAgent.match(/iOS|iPhone OS|iPhone|iPod|iPad/i) ? true : false;
     if (useIframe) {
       var iframeContEl = document.getElementById('tgme_frame_cont') || document.body;
       var iframeEl = document.createElement('iframe');
@@ -289,7 +292,7 @@
   var webAppInitData = '', webAppInitDataUnsafe = {};
   var themeParams = {}, colorScheme = 'light';
   var webAppVersion = '6.0';
-  var webAppPlatform = 'IOS';
+  var webAppPlatform = 'unknown';
 
   if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
     webAppInitData = initParams.tgWebAppData;
@@ -321,8 +324,7 @@
     webAppVersion = initParams.tgWebAppVersion;
   }
   if (initParams.tgWebAppPlatform) {
-    console.log('Original tgWebAppPlatform:', initParams.tgWebAppPlatform);
-    webAppPlatform = 'ios';
+    webAppPlatform = initParams.tgWebAppPlatform;
   }
 
   function onThemeChanged(eventType, eventData) {
