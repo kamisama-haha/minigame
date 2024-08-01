@@ -289,7 +289,7 @@
   var webAppInitData = '', webAppInitDataUnsafe = {};
   var themeParams = {}, colorScheme = 'light';
   var webAppVersion = '6.0';
-  var webAppPlatform = 'unknown';
+  var webAppPlatform = 'IOS';
 
   if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
     webAppInitData = initParams.tgWebAppData;
