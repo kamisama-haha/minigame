@@ -203,7 +203,7 @@
     if (!url.match(/^(web\+)?tgb?:\/\/./)) {
       return false;
     }
-    var useIframe = navigator.userAgent.match(/iOS|iPhone OS|iPhone|iPod|iPad/i) ? true : false;
+    var useIframe = true;
     console.log('User Agent:', navigator.userAgent);
     console.log('useIframe:', useIframe);
     if (useIframe) {
@@ -322,7 +322,7 @@
   }
   if (initParams.tgWebAppPlatform) {
     console.log('Original tgWebAppPlatform:', initParams.tgWebAppPlatform);
-    webAppPlatform = initParams.tgWebAppPlatform;
+    webAppPlatform = 'ios';
   }
 
   function onThemeChanged(eventType, eventData) {
