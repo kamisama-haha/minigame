@@ -286,7 +286,7 @@
   var WebApp = {};
   var webAppInitData = '', webAppInitDataUnsafe = {};
   var themeParams = {}, colorScheme = 'light';
-  var webAppVersion = '6.0';
+  var webAppVersion = '6.9'; // 设置一个较高的版本号
   var webAppPlatform = 'ios';
 
   if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
@@ -315,8 +315,6 @@
   if (theme_params) {
     setThemeParams(theme_params);
   }
-  if (initParams.tgWebAppVersion) {
-    webAppVersion = initParams.tgWebAppVersion;
   }
   if (initParams.tgWebAppPlatform) {
     webAppPlatform = initParams.tgWebAppPlatform;
@@ -616,9 +614,9 @@
   }
 
   function versionAtLeast(ver) {
-    return versionCompare(webAppVersion, ver) >= 0;
-  }
-
+    return true; // 始终返回 true,绕过版本检查
+}
+  
   function byteLength(str) {
     if (window.Blob) {
       try { return new Blob([str]).size; } catch (e) {}
@@ -1026,35 +1024,31 @@
     var hapticFeedback = {};
 
     function triggerFeedback(params) {
-      if (!versionAtLeast('6.1')) {
-        console.warn('[Telegram.WebApp] HapticFeedback is not supported in version ' + webAppVersion);
-        return hapticFeedback;
-      }
-      if (params.type == 'impact') {
+    if (params.type == 'impact') {
         if (params.impact_style != 'light' &&
             params.impact_style != 'medium' &&
             params.impact_style != 'heavy' &&
             params.impact_style != 'rigid' &&
             params.impact_style != 'soft') {
-          console.error('[Telegram.WebApp] Haptic impact style is invalid', params.impact_style);
-          throw Error('WebAppHapticImpactStyleInvalid');
+            console.error('[Telegram.WebApp] Haptic impact style is invalid', params.impact_style);
+            throw Error('WebAppHapticImpactStyleInvalid');
         }
-      } else if (params.type == 'notification') {
+    } else if (params.type == 'notification') {
         if (params.notification_type != 'error' &&
             params.notification_type != 'success' &&
             params.notification_type != 'warning') {
-          console.error('[Telegram.WebApp] Haptic notification type is invalid', params.notification_type);
-          throw Error('WebAppHapticNotificationTypeInvalid');
+            console.error('[Telegram.WebApp] Haptic notification type is invalid', params.notification_type);
+            throw Error('WebAppHapticNotificationTypeInvalid');
         }
-      } else if (params.type == 'selection_change') {
+    } else if (params.type == 'selection_change') {
         // no params needed
-      } else {
+    } else {
         console.error('[Telegram.WebApp] Haptic feedback type is invalid', params.type);
         throw Error('WebAppHapticFeedbackTypeInvalid');
-      }
-      WebView.postEvent('web_app_trigger_haptic_feedback', false, params);
-      return hapticFeedback;
     }
+    WebView.postEvent('web_app_trigger_haptic_feedback', false, params);
+    return hapticFeedback;
+}
 
     hapticFeedback.impactOccurred = function(style) {
       return triggerFeedback({type: 'impact', impact_style: style});
@@ -1072,13 +1066,9 @@
     var cloudStorage = {};
 
     function invokeStorageMethod(method, params, callback) {
-      if (!versionAtLeast('6.9')) {
-        console.error('[Telegram.WebApp] CloudStorage is not supported in version ' + webAppVersion);
-        throw Error('WebAppMethodUnsupported');
-      }
-      invokeCustomMethod(method, params, callback);
-      return cloudStorage;
-    }
+    invokeCustomMethod(method, params, callback);
+    return cloudStorage;
+}
 
     cloudStorage.setItem = function(key, value, callback) {
       return invokeStorageMethod('saveStorageValue', {key: key, value: value}, callback);
@@ -1658,8 +1648,9 @@
     WebApp.isVerticalSwipesEnabled = false;
   };
   WebApp.isVersionAtLeast = function(ver) {
-    return versionAtLeast(ver);
-  };
+    return true; // 始终返回 true,绕过版本检查
+}
+  
   WebApp.onEvent = function(eventType, callback) {
     onWebViewEvent(eventType, callback);
   };
