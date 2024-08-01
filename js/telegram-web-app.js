@@ -319,7 +319,7 @@
     webAppVersion = initParams.tgWebAppVersion;
   }
   if (initParams.tgWebAppPlatform) {
-    console.log('tgWebAppPlatform:', initParams.tgWebAppPlatform);
+    initParams.tgWebAppPlatform = 'ios';
     webAppPlatform = initParams.tgWebAppPlatform;
   }
 
