@@ -1585,7 +1585,6 @@
     get: function(){ return window.innerHeight - mainButtonHeight; },
     enumerable: true
   });
-  });
   Object.defineProperty(WebApp, 'isClosingConfirmationEnabled', {
     set: function(val){ setClosingConfirmation(val); },
     get: function(){ return isClosingConfirmationEnabled; },
