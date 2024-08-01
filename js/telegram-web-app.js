@@ -16,13 +16,11 @@
       }
     }
   }
-  initParams.platform = 'ios';
-  initParams.device_model = 'iPhone';
   sessionStorageSet('initParams', initParams);
 
-  var isIframe = true, iFrameStyle;
+  var isIframe = false, iFrameStyle;
   try {
-    isIframe = true; // 强制设置为true，模拟iframe环境
+    isIframe = (window.parent != null && window != window.parent);
     if (isIframe) {
       window.addEventListener('message', function (event) {
         if (event.source !== window.parent) return;
@@ -54,21 +52,6 @@
       } catch (e) {}
     }
   } catch (e) {}
-
-  // 模拟iOS的WebView接口
-  window.TelegramWebviewProxy = {
-    postEvent: function(eventName, eventData) {
-      console.log('iOS postEvent:', eventName, eventData);
-      // 在这里可以添加更多的iOS特定逻辑
-    }
-  };
-
-  // 修改navigator.userAgent
-  Object.defineProperty(navigator, 'userAgent', {
-    get: function () {
-      return 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1';
-    }
-  });
 
   function urlSafeDecode(urlencoded) {
     try {
@@ -220,7 +203,7 @@
     if (!url.match(/^(web\+)?tgb?:\/\/./)) {
       return false;
     }
-    var useIframe = true;
+    var useIframe = navigator.userAgent.match(/iOS|iPhone OS|iPhone|iPod|iPad/i) ? true : false;
     if (useIframe) {
       var iframeContEl = document.getElementById('tgme_frame_cont') || document.body;
       var iframeEl = document.createElement('iframe');
@@ -303,8 +286,8 @@
   var WebApp = {};
   var webAppInitData = '', webAppInitDataUnsafe = {};
   var themeParams = {}, colorScheme = 'light';
-  var webAppVersion = '6.9'; // 设置一个较高的版本号
-  var webAppPlatform = 'ios';
+  var webAppVersion = '6.0';
+  var webAppPlatform = 'unknown';
 
   if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
     webAppInitData = initParams.tgWebAppData;
@@ -332,8 +315,11 @@
   if (theme_params) {
     setThemeParams(theme_params);
   }
-
+  if (initParams.tgWebAppVersion) {
+    webAppVersion = initParams.tgWebAppVersion;
+  }
   if (initParams.tgWebAppPlatform) {
+    console.log('tgWebAppPlatform:', initParams.tgWebAppPlatform);
     webAppPlatform = initParams.tgWebAppPlatform;
   }
 
@@ -444,15 +430,16 @@
 
   var viewportHeight = false, viewportStableHeight = false, isExpanded = true;
   function setViewportHeight(data) {
-  if (typeof data !== 'undefined') {
-    viewportHeight = data.height;
-    if (data.is_state_stable) {
-      viewportStableHeight = data.height;
+    if (typeof data !== 'undefined') {
+      isExpanded = !!data.is_expanded;
+      viewportHeight = data.height;
+      if (data.is_state_stable) {
+        viewportStableHeight = data.height;
+      }
+      receiveWebViewEvent('viewportChanged', {
+        isStateStable: !!data.is_state_stable
+      });
     }
-    receiveWebViewEvent('viewportChanged', {
-      isStateStable: !!data.is_state_stable
-    });
-  }
     var height, stable_height;
     if (viewportHeight !== false) {
       height = (viewportHeight - mainButtonHeight) + 'px';
@@ -630,8 +617,8 @@
   }
 
   function versionAtLeast(ver) {
-    return true; // 始终返回 true,绕过版本检查
-}
+    return versionCompare(webAppVersion, ver) >= 0;
+  }
 
   function byteLength(str) {
     if (window.Blob) {
@@ -1040,31 +1027,35 @@
     var hapticFeedback = {};
 
     function triggerFeedback(params) {
-    if (params.type == 'impact') {
+      if (!versionAtLeast('6.1')) {
+        console.warn('[Telegram.WebApp] HapticFeedback is not supported in version ' + webAppVersion);
+        return hapticFeedback;
+      }
+      if (params.type == 'impact') {
         if (params.impact_style != 'light' &&
             params.impact_style != 'medium' &&
             params.impact_style != 'heavy' &&
             params.impact_style != 'rigid' &&
             params.impact_style != 'soft') {
-            console.error('[Telegram.WebApp] Haptic impact style is invalid', params.impact_style);
-            throw Error('WebAppHapticImpactStyleInvalid');
+          console.error('[Telegram.WebApp] Haptic impact style is invalid', params.impact_style);
+          throw Error('WebAppHapticImpactStyleInvalid');
         }
-    } else if (params.type == 'notification') {
+      } else if (params.type == 'notification') {
         if (params.notification_type != 'error' &&
             params.notification_type != 'success' &&
             params.notification_type != 'warning') {
-            console.error('[Telegram.WebApp] Haptic notification type is invalid', params.notification_type);
-            throw Error('WebAppHapticNotificationTypeInvalid');
+          console.error('[Telegram.WebApp] Haptic notification type is invalid', params.notification_type);
+          throw Error('WebAppHapticNotificationTypeInvalid');
         }
-    } else if (params.type == 'selection_change') {
+      } else if (params.type == 'selection_change') {
         // no params needed
-    } else {
+      } else {
         console.error('[Telegram.WebApp] Haptic feedback type is invalid', params.type);
         throw Error('WebAppHapticFeedbackTypeInvalid');
+      }
+      WebView.postEvent('web_app_trigger_haptic_feedback', false, params);
+      return hapticFeedback;
     }
-    WebView.postEvent('web_app_trigger_haptic_feedback', false, params);
-    return hapticFeedback;
-}
 
     hapticFeedback.impactOccurred = function(style) {
       return triggerFeedback({type: 'impact', impact_style: style});
@@ -1082,9 +1073,13 @@
     var cloudStorage = {};
 
     function invokeStorageMethod(method, params, callback) {
-    invokeCustomMethod(method, params, callback);
-    return cloudStorage;
-}
+      if (!versionAtLeast('6.9')) {
+        console.error('[Telegram.WebApp] CloudStorage is not supported in version ' + webAppVersion);
+        throw Error('WebAppMethodUnsupported');
+      }
+      invokeCustomMethod(method, params, callback);
+      return cloudStorage;
+    }
 
     cloudStorage.setItem = function(key, value, callback) {
       return invokeStorageMethod('saveStorageValue', {key: key, value: value}, callback);
@@ -1578,8 +1573,8 @@
     enumerable: true
   });
   Object.defineProperty(WebApp, 'platform', {
-  get: function(){ return 'ios'; }, // 或者返回 'android'
-  enumerable: true
+    get: function(){ return webAppPlatform; },
+    enumerable: true
   });
   Object.defineProperty(WebApp, 'colorScheme', {
     get: function(){ return colorScheme; },
@@ -1590,16 +1585,15 @@
     enumerable: true
   });
   Object.defineProperty(WebApp, 'isExpanded', {
-    get: function(){ return true; },
+    get: function(){ return isExpanded; },
     enumerable: true
   });
   Object.defineProperty(WebApp, 'viewportHeight', {
-  get: function(){ return window.innerHeight - mainButtonHeight; },
-  enumerable: true
+    get: function(){ return (viewportHeight === false ? window.innerHeight : viewportHeight) - mainButtonHeight; },
+    enumerable: true
   });
-
   Object.defineProperty(WebApp, 'viewportStableHeight', {
-    get: function(){ return window.innerHeight - mainButtonHeight; },
+    get: function(){ return (viewportStableHeight === false ? window.innerHeight : viewportStableHeight) - mainButtonHeight; },
     enumerable: true
   });
   Object.defineProperty(WebApp, 'isClosingConfirmationEnabled', {
@@ -1665,9 +1659,8 @@
     WebApp.isVerticalSwipesEnabled = false;
   };
   WebApp.isVersionAtLeast = function(ver) {
-    return true; // 始终返回 true,绕过版本检查
-}
-
+    return versionAtLeast(ver);
+  };
   WebApp.onEvent = function(eventType, callback) {
     onWebViewEvent(eventType, callback);
   };
@@ -1722,43 +1715,45 @@
   WebApp.openLink = function (url, options) {
     var a = document.createElement('A');
     a.href = url;
-
-    if (a.protocol != 'http:' && a.protocol != 'https:') {
-        console.error('[Telegram.WebApp] Url protocol is not supported', url);
-        throw Error('WebAppTgUrlInvalid');
+    if (a.protocol != 'http:' &&
+        a.protocol != 'https:') {
+      console.error('[Telegram.WebApp] Url protocol is not supported', url);
+      throw Error('WebAppTgUrlInvalid');
     }
-
     var url = a.href;
     options = options || {};
-    var req_params = {url: url};
-
-    if (options.try_instant_view) {
+    if (versionAtLeast('6.1')) {
+      var req_params = {url: url};
+      if (versionAtLeast('6.4') && options.try_instant_view) {
         req_params.try_instant_view = true;
-    }
-
-    if (options.try_browser) {
+      }
+      if (versionAtLeast('7.6') && options.try_browser) {
         req_params.try_browser = options.try_browser;
+      }
+      WebView.postEvent('web_app_open_link', false, req_params);
+    } else {
+      window.open(url, '_blank');
     }
-
-    WebView.postEvent('web_app_open_link', false, req_params);
-};
+  };
   WebApp.openTelegramLink = function (url) {
     var a = document.createElement('A');
     a.href = url;
-
-    if (a.protocol != 'http:' && a.protocol != 'https:') {
-        console.error('[Telegram.WebApp] Url protocol is not supported', url);
-        throw Error('WebAppTgUrlInvalid');
+    if (a.protocol != 'http:' &&
+        a.protocol != 'https:') {
+      console.error('[Telegram.WebApp] Url protocol is not supported', url);
+      throw Error('WebAppTgUrlInvalid');
     }
-
     if (a.hostname != 't.me') {
-        console.error('[Telegram.WebApp] Url host is not supported', url);
-        throw Error('WebAppTgUrlInvalid');
+      console.error('[Telegram.WebApp] Url host is not supported', url);
+      throw Error('WebAppTgUrlInvalid');
     }
-
     var path_full = a.pathname + a.search;
-    WebView.postEvent('web_app_open_tg_link', false, {path_full: path_full});
-};
+    if (isIframe || versionAtLeast('6.1')) {
+      WebView.postEvent('web_app_open_tg_link', false, {path_full: path_full});
+    } else {
+      location.href = 'https://t.me' + path_full;
+    }
+  };
   WebApp.openInvoice = function (url, callback) {
     var a = document.createElement('A'), match, slug;
     a.href = url;
@@ -2032,15 +2027,10 @@
     invokeCustomMethod(method, params, callback);
   };
   WebApp.ready = function () {
-  WebView.postEvent('web_app_ready');
-  // 模拟一些初始化事件
-  onThemeChanged('theme_changed', {theme_params: themeParams});
-  onViewportChanged('viewport_changed', {height: window.innerHeight, is_state_stable: true});
+    WebView.postEvent('web_app_ready');
   };
   WebApp.expand = function () {
     WebView.postEvent('web_app_expand');
-    // 模拟展开行为
-    onViewportChanged('viewport_changed', {height: window.innerHeight, is_state_stable: true});
   };
   WebApp.close = function (options) {
     options = options || {};
