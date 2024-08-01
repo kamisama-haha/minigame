@@ -16,11 +16,13 @@
       }
     }
   }
+  initParams.platform = 'ios';
+  initParams.device_model = 'iPhone';
   sessionStorageSet('initParams', initParams);
 
   var isIframe = true, iFrameStyle;
   try {
-    isIframe = (window.parent != null && window != window.parent);
+    isIframe = true; // 强制设置为true，模拟iframe环境
     if (isIframe) {
       window.addEventListener('message', function (event) {
         if (event.source !== window.parent) return;
@@ -52,6 +54,21 @@
       } catch (e) {}
     }
   } catch (e) {}
+
+  // 模拟iOS的WebView接口
+  window.TelegramWebviewProxy = {
+    postEvent: function(eventName, eventData) {
+      console.log('iOS postEvent:', eventName, eventData);
+      // 在这里可以添加更多的iOS特定逻辑
+    }
+  };
+
+  // 修改navigator.userAgent
+  Object.defineProperty(navigator, 'userAgent', {
+    get: function () {
+      return 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1';
+    }
+  });
 
   function urlSafeDecode(urlencoded) {
     try {
@@ -315,7 +332,7 @@
   if (theme_params) {
     setThemeParams(theme_params);
   }
-  
+
   if (initParams.tgWebAppPlatform) {
     webAppPlatform = initParams.tgWebAppPlatform;
   }
@@ -615,7 +632,7 @@
   function versionAtLeast(ver) {
     return true; // 始终返回 true,绕过版本检查
 }
-  
+
   function byteLength(str) {
     if (window.Blob) {
       try { return new Blob([str]).size; } catch (e) {}
@@ -1650,7 +1667,7 @@
   WebApp.isVersionAtLeast = function(ver) {
     return true; // 始终返回 true,绕过版本检查
 }
-  
+
   WebApp.onEvent = function(eventType, callback) {
     onWebViewEvent(eventType, callback);
   };
@@ -1705,40 +1722,40 @@
   WebApp.openLink = function (url, options) {
     var a = document.createElement('A');
     a.href = url;
-    
+
     if (a.protocol != 'http:' && a.protocol != 'https:') {
         console.error('[Telegram.WebApp] Url protocol is not supported', url);
         throw Error('WebAppTgUrlInvalid');
     }
-    
+
     var url = a.href;
     options = options || {};
     var req_params = {url: url};
-    
+
     if (options.try_instant_view) {
         req_params.try_instant_view = true;
     }
-    
+
     if (options.try_browser) {
         req_params.try_browser = options.try_browser;
     }
-    
+
     WebView.postEvent('web_app_open_link', false, req_params);
 };
   WebApp.openTelegramLink = function (url) {
     var a = document.createElement('A');
     a.href = url;
-    
+
     if (a.protocol != 'http:' && a.protocol != 'https:') {
         console.error('[Telegram.WebApp] Url protocol is not supported', url);
         throw Error('WebAppTgUrlInvalid');
     }
-    
+
     if (a.hostname != 't.me') {
         console.error('[Telegram.WebApp] Url host is not supported', url);
         throw Error('WebAppTgUrlInvalid');
     }
-    
+
     var path_full = a.pathname + a.search;
     WebView.postEvent('web_app_open_tg_link', false, {path_full: path_full});
 };
