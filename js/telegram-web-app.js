@@ -1,7 +1,3 @@
-Object.defineProperty(navigator, 'userAgent', {
-  value: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
-  writable: false
-});
 // WebView
 (function () {
   var eventHandlers = {};
@@ -22,7 +18,7 @@ Object.defineProperty(navigator, 'userAgent', {
   }
   sessionStorageSet('initParams', initParams);
 
-  var isIframe = false, iFrameStyle;
+  var isIframe = true, iFrameStyle;
   try {
     isIframe = (window.parent != null && window != window.parent);
     if (isIframe) {
@@ -207,7 +203,7 @@ Object.defineProperty(navigator, 'userAgent', {
     if (!url.match(/^(web\+)?tgb?:\/\/./)) {
       return false;
     }
-    var useIframe = navigator.userAgent.match(/iOS|iPhone OS|iPhone|iPod|iPad/i) ? true : false;
+    var useIframe = true;
     if (useIframe) {
       var iframeContEl = document.getElementById('tgme_frame_cont') || document.body;
       var iframeEl = document.createElement('iframe');
@@ -291,7 +287,7 @@ Object.defineProperty(navigator, 'userAgent', {
   var webAppInitData = '', webAppInitDataUnsafe = {};
   var themeParams = {}, colorScheme = 'light';
   var webAppVersion = '6.0';
-  var webAppPlatform = 'mobile';
+  var webAppPlatform = 'ios';
 
   if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
     webAppInitData = initParams.tgWebAppData;
@@ -620,8 +616,8 @@ Object.defineProperty(navigator, 'userAgent', {
   }
 
   function versionAtLeast(ver) {
-    return true;
-}
+    return versionCompare(webAppVersion, ver) >= 0;
+  }
 
   function byteLength(str) {
     if (window.Blob) {
@@ -1718,45 +1714,43 @@ Object.defineProperty(navigator, 'userAgent', {
   WebApp.openLink = function (url, options) {
     var a = document.createElement('A');
     a.href = url;
-    if (a.protocol != 'http:' &&
-        a.protocol != 'https:') {
-      console.error('[Telegram.WebApp] Url protocol is not supported', url);
-      throw Error('WebAppTgUrlInvalid');
+    
+    if (a.protocol != 'http:' && a.protocol != 'https:') {
+        console.error('[Telegram.WebApp] Url protocol is not supported', url);
+        throw Error('WebAppTgUrlInvalid');
     }
+    
     var url = a.href;
     options = options || {};
-    if (versionAtLeast('6.1')) {
-      var req_params = {url: url};
-      if (versionAtLeast('6.4') && options.try_instant_view) {
+    var req_params = {url: url};
+    
+    if (options.try_instant_view) {
         req_params.try_instant_view = true;
-      }
-      if (versionAtLeast('7.6') && options.try_browser) {
-        req_params.try_browser = options.try_browser;
-      }
-      WebView.postEvent('web_app_open_link', false, req_params);
-    } else {
-      window.open(url, '_blank');
     }
-  };
+    
+    if (options.try_browser) {
+        req_params.try_browser = options.try_browser;
+    }
+    
+    WebView.postEvent('web_app_open_link', false, req_params);
+};
   WebApp.openTelegramLink = function (url) {
     var a = document.createElement('A');
     a.href = url;
-    if (a.protocol != 'http:' &&
-        a.protocol != 'https:') {
-      console.error('[Telegram.WebApp] Url protocol is not supported', url);
-      throw Error('WebAppTgUrlInvalid');
+    
+    if (a.protocol != 'http:' && a.protocol != 'https:') {
+        console.error('[Telegram.WebApp] Url protocol is not supported', url);
+        throw Error('WebAppTgUrlInvalid');
     }
+    
     if (a.hostname != 't.me') {
-      console.error('[Telegram.WebApp] Url host is not supported', url);
-      throw Error('WebAppTgUrlInvalid');
+        console.error('[Telegram.WebApp] Url host is not supported', url);
+        throw Error('WebAppTgUrlInvalid');
     }
+    
     var path_full = a.pathname + a.search;
-    if (isIframe || versionAtLeast('6.1')) {
-      WebView.postEvent('web_app_open_tg_link', false, {path_full: path_full});
-    } else {
-      location.href = 'https://t.me' + path_full;
-    }
-  };
+    WebView.postEvent('web_app_open_tg_link', false, {path_full: path_full});
+};
   WebApp.openInvoice = function (url, callback) {
     var a = document.createElement('A'), match, slug;
     a.href = url;
