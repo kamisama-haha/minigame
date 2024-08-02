@@ -203,11 +203,6 @@
     if (!url.match(/^(web\+)?tgb?:\/\/./)) {
       return false;
     }
-    Object.defineProperty(navigator, 'userAgent', {
-      get: function () {
-        return 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1';
-      }
-    });
     var useIframe = navigator.userAgent.match(/iOS|iPhone OS|iPhone|iPod|iPad/i) ? true : false;
     if (useIframe) {
       var iframeContEl = document.getElementById('tgme_frame_cont') || document.body;
@@ -1577,7 +1572,7 @@
     enumerable: true
   });
   Object.defineProperty(WebApp, 'platform', {
-    get: function(){ return webAppPlatform; },
+    get: function(){ return 'ios'; },
     enumerable: true
   });
   Object.defineProperty(WebApp, 'colorScheme', {
