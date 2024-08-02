@@ -2040,6 +2040,7 @@
     WebView.postEvent('web_app_close', false, req_params);
   };
 
+  console.log(WebApp);
   window.Telegram.WebApp = WebApp;
 
   updateHeaderColor();
