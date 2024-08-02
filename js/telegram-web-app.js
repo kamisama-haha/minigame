@@ -286,15 +286,9 @@
   var WebApp = {};
   var webAppInitData = '', webAppInitDataUnsafe = {};
   var themeParams = {}, colorScheme = 'light';
-  var webAppVersion = '7.7';
-  var webAppPlatform = 'ios';
-  
-  Object.defineProperty(WebApp, 'platform', {
-    get: function() { return 'ios'; },  // 强制返回 'ios'
-    enumerable: true
-  });
+  var webAppVersion = '6.0';
+  var webAppPlatform = 'unknown';
 
-  
   if (initParams.tgWebAppData && initParams.tgWebAppData.length) {
     webAppInitData = initParams.tgWebAppData;
     webAppInitDataUnsafe = Utils.urlParseQueryString(webAppInitData);
@@ -2046,9 +2040,7 @@
     WebView.postEvent('web_app_close', false, req_params);
   };
 
-  console.log(WebApp);
   window.Telegram.WebApp = WebApp;
-  console.log(window.Telegram.WebApp);
 
   updateHeaderColor();
   updateBackgroundColor();
