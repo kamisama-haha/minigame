@@ -22,7 +22,7 @@ const rt = {}
 }
   , Sv = Object.prototype.hasOwnProperty
   , Ke = (e,t)=>Sv.call(e, t)
-  , fe = Array.isArray
+  , de = Array.isArray
   , li = e=>Co(e) === "[object Map]"
   , zh = e=>Co(e) === "[object Set]"
   , kv = e=>Co(e) === "[object RegExp]"
@@ -71,7 +71,7 @@ const rt = {}
 let qu;
 const $h = ()=>qu || (qu = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
 function Rn(e) {
-    if (fe(e)) {
+    if (de(e)) {
         const t = {};
         for (let n = 0; n < e.length; n++) {
             const r = e[n]
@@ -102,7 +102,7 @@ function It(e) {
     let t = "";
     if (ot(e))
         t = e;
-    else if (fe(e))
+    else if (de(e))
         for (let n = 0; n < e.length; n++) {
             const r = It(e[n]);
             r && (t += r + " ")
@@ -127,13 +127,13 @@ const Mv = "html,body,base,head,link,meta,style,title,address,article,aside,foot
 function ep(e) {
     return !!e || e === ""
 }
-const Zt = e=>ot(e) ? e : e == null ? "" : fe(e) || nt(e) && (e.toString === Qh || !ye(e.toString)) ? JSON.stringify(e, tp, 2) : String(e)
+const Zt = e=>ot(e) ? e : e == null ? "" : de(e) || nt(e) && (e.toString === Qh || !ye(e.toString)) ? JSON.stringify(e, tp, 2) : String(e)
   , tp = (e,t)=>t && t.__v_isRef ? tp(e, t.value) : li(t) ? {
     [`Map(${t.size})`]: [...t.entries()].reduce((n,[r,i],o)=>(n[Oa(r, o) + " =>"] = i,
     n), {})
 } : zh(t) ? {
     [`Set(${t.size})`]: [...t.values()].map(n=>Oa(n))
-} : Oi(t) ? Oa(t) : nt(t) && !fe(t) && !Xh(t) ? String(t) : t
+} : Oi(t) ? Oa(t) : nt(t) && !de(t) && !Xh(t) ? String(t) : t
   , Oa = (e,t="")=>{
     var n;
     return Oi(e) ? `Symbol(${(n = e.description) != null ? n : t})` : e
@@ -352,7 +352,7 @@ function qn(e, t, n, r, i, o) {
     let a = [];
     if (t === "clear")
         a = [...s.values()];
-    else if (n === "length" && fe(e)) {
+    else if (n === "length" && de(e)) {
         const l = Number(r);
         s.forEach((c,u)=>{
             (u === "length" || !Oi(u) && u >= l) && a.push(c)
@@ -362,11 +362,11 @@ function qn(e, t, n, r, i, o) {
         switch (n !== void 0 && a.push(s.get(n)),
         t) {
         case "add":
-            fe(e) ? Ic(n) && a.push(s.get("length")) : (a.push(s.get(Hr)),
+            de(e) ? Ic(n) && a.push(s.get("length")) : (a.push(s.get(Hr)),
             li(e) && a.push(s.get(ml)));
             break;
         case "delete":
-            fe(e) || (a.push(s.get(Hr)),
+            de(e) || (a.push(s.get(Hr)),
             li(e) && a.push(s.get(ml)));
             break;
         case "set":
@@ -431,7 +431,7 @@ class cp {
             return o;
         if (n === "__v_raw")
             return r === (i ? o ? t0 : hp : o ? dp : fp).get(t) || Object.getPrototypeOf(t) === Object.getPrototypeOf(r) ? t : void 0;
-        const s = fe(t);
+        const s = de(t);
         if (!i) {
             if (s && Ke(Ju, n))
                 return Reflect.get(Ju, n, r);
@@ -453,11 +453,11 @@ class up extends cp {
             const l = qr(o);
             if (!Ts(r) && !qr(r) && (o = Ve(o),
             r = Ve(r)),
-            !fe(t) && lt(o) && !lt(r))
+            !de(t) && lt(o) && !lt(r))
                 return l ? !1 : (o.value = r,
                 !0)
         }
-        const s = fe(t) && Ic(n) ? Number(n) < t.length : Ke(t, n)
+        const s = de(t) && Ic(n) ? Number(n) < t.length : Ke(t, n)
           , a = Reflect.set(t, n, r, i);
         return t === Ve(i) && (s ? br(r, o) && qn(t, "set", n, r) : qn(t, "add", n, r)),
         a
@@ -475,7 +475,7 @@ class up extends cp {
         r
     }
     ownKeys(t) {
-        return xt(t, "iterate", fe(t) ? "length" : Hr),
+        return xt(t, "iterate", de(t) ? "length" : Hr),
         Reflect.ownKeys(t)
     }
 }
@@ -865,7 +865,7 @@ function _p(e) {
     return new a0(e)
 }
 function xc(e) {
-    const t = fe(e) ? new Array(e.length) : {};
+    const t = de(e) ? new Array(e.length) : {};
     for (const n in e)
         t[n] = bp(e, n);
     return t
@@ -994,7 +994,7 @@ function d0(e) {
     t > Ln && wt.splice(t, 1)
 }
 function yl(e) {
-    fe(e) ? di.push(...e) : (!sr || !sr.includes(e, e.allowRecurse ? Ur + 1 : Ur)) && di.push(e),
+    de(e) ? di.push(...e) : (!sr || !sr.includes(e, e.allowRecurse ? Ur + 1 : Ur)) && di.push(e),
     Tp()
 }
 function $u(e, t, n=co ? Ln + 1 : 0) {
@@ -1100,7 +1100,7 @@ function Sp(e, t, n=!1) {
         e.mixins && e.mixins.forEach(l)
     }
     return !o && !a ? (nt(e) && r.set(e, null),
-    null) : (fe(o) ? o.forEach(l=>s[l] = null) : yt(s, o),
+    null) : (de(o) ? o.forEach(l=>s[l] = null) : yt(s, o),
     nt(e) && r.set(e, s),
     s)
 }
@@ -1490,13 +1490,13 @@ function nf(e) {
         t = rn,
         Jp())
     }
-    return fe(e) && (e = v0(e)),
+    return de(e) && (e = v0(e)),
     e = $t(e),
     t && !e.dynamicChildren && (e.dynamicChildren = t.filter(n=>n !== e)),
     e
 }
 function Lp(e, t) {
-    t && t.pendingBranch ? fe(e) ? t.effects.push(...e) : t.effects.push(e) : yl(e)
+    t && t.pendingBranch ? de(e) ? t.effects.push(...e) : t.effects.push(e) : yl(e)
 }
 function hi(e, t) {
     e.activeBranch = t;
@@ -1535,7 +1535,7 @@ function Jc(e, t, {immediate: n, deep: r, flush: i, once: o, onTrack: s, onTrigg
     let u, f = !1, d = !1;
     if (lt(e) ? (u = ()=>e.value,
     f = Ts(e)) : gr(e) ? (u = ()=>c(e),
-    f = !0) : fe(e) ? (d = !0,
+    f = !0) : de(e) ? (d = !0,
     f = e.some(k=>gr(k) || Ts(k)),
     u = ()=>e.map(k=>{
         if (lt(k))
@@ -1628,7 +1628,7 @@ function Br(e, t, n=0, r) {
     if (r.add(e),
     lt(e))
         Br(e.value, t, n, r);
-    else if (fe(e))
+    else if (de(e))
         for (let i = 0; i < e.length; i++)
             Br(e[i], t, n, r);
     else if (zh(e) || li(e))
@@ -1789,7 +1789,7 @@ function bl(e, t, n, r) {
       , k = (O,C)=>{
         const D = C[1];
         T(O, C),
-        fe(O) ? O.every(x=>x.length <= 1) && D() : O.length <= 1 && D()
+        de(O) ? O.every(x=>x.length <= 1) && D() : O.length <= 1 && D()
     }
       , L = {
         mode: o,
@@ -2024,7 +2024,7 @@ const jr = e=>!!e.type.__asyncLoader
 }
   , U0 = V0;
 function xi(e, t) {
-    return fe(e) ? e.some(n=>xi(n, t)) : ot(e) ? e.split(",").includes(t) : kv(e) ? e.test(t) : !1
+    return de(e) ? e.some(n=>xi(n, t)) : ot(e) ? e.split(",").includes(t) : kv(e) ? e.test(t) : !1
 }
 function Pp(e, t) {
     Dp(e, "a", t)
@@ -2099,7 +2099,7 @@ function Np(e, t=bt) {
 function Y0(e, t, n, r) {
     let i;
     const o = n && n[r];
-    if (fe(e) || ot(e)) {
+    if (de(e) || ot(e)) {
         i = new Array(e.length);
         for (let s = 0, a = e.length; s < a; s++)
             i[s] = t(e[s], s, void 0, o && o[s])
@@ -2234,7 +2234,7 @@ function G0() {
     return e.setupContext || (e.setupContext = em(e))
 }
 function Tl(e) {
-    return fe(e) ? e.reduce((t,n)=>(t[n] = null,
+    return de(e) ? e.reduce((t,n)=>(t[n] = null,
     t), {}) : e
 }
 function na(e, t) {
@@ -2243,7 +2243,7 @@ function na(e, t) {
         if (r.startsWith("__skip"))
             continue;
         let i = n[r];
-        i ? fe(i) || ye(i) ? i = n[r] = {
+        i ? de(i) || ye(i) ? i = n[r] = {
             type: i,
             default: t[r]
         } : i.default = t[r] : i === null && (i = n[r] = {
@@ -2311,7 +2311,7 @@ function z0(e) {
     }
     u && of(u, e, "c");
     function N(Y, B) {
-        fe(B) ? B.forEach(ae=>Y(ae.bind(n))) : B && Y(B.bind(n))
+        de(B) ? B.forEach(ae=>Y(ae.bind(n))) : B && Y(B.bind(n))
     }
     if (N(F0, f),
     N(Mt, d),
@@ -2325,7 +2325,7 @@ function z0(e) {
     N(_n, E),
     N(Ri, y),
     N(H0, C),
-    fe(D))
+    de(D))
         if (D.length) {
             const Y = e.exposed || (e.exposed = {});
             D.forEach(B=>{
@@ -2343,7 +2343,7 @@ function z0(e) {
     Z && (e.directives = Z)
 }
 function Q0(e, t, n=nn) {
-    fe(e) && (e = Sl(e));
+    de(e) && (e = Sl(e));
     for (const r in e) {
         const i = e[r];
         let o;
@@ -2357,7 +2357,7 @@ function Q0(e, t, n=nn) {
     }
 }
 function of(e, t, n) {
-    sn(fe(e) ? e.map(r=>r.bind(t.proxy)) : e.bind(t.proxy), t, n)
+    sn(de(e) ? e.map(r=>r.bind(t.proxy)) : e.bind(t.proxy), t, n)
 }
 function Up(e, t, n, r) {
     const i = r.includes(".") ? Op(n, r) : ()=>n[r];
@@ -2367,7 +2367,7 @@ function Up(e, t, n, r) {
     } else if (ye(e))
         je(i, e.bind(n));
     else if (nt(e))
-        if (fe(e))
+        if (de(e))
             e.forEach(o=>Up(o, t, n, r));
         else {
             const o = ye(e.handler) ? e.handler.bind(n) : t[e.handler];
@@ -2433,7 +2433,7 @@ function Z0(e, t) {
     return Hi(Sl(e), Sl(t))
 }
 function Sl(e) {
-    if (fe(e)) {
+    if (de(e)) {
         const t = {};
         for (let n = 0; n < e.length; n++)
             t[e[n]] = e[n];
@@ -2448,7 +2448,7 @@ function Hi(e, t) {
     return e ? yt(Object.create(null), e, t) : t
 }
 function af(e, t) {
-    return e ? fe(e) && fe(t) ? [...new Set([...e, ...t])] : yt(Object.create(null), Tl(e), Tl(t ?? {})) : t
+    return e ? de(e) && de(t) ? [...new Set([...e, ...t])] : yt(Object.create(null), Tl(e), Tl(t ?? {})) : t
 }
 function $0(e, t) {
     if (!e)
@@ -2691,7 +2691,7 @@ function xp(e, t, n=!1) {
     if (!o && !l)
         return nt(e) && r.set(e, ai),
         ai;
-    if (fe(o))
+    if (de(o))
         for (let u = 0; u < o.length; u++) {
             const f = Nn(o[u]);
             lf(f) && (s[f] = rt)
@@ -2701,7 +2701,7 @@ function xp(e, t, n=!1) {
             const f = Nn(u);
             if (lf(f)) {
                 const d = o[u]
-                  , m = s[f] = fe(d) || ye(d) ? {
+                  , m = s[f] = de(d) || ye(d) ? {
                     type: d
                 } : yt({}, d);
                 if (m) {
@@ -2727,10 +2727,10 @@ function uf(e, t) {
     return cf(e) === cf(t)
 }
 function ff(e, t) {
-    return fe(t) ? t.findIndex(n=>uf(n, e)) : ye(t) && uf(t, e) ? 0 : -1
+    return de(t) ? t.findIndex(n=>uf(n, e)) : ye(t) && uf(t, e) ? 0 : -1
 }
 const Hp = e=>e[0] === "_" || e === "$stable"
-  , Zc = e=>fe(e) ? e.map($t) : [$t(e)]
+  , Zc = e=>de(e) ? e.map($t) : [$t(e)]
   , i_ = (e,t,n)=>{
     if (t._n)
         return t;
@@ -2787,8 +2787,8 @@ const Hp = e=>e[0] === "_" || e === "$stable"
 }
 ;
 function Ls(e, t, n, r, i=!1) {
-    if (fe(e)) {
-        e.forEach((d,m)=>Ls(d, t && (fe(t) ? t[m] : t), n, r, i));
+    if (de(e)) {
+        e.forEach((d,m)=>Ls(d, t && (de(t) ? t[m] : t), n, r, i));
         return
     }
     if (jr(r) && !i)
@@ -2810,7 +2810,7 @@ function Ls(e, t, n, r, i=!1) {
             const _ = ()=>{
                 if (e.f) {
                     const b = d ? Ke(f, l) ? f[l] : u[l] : l.value;
-                    i ? fe(b) && Cc(b, o) : fe(b) ? b.includes(o) || b.push(o) : d ? (u[l] = [o],
+                    i ? de(b) && Cc(b, o) : de(b) ? b.includes(o) || b.push(o) : d ? (u[l] = [o],
                     Ke(f, l) && (f[l] = u[l])) : (l.value = [o],
                     e.k && (u[e.k] = l.value))
                 } else
@@ -3591,7 +3591,7 @@ function qp(e, t) {
 function $c(e, t, n=!1) {
     const r = e.children
       , i = t.children;
-    if (fe(r) && fe(i))
+    if (de(r) && de(i))
         for (let o = 0; o < r.length; o++) {
             const s = r[o];
             let a = i[o];
@@ -3837,7 +3837,7 @@ function y_(e, t=null, n=null, r=0, i=null, o=!1) {
         t = Gt(t);
         let {class: a, style: l} = t;
         a && !ot(a) && (t.class = It(a)),
-        nt(l) && (pp(l) && !fe(l) && (l = yt({}, l)),
+        nt(l) && (pp(l) && !de(l) && (l = yt({}, l)),
         t.style = Rn(l))
     }
     const s = ot(e) ? 1 : wp(e) ? 128 : h_(e) ? 64 : nt(e) ? 4 : ye(e) ? 2 : 0;
@@ -3855,7 +3855,7 @@ function Wn(e, t, n=!1) {
         type: e.type,
         props: a,
         key: a && Qp(a),
-        ref: t && t.ref ? n && i ? fe(i) ? i.concat(ds(t)) : [i, ds(t)] : ds(t) : i,
+        ref: t && t.ref ? n && i ? de(i) ? i.concat(ds(t)) : [i, ds(t)] : ds(t) : i,
         scopeId: e.scopeId,
         slotScopeIds: e.slotScopeIds,
         children: s,
@@ -3892,7 +3892,7 @@ function qt(e="", t=!1) {
     _t(Pt, null, e)) : et(Pt, null, e)
 }
 function $t(e) {
-    return e == null || typeof e == "boolean" ? et(Pt) : fe(e) ? et(mt, null, e.slice()) : typeof e == "object" ? lr(e) : et(Gr, null, String(e))
+    return e == null || typeof e == "boolean" ? et(Pt) : de(e) ? et(mt, null, e.slice()) : typeof e == "object" ? lr(e) : et(Gr, null, String(e))
 }
 function lr(e) {
     return e.el === null && e.patchFlag !== -1 || e.memo ? e : Wn(e)
@@ -3902,7 +3902,7 @@ function eu(e, t) {
     const {shapeFlag: r} = e;
     if (t == null)
         t = null;
-    else if (fe(t))
+    else if (de(t))
         n = 16;
     else if (typeof t == "object")
         if (r & 65) {
@@ -3940,7 +3940,7 @@ function _i(...e) {
             else if (Oo(i)) {
                 const o = t[i]
                   , s = r[i];
-                s && o !== s && !(fe(o) && o.includes(s)) && (t[i] = o ? [].concat(o, s) : s)
+                s && o !== s && !(de(o) && o.includes(s)) && (t[i] = o ? [].concat(o, s) : s)
             } else
                 i !== "" && (t[i] = r[i])
     }
@@ -4173,7 +4173,7 @@ function S_(e) {
 const ue = (e,t)=>i0(e, t, ia);
 function ft(e, t, n) {
     const r = arguments.length;
-    return r === 2 ? nt(t) && !fe(t) ? vi(t) ? et(e, null, [t]) : et(e, t) : et(e, null, t) : (r > 3 ? n = Array.prototype.slice.call(arguments, 2) : r === 3 && vi(n) && (n = [n]),
+    return r === 2 ? nt(t) && !de(t) ? vi(t) ? et(e, null, [t]) : et(e, t) : et(e, null, t) : (r > 3 ? n = Array.prototype.slice.call(arguments, 2) : r === 3 && vi(n) && (n = [n]),
     et(e, t, n))
 }
 const tm = "3.4.20";
@@ -4265,9 +4265,9 @@ const nm = {
 };
 Mo.props = yt({}, Cp, nm);
 const Or = (e,t=[])=>{
-    fe(e) ? e.forEach(n=>n(...t)) : e && e(...t)
+    de(e) ? e.forEach(n=>n(...t)) : e && e(...t)
 }
-  , yf = e=>e ? fe(e) ? e.some(t=>t.length > 1) : e.length > 1 : !1;
+  , yf = e=>e ? de(e) ? e.some(t=>t.length > 1) : e.length > 1 : !1;
 function O_(e) {
     const t = {};
     for (const U in e)
@@ -4503,7 +4503,7 @@ function V_(e, t, n) {
 }
 const Tf = /\s*!important$/;
 function hs(e, t, n) {
-    if (fe(n))
+    if (de(n))
         n.forEach(r=>hs(e, t, r));
     else if (n == null && (n = ""),
     t.startsWith("--"))
@@ -4618,7 +4618,7 @@ function q_(e, t) {
     n
 }
 function W_(e, t) {
-    if (fe(t)) {
+    if (de(t)) {
         const n = e.stopImmediatePropagation;
         return e.stopImmediatePropagation = ()=>{
             n.call(e),
@@ -4652,7 +4652,7 @@ function J_(e, t, n, r) {
 }
 const Of = e=>{
     const t = e.props["onUpdate:modelValue"] || !1;
-    return fe(t) ? n=>ui(t, n) : t
+    return de(t) ? n=>ui(t, n) : t
 }
 ;
 function z_(e) {
@@ -7381,7 +7381,7 @@ function kn(e) {
 }
 const OT = {
     nuxt: {
-        buildId: "ddf476da-a6c1-4ae7-a044-1e8bf6ace8a9"
+        buildId: "64ee4bcc-e624-450f-869f-d886c97f642f"
     }
 }
   , CT = EE(OT);
@@ -9024,1547 +9024,1547 @@ const Ee = null
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___en",
     path: "/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___es",
     path: "/es/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___fr",
     path: "/fr/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___hi",
     path: "/hi/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___id",
     path: "/id/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___pt",
     path: "/pt/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___ru",
     path: "/ru/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___th",
     path: "/th/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___tl",
     path: "/tl/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___tr",
     path: "/tr/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___uz",
     path: "/uz/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___vi",
     path: "/vi/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___de",
     path: "/de/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___en",
     path: "/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___es",
     path: "/es/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___fr",
     path: "/fr/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___hi",
     path: "/hi/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___id",
     path: "/id/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___pt",
     path: "/pt/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___ru",
     path: "/ru/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___th",
     path: "/th/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___tl",
     path: "/tl/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___tr",
     path: "/tr/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___uz",
     path: "/uz/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___vi",
     path: "/vi/clicker/boost",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js"), __vite__mapDeps([4, 5, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___de",
     path: "/de/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___en",
     path: "/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___es",
     path: "/es/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___fr",
     path: "/fr/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___hi",
     path: "/hi/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___id",
     path: "/id/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___pt",
     path: "/pt/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___ru",
     path: "/ru/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___th",
     path: "/th/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___tl",
     path: "/tl/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___tr",
     path: "/tr/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___uz",
     path: "/uz/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___vi",
     path: "/vi/clicker/earn",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js"), __vite__mapDeps([7, 6, 3, 2, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___de",
     path: "/de/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___en",
     path: "/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___es",
     path: "/es/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___fr",
     path: "/fr/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___hi",
     path: "/hi/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___id",
     path: "/id/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___pt",
     path: "/pt/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___ru",
     path: "/ru/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___th",
     path: "/th/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___tl",
     path: "/tl/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___tr",
     path: "/tr/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___uz",
     path: "/uz/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___vi",
     path: "/vi/clicker/friends",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js"), __vite__mapDeps([9, 2, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___de",
     path: "/de/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___en",
     path: "/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___es",
     path: "/es/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___fr",
     path: "/fr/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___hi",
     path: "/hi/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___id",
     path: "/id/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___pt",
     path: "/pt/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___ru",
     path: "/ru/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___th",
     path: "/th/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___tl",
     path: "/tl/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___tr",
     path: "/tr/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___uz",
     path: "/uz/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___vi",
     path: "/vi/clicker",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js"), __vite__mapDeps([10, 6, 2, 11, 12, 13, 14, 15, 16, 17, 3, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___de",
     path: "/de/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___en",
     path: "/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___es",
     path: "/es/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___fr",
     path: "/fr/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___hi",
     path: "/hi/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___id",
     path: "/id/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___pt",
     path: "/pt/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___ru",
     path: "/ru/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___th",
     path: "/th/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___tl",
     path: "/tl/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___tr",
     path: "/tr/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___uz",
     path: "/uz/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___vi",
     path: "/vi/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js"), __vite__mapDeps([19, 17, 2, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___de",
     path: "/de/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___en",
     path: "/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___es",
     path: "/es/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___fr",
     path: "/fr/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___hi",
     path: "/hi/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___id",
     path: "/id/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___pt",
     path: "/pt/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___ru",
     path: "/ru/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___th",
     path: "/th/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___tl",
     path: "/tl/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___tr",
     path: "/tr/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___uz",
     path: "/uz/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___vi",
     path: "/vi/clicker/mine",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___de",
     path: "/de/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___en",
     path: "/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___es",
     path: "/es/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___fr",
     path: "/fr/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___hi",
     path: "/hi/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___id",
     path: "/id/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___pt",
     path: "/pt/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___ru",
     path: "/ru/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___th",
     path: "/th/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___tl",
     path: "/tl/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___tr",
     path: "/tr/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___uz",
     path: "/uz/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___vi",
     path: "/vi/clicker/playground",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js"), __vite__mapDeps([21, 22, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___de",
     path: "/de/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___en",
     path: "/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___es",
     path: "/es/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___fr",
     path: "/fr/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___hi",
     path: "/hi/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___id",
     path: "/id/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___pt",
     path: "/pt/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___ru",
     path: "/ru/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___th",
     path: "/th/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___tl",
     path: "/tl/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___tr",
     path: "/tr/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___uz",
     path: "/uz/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___vi",
     path: "/vi/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js"), __vite__mapDeps([23, 2, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___de",
     path: "/de/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___en",
     path: "/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___es",
     path: "/es/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___fr",
     path: "/fr/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___hi",
     path: "/hi/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___id",
     path: "/id/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___pt",
     path: "/pt/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___ru",
     path: "/ru/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___th",
     path: "/th/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___tl",
     path: "/tl/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___tr",
     path: "/tr/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___uz",
     path: "/uz/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___vi",
     path: "/vi/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js"), __vite__mapDeps([24, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___de",
     path: "/de/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___en",
     path: "/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___es",
     path: "/es/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___fr",
     path: "/fr/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___hi",
     path: "/hi/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___id",
     path: "/id/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___pt",
     path: "/pt/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___ru",
     path: "/ru/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___th",
     path: "/th/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___tl",
     path: "/tl/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___tr",
     path: "/tr/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___uz",
     path: "/uz/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___vi",
     path: "/vi/clicker/settings",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js"), __vite__mapDeps([25, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___de",
     path: "/de/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___en",
     path: "/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___es",
     path: "/es/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___fr",
     path: "/fr/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___hi",
     path: "/hi/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___id",
     path: "/id/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___pt",
     path: "/pt/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___ru",
     path: "/ru/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___th",
     path: "/th/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___tl",
     path: "/tl/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___tr",
     path: "/tr/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___uz",
     path: "/uz/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___vi",
     path: "/vi/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.Bqjk3NUK.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.D4QZHeo7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___de",
     path: "/de/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___en",
     path: "/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___es",
     path: "/es/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___fr",
     path: "/fr/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___hi",
     path: "/hi/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___id",
     path: "/id/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___pt",
     path: "/pt/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___ru",
     path: "/ru/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___th",
     path: "/th/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___tl",
     path: "/tl/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___tr",
     path: "/tr/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___uz",
     path: "/uz/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___vi",
     path: "/vi/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js"), __vite__mapDeps([26, 22, 27, 28]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___de",
     path: "/de/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___en",
     path: "/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___es",
     path: "/es/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___fr",
     path: "/fr/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___hi",
     path: "/hi/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___id",
     path: "/id/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___pt",
     path: "/pt/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___ru",
     path: "/ru/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___th",
     path: "/th/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___tl",
     path: "/tl/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___tr",
     path: "/tr/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___uz",
     path: "/uz/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___vi",
     path: "/vi/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.t2jjGBhw.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.CXT8sf6r.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___de",
     path: "/de/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___en",
     path: "/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___es",
     path: "/es/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___fr",
     path: "/fr/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___hi",
     path: "/hi/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___id",
     path: "/id/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___pt",
     path: "/pt/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___ru",
     path: "/ru/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___th",
     path: "/th/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___tl",
     path: "/tl/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___tr",
     path: "/tr/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___uz",
     path: "/uz/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___vi",
     path: "/vi/clicker/user",
     meta: {},
     alias: [],
     redirect: Ne == null ? void 0 : Ne.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js"), __vite__mapDeps([29, 22, 27, 28, 6, 2]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___de",
     path: (P == null ? void 0 : P.path) ?? "/de",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___en",
     path: (P == null ? void 0 : P.path) ?? "/",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___es",
     path: (P == null ? void 0 : P.path) ?? "/es",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___fr",
     path: (P == null ? void 0 : P.path) ?? "/fr",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___hi",
     path: (P == null ? void 0 : P.path) ?? "/hi",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___id",
     path: (P == null ? void 0 : P.path) ?? "/id",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___pt",
     path: (P == null ? void 0 : P.path) ?? "/pt",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___ru",
     path: (P == null ? void 0 : P.path) ?? "/ru",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___th",
     path: (P == null ? void 0 : P.path) ?? "/th",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___tl",
     path: (P == null ? void 0 : P.path) ?? "/tl",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___tr",
     path: (P == null ? void 0 : P.path) ?? "/tr",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___uz",
     path: (P == null ? void 0 : P.path) ?? "/uz",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___vi",
     path: (P == null ? void 0 : P.path) ?? "/vi",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js"), __vite__mapDeps([30, 31, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___de",
     path: (M == null ? void 0 : M.path) ?? "/de/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___en",
     path: (M == null ? void 0 : M.path) ?? "/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___es",
     path: (M == null ? void 0 : M.path) ?? "/es/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___fr",
     path: (M == null ? void 0 : M.path) ?? "/fr/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___hi",
     path: (M == null ? void 0 : M.path) ?? "/hi/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___id",
     path: (M == null ? void 0 : M.path) ?? "/id/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___pt",
     path: (M == null ? void 0 : M.path) ?? "/pt/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___ru",
     path: (M == null ? void 0 : M.path) ?? "/ru/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___th",
     path: (M == null ? void 0 : M.path) ?? "/th/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___tl",
     path: (M == null ? void 0 : M.path) ?? "/tl/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___tr",
     path: (M == null ? void 0 : M.path) ?? "/tr/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___uz",
     path: (M == null ? void 0 : M.path) ?? "/uz/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___vi",
     path: (M == null ? void 0 : M.path) ?? "/vi/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
+    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js"), __vite__mapDeps([32, 31]), import.meta.url).then(e=>e.default || e)
 }]
   , eg = (e,t,n)=>(t = t === !0 ? {} : t,
 {
@@ -12417,7 +12417,7 @@ function Ed(e, t) {
         throw new ji(`Invalid token specified: invalid json for part #${n + 1} (${o.message})`)
     }
 }
-var de = (e=>(e.SYNC_TAPS = "hk_sync_taps",
+var fe = (e=>(e.SYNC_TAPS = "hk_sync_taps",
 e.SYNC_TIMESTAMP_TAPS = "hk_sync_timestamp",
 e.SYNC_AVAILABLE_TAPS = "hk_sync_available_taps",
 e.EARN_TASKS = "earn_task",
@@ -12453,7 +12453,8 @@ e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E12 = "hamster_youtube_local_video_e12",
 e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E13 = "hamster_youtube_local_video_e13",
 e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E14 = "hamster_youtube_local_video_e14",
 e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E15 = "hamster_youtube_local_video_e15",
-e))(de || {})
+e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E16 = "hamster_youtube_local_video_e16",
+e))(fe || {})
   , Xt = (e=>(e[e.BALANCE_ANIMATION_SPEED = 50] = "BALANCE_ANIMATION_SPEED",
 e[e.CALC_INTERVAL = 1e3] = "CALC_INTERVAL",
 e[e.SYNC_INTERVAL = 36e5] = "SYNC_INTERVAL",
@@ -12706,6 +12707,7 @@ e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E12 = "hamster_youtube_local_video_e12",
 e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E13 = "hamster_youtube_local_video_e13",
 e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E14 = "hamster_youtube_local_video_e14",
 e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E15 = "hamster_youtube_local_video_e15",
+e.HAMSTER_YOUTUBE_LOCAL_VIDEO_E16 = "hamster_youtube_local_video_e16",
 e))(Hk || {})
   , jk = (e=>(e.SUBSCRIBE_TELEGRAM_CHANNEL = "subscribe_telegram_channel",
 e.CONNECT_TON_WALLET = "airdrop_connect_ton_wallet",
@@ -12841,12 +12843,12 @@ const qk = {
         telegram_hash: "",
         telegram_platform: "",
         telegram_version: "",
-        token: localStorage.getItem(de.AUTH_TOKEN) ?? null,
+        token: localStorage.getItem(fe.AUTH_TOKEN) ?? null,
         location: {}
     }),
     actions: {
         async check() {
-            this.authenticated = !!localStorage.getItem(de.AUTH_TOKEN)
+            this.authenticated = !!localStorage.getItem(fe.AUTH_TOKEN)
         },
         isExpiredToken(e) {
             if (e && Ed(e)) {
@@ -12858,40 +12860,41 @@ const qk = {
         logout(e=!0) {
             this.authenticated = !1,
             this.token = null,
-            localStorage.removeItem(de.AUTH_TOKEN),
-            localStorage.removeItem(de.SYNC_AVAILABLE_TAPS),
-            localStorage.removeItem(de.SYNC_TIMESTAMP_TAPS),
-            localStorage.removeItem(de.SYNC_TAPS),
-            localStorage.removeItem(de.AIRDROP_TASKS),
-            localStorage.removeItem(de.EARN_TASKS),
-            localStorage.removeItem(de.SETTINGS),
-            localStorage.removeItem(de.SUBSCRIBE_YOUTUBE),
-            localStorage.removeItem(de.SUBSCRIBE_DISCORD),
-            localStorage.removeItem(de.SUBSCRIBE_MEDIUM),
-            localStorage.removeItem(de.HAMSTER_DROP),
-            localStorage.removeItem(de.SUBSCRIBE_TELEGRAM_CRYPTOFAM),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_ACADEMY),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_EASY_START),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_EASY_START_S1E23),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_EASY_START_S1E24),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_EASY_START_S1E25),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_EASY_START_S1E26),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_EASY_START_S1E27),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_EASY_START_S1E28),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_EASY_START_S1E29),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_PARTNER_VIDEO_E1),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_SUBSCRIBE),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E5),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E6),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E7),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E8),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E9),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E10),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E11),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E12),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E13),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E14),
-            localStorage.removeItem(de.HAMSTER_YOUTUBE_LOCAL_VIDEO_E15),
+            localStorage.removeItem(fe.AUTH_TOKEN),
+            localStorage.removeItem(fe.SYNC_AVAILABLE_TAPS),
+            localStorage.removeItem(fe.SYNC_TIMESTAMP_TAPS),
+            localStorage.removeItem(fe.SYNC_TAPS),
+            localStorage.removeItem(fe.AIRDROP_TASKS),
+            localStorage.removeItem(fe.EARN_TASKS),
+            localStorage.removeItem(fe.SETTINGS),
+            localStorage.removeItem(fe.SUBSCRIBE_YOUTUBE),
+            localStorage.removeItem(fe.SUBSCRIBE_DISCORD),
+            localStorage.removeItem(fe.SUBSCRIBE_MEDIUM),
+            localStorage.removeItem(fe.HAMSTER_DROP),
+            localStorage.removeItem(fe.SUBSCRIBE_TELEGRAM_CRYPTOFAM),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_ACADEMY),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_EASY_START),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_EASY_START_S1E23),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_EASY_START_S1E24),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_EASY_START_S1E25),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_EASY_START_S1E26),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_EASY_START_S1E27),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_EASY_START_S1E28),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_EASY_START_S1E29),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_PARTNER_VIDEO_E1),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_SUBSCRIBE),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E5),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E6),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E7),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E8),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E9),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E10),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E11),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E12),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E13),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E14),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E15),
+            localStorage.removeItem(fe.HAMSTER_YOUTUBE_LOCAL_VIDEO_E16),
             localStorage.removeItem("ton-connect-storage_bridge-connection"),
             localStorage.removeItem("ton-connect-ui_last-selected-wallet-info"),
             e && (Uo(xo.GAME_INDEX),
@@ -12917,7 +12920,7 @@ const qk = {
             }).then(t=>{
                 if (t.authToken) {
                     const n = t.authToken;
-                    localStorage.setItem(de.AUTH_TOKEN, n),
+                    localStorage.setItem(fe.AUTH_TOKEN, n),
                     this.setToken(n)
                 }
                 return t
@@ -16128,67 +16131,67 @@ const zr = ["de", "en", "es", "fr", "hi", "id", "pt", "ru", "th", "tl", "tr", "u
   , lc = {
     de: [{
         key: "../locales/de.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/de.BgX3GUiy.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/de.hCzt-tW1.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     en: [{
         key: "../locales/en.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/en.CwXxGgqw.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/en.hjfIeU3n.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     es: [{
         key: "../locales/es.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/es.DDn0Hdro.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/es.D5apdV8k.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     fr: [{
         key: "../locales/fr.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/fr.B84gedmx.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/fr.w3LtKAO7.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     hi: [{
         key: "../locales/hi.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/hi.8m27CrTy.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/hi.CUyUKNF4.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     id: [{
         key: "../locales/id.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/id.Cr2V2YVB.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/id.lqdvsH__.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     pt: [{
         key: "../locales/pt.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/pt.B0ixbNDJ.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/pt.Dh5hDv8v.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     ru: [{
         key: "../locales/ru.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ru.xFYiMWUo.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ru.olJur27I.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     th: [{
         key: "../locales/th.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/th.CfKa8shN.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/th.CYVUdDdS.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     tl: [{
         key: "../locales/tl.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/tl.3k5jywJ7.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/tl.1RTOkbP3.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     tr: [{
         key: "../locales/tr.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/tr.Cg6Vlhfd.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/tr.mTX4s6kG.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     uz: [{
         key: "../locales/uz.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/uz.CO1pB2L0.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/uz.qxWk9TjD.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     vi: [{
         key: "../locales/vi.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/vi.BM7tD_uH.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/vi.BEERqC2m.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }]
 }
@@ -17172,10 +17175,10 @@ const $a = ()=>({
             this.saveToLocalStorage()
         },
         saveToLocalStorage() {
-            localStorage.setItem(de.SETTINGS, JSON.stringify(this.settings))
+            localStorage.setItem(fe.SETTINGS, JSON.stringify(this.settings))
         },
         loadSettings() {
-            const e = localStorage.getItem(de.SETTINGS);
+            const e = localStorage.getItem(fe.SETTINGS);
             e || this.updateSettings({}),
             this.settings = e ? {
                 ...$a(),
@@ -18397,8 +18400,8 @@ const Pn = Bn("ui", {
             e))
         },
         async postTap(e, t=!1) {
-            const n = localStorage.getItem(de.SYNC_TIMESTAMP_TAPS)
-              , r = localStorage.getItem(de.SYNC_AVAILABLE_TAPS);
+            const n = localStorage.getItem(fe.SYNC_TIMESTAMP_TAPS)
+              , r = localStorage.getItem(fe.SYNC_AVAILABLE_TAPS);
             return await $e.post("/clicker/tap", {
                 body: {
                     count: e,
@@ -18443,7 +18446,7 @@ const Pn = Bn("ui", {
         },
         setAvailableTaps(e) {
             this.availableTaps = e,
-            localStorage.setItem(de.SYNC_AVAILABLE_TAPS, String(e))
+            localStorage.setItem(fe.SYNC_AVAILABLE_TAPS, String(e))
         },
         setBalanceCoins(e) {
             this.balanceCoins = e
@@ -18559,25 +18562,25 @@ const Pn = Bn("ui", {
             this.timerSyncStart())
         },
         storageSyncTapsAdd(e) {
-            const t = localStorage.getItem(de.SYNC_TAPS)
+            const t = localStorage.getItem(fe.SYNC_TAPS)
               , n = t ? parseInt(t) ?? 0 : 0;
-            localStorage.setItem(de.SYNC_TAPS, String(n + e)),
-            localStorage.setItem(de.SYNC_TIMESTAMP_TAPS, String(ze().getNowTimestamp()))
+            localStorage.setItem(fe.SYNC_TAPS, String(n + e)),
+            localStorage.setItem(fe.SYNC_TIMESTAMP_TAPS, String(ze().getNowTimestamp()))
         },
         storageSyncTapsGet() {
-            const e = localStorage.getItem(de.SYNC_TAPS);
+            const e = localStorage.getItem(fe.SYNC_TAPS);
             return e ? parseInt(e) ?? 0 : 0
         },
         storageSyncTapsReset() {
-            localStorage.removeItem(de.SYNC_TAPS)
+            localStorage.removeItem(fe.SYNC_TAPS)
         },
         storageSyncTapsSet(e) {
-            localStorage.setItem(de.SYNC_TAPS, String(e))
+            localStorage.setItem(fe.SYNC_TAPS, String(e))
         },
         storageSyncTapsSubtract(e) {
-            const t = localStorage.getItem(de.SYNC_TAPS)
+            const t = localStorage.getItem(fe.SYNC_TAPS)
               , n = t ? parseInt(t) ?? 0 : 0;
-            localStorage.setItem(de.SYNC_TAPS, String(Math.max(0, n - e)))
+            localStorage.setItem(fe.SYNC_TAPS, String(Math.max(0, n - e)))
         },
         timerEnergyReset() {
             this.timer_energy && clearInterval(this.timer_energy),
@@ -19182,8 +19185,8 @@ const dC = Dt(e=>{
     name: "nuxt:global-components"
 })
   , hr = {
-    default: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/default.C9vntwM6.js"), __vite__mapDeps([33, 16, 2, 8, 3, 18, 22, 28, 1, 6]), import.meta.url).then(e=>e.default || e),
-    main: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/main.CeWaALt7.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    default: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/default.Cy39KhnI.js"), __vite__mapDeps([33, 16, 2, 8, 3, 18, 22, 28, 1, 6]), import.meta.url).then(e=>e.default || e),
+    main: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/main.-KsJAdfZ.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }
   , pC = Dt({
     name: "nuxt:prefetch",
@@ -27032,10 +27035,10 @@ let Jh;
     }
     )
 }
-export {Bk as $, jk as A, IM as B, It as C, Y0 as D, oM as E, mt as F, $O as G, Yg as H, ZO as I, Rt as J, Uo as K, Uk as L, jM as M, QP as N, Hk as O, GM as P, UO as Q, sM as R, de as S, aM as T, xo as U, Xt as V, MM as W, Mk as X, KM as Y, YM as Z, tM as _, Ge as a, Bn as a0, $e as a1, dc as a2, Yt as a3, Xp as a4, hg as a5, qM as a6, WM as a7, Rn as a8, ln as a9, PM as aA, wT as aB, Pm as aC, Ri as aD, QM as aE, Mo as aF, vl as aG, _i as aH, Tv as aI, sa as aJ, BM as aK, BL as aL, KP as aM, VM as aN, HM as aO, FM as aP, UM as aQ, DM as aa, lt as ab, NM as ac, tl as ad, el as ae, Fk as af, xk as ag, S as ah, Vk as ai, J0 as aj, Nk as ak, Dk as al, Kk as am, Wr as an, At as ao, Kr as ap, zc as aq, je as ar, Wt as as, ft as at, x0 as au, Yk as av, xM as aw, Er as ax, Zl as ay, Jn as az, G as b, ue as c, Be as d, ge as e, kt as f, Mi as g, zM as h, Ft as i, pa as j, et as k, _t as l, re as m, In as n, me as o, Pn as p, Mt as q, le as r, _n as s, Zt as t, ze as u, ht as v, qt as w, JM as x, Qt as y, RM as z};
+export {Bk as $, jk as A, IM as B, It as C, Y0 as D, oM as E, mt as F, $O as G, Yg as H, ZO as I, Rt as J, Uo as K, Uk as L, jM as M, QP as N, Hk as O, GM as P, UO as Q, sM as R, fe as S, aM as T, xo as U, Xt as V, MM as W, Mk as X, KM as Y, YM as Z, tM as _, Ge as a, Bn as a0, $e as a1, dc as a2, Yt as a3, Xp as a4, hg as a5, qM as a6, WM as a7, Rn as a8, ln as a9, PM as aA, wT as aB, Pm as aC, Ri as aD, QM as aE, Mo as aF, vl as aG, _i as aH, Tv as aI, sa as aJ, BM as aK, BL as aL, KP as aM, VM as aN, HM as aO, FM as aP, UM as aQ, DM as aa, lt as ab, NM as ac, tl as ad, el as ae, Fk as af, xk as ag, S as ah, Vk as ai, J0 as aj, Nk as ak, Dk as al, Kk as am, Wr as an, At as ao, Kr as ap, zc as aq, je as ar, Wt as as, ft as at, x0 as au, Yk as av, xM as aw, Er as ax, Zl as ay, Jn as az, G as b, ue as c, Be as d, ge as e, kt as f, Mi as g, zM as h, Ft as i, pa as j, et as k, _t as l, re as m, In as n, me as o, Pn as p, Mt as q, le as r, _n as s, Zt as t, ze as u, ht as v, qt as w, JM as x, Qt as y, RM as z};
 function __vite__mapDeps(indexes) {
     if (!__vite__mapDeps.viteFileDeps) {
-        __vite__mapDeps.viteFileDeps = ["https://hamsterkombatgame.io/_nuxt/airdrop.B0_ZhCwQ.js", "https://hamsterkombatgame.io/_nuxt/airdrop.C6O9Z-z4.js", "https://hamsterkombatgame.io/_nuxt/Preloader.vue.Cz4hppXz.js", "https://hamsterkombatgame.io/_nuxt/earn.BfKSctVV.js", "https://hamsterkombatgame.io/_nuxt/boost.DnXrTG7o.js", "https://hamsterkombatgame.io/_nuxt/BalanceLarge.vue.BegtkKiv.js", "https://hamsterkombatgame.io/_nuxt/Price.vue.BvKUqKF-.js", "https://hamsterkombatgame.io/_nuxt/earn.Bvc-fI5O.js", "https://hamsterkombatgame.io/_nuxt/attraction.CG4a8iOp.js", "https://hamsterkombatgame.io/_nuxt/friends.CKa1tkUj.js", "https://hamsterkombatgame.io/_nuxt/index.D5bTEUXu.js", "https://hamsterkombatgame.io/_nuxt/navigation.Bcbng0HO.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.G8T7TW6R.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.vkSr05gD.css", "https://hamsterkombatgame.io/_nuxt/navigation.Bw5XmvsK.css", "https://hamsterkombatgame.io/_nuxt/Earn.vue.DxPvGVqX.js", "https://hamsterkombatgame.io/_nuxt/image.vue.C-McyacX.js", "https://hamsterkombatgame.io/_nuxt/Hamster.vue.9KjHey53.js", "https://hamsterkombatgame.io/_nuxt/MiniGameLose.vue.gSNQdN-7.js", "https://hamsterkombatgame.io/_nuxt/index.D58De9wA.js", "https://hamsterkombatgame.io/_nuxt/mine.De212Gc8.js", "https://hamsterkombatgame.io/_nuxt/playground.Bxe4RsJU.js", "https://hamsterkombatgame.io/_nuxt/Image.vue.BFvfWjk7.js", "https://hamsterkombatgame.io/_nuxt/bingx.MK2z4Yrc.js", "https://hamsterkombatgame.io/_nuxt/exchange.CFWee-x_.js", "https://hamsterkombatgame.io/_nuxt/index.DCFB_8z7.js", "https://hamsterkombatgame.io/_nuxt/achievements.CZsFIunt.js", "https://hamsterkombatgame.io/_nuxt/AchievementStat.vue.DEJlUyS6.js", "https://hamsterkombatgame.io/_nuxt/Circles.vue.cmIn2rGH.js", "https://hamsterkombatgame.io/_nuxt/index.Co4Pca11.js", "https://hamsterkombatgame.io/_nuxt/index.DS9-vE-C.js", "https://hamsterkombatgame.io/_nuxt/LandingHeader.vue.RU9F2wIS.js", "https://hamsterkombatgame.io/_nuxt/privacy-policy.jH1kYyWi.js", "https://hamsterkombatgame.io/_nuxt/default.C9vntwM6.js"]
+        __vite__mapDeps.viteFileDeps = ["https://hamsterkombatgame.io/_nuxt/airdrop.CDu7Xiqe.js", "https://hamsterkombatgame.io/_nuxt/airdrop.B-21Jlaz.js", "https://hamsterkombatgame.io/_nuxt/Preloader.vue.B5mfnxSx.js", "https://hamsterkombatgame.io/_nuxt/earn.DdJPhkBz.js", "https://hamsterkombatgame.io/_nuxt/boost.CcyRNgqz.js", "https://hamsterkombatgame.io/_nuxt/BalanceLarge.vue.DDyOk5p4.js", "https://hamsterkombatgame.io/_nuxt/Price.vue.CpKTQ5ce.js", "https://hamsterkombatgame.io/_nuxt/earn.DS6Y8HEF.js", "https://hamsterkombatgame.io/_nuxt/attraction.DTCr1a3p.js", "https://hamsterkombatgame.io/_nuxt/friends.DAMflSd-.js", "https://hamsterkombatgame.io/_nuxt/index.CVbTPEZG.js", "https://hamsterkombatgame.io/_nuxt/navigation.b2H_cc5z.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.DykepGea.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.vkSr05gD.css", "https://hamsterkombatgame.io/_nuxt/navigation.Bw5XmvsK.css", "https://hamsterkombatgame.io/_nuxt/Earn.vue.9XGO9mfk.js", "https://hamsterkombatgame.io/_nuxt/image.vue.BsXoZZLV.js", "https://hamsterkombatgame.io/_nuxt/Hamster.vue.Bb_9mCJs.js", "https://hamsterkombatgame.io/_nuxt/MiniGameLose.vue.DPRZlJdG.js", "https://hamsterkombatgame.io/_nuxt/index.kcBWb2Yr.js", "https://hamsterkombatgame.io/_nuxt/mine.fnQHnxYd.js", "https://hamsterkombatgame.io/_nuxt/playground.BYd2Jr5H.js", "https://hamsterkombatgame.io/_nuxt/Image.vue.BHpwBslo.js", "https://hamsterkombatgame.io/_nuxt/bingx.CkxS7_IL.js", "https://hamsterkombatgame.io/_nuxt/exchange.BZlmAQrF.js", "https://hamsterkombatgame.io/_nuxt/index.CIM8X75v.js", "https://hamsterkombatgame.io/_nuxt/achievements.BQopdHD-.js", "https://hamsterkombatgame.io/_nuxt/AchievementStat.vue.DkjSQcSq.js", "https://hamsterkombatgame.io/_nuxt/Circles.vue.D3O4Xdy1.js", "https://hamsterkombatgame.io/_nuxt/index.DE1QmCWr.js", "https://hamsterkombatgame.io/_nuxt/index.vKS-t3t2.js", "https://hamsterkombatgame.io/_nuxt/LandingHeader.vue.BA24-3v1.js", "https://hamsterkombatgame.io/_nuxt/privacy-policy.DV_xsBtj.js", "https://hamsterkombatgame.io/_nuxt/default.Cy39KhnI.js"]
     }
     return indexes.map((i)=>__vite__mapDeps.viteFileDeps[i])
 }
