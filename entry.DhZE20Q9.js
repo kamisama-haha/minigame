@@ -1146,17 +1146,17 @@ function un(e, t=pt, n) {
 }
 function Ra(e) {
     const {type: t, vnode: n, proxy: r, withProxy: i, props: o, propsOptions: [s], slots: a, attrs: l, emit: u, render: c, renderCache: f, data: d, setupState: m, ctx: _, inheritAttrs: b} = e;
-    let k, g;
+    let S, g;
     const E = ws(e);
     try {
         if (n.shapeFlag & 4) {
             const y = i || r
               , T = y;
-            k = tn(c.call(T, y, f, o, m, d, _)),
+            S = tn(c.call(T, y, f, o, m, d, _)),
             g = l
         } else {
             const y = t;
-            k = tn(y.length > 1 ? y(o, {
+            S = tn(y.length > 1 ? y(o, {
                 attrs: l,
                 slots: a,
                 emit: u
@@ -1166,9 +1166,9 @@ function Ra(e) {
     } catch (y) {
         Wi.length = 0,
         Mo(y, e, 1),
-        k = $e(Nt)
+        S = $e(Nt)
     }
-    let p = k;
+    let p = S;
     if (g && b !== !1) {
         const y = Object.keys(g)
           , {shapeFlag: T} = p;
@@ -1178,9 +1178,9 @@ function Ra(e) {
     return n.dirs && (p = Wn(p),
     p.dirs = p.dirs ? p.dirs.concat(n.dirs) : n.dirs),
     n.transition && (p.transition = n.transition),
-    k = p,
+    S = p,
     ws(E),
-    k
+    S
 }
 function b0(e, t=!0) {
     let n;
@@ -1264,7 +1264,7 @@ const Ap = Symbol.for("v-ndc");
 function _l(e) {
     return ot(e) ? Wc(qc, e, !1) || e : e || Ap
 }
-function MM(e) {
+function NM(e) {
     return Wc(S0, e)
 }
 function Wc(e, t, n=!0, r=!1) {
@@ -1326,18 +1326,18 @@ function L0(e, t, n, r, i, o, s, a, {p: l, um: u, o: {createElement: c}}) {
     t.el = e.el;
     const d = t.ssContent
       , m = t.ssFallback
-      , {activeBranch: _, pendingBranch: b, isInFallback: k, isHydrating: g} = f;
+      , {activeBranch: _, pendingBranch: b, isInFallback: S, isHydrating: g} = f;
     if (b)
         f.pendingBranch = d,
         pn(d, b) ? (l(b, d, f.hiddenContainer, null, i, f, o, s, a),
-        f.deps <= 0 ? f.resolve() : k && (g || (l(_, m, n, r, i, null, o, s, a),
+        f.deps <= 0 ? f.resolve() : S && (g || (l(_, m, n, r, i, null, o, s, a),
         hi(f, m)))) : (f.pendingId = bl++,
         g ? (f.isHydrating = !1,
         f.activeBranch = b) : u(b, i, f),
         f.deps = 0,
         f.effects.length = 0,
         f.hiddenContainer = c("div"),
-        k ? (l(null, d, f.hiddenContainer, null, i, f, o, s, a),
+        S ? (l(null, d, f.hiddenContainer, null, i, f, o, s, a),
         f.deps <= 0 ? f.resolve() : (l(_, m, n, r, i, null, o, s, a),
         hi(f, m))) : _ && pn(d, _) ? (l(_, d, n, r, i, f, o, s, a),
         f.resolve(!0)) : (l(null, d, f.hiddenContainer, null, i, f, o, s, a),
@@ -1360,7 +1360,7 @@ function L0(e, t, n, r, i, o, s, a, {p: l, um: u, o: {createElement: c}}) {
     }
 }
 function Jc(e, t, n, r, i, o, s, a, l, u, c=!1) {
-    const {p: f, m: d, um: m, n: _, o: {parentNode: b, remove: k}} = u;
+    const {p: f, m: d, um: m, n: _, o: {parentNode: b, remove: S}} = u;
     let g;
     const E = R0(e);
     E && t != null && t.pendingBranch && (g = t.pendingId,
@@ -1453,7 +1453,7 @@ function Jc(e, t, n, r, i, o, s, a, l, u, c=!1) {
                 O && (B.el = O);
                 const F = !O && w.subTree.el;
                 L(w, B, b(O || w.subTree.el), O ? null : _(w.subTree), T, s, l),
-                F && k(F),
+                F && S(F),
                 Yc(w, B.el),
                 C && --T.deps === 0 && T.resolve()
             }
@@ -1566,14 +1566,14 @@ function zc(e, t, {immediate: n, deep: r, flush: i, once: o, onTrack: s, onTrigg
             b = w.__watcherHandles || (w.__watcherHandles = [])
         } else
             return on;
-    let k = d ? new Array(e.length).fill($o) : $o;
+    let S = d ? new Array(e.length).fill($o) : $o;
     const g = ()=>{
         if (!(!p.active || !p.dirty))
             if (t) {
                 const w = p.run();
-                (r || f || (d ? w.some((L,C)=>br(L, k[C])) : br(w, k))) && (m && m(),
-                ln(t, l, 3, [w, k === $o ? void 0 : d && k[0] === $o ? [] : k, _]),
-                k = w)
+                (r || f || (d ? w.some((L,C)=>br(L, S[C])) : br(w, S))) && (m && m(),
+                ln(t, l, 3, [w, S === $o ? void 0 : d && S[0] === $o ? [] : S, _]),
+                S = w)
             } else
                 p.run()
     }
@@ -1590,7 +1590,7 @@ function zc(e, t, {immediate: n, deep: r, flush: i, once: o, onTrack: s, onTrigg
         y && Rc(y.effects, p)
     }
     ;
-    return t ? n ? g() : k = p.run() : i === "post" ? wt(p.run.bind(p), l && l.suspense) : p.run(),
+    return t ? n ? g() : S = p.run() : i === "post" ? wt(p.run.bind(p), l && l.suspense) : p.run(),
     b && b.push(T),
     T
 }
@@ -1641,7 +1641,7 @@ function xr(e, t, n=0, r) {
             xr(e[i], t, n, r);
     return e
 }
-function DM(e, t) {
+function VM(e, t) {
     if (pt === null)
         return e;
     const n = sa(pt) || pt.proxy
@@ -1755,8 +1755,8 @@ const Zt = [Function, Array]
                     ,
                     Ia(o);
                 a === "in-out" && l.type !== Nt && (d.delayLeave = (m,_,b)=>{
-                    const k = Ip(r, f);
-                    k[String(f.key)] = f,
+                    const S = Ip(r, f);
+                    S[String(f.key)] = f,
                     m[ar] = ()=>{
                         _(),
                         m[ar] = void 0,
@@ -1780,7 +1780,7 @@ function Ip(e, t) {
     r
 }
 function El(e, t, n, r) {
-    const {appear: i, mode: o, persisted: s=!1, onBeforeEnter: a, onEnter: l, onAfterEnter: u, onEnterCancelled: c, onBeforeLeave: f, onLeave: d, onAfterLeave: m, onLeaveCancelled: _, onBeforeAppear: b, onAppear: k, onAfterAppear: g, onAppearCancelled: E} = t
+    const {appear: i, mode: o, persisted: s=!1, onBeforeEnter: a, onEnter: l, onAfterEnter: u, onEnterCancelled: c, onBeforeLeave: f, onLeave: d, onAfterLeave: m, onLeaveCancelled: _, onBeforeAppear: b, onAppear: S, onAfterAppear: g, onAppearCancelled: E} = t
       , p = String(e.key)
       , y = Ip(n, e)
       , T = (C,O)=>{
@@ -1812,7 +1812,7 @@ function El(e, t, n, r) {
               , B = c;
             if (!n.isMounted)
                 if (i)
-                    O = k || l,
+                    O = S || l,
                     D = g || u,
                     B = E || c;
                 else
@@ -1963,9 +1963,9 @@ const jr = e=>!!e.type.__asyncLoader
             flush: "post",
             deep: !0
         });
-        let k = null;
+        let S = null;
         const g = ()=>{
-            k != null && i.set(k, Ma(n.subTree))
+            S != null && i.set(S, Ma(n.subTree))
         }
         ;
         return Vt(g),
@@ -1986,7 +1986,7 @@ const jr = e=>!!e.type.__asyncLoader
         }
         ),
         ()=>{
-            if (k = null,
+            if (S = null,
             !t.default)
                 return null;
             const E = t.default()
@@ -2008,7 +2008,7 @@ const jr = e=>!!e.type.__asyncLoader
               , B = i.get(D);
             return y.el && (y = Wn(y),
             p.shapeFlag & 128 && (p.ssContent = y)),
-            k = D,
+            S = D,
             B ? (y.el = B.el,
             y.component = B.component,
             y.transition && As(y, y.transition),
@@ -2271,7 +2271,7 @@ function X0(e) {
       , r = e.ctx;
     Sl = !1,
     t.beforeCreate && sf(t.beforeCreate, e, "bc");
-    const {data: i, computed: o, methods: s, watch: a, provide: l, inject: u, created: c, beforeMount: f, mounted: d, beforeUpdate: m, updated: _, activated: b, deactivated: k, beforeDestroy: g, beforeUnmount: E, destroyed: p, unmounted: y, render: T, renderTracked: w, renderTriggered: L, errorCaptured: C, serverPrefetch: O, expose: D, inheritAttrs: B, components: F, directives: Z, filters: W} = t;
+    const {data: i, computed: o, methods: s, watch: a, provide: l, inject: u, created: c, beforeMount: f, mounted: d, beforeUpdate: m, updated: _, activated: b, deactivated: S, beforeDestroy: g, beforeUnmount: E, destroyed: p, unmounted: y, render: T, renderTracked: w, renderTriggered: L, errorCaptured: C, serverPrefetch: O, expose: D, inheritAttrs: B, components: F, directives: Z, filters: W} = t;
     if (u && Z0(u, r, null),
     s)
         for (const Y in s) {
@@ -2318,7 +2318,7 @@ function X0(e) {
     N(j0, m),
     N(Qc, _),
     N(Mp, b),
-    N(Dp, k),
+    N(Dp, S),
     N(Vp, C),
     N(q0, w),
     N(Y0, L),
@@ -2892,7 +2892,7 @@ function f_(e) {
             else if (Z & 6) {
                 y.slotScopeIds = L;
                 const Y = s(p);
-                if (O ? N = k(p) : ns(p) && p.data === "teleport start" ? N = k(p, p.data, "teleport end") : N = o(p),
+                if (O ? N = S(p) : ns(p) && p.data === "teleport start" ? N = S(p, p.data, "teleport end") : N = o(p),
                 t(y, Y, null, T, w, ts(Y), C),
                 jr(y)) {
                     let x;
@@ -2980,7 +2980,7 @@ function f_(e) {
         if (Xn = !0,
         y.el = null,
         C) {
-            const B = k(p);
+            const B = S(p);
             for (; ; ) {
                 const F = o(p);
                 if (F && F !== B)
@@ -2995,7 +2995,7 @@ function f_(e) {
         n(null, y, D, O, T, w, ts(D), L),
         O
     }
-      , k = (p,y="[",T="]")=>{
+      , S = (p,y="[",T="]")=>{
         let w = 0;
         for (; p; )
             if (p = o(p),
@@ -3040,7 +3040,7 @@ function qp(e, t) {
         const {type: J, ref: oe, shapeFlag: ie} = v;
         switch (J) {
         case Gr:
-            k(h, v, A, R);
+            S(h, v, A, R);
             break;
         case Nt:
             g(h, v, A, R);
@@ -3056,7 +3056,7 @@ function qp(e, t) {
         }
         oe != null && V && Cs(oe, h && h.ref, q, v || h, !v)
     }
-      , k = (h,v,A,R)=>{
+      , S = (h,v,A,R)=>{
         if (h == null)
             r(v.el = a(v.children), A, R);
         else {
@@ -3646,7 +3646,7 @@ const m_ = e=>e.__isTeleport
     name: "Teleport",
     __isTeleport: !0,
     process(e, t, n, r, i, o, s, a, l, u) {
-        const {mc: c, pc: f, pbc: d, o: {insert: m, querySelector: _, createText: b, createComment: k}} = u
+        const {mc: c, pc: f, pbc: d, o: {insert: m, querySelector: _, createText: b, createComment: S}} = u
           , g = Yi(t.props);
         let {shapeFlag: E, children: p, dynamicChildren: y} = t;
         if (e == null) {
@@ -3882,7 +3882,7 @@ function Wn(e, t, n=!1) {
 function Zp(e=" ", t=0) {
     return $e(Gr, null, e, t)
 }
-function NM(e, t) {
+function FM(e, t) {
     const n = $e(qi, null, e);
     return n.staticCount = t,
     n
@@ -4277,7 +4277,7 @@ function R_(e) {
     const {name: n="v", type: r, duration: i, enterFromClass: o=`${n}-enter-from`, enterActiveClass: s=`${n}-enter-active`, enterToClass: a=`${n}-enter-to`, appearFromClass: l=o, appearActiveClass: u=s, appearToClass: c=a, leaveFromClass: f=`${n}-leave-from`, leaveActiveClass: d=`${n}-leave-active`, leaveToClass: m=`${n}-leave-to`} = e
       , _ = I_(i)
       , b = _ && _[0]
-      , k = _ && _[1]
+      , S = _ && _[1]
       , {onBeforeEnter: g, onEnter: E, onEnterCancelled: p, onLeave: y, onLeaveCancelled: T, onBeforeAppear: w=g, onAppear: L=E, onAppearCancelled: C=p} = t
       , O = (F,Z,W)=>{
         Or(F, Z ? c : a),
@@ -4325,7 +4325,7 @@ function R_(e) {
             _f(()=>{
                 F._isLeaving && (Or(F, f),
                 $n(F, m),
-                vf(y) || bf(F, r, k, W))
+                vf(y) || bf(F, r, S, W))
             }
             ),
             Cr(y, [F, W])
@@ -4446,7 +4446,7 @@ function N_(e, t, n) {
 }
 const Rs = Symbol("_vod")
   , im = Symbol("_vsh")
-  , VM = {
+  , xM = {
     beforeMount(e, {value: t}, {transition: n}) {
         e[Rs] = e.style.display === "none" ? "" : e.style.display,
         n && t ? n.beforeEnter(e) : Vi(e, t)
@@ -4664,7 +4664,7 @@ function Rf(e) {
     t.dispatchEvent(new Event("input")))
 }
 const Ua = Symbol("_assign")
-  , FM = {
+  , UM = {
     created(e, {modifiers: {lazy: t, trim: n, number: r}}, i) {
         e[Ua] = Of(i);
         const o = r || i.props && i.props.type === "number";
@@ -4711,7 +4711,7 @@ const Ua = Symbol("_assign")
     right: e=>"button"in e && e.button !== 2,
     exact: (e,t)=>Z_.some(n=>e[`${n}Key`] && !t.includes(n))
 }
-  , xM = (e,t)=>{
+  , BM = (e,t)=>{
     const n = e._withMods || (e._withMods = {})
       , r = t.join(".");
     return n[r] || (n[r] = (i,...o)=>{
@@ -6341,7 +6341,7 @@ const OE = (e,t,n={})=>{
     }
     )
 }
-  , S = (...e)=>NE(...e).catch(t=>{
+  , k = (...e)=>NE(...e).catch(t=>{
     const n = new Event("nuxt.preloadError");
     throw n.payload = t,
     window.dispatchEvent(n),
@@ -6874,14 +6874,14 @@ async function Vm(e, t={}) {
             delete o.elMap[f]
         }
         )),
-        Object.entries(m.props).forEach(([b,k])=>{
+        Object.entries(m.props).forEach(([b,S])=>{
             const g = `attr:${b}`;
             if (b === "class")
-                for (const E of (k || "").split(" ").filter(Boolean))
+                for (const E of (S || "").split(" ").filter(Boolean))
                     _ && s(f, `${g}:${E}`, ()=>d.classList.remove(E)),
                     !d.classList.contains(E) && d.classList.add(E);
             else
-                d.getAttribute(b) !== k && d.setAttribute(b, k === !0 ? "" : String(k)),
+                d.getAttribute(b) !== S && d.setAttribute(b, S === !0 ? "" : String(S)),
                 _ && s(f, g, ()=>d.removeAttribute(b))
         }
         )
@@ -7381,7 +7381,7 @@ function Cn(e) {
 }
 const RT = {
     nuxt: {
-        buildId: "5910c9ce-46d9-4001-a8b0-4480f775b0ba"
+        buildId: "151bf118-a0c9-46d5-a9ba-96f7b5dab884"
     }
 }
   , IT = kE(RT);
@@ -7743,7 +7743,7 @@ function _k(e, t, n, r) {
         const m = zm(e, location)
           , _ = n.value
           , b = t.value;
-        let k = 0;
+        let S = 0;
         if (d) {
             if (n.value = m,
             t.value = d,
@@ -7751,14 +7751,14 @@ function _k(e, t, n, r) {
                 s = null;
                 return
             }
-            k = b ? d.position - b.position : 0
+            S = b ? d.position - b.position : 0
         } else
             r(m);
         i.forEach(g=>{
             g(n.value, _, {
-                delta: k,
+                delta: S,
                 type: yo.pop,
-                direction: k ? k > 0 ? zi.forward : zi.back : zi.unknown
+                direction: S ? S > 0 ? zi.forward : zi.back : zi.unknown
             })
         }
         )
@@ -7950,11 +7950,11 @@ function wk(e, t) {
                 i += d.value.replace(Sk, "\\$&"),
                 m += 40;
             else if (d.type === 1) {
-                const {value: _, repeatable: b, optional: k, regexp: g} = d;
+                const {value: _, repeatable: b, optional: S, regexp: g} = d;
                 o.push({
                     name: _,
                     repeatable: b,
-                    optional: k
+                    optional: S
                 });
                 const E = g || rd;
                 if (E !== rd) {
@@ -7966,11 +7966,11 @@ function wk(e, t) {
                     }
                 }
                 let p = b ? `((?:${E})(?:/(?:${E}))*)` : `(${E})`;
-                f || (p = k && u.length < 2 ? `(?:/${p})` : "/" + p),
-                k && (p += "?"),
+                f || (p = S && u.length < 2 ? `(?:/${p})` : "/" + p),
+                S && (p += "?"),
                 i += p,
                 m += 20,
-                k && (m += -8),
+                S && (m += -8),
                 b && (m += -20),
                 E === ".*" && (m += -50)
             }
@@ -8007,13 +8007,13 @@ function wk(e, t) {
                 if (m.type === 0)
                     c += m.value;
                 else if (m.type === 1) {
-                    const {value: _, repeatable: b, optional: k} = m
+                    const {value: _, repeatable: b, optional: S} = m
                       , g = _ in u ? u[_] : "";
                     if (bn(g) && !b)
                         throw new Error(`Provided param "${_}" is an array but it is not repeatable (* or + modifiers)`);
                     const E = bn(g) ? g.join("/") : g;
                     if (!E)
-                        if (k)
+                        if (S)
                             d.length < 2 && (c.endsWith("/") ? c = c.slice(0, -1) : f = !0);
                         else
                             throw new Error(`Missing required param "${_}"`);
@@ -8171,18 +8171,18 @@ function Pk(e, t) {
           , _ = Mk(c);
         _.aliasOf = d && d.record;
         const b = ad(t, c)
-          , k = [_];
+          , S = [_];
         if ("alias"in c) {
             const p = typeof c.alias == "string" ? [c.alias] : c.alias;
             for (const y of p)
-                k.push(Xe({}, _, {
+                S.push(Xe({}, _, {
                     components: d ? d.record.components : _.components,
                     path: y,
                     aliasOf: d ? d.record : _
                 }))
         }
         let g, E;
-        for (const p of k) {
+        for (const p of S) {
             const {path: y} = p;
             if (f && y[0] !== "/") {
                 const T = f.record.path
@@ -8258,17 +8258,17 @@ function Pk(e, t) {
             m = Xe({}, f.params, c.params),
             _ = d.stringify(m)
         }
-        const k = [];
+        const S = [];
         let g = d;
         for (; g; )
-            k.unshift(g.record),
+            S.unshift(g.record),
             g = g.parent;
         return {
             name: b,
             path: _,
             params: m,
-            matched: k,
-            meta: Nk(k)
+            matched: S,
+            meta: Nk(S)
         }
     }
     return e.forEach(c=>o(c)),
@@ -8598,7 +8598,7 @@ const dd = (e,t,n)=>e ?? t ?? n
                 });
             const m = f.props[c]
               , _ = m ? m === !0 ? u.params : typeof m == "function" ? m(u) : m : null
-              , k = ft(d, Xe({}, _, t, {
+              , S = ft(d, Xe({}, _, t, {
                 onVnodeUnmounted: g=>{
                     g.component.isUnmounted && (f.instances[c] = null)
                 }
@@ -8606,9 +8606,9 @@ const dd = (e,t,n)=>e ?? t ?? n
                 ref: l
             }));
             return hd(n.default, {
-                Component: k,
+                Component: S,
                 route: u
-            }) || k
+            }) || S
         }
     }
 });
@@ -8646,7 +8646,7 @@ function qk(e) {
     function b() {
         return t.getRoutes().map(H=>H.record)
     }
-    function k(H) {
+    function S(H) {
         return !!t.getRecordMatcher(H)
     }
     function g(H, te) {
@@ -8907,7 +8907,7 @@ function qk(e) {
         listening: !0,
         addRoute: m,
         removeRoute: _,
-        hasRoute: k,
+        hasRoute: S,
         getRoutes: b,
         resolve: g,
         options: e,
@@ -9024,1547 +9024,1547 @@ const be = null
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___en",
     path: "/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___es",
     path: "/es/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___fr",
     path: "/fr/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___hi",
     path: "/hi/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___id",
     path: "/id/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___pt",
     path: "/pt/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___ru",
     path: "/ru/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___th",
     path: "/th/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___tl",
     path: "/tl/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___tr",
     path: "/tr/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___uz",
     path: "/uz/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___vi",
     path: "/vi/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js"), __vite__mapDeps([0, 1, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___de",
     path: "/de/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___en",
     path: "/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___es",
     path: "/es/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___fr",
     path: "/fr/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___hi",
     path: "/hi/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___id",
     path: "/id/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___pt",
     path: "/pt/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___ru",
     path: "/ru/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___th",
     path: "/th/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___tl",
     path: "/tl/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___tr",
     path: "/tr/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___uz",
     path: "/uz/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___vi",
     path: "/vi/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js"), __vite__mapDeps([3, 4, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___de",
     path: "/de/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___en",
     path: "/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___es",
     path: "/es/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___fr",
     path: "/fr/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___hi",
     path: "/hi/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___id",
     path: "/id/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___pt",
     path: "/pt/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___ru",
     path: "/ru/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___th",
     path: "/th/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___tl",
     path: "/tl/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___tr",
     path: "/tr/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___uz",
     path: "/uz/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___vi",
     path: "/vi/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js"), __vite__mapDeps([6, 7, 5, 2, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___de",
     path: "/de/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___en",
     path: "/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___es",
     path: "/es/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___fr",
     path: "/fr/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___hi",
     path: "/hi/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___id",
     path: "/id/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___pt",
     path: "/pt/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___ru",
     path: "/ru/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___th",
     path: "/th/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___tl",
     path: "/tl/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___tr",
     path: "/tr/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___uz",
     path: "/uz/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___vi",
     path: "/vi/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js"), __vite__mapDeps([9, 2, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___de",
     path: "/de/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___en",
     path: "/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___es",
     path: "/es/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___fr",
     path: "/fr/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___hi",
     path: "/hi/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___id",
     path: "/id/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___pt",
     path: "/pt/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___ru",
     path: "/ru/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___th",
     path: "/th/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___tl",
     path: "/tl/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___tr",
     path: "/tr/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___uz",
     path: "/uz/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___vi",
     path: "/vi/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js"), __vite__mapDeps([10, 5, 2, 11, 12, 13, 14, 15, 16, 17, 18, 4]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___de",
     path: "/de/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___en",
     path: "/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___es",
     path: "/es/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___fr",
     path: "/fr/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___hi",
     path: "/hi/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___id",
     path: "/id/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___pt",
     path: "/pt/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___ru",
     path: "/ru/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___th",
     path: "/th/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___tl",
     path: "/tl/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___tr",
     path: "/tr/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___uz",
     path: "/uz/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___vi",
     path: "/vi/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js"), __vite__mapDeps([19, 17, 2, 16, 5, 12, 13]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js"), __vite__mapDeps([19, 17, 3, 16, 6, 12, 13]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___de",
     path: "/de/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___en",
     path: "/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___es",
     path: "/es/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___fr",
     path: "/fr/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___hi",
     path: "/hi/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___id",
     path: "/id/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___pt",
     path: "/pt/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___ru",
     path: "/ru/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___th",
     path: "/th/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___tl",
     path: "/tl/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___tr",
     path: "/tr/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___uz",
     path: "/uz/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___vi",
     path: "/vi/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js"), __vite__mapDeps([20, 15, 16, 5, 17, 4, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js"), __vite__mapDeps([20, 15, 16, 6, 17, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___de",
     path: "/de/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___en",
     path: "/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___es",
     path: "/es/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___fr",
     path: "/fr/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___hi",
     path: "/hi/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___id",
     path: "/id/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___pt",
     path: "/pt/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___ru",
     path: "/ru/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___th",
     path: "/th/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___tl",
     path: "/tl/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___tr",
     path: "/tr/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___uz",
     path: "/uz/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___vi",
     path: "/vi/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js"), __vite__mapDeps([21, 7, 2, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js"), __vite__mapDeps([21, 1, 3, 11, 12, 13, 14]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___de",
     path: "/de/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___en",
     path: "/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___es",
     path: "/es/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___fr",
     path: "/fr/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___hi",
     path: "/hi/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___id",
     path: "/id/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___pt",
     path: "/pt/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___ru",
     path: "/ru/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___th",
     path: "/th/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___tl",
     path: "/tl/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___tr",
     path: "/tr/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___uz",
     path: "/uz/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___vi",
     path: "/vi/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js"), __vite__mapDeps([22, 2, 16, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js"), __vite__mapDeps([22, 3, 16, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___de",
     path: "/de/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___en",
     path: "/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___es",
     path: "/es/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___fr",
     path: "/fr/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___hi",
     path: "/hi/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___id",
     path: "/id/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___pt",
     path: "/pt/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___ru",
     path: "/ru/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___th",
     path: "/th/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___tl",
     path: "/tl/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___tr",
     path: "/tr/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___uz",
     path: "/uz/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___vi",
     path: "/vi/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js"), __vite__mapDeps([23, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___de",
     path: "/de/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___en",
     path: "/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___es",
     path: "/es/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___fr",
     path: "/fr/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___hi",
     path: "/hi/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___id",
     path: "/id/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___pt",
     path: "/pt/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___ru",
     path: "/ru/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___th",
     path: "/th/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___tl",
     path: "/tl/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___tr",
     path: "/tr/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___uz",
     path: "/uz/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___vi",
     path: "/vi/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js"), __vite__mapDeps([24, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___de",
     path: "/de/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___en",
     path: "/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___es",
     path: "/es/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___fr",
     path: "/fr/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___hi",
     path: "/hi/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___id",
     path: "/id/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___pt",
     path: "/pt/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___ru",
     path: "/ru/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___th",
     path: "/th/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___tl",
     path: "/tl/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___tr",
     path: "/tr/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___uz",
     path: "/uz/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___vi",
     path: "/vi/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/language.BmDKNuW_.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.DIVFDLJ9.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___de",
     path: "/de/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___en",
     path: "/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___es",
     path: "/es/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___fr",
     path: "/fr/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___hi",
     path: "/hi/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___id",
     path: "/id/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___pt",
     path: "/pt/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___ru",
     path: "/ru/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___th",
     path: "/th/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___tl",
     path: "/tl/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___tr",
     path: "/tr/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___uz",
     path: "/uz/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___vi",
     path: "/vi/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js"), __vite__mapDeps([25, 7, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___de",
     path: "/de/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___en",
     path: "/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___es",
     path: "/es/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___fr",
     path: "/fr/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___hi",
     path: "/hi/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___id",
     path: "/id/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___pt",
     path: "/pt/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___ru",
     path: "/ru/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___th",
     path: "/th/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___tl",
     path: "/tl/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___tr",
     path: "/tr/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___uz",
     path: "/uz/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___vi",
     path: "/vi/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.Cdtc8Sea.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.fFciLo2t.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___de",
     path: "/de/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___en",
     path: "/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___es",
     path: "/es/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___fr",
     path: "/fr/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___hi",
     path: "/hi/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___id",
     path: "/id/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___pt",
     path: "/pt/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___ru",
     path: "/ru/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___th",
     path: "/th/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___tl",
     path: "/tl/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___tr",
     path: "/tr/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___uz",
     path: "/uz/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___vi",
     path: "/vi/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js"), __vite__mapDeps([28, 7, 26, 27, 5, 2]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___de",
     path: (P == null ? void 0 : P.path) ?? "/de",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___en",
     path: (P == null ? void 0 : P.path) ?? "/",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___es",
     path: (P == null ? void 0 : P.path) ?? "/es",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___fr",
     path: (P == null ? void 0 : P.path) ?? "/fr",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___hi",
     path: (P == null ? void 0 : P.path) ?? "/hi",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___id",
     path: (P == null ? void 0 : P.path) ?? "/id",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___pt",
     path: (P == null ? void 0 : P.path) ?? "/pt",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___ru",
     path: (P == null ? void 0 : P.path) ?? "/ru",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___th",
     path: (P == null ? void 0 : P.path) ?? "/th",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___tl",
     path: (P == null ? void 0 : P.path) ?? "/tl",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___tr",
     path: (P == null ? void 0 : P.path) ?? "/tr",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___uz",
     path: (P == null ? void 0 : P.path) ?? "/uz",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___vi",
     path: (P == null ? void 0 : P.path) ?? "/vi",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js"), __vite__mapDeps([29, 30, 17, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___de",
     path: (M == null ? void 0 : M.path) ?? "/de/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___en",
     path: (M == null ? void 0 : M.path) ?? "/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___es",
     path: (M == null ? void 0 : M.path) ?? "/es/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___fr",
     path: (M == null ? void 0 : M.path) ?? "/fr/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___hi",
     path: (M == null ? void 0 : M.path) ?? "/hi/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___id",
     path: (M == null ? void 0 : M.path) ?? "/id/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___pt",
     path: (M == null ? void 0 : M.path) ?? "/pt/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___ru",
     path: (M == null ? void 0 : M.path) ?? "/ru/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___th",
     path: (M == null ? void 0 : M.path) ?? "/th/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___tl",
     path: (M == null ? void 0 : M.path) ?? "/tl/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___tr",
     path: (M == null ? void 0 : M.path) ?? "/tr/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___uz",
     path: (M == null ? void 0 : M.path) ?? "/uz/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___vi",
     path: (M == null ? void 0 : M.path) ?? "/vi/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }]
   , tg = (e,t,n)=>(t = t === !0 ? {} : t,
 {
@@ -11436,7 +11436,7 @@ const US = ["data-notivue-align", "aria-label"]
                 style: de(de({}, G(o).list), (c = t.styles) == null ? void 0 : c.list)
             }), [(pe(!0),
             Ge(mt, null, W0(G(r).entries.value, (f,d)=>{
-                var m, _, b, k;
+                var m, _, b, S;
                 return pe(),
                 Ge("li", {
                     tabindex: "-1",
@@ -11460,14 +11460,14 @@ const US = ["data-notivue-align", "aria-label"]
                     "data-notivue-container": f.id,
                     ref_for: !0,
                     ref: G(i).containers,
-                    style: de(de({}, G(o).itemContainer), (k = t.styles) == null ? void 0 : k.itemContainer)
+                    style: de(de({}, G(o).itemContainer), (S = t.styles) == null ? void 0 : S.itemContainer)
                 }), [Er(l.$slots, "default", cn(zt(G(ig)(f))))], 16, HS))], 12, BS)
             }
             ), 128))], 16, US)) : Wt("", !0)], 8, ["to", "disabled"])
         }
     }
 })
-  , UM = xe({
+  , HM = xe({
     __name: "Notivue",
     props: ra({
         class: {},
@@ -11499,7 +11499,7 @@ const US = ["data-notivue-align", "aria-label"]
     Touch: 1e3,
     TouchExternal: 1400
 }
-  , BM = xe({
+  , jM = xe({
     __name: "NotivueSwipe",
     props: ra({
         item: {},
@@ -11533,7 +11533,7 @@ const US = ["data-notivue-align", "aria-label"]
         }
           , _ = Oi(m)
           , b = _n({});
-        function k(j) {
+        function S(j) {
             Object.assign(_, j)
         }
         function g(j) {
@@ -11544,7 +11544,7 @@ const US = ["data-notivue-align", "aria-label"]
         }
         je(()=>t.length, (j,ce)=>{
             j !== ce && _.isPressed && (w(),
-            k(m))
+            S(m))
         }
         , {
             flush: "post"
@@ -11610,7 +11610,7 @@ const US = ["data-notivue-align", "aria-label"]
                     return
                 }
                 fr(j) || O(),
-                k({
+                S({
                     startX: j.clientX,
                     isPressed: !0
                 })
@@ -11626,7 +11626,7 @@ const US = ["data-notivue-align", "aria-label"]
                 transform: `translate3d(${_.currentX}px, 0px, 0px)`,
                 opacity: `${1 - Math.abs(_.currentX) / ce * (1 / u.value)}`
             }),
-            k({
+            S({
                 currentX: j.clientX - _.startX
             }),
             Math.abs(_.currentX) > ce * u.value && (_.isClearing = !0,
@@ -11639,7 +11639,7 @@ const US = ["data-notivue-align", "aria-label"]
                 ce[ce.length - 1].contains(d.value) || O()
             } else
                 D(C(j));
-            k({
+            S({
                 isClearing: !1
             })
         }
@@ -11647,7 +11647,7 @@ const US = ["data-notivue-align", "aria-label"]
             T(j) && (j.stopPropagation(),
             !(!_.isPressed || _.isClearing) && (fr(j) && L(j) ? O() : D(C(j)),
             w(),
-            k({
+            S({
                 startX: 0,
                 currentX: 0,
                 isPressed: !1
@@ -11656,7 +11656,7 @@ const US = ["data-notivue-align", "aria-label"]
         function N(j) {
             T(j) && (j.stopPropagation(),
             !(!_.isPressed || _.isClearing) && (w(),
-            k({
+            S({
                 startX: 0,
                 currentX: 0,
                 isPressed: !1
@@ -11928,7 +11928,7 @@ it(de({}, Uo), {
     "--nv-info-accent": "#5FD4FF",
     "--nv-promise-accent": "#D0D0D0"
 });
-const HM = it(de({}, Uo), {
+const KM = it(de({}, Uo), {
     "--nv-border-width": "1px",
     "--nv-global-bg": "#20252E",
     "--nv-global-border": "#353b45",
@@ -11961,7 +11961,7 @@ const HM = it(de({}, Uo), {
   , kw = ["textContent"]
   , Sw = ["aria-label"]
   , ww = ["textContent"]
-  , jM = xe({
+  , YM = xe({
     __name: "Notifications",
     props: ra({
         item: {},
@@ -12185,7 +12185,7 @@ function Uw(e) {
       , m = ()=>i
       , _ = ()=>o
       , b = L=>s(L) || l(L) || u(L) ? Pt : t[L]
-      , k = ()=>b(n)
+      , S = ()=>b(n)
       , g = ()=>b(n + o);
     function E() {
         return o = 0,
@@ -12222,7 +12222,7 @@ function Uw(e) {
         column: m,
         peekOffset: _,
         charAt: b,
-        currentChar: k,
+        currentChar: S,
         currentPeek: g,
         next: E,
         peek: p,
@@ -12293,7 +12293,7 @@ function jw(e, t={}) {
             h.peek();
         return v
     }
-    function k(h) {
+    function S(h) {
         const v = b(h);
         return h.skipToPeek(),
         v
@@ -12439,7 +12439,7 @@ function jw(e, t={}) {
         return A
     }
     function x(h) {
-        k(h);
+        S(h);
         const v = h.currentChar();
         return v !== "%" && f(Je.EXPECTED_TOKEN, o(), 0, v),
         h.next(),
@@ -12474,7 +12474,7 @@ function jw(e, t={}) {
         return v
     }
     function j(h) {
-        k(h);
+        S(h);
         let v = ""
           , A = "";
         for (; v = W(h); )
@@ -12483,7 +12483,7 @@ function jw(e, t={}) {
         A
     }
     function ce(h) {
-        k(h);
+        S(h);
         let v = "";
         return h.currentChar() === "-" ? (h.next(),
         v += `-${Y(h)}`) : v += Y(h),
@@ -12491,7 +12491,7 @@ function jw(e, t={}) {
         v
     }
     function ve(h) {
-        k(h),
+        S(h),
         _(h, "'");
         let v = ""
           , A = "";
@@ -12535,7 +12535,7 @@ function jw(e, t={}) {
         return `\\${v}${R}`
     }
     function ct(h) {
-        k(h);
+        S(h);
         let v = ""
           , A = "";
         const R = V=>V !== "{" && V !== "}" && V !== jn && V !== Pt;
@@ -12563,9 +12563,9 @@ function jw(e, t={}) {
         return v(!1, "")
     }
     function te(h) {
-        k(h);
+        S(h);
         const v = _(h, "|");
-        return k(h),
+        return S(h),
         v
     }
     function Q(h, v) {
@@ -12575,7 +12575,7 @@ function jw(e, t={}) {
             return v.braceNest >= 1 && f(Je.NOT_ALLOW_NEST_PLACEHOLDER, o(), 0),
             h.next(),
             A = d(v, 2, "{"),
-            k(h),
+            S(h),
             v.braceNest++,
             A;
         case "}":
@@ -12583,7 +12583,7 @@ function jw(e, t={}) {
             h.next(),
             A = d(v, 3, "}"),
             v.braceNest--,
-            v.braceNest > 0 && k(h),
+            v.braceNest > 0 && S(h),
             v.inLinked && v.braceNest === 0 && (v.inLinked = !1),
             A;
         case "@":
@@ -12607,20 +12607,20 @@ function jw(e, t={}) {
                 ye(h, v);
             if (V = p(h, v))
                 return A = d(v, 5, j(h)),
-                k(h),
+                S(h),
                 A;
             if (q = y(h, v))
                 return A = d(v, 6, ce(h)),
-                k(h),
+                S(h),
                 A;
             if (X = T(h, v))
                 return A = d(v, 7, ve(h)),
-                k(h),
+                S(h),
                 A;
             if (!V && !q && !X)
                 return A = d(v, 13, ct(h)),
                 f(Je.INVALID_TOKEN_IN_PLACEHOLDER, o(), 0, A.value),
-                k(h),
+                S(h),
                 A;
             break
         }
@@ -12638,20 +12638,20 @@ function jw(e, t={}) {
             v.inLinked = !0,
             R;
         case ".":
-            return k(h),
+            return S(h),
             h.next(),
             d(v, 9, ".");
         case ":":
-            return k(h),
+            return S(h),
             h.next(),
             d(v, 10, ":");
         default:
             return D(h) ? (R = d(v, 1, te(h)),
             v.braceNest = 0,
             v.inLinked = !1,
-            R) : w(h, v) || C(h, v) ? (k(h),
-            $(h, v)) : L(h, v) ? (k(h),
-            d(v, 12, et(h))) : O(h, v) ? (k(h),
+            R) : w(h, v) || C(h, v) ? (S(h),
+            $(h, v)) : L(h, v) ? (S(h),
+            d(v, 12, et(h))) : O(h, v) ? (S(h),
             V === "{" ? Q(h, v) || R : d(v, 11, H(h))) : (A === 8 && f(Je.INVALID_LINKED_FORMAT, o(), 0),
             v.braceNest = 0,
             v.inLinked = !1,
@@ -12921,7 +12921,7 @@ function Ww(e={}) {
           , T = m(g);
         return E.currentType === 14 ? T : _(g, p, y, T)
     }
-    function k(g) {
+    function S(g) {
         const E = jw(g, dt({}, e))
           , p = E.context()
           , y = i(0, p.offset, p.startLoc);
@@ -12933,7 +12933,7 @@ function Ww(e={}) {
         y
     }
     return {
-        parse: k
+        parse: S
     }
 }
 function An(e) {
@@ -13088,20 +13088,20 @@ function Qw(e, t) {
     };
     s && e.loc && (a.source = e.loc.source);
     const l = ()=>a;
-    function u(k, g) {
-        a.code += k
+    function u(S, g) {
+        a.code += S
     }
-    function c(k, g=!0) {
+    function c(S, g=!0) {
         const E = g ? i : "";
-        u(o ? E + "  ".repeat(k) : E)
+        u(o ? E + "  ".repeat(S) : E)
     }
-    function f(k=!0) {
+    function f(S=!0) {
         const g = ++a.indentLevel;
-        k && c(g)
+        S && c(g)
     }
-    function d(k=!0) {
+    function d(S=!0) {
         const g = --a.indentLevel;
-        k && c(g)
+        S && c(g)
     }
     function m() {
         c(a.indentLevel)
@@ -13112,7 +13112,7 @@ function Qw(e, t) {
         indent: f,
         deindent: d,
         newline: m,
-        helper: k=>`_${k}`,
+        helper: S=>`_${S}`,
         needIndent: ()=>a.needIndent
     }
 }
@@ -13439,7 +13439,7 @@ function _A(e={}) {
       , d = He(e.processor) && Ze(e.processor.normalize) ? e.processor.normalize : mA
       , m = He(e.processor) && Ze(e.processor.interpolate) ? e.processor.interpolate : gA
       , _ = He(e.processor) && re(e.processor.type) ? e.processor.type : pA
-      , k = {
+      , S = {
         list: a,
         named: u,
         plural: o,
@@ -13450,7 +13450,7 @@ function _A(e={}) {
             E.length === 1 ? Fe(p) ? (w = p.modifier || w,
             T = p.type || T) : re(p) && (w = p || w) : E.length === 2 && (re(p) && (w = p || w),
             re(y) && (T = y || T));
-            const L = c(g)(k)
+            const L = c(g)(S)
               , C = T === "vnode" && ut(L) && w ? L[0] : L;
             return w ? f(w)(C, T) : C
         }
@@ -13461,7 +13461,7 @@ function _A(e={}) {
         normalize: d,
         values: dt({}, s, l)
     };
-    return k
+    return S
 }
 let _o = null;
 function bA(e) {
@@ -13630,7 +13630,7 @@ function VA(e={}) {
       , m = at(e.fallbackWarn) || Fs(e.fallbackWarn) ? e.fallbackWarn : !0
       , _ = !!e.fallbackFormat
       , b = !!e.unresolving
-      , k = Ze(e.postTranslation) ? e.postTranslation : null
+      , S = Ze(e.postTranslation) ? e.postTranslation : null
       , g = He(e.processor) ? e.processor : null
       , E = at(e.warnHtmlMessage) ? e.warnHtmlMessage : !0
       , p = !!e.escapeParameter
@@ -13656,7 +13656,7 @@ function VA(e={}) {
         fallbackWarn: m,
         fallbackFormat: _,
         unresolving: b,
-        postTranslation: k,
+        postTranslation: S,
         processor: g,
         warnHtmlMessage: E,
         escapeParameter: p,
@@ -13787,9 +13787,9 @@ function Vd(e, ...t) {
       , m = !!u.resolvedMessage
       , _ = re(u.default) || at(u.default) ? at(u.default) ? o ? l : ()=>l : u.default : n ? o ? l : ()=>l : ""
       , b = n || _ !== ""
-      , k = bu(e, u);
+      , S = bu(e, u);
     d && HA(u);
-    let[g,E,p] = m ? [l, k, a[k] || {}] : _g(e, l, k, s, f, c)
+    let[g,E,p] = m ? [l, S, a[S] || {}] : _g(e, l, S, s, f, c)
       , y = g
       , T = l;
     if (!m && !(re(y) || ki(y) || nn(y)) && b && (y = _,
@@ -13835,8 +13835,8 @@ function _g(e, t, n, r, i, o) {
     f = s[d] || {},
     (m = l(f, t)) === null && (m = f[t]),
     !(re(m) || ki(m) || nn(m))); b++) {
-        const k = Eu(e, t, d, o, _);
-        k !== t && (m = k)
+        const S = Eu(e, t, d, o, _);
+        S !== t && (m = S)
     }
     return [m, d, f]
 }
@@ -13927,11 +13927,11 @@ function Fd(e, ...t) {
       , b = s(e, i, _);
     if (!re(l) || l === "")
         return new Intl.DateTimeFormat(_,f).format(u);
-    let k = {}, g, E = null;
+    let S = {}, g, E = null;
     const p = "datetime format";
     for (let w = 0; w < b.length && (g = b[w],
-    k = n[g] || {},
-    E = k[l],
+    S = n[g] || {},
+    E = S[l],
     !He(E)); w++)
         Eu(e, l, g, d, p);
     if (!He(E) || !re(g))
@@ -13993,11 +13993,11 @@ function Ud(e, ...t) {
       , b = s(e, i, _);
     if (!re(l) || l === "")
         return new Intl.NumberFormat(_,f).format(u);
-    let k = {}, g, E = null;
+    let S = {}, g, E = null;
     const p = "number format";
     for (let w = 0; w < b.length && (g = b[w],
-    k = n[g] || {},
-    E = k[l],
+    S = n[g] || {},
+    E = S[l],
     !He(E)); w++)
         Eu(e, l, g, d, p);
     if (!He(E) || !re(g))
@@ -14192,7 +14192,7 @@ function Lg(e={}, t) {
     let m = n ? n.missingWarn : at(e.missingWarn) || Fs(e.missingWarn) ? e.missingWarn : !0
       , _ = n ? n.fallbackWarn : at(e.fallbackWarn) || Fs(e.fallbackWarn) ? e.fallbackWarn : !0
       , b = n ? n.fallbackRoot : at(e.fallbackRoot) ? e.fallbackRoot : !0
-      , k = !!e.fallbackFormat
+      , S = !!e.fallbackFormat
       , g = Ze(e.missing) ? e.missing : null
       , E = Ze(e.missing) ? qd(e.missing) : null
       , p = Ze(e.postTranslation) ? e.postTranslation : null
@@ -14212,7 +14212,7 @@ function Lg(e={}, t) {
             missing: E === null ? void 0 : E,
             missingWarn: m,
             fallbackWarn: _,
-            fallbackFormat: k,
+            fallbackFormat: S,
             unresolving: !0,
             postTranslation: p === null ? void 0 : p,
             warnHtmlMessage: y,
@@ -14480,11 +14480,11 @@ function Lg(e={}, t) {
             b = I
         },
         get fallbackFormat() {
-            return k
+            return S
         },
         set fallbackFormat(I) {
-            k = I,
-            C.fallbackFormat = k
+            S = I,
+            C.fallbackFormat = S
         },
         get warnHtmlMessage() {
             return y
@@ -14772,9 +14772,9 @@ function aL(e={}, t) {
                 if (d.__VUE_I18N_SYMBOL__ = a,
                 d.provide(d.__VUE_I18N_SYMBOL__, f),
                 He(m[0])) {
-                    const k = m[0];
-                    f.__composerExtend = k.__composerExtend,
-                    f.__vueI18nExtend = k.__vueI18nExtend
+                    const S = m[0];
+                    f.__composerExtend = S.__composerExtend,
+                    f.__vueI18nExtend = S.__vueI18nExtend
                 }
                 let _ = null;
                 n && (_ = gL(d, f.global)),
@@ -15047,7 +15047,7 @@ function Mg(e, t, n={}, r, i, o) {
     !o && !_ && (r.state.value[e] = {}),
     le({});
     let b;
-    function k(C) {
+    function S(C) {
         let O;
         u = c = !1,
         typeof C == "function" ? (C(r.state.value[e]),
@@ -15121,7 +15121,7 @@ function Mg(e, t, n={}, r, i, o) {
         _p: r,
         $id: e,
         $onAction: Zd.bind(null, d),
-        $patch: k,
+        $patch: S,
         $reset: g,
         $subscribe(C, O={}) {
             const D = Zd(f, C, O.detached, ()=>B())
@@ -15156,7 +15156,7 @@ function Mg(e, t, n={}, r, i, o) {
     Object.defineProperty(T, "$state", {
         get: ()=>r.state.value[e],
         set: C=>{
-            k(O=>{
+            S(O=>{
                 rr(O, C)
             }
             )
@@ -15193,13 +15193,13 @@ function Sn(e, t, n) {
     return s.$id = r,
     s
 }
-const KM = "data:image/png;base64,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"
-  , YM = "data:image/webp;base64,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"
+const qM = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF0AAABdCAMAAADwr5rxAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAMAUExURUdwTOXT11Nsym+B0kFVqVNbquifXktmxjhGmWum3+TXxE5twNx8M9hSmOuuok9nvt/g6NJiauydidzd5eKPVVVcpUJmrVdaqGBwttyzxS5Goklkw96CO+2qYOqqq++zb05ms+Hi6eHYy9/g59ZzOOiUmUxszODi6ODi6dV0Vl6Bz93f5+XOjEBIk+XMpeyua+bKnvLAeumgVys1iOacYFhhr0ZjveiUoUxow1B+ykhkzc5HjuOVWebTmzlHnNZZl93f5uCEN8xnROSTTNzd4+mkn9NuMHaO1tRyPN7g58hMcdl4Mdt6OMdqRO+ZzMfK2y4niearmNdwd2l4yCcxmOmatVlZm5E6VeCAMdxurWp8zltAc+KMju6uqtJSkT5vuoCAkCFbtPCZ0ZCCp+TNiONcoFOIzDlntO+ybRgmlhQikhEejhsqmx8vn+Dh5xtdui1ArBQbgeqiYB4ng2N60DxStyo3ljE/nmJ2yyM0o3WFwu2tbBIciDFFsdlzKT1MqllxzRhYt0JavFBnxSYwjeOPRumfXTJvwSEuleebV1ttwuXOgkhhwu+3deWVUSVHmAccax5UrQ08nFqT0yY3pyk7qgsnfEhXryBJoTVKteWQkE5px9NjHjZFqh1kwlRnuylnvTVnueOXkeDFgFBftM9cGixiuDuBz0+ByBYdduCpjh8XePK9g+qinBw9lBZNsBBEpQs2kuahkGaB01WJy3J8yeS2ieKxjuablOuxoeCIQEVQoCt2zCVWs++2sEN1wctoOj9coD2H1F5zxjt6y36OyNZrJ3F6tvPAfOeiaOK8ieKVhyYiaEAhS+SIjMdSFy44fu+urWp0ugouil9yqlqc3EqQ19/BhCITaLBGHYNRXIyay1l+u+XPjerCmOSNiYx8seuqm6Gjw2+R1C9Sn3Gd25+xzsxySLqYit56f8RPXNpvdoeSx4k5LRcWVOi8m3cwSbM+S52UolEqV2daeuh+vY5sdefCienMl4hztuFsrOKBhWxnkd3BdLxeK9eZa4cXiccAAABodFJOUwAF/v4PHClD/v4Wfv7+Tl02/hIiHwT+CDIOcHD++zbBm79Eib36iu2dDUD8tbKSbdNW3c6f6cAp3Nqtk7l0itXTfAX5YaNscqByKzPk5/2lW7m/xurg8fxJfZ/78/Fj7/7HZvPdr+31m22KbgAACBFJREFUaN7t2HdUU2kaBvAL0mERRFCaCCqKjr33cSxjn953ys42qgmEFMIQSEJIiJQUCQEMIRAJofcqTRBEhKEIKoMiIMUyOo5l+s6+X4I7e3ZnBa6c/SsP5+RET/jx8H5v7o1imC666KKLLrr8XzPP2NHR3NHd3dhwpmWD2du26IfRAgMD0cOH82eU3pQEaFGPuFgsLqLRAmfNenWmbONtGrqoqGf4/PnzdHFRQ9iM8cbb9MMCi2ZBisRD9+h04Gn6ScAvnyl7eGRkZHhWUg+dTi+i03vCAqPYRYFv2b7okrijgxw2zbh8+XKxKa26tzZeLssohr8jswNpL1h+PmxJYMmIuP+rr87TL/f3RIkI3HMqLjqFQCK/4cMXwh2TwsJoJcPin4dGEd8szmCHUnPJbP2wsAYan8p/SzM699m4tv91GUufVlJiatd8bwjp9GKxfpI2+nwaLT50C7zIQU4L2zp1fo7l2rVrzVCpTTIvGR/0+mb6vXuANxf3spOS2OyoqCg2v4HWQN0Ir3pbFsrim09NXu3iGe3p6Rkd7WJkDgOIolD5XeL+ZpDlXfwqcW0UCgu+2A0NfOVKDDP0/8LHl7hwCraRi+ezBHv+OQm2paSBSpErTGFh4uO7qjJ6WchmscgslpzPlyuhsu16kto/fPbk+GrP3/Dgm2x9Pp9WQqdRKVXpPf31JqG14nN5ZESTE8hkllwuVyoRagj8yklt+w2/9UY4m908XpY5XkKjhpvkclW951TC3FAyJAFCZinlynil5kpmYGAwKT7XZUJGxQHnf1t6AWW8hA98uEQi6abINHRISEgCOV6pjI+HQ9Wb0nEarUO2cwwnAuzgH8DOzr5wITs7Oni8S04JD5XJiLIQDU2EIB4CZ2mF2S+Y9CcYOUPlSKfTdWNjTs4tP3RlZqNEB3AYp5ueylk8HjFEGyIxLi6OKAtFURpjVvbY9h8tJ9MPcJxjGHV1dccOLj42fvNmdDTYwUCfOfPltY+ULDLJK46oSdwpiJaP32igtwzDDm+f99wd//xze4/FFnVjdccOHMZeNTUdjYYgW4M/osJZJpC8g6B03KkgCNKBjzfXW7Zskta2m48fP/7OnLlHxxYfgT8uL+4dQm+nSIsmLX4pnCqDiRP9vf0Q7QcJOkUN7aJ3Nb+29MTLkw3lrz8+efLkAwzzwNAGbDr7LdqaGCiuxUkUKoyaGOKn9gbYFwI8hUoNHTqBYjWJvvsPkO3a5zbYnz6DlXHmMLTNv75ECqec0o7aW+3t6+XlBTwP6VXK15DuOsnCfIL0w5qnbqDXc5wDKpua6h63XdPilKCJ+Kt9vL2Rz+NRqCZVC82Wgr7C1ea5ut4Hu3d/on0KZ+Qg/Zlj0dT0tL9ecr9NTQoP5/k9i6/aH3jweeEUatVGQ8z1xMv7bOyt3MyeX1/PDP1+Zq5L4ZBNJI/Hniq4iltSIQXhGh2NG1oL/H1QfdBNqhyhzCJ4/RTeqWZWixa5rjixAn6IQ4eggEAgCIXVKdxcwHkTNGpNEsDl1tsLVd8E37VoapcBQ1vMxhWd0aHl7o0pIkkBk4n0RhWFx/N9hkNtLzXwJDgLk3fRzchqSviuBAdYF80Zmfaqirn53YhnErgqVdC/ivug8O6r/WFc1Cp06bWZWnWHt19Hvyfgo6OjPaqMWtSewGQmnz3X6Afj1hT3+QLiTbqvRtV3TfsWvW/pofl/t8swFasyFIhPJxAQ/2+4P4zlEiypyUqDaeuH9mHYQju7/pFeLre6WyAipGh4rvcE7g9Rkzrgzbt+3vQ/XrjBchlssavni1XJhDyJQJSu5at9JvCsrKxHfR0dHeun3xzT02yAsV39LbnqLFOYLxDkp2j5IO1UsrKufsPgPF7pgAPH9OzRo4d5/a1YRWNKnlAkEORpeZUX4GBf/dqiMuZX3P8oWLB/Sfub796KjU0/m5wnLBBImFzENyo0xduuWXBiYlpW47P1LD/u7Mxpt+5DPJeZn98t6E4GnpncSEX4P5wAj2xx0cOlW3bWwFfOT9bvxcbGJifniUQSGL2GV6ivttVVIjwiIHguHnzzx4UDnZ01OYm373wDPIGZL9LMhpvOZFZT25o0eGRES4sRHn3/4GBNTU5OeWL73YePYnOlTCgPs0mp5RLy8qRtpys1eEBLC57uCyoArxkcSFyy5Cfrhx2xucK8/AKRRJLfWKuolsZ29DEQDvo6PNXfeFBRU1EI3cuXtN+F2eTmVsNoCiTdioxahVBav+sgB+EBERtw4G43HpQVtpYX5pSnJrbftn74kTRXWi0V5cNjMeI/nTd3L8IjI/Fs5JobpQgfrMhJTUxst77z3kJpbrpQKO3rs8sAPt0ROxKJmnP24jjUtd+VXizNzCysqMhJHEgcuGt9x9BcKuWm1395ZuyzvxVvnY3Z7gA8gFO5A0f1l6K/u3GjtCyzIqd1YABGc9faAzP/NEPRd4Zx9H3MAK5v76PqHItKHNXd0tJOfo/0zFQIjOb2m3A/Xr51qxPj6BHtS9ah5gyLPXiqnzx5/fuLSC8s1/B/1C61gdGGie3eA80rGYzFHtPHzU6CfuUi4gvLy1NbU9/Z/B+veGVdQATCX8FRfSfov1wBvgz41tbU/Zv/62Py3kgnBuMgHhwN5pe0NOBLyyoGW99Y8DsflDcAvgfftfcv0D0NcuXBmlWWlr97hZ2zw+IAzrvGquvXr8PWrFnl9r+v3fZGeO9JZjvXvLRq5wLd/ynqoosuuuiiiy4zln8CKN5Vg+k/orIAAAAASUVORK5CYII="
+  , WM = "data:image/webp;base64,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"
   , SL = "data:image/png;base64,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"
-  , qM = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACABAMAAAAxEHz4AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURUdwTP///////////////////////////////////////48EzvsAAAALdFJOUwDMFbBPL5m/ZniGseNS7gAABBFJREFUaN7tWM9v0zAUDlkyut28tMnaU6YCYzs1FUM7dhrTYKcUJvHjtG4TXMk2OJcBQ9y6CcSODCHBn4kd24ndxPbLkLiQ79Kqjr88v/f8vfdqWTVq1Kihgn2WeIdh6cpOFJSvSNhGGH5cXHBHZGXRtH8epWgX3mSP6MrEQPCOPobulVpGqA0eQBxjeaGRLcSQE2C8kReeZAv6M9zkjy1OOcE+5yuvtQRD9pRP99u7Dz9ssa8RW1oAEYxp4BPyPfgZil5oQQhSB9wacav9geAGCIFHXnk3yfyGvNP8EHqCpfSZPv7mCPsxA7GhC/DBDDfAHiEJxKvUhJ6WoMENeIqmsMZN0OeBSx7BL3NQATgwbkJXdcCWN4UrIYDcww3jXSBhmIiZL5swb/KhZc2lLtwoI8CW2cn0JSsios+VICDMnlGRuj0WzCJwdGb7Zk0clLqQudENQbqKFAiBwjyvItgDEiypCFpAgisVQRtYWlT700AC4CgJ0ABEMKsmgHnxhprgCEQwVBPAwrChJmiCCM7VBLA4MjV8GwnxO6CfnQoEi2JG/2D3ywMR0Df3xIQKWdGsQrDHv9B9s/+QYBWpCbAzjHAjHYEXg9OonMDcpTWQnsAo65mYYHFOBB2YASbjnJD2QnmaCBdkAmoTMX4LBd4/k2vkdcQIJkvLEIIjYxIa4AFimOHw8e3NCmfolvU11ib8DNMVJW338h7VGAe7pJ6XGaasL47isG5Js6NuEsXeEP/27DRXSSSkOaggnKRxGReFvgUqCMHXMOUkT7+IQOVBCgId3BrMEY50ig4gD/ng111jEboC5GLJfsvmIZOyITSlQVCSrU5kIhDCvU8nnmOaia/ozLOKDKOfK+eq+4uNn3jkbMey2hgIgjgblS8sayXzST7ExHofrOWjcounVzpMd2FOTO/gNvK2rjhB+0GUHiuLRKjNA3IH75CPOU4wJlrXz00ItJlILiupbxNiEiWICRepam6S3TL1XWiyWV8gCFOxO5EeUd/GMROG76Rb6pGi1mb994CrZks3uvv8PXhKdy7JtPhowKSiyaWhpxPlIz7xNAunI/mxrKtuNrOzKyiqdJP67HShRpW9XBf2CiOIT8/Q1lW2Vq6tqQkrF2ICDVJPL+gq00QokB3MkGAa95tQUmZ1PQZ+UygqG2aLPLFp8MmV07VqQ1+SBRyu9+uS3OM4jHTDr9OU5o2FwhCGHTvUdkkDqTo0C3KPfdyoMLO1C7/41Wa2oCj35rlNqrBpzq5Um9ukmS14iZFUm9ucRNcfBYDJsasj2If0+5/U+09gs7Ny+O4A/0BQMfixZf0NQwe8HzMUu0u0HlpV8HyqOfQ+Vv6He0eg8L6EVnXYu58PMMnx/cut62yvUaNGjf8PfwAoSwbZp4082gAAAABJRU5ErkJggg=="
-  , WM = "data:image/png;base64,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"
-  , GM = "data:image/png;base64,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"
-  , JM = "data:image/png;base64,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"
+  , GM = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACABAMAAAAxEHz4AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURUdwTP///////////////////////////////////////48EzvsAAAALdFJOUwDMFbBPL5m/ZniGseNS7gAABBFJREFUaN7tWM9v0zAUDlkyut28tMnaU6YCYzs1FUM7dhrTYKcUJvHjtG4TXMk2OJcBQ9y6CcSODCHBn4kd24ndxPbLkLiQ79Kqjr88v/f8vfdqWTVq1Kihgn2WeIdh6cpOFJSvSNhGGH5cXHBHZGXRtH8epWgX3mSP6MrEQPCOPobulVpGqA0eQBxjeaGRLcSQE2C8kReeZAv6M9zkjy1OOcE+5yuvtQRD9pRP99u7Dz9ssa8RW1oAEYxp4BPyPfgZil5oQQhSB9wacav9geAGCIFHXnk3yfyGvNP8EHqCpfSZPv7mCPsxA7GhC/DBDDfAHiEJxKvUhJ6WoMENeIqmsMZN0OeBSx7BL3NQATgwbkJXdcCWN4UrIYDcww3jXSBhmIiZL5swb/KhZc2lLtwoI8CW2cn0JSsios+VICDMnlGRuj0WzCJwdGb7Zk0clLqQudENQbqKFAiBwjyvItgDEiypCFpAgisVQRtYWlT700AC4CgJ0ABEMKsmgHnxhprgCEQwVBPAwrChJmiCCM7VBLA4MjV8GwnxO6CfnQoEi2JG/2D3ywMR0Df3xIQKWdGsQrDHv9B9s/+QYBWpCbAzjHAjHYEXg9OonMDcpTWQnsAo65mYYHFOBB2YASbjnJD2QnmaCBdkAmoTMX4LBd4/k2vkdcQIJkvLEIIjYxIa4AFimOHw8e3NCmfolvU11ib8DNMVJW338h7VGAe7pJ6XGaasL47isG5Js6NuEsXeEP/27DRXSSSkOaggnKRxGReFvgUqCMHXMOUkT7+IQOVBCgId3BrMEY50ig4gD/ng111jEboC5GLJfsvmIZOyITSlQVCSrU5kIhDCvU8nnmOaia/ozLOKDKOfK+eq+4uNn3jkbMey2hgIgjgblS8sayXzST7ExHofrOWjcounVzpMd2FOTO/gNvK2rjhB+0GUHiuLRKjNA3IH75CPOU4wJlrXz00ItJlILiupbxNiEiWICRepam6S3TL1XWiyWV8gCFOxO5EeUd/GMROG76Rb6pGi1mb994CrZks3uvv8PXhKdy7JtPhowKSiyaWhpxPlIz7xNAunI/mxrKtuNrOzKyiqdJP67HShRpW9XBf2CiOIT8/Q1lW2Vq6tqQkrF2ICDVJPL+gq00QokB3MkGAa95tQUmZ1PQZ+UygqG2aLPLFp8MmV07VqQ1+SBRyu9+uS3OM4jHTDr9OU5o2FwhCGHTvUdkkDqTo0C3KPfdyoMLO1C7/41Wa2oCj35rlNqrBpzq5Um9ukmS14iZFUm9ucRNcfBYDJsasj2If0+5/U+09gs7Ny+O4A/0BQMfixZf0NQwe8HzMUu0u0HlpV8HyqOfQ+Vv6He0eg8L6EVnXYu58PMMnx/cut62yvUaNGjf8PfwAoSwbZp4082gAAAABJRU5ErkJggg=="
+  , JM = "data:image/png;base64,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"
+  , zM = "data:image/png;base64,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"
+  , QM = "data:image/png;base64,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"
   , wL = Sn("boost", {
     state: ()=>({
         boostsForBuy: [],
@@ -15577,6 +15577,16 @@ e.GAME_USER = "/clicker/user",
 e.GAME_USER_AVATAR = "/clicker/user/avatar",
 e.GAME_USER_ACHIEVEMENTS = "/clicker/user/achievements",
 e))(Ho || {})
+  , FL = (e=>(e.points = "points",
+e.withdrawal = "withdrawal",
+e))(FL || {})
+  , xL = (e=>(e.passive_income = "passive_income",
+e.earn_tasks = "earn_tasks",
+e.friends = "friends",
+e.achievements = "achievements",
+e.telegram_subscription = "telegram_subscription",
+e.keys = "keys",
+e))(xL || {})
   , Dg = (e=>(e.ONBOARDING_START = "onboarding_start",
 e.ONBOARDING_CLOSE_SLIDER = "onboarding_close_slider",
 e.ONBOARDING_SLIDE = "onboarding_slide",
@@ -15604,7 +15614,7 @@ e))(Dg || {})
 e.Dash = "-",
 e.SymbolSeparator = "/",
 e))(Nr || {});
-const FL = {
+const UL = {
     ".-": "A",
     "-...": "B",
     "-.-.": "C",
@@ -16170,7 +16180,7 @@ const FL = {
             this.totalKeys = e
         },
         setUserResponseData(e) {
-            var t, n, r, i, o, s, a, l, u, c, f, d, m, _, b, k, g, E, p, y, T, w, L;
+            var t, n, r, i, o, s, a, l, u, c, f, d, m, _, b, S, g, E, p, y, T, w, L;
             if ((t = e == null ? void 0 : e.clickerUser) != null && t.id && this.setId(e.clickerUser.id),
             (n = e == null ? void 0 : e.clickerUser) != null && n.totalKeys && this.setTotalKeys(e.clickerUser.totalKeys),
             (r = e == null ? void 0 : e.clickerUser) != null && r.balanceKeys && this.setBalanceKeys(e.clickerUser.balanceKeys),
@@ -16185,7 +16195,7 @@ const FL = {
             (m = e == null ? void 0 : e.clickerUser) != null && m.lastSyncUpdate && this.setLastSyncUpdate(e.clickerUser.lastSyncUpdate),
             (_ = e == null ? void 0 : e.clickerUser) != null && _.exchangeId && this.setExchangeId(e.clickerUser.exchangeId),
             (b = e == null ? void 0 : e.clickerUser) != null && b.upgradesForBuy && Eo().setUpgradesForBuy(e.clickerUser.upgradesForBuy),
-            (k = e == null ? void 0 : e.clickerUser) != null && k.upgrades && Eo().setMyUpgrades(e.clickerUser.upgrades),
+            (S = e == null ? void 0 : e.clickerUser) != null && S.upgrades && Eo().setMyUpgrades(e.clickerUser.upgrades),
             (g = e == null ? void 0 : e.clickerUser) != null && g.maxTaps && this.setMaxTaps(e.clickerUser.maxTaps),
             (E = e == null ? void 0 : e.clickerUser) != null && E.referrerId && this.setReferrerId(e.clickerUser.referrerId),
             (p = e == null ? void 0 : e.clickerUser) != null && p.level) {
@@ -16412,16 +16422,16 @@ const FL = {
         }
     }
 })
-  , xL = {
+  , BL = {
     path: "/",
     watch: !0,
     decode: e=>mo(decodeURIComponent(e)),
     encode: e=>encodeURIComponent(typeof e == "string" ? e : JSON.stringify(e))
 };
-function UL(e, t) {
+function HL(e, t) {
     var l;
     const n = {
-        ...xL,
+        ...BL,
         ...t
     }
       , r = $d(n) || {};
@@ -16429,11 +16439,11 @@ function UL(e, t) {
     n.maxAge !== void 0 ? i = n.maxAge * 1e3 : n.expires && (i = n.expires.getTime() - Date.now());
     const o = i !== void 0 && i <= 0
       , s = Cn(o ? void 0 : r[e] ?? ((l = n.default) == null ? void 0 : l.call(n)))
-      , a = i && !o ? jL(s, i) : le(s);
+      , a = i && !o ? YL(s, i) : le(s);
     {
         const u = typeof BroadcastChannel > "u" ? null : new BroadcastChannel(`nuxt:cookies:${e}`)
           , c = ()=>{
-            n.readonly || bE(a.value, r[e]) || (HL(e, a.value, n),
+            n.readonly || bE(a.value, r[e]) || (KL(e, a.value, n),
             r[e] = Cn(a.value),
             u == null || u.postMessage({
                 value: n.encode(a.value)
@@ -16470,17 +16480,17 @@ function UL(e, t) {
 function $d(e={}) {
     return hE(document.cookie, e)
 }
-function BL(e, t, n={}) {
+function jL(e, t, n={}) {
     return t == null ? Ff(e, t, {
         ...n,
         maxAge: -1
     }) : Ff(e, t, n)
 }
-function HL(e, t, n={}) {
-    document.cookie = BL(e, t, n)
+function KL(e, t, n={}) {
+    document.cookie = jL(e, t, n)
 }
 const eh = 2147483647;
-function jL(e, t) {
+function YL(e, t) {
     let n, r = 0;
     return Po() && Xs(()=>{
         clearTimeout(n)
@@ -16518,71 +16528,71 @@ const zr = ["de", "en", "es", "fr", "hi", "id", "pt", "ru", "th", "tl", "tr", "u
   , uc = {
     de: [{
         key: "../locales/de.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/de.COR9jgUx.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/de.COR9jgUx.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     en: [{
         key: "../locales/en.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/en.CN6hsx7K.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/en.CIZ3Nv9A.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     es: [{
         key: "../locales/es.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/es.BOHD6ZfZ.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/es.BOHD6ZfZ.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     fr: [{
         key: "../locales/fr.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/fr.CTapgT1m.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/fr.CTapgT1m.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     hi: [{
         key: "../locales/hi.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/hi.DuS2goG7.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/hi.DuS2goG7.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     id: [{
         key: "../locales/id.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/id.CmJ87ZRq.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/id.CmJ87ZRq.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     pt: [{
         key: "../locales/pt.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/pt.C-qB9IuY.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/pt.C-qB9IuY.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     ru: [{
         key: "../locales/ru.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ru.DOQWEEYo.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ru.DOQWEEYo.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     th: [{
         key: "../locales/th.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/th.6lG38Pb3.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/th.6lG38Pb3.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     tl: [{
         key: "../locales/tl.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/tl.BdFyDy6A.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/tl.BdFyDy6A.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     tr: [{
         key: "../locales/tr.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/tr.DesUhDLC.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/tr.DesUhDLC.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     uz: [{
         key: "../locales/uz.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/uz.DghcaKWZ.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/uz.DghcaKWZ.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     vi: [{
         key: "../locales/vi.json",
-        load: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/vi.Do66L3Kt.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/vi.Do66L3Kt.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }]
 }
-  , KL = [()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/i18n.config.Da3zEwKd.js"), __vite__mapDeps([]), import.meta.url)]
+  , qL = [()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/i18n.config.Da3zEwKd.js"), __vite__mapDeps([]), import.meta.url)]
   , gt = {
     experimental: {
         localeDetector: ""
@@ -16815,17 +16825,17 @@ const zr = ["de", "en", "es", "fr", "hi", "id", "pt", "ru", "th", "tl", "tr", "u
         path: "locales/vi.json"
     }]
 }]
-  , YL = !1
-  , qL = {
+  , WL = !1
+  , GL = {
     PREFIX: "prefix",
     PREFIX_EXCEPT_DEFAULT: "prefix_except_default",
     PREFIX_AND_DEFAULT: "prefix_and_default",
     NO_PREFIX: "no_prefix"
 }
-  , WL = ""
-  , GL = "nuxtI18n"
-  , JL = typeof window < "u";
-function zL(e) {
+  , JL = ""
+  , zL = "nuxtI18n"
+  , QL = typeof window < "u";
+function XL(e) {
     e = e || [];
     const t = [];
     for (const n of e)
@@ -16834,29 +16844,29 @@ function zL(e) {
         }) : t.push(n);
     return t
 }
-function QL(e) {
+function ZL(e) {
     return e != null && "global"in e && "mode"in e
 }
-function XL(e) {
+function $L(e) {
     return e != null && !("__composer"in e) && "locale"in e && lt(e.locale)
 }
 function Ng(e) {
     return e != null && "__composer"in e
 }
 function Ar(e) {
-    return QL(e) ? e.global : e
+    return ZL(e) ? e.global : e
 }
 function Si(e) {
     const t = Ar(e);
-    return XL(t) ? t : Ng(t) ? t.__composer : t
+    return $L(t) ? t : Ng(t) ? t.__composer : t
 }
 function ya(e) {
     return G(Ar(e).locale)
 }
-function ZL(e) {
+function eC(e) {
     return G(Ar(e).locales)
 }
-function $L(e) {
+function tC(e) {
     return G(Ar(e).localeCodes)
 }
 function Vg(e, t) {
@@ -16874,7 +16884,7 @@ function th(e, t, {defaultLocale: n, strategy: r, routesNameSeparator: i, defaul
 function nh(e, t) {
     return Ze(e) ? e(t) : e
 }
-function eC(e, t) {
+function nC(e, t) {
     const n = [];
     for (const [r,i] of t.entries()) {
         const o = e.find(s=>s.iso.toLowerCase() === i.toLowerCase());
@@ -16899,12 +16909,12 @@ function eC(e, t) {
     }
     return n
 }
-const tC = eC;
-function nC(e, t) {
+const rC = nC;
+function iC(e, t) {
     return e.score === t.score ? t.code.length - e.code.length : t.score - e.score
 }
-const rC = nC;
-function iC(e, t, {matcher: n=tC, comparer: r=rC}={}) {
+const oC = iC;
+function sC(e, t, {matcher: n=rC, comparer: r=oC}={}) {
     const i = [];
     for (const s of e) {
         const {code: a} = s
@@ -16922,7 +16932,7 @@ function fc(e) {
     return new RegExp(`^/(${e.join("|")})(?:/|$)`,"i")
 }
 const Xi = new Map;
-async function oC(e, t) {
+async function aC(e, t) {
     const n = {
         messages: {}
     };
@@ -16945,7 +16955,7 @@ function xg(e, t) {
         re(e) && t.every(r=>r !== e) && n.push(e);
     return n
 }
-async function sC(e, t, n) {
+async function lC(e, t, n) {
     const {defaultLocale: r, initialLocale: i, localeCodes: o, fallbackLocale: s, lazy: a} = n;
     if (a && s) {
         const u = xg(s, [r, i]);
@@ -16955,7 +16965,7 @@ async function sC(e, t, n) {
     return await Promise.all(l.map(u=>rh(u, t, e))),
     e
 }
-async function aC(e, {key: t, load: n}) {
+async function cC(e, {key: t, load: n}) {
     let r = null;
     try {
         const i = await n().then(o=>o.default || o);
@@ -16975,7 +16985,7 @@ async function dc(e, t, n) {
     const i = {};
     for (const o of r) {
         let s = null;
-        Xi && Xi.has(o.key) && o.cache ? s = Xi.get(o.key) : s = await aC(e, o),
+        Xi && Xi.has(o.key) && o.cache ? s = Xi.get(o.key) : s = await cC(e, o),
         s != null && Yr(s, i)
     }
     n(e, i)
@@ -16988,10 +16998,10 @@ async function rh(e, t, n) {
     }
     )
 }
-function lC(e, t) {
+function uC(e, t) {
     return [e.slice(0, t), e.slice(t)]
 }
-function cC(e) {
+function fC(e) {
     const {fullPath: t, query: n, hash: r, name: i, path: o, params: s, meta: a, redirectedFrom: l, matched: u} = e;
     return {
         fullPath: t,
@@ -17005,11 +17015,11 @@ function cC(e) {
         redirectedFrom: l
     }
 }
-function uC({router: e}, t, n, r) {
+function dC({router: e}, t, n, r) {
     var u, c;
     if (n !== "prefix")
         return e.resolve(t);
-    const [i,o] = lC(t.path, 1)
+    const [i,o] = uC(t.path, 1)
       , s = `${i}${r}${o === "" ? o : `/${o}`}`
       , a = (c = (u = e.options) == null ? void 0 : u.routes) == null ? void 0 : c.find(f=>f.path === s);
     if (a == null)
@@ -17018,12 +17028,12 @@ function uC({router: e}, t, n, r) {
     return l.path = s,
     e.resolve(l)
 }
-const fC = new Set(["prefix_and_default", "prefix_except_default"]);
-function dC(e) {
+const hC = new Set(["prefix_and_default", "prefix_except_default"]);
+function pC(e) {
     const {currentLocale: t, defaultLocale: n, strategy: r} = e;
-    return !(t === n && fC.has(r)) && r !== "no_prefix"
+    return !(t === n && hC.has(r)) && r !== "no_prefix"
 }
-const hC = dC;
+const mC = pC;
 function wi(e) {
     const {routesNameSeparator: t} = gt
       , n = G(e);
@@ -17041,19 +17051,19 @@ function va(e, t, n) {
 function Su(e, t, n) {
     return _a(e, t, n) ?? void 0
 }
-function pC(e, t, n) {
+function gC(e, t, n) {
     return _a(e, t, n) ?? void 0
 }
 function _a(e, t, n) {
     const {router: r, i18n: i} = e
       , o = n || ya(i)
       , {routesNameSeparator: s, defaultLocale: a, defaultLocaleRouteNameSuffix: l, strategy: u, trailingSlash: c} = gt
-      , f = OC();
+      , f = IC();
     let d;
     if (re(t))
         if (t[0] === "/") {
-            const {pathname: b, search: k, hash: g} = Nl(t)
-              , E = ru(k);
+            const {pathname: b, search: S, hash: g} = Nl(t)
+              , E = ru(S);
             d = {
                 path: b,
                 query: E,
@@ -17067,10 +17077,10 @@ function _a(e, t, n) {
         d = t;
     let m = dt({}, d);
     if ((b=>"path"in b && !!b.path && !("name"in b))(m)) {
-        const b = uC(e, m, u, o)
-          , k = wi(b);
-        re(k) ? (m = {
-            name: th(k, o, {
+        const b = dC(e, m, u, o)
+          , S = wi(b);
+        re(S) ? (m = {
+            name: th(S, o, {
                 defaultLocale: a,
                 strategy: u,
                 routesNameSeparator: s,
@@ -17102,20 +17112,20 @@ function _a(e, t, n) {
             return null
     }
 }
-const mC = e=>e;
-function gC(e) {
+const yC = e=>e;
+function vC(e) {
     var n;
     const t = e.meta || {};
-    return ((n = G(t)) == null ? void 0 : n[GL]) || {}
+    return ((n = G(t)) == null ? void 0 : n[zL]) || {}
 }
 function Ai(e, t, n) {
     const r = n ?? e.router.currentRoute.value
       , i = wi(r);
     if (!i)
         return "";
-    const o = RC()
-      , s = cC(r)
-      , a = gC(r)[t]
+    const o = PC()
+      , s = fC(r)
+      , a = vC(r)[t]
       , l = {
         ...s,
         name: i,
@@ -17138,27 +17148,27 @@ function Ug(e, {addDirAttribute: t=!1, addSeoAttributes: n=!0, identifierAttribu
     if (G(o.locales) == null || G(o.baseUrl) == null)
         return s;
     const a = ya(e.i18n)
-      , l = ZL(e.i18n)
-      , u = zL(l).find(d=>d.code === a) || {
+      , l = eC(e.i18n)
+      , u = XL(l).find(d=>d.code === a) || {
         code: a
     }
       , c = u.iso
       , f = u.dir || i;
     return t && (s.htmlAttrs.dir = f),
     n && a && G(o.locales) && (c && (s.htmlAttrs.lang = c),
-    s.link.push(...yC(e, G(l), r), ...vC(e, r, n)),
-    s.meta.push(..._C(e, r, n), ...bC(u, c, r), ...EC(G(l), c, r))),
+    s.link.push(..._C(e, G(l), r), ...bC(e, r, n)),
+    s.meta.push(...EC(e, r, n), ...TC(u, c, r), ...kC(G(l), c, r))),
     s
 }
 function wu() {
     const e = Si(ne().$i18n);
     return G(e.baseUrl)
 }
-function yC(e, t, n) {
+function _C(e, t, n) {
     const r = wu()
       , {defaultLocale: i, strategy: o} = gt
       , s = [];
-    if (o === qL.NO_PREFIX)
+    if (o === GL.NO_PREFIX)
         return s;
     const a = new Map;
     for (const l of t) {
@@ -17212,7 +17222,7 @@ function Bg(e, t, n) {
     return u && (o = `${o}?${u}`),
     o
 }
-function vC(e, t, n) {
+function bC(e, t, n) {
     const r = wu()
       , i = Bg(e, r, n);
     return i ? [{
@@ -17221,7 +17231,7 @@ function vC(e, t, n) {
         href: i
     }] : []
 }
-function _C(e, t, n) {
+function EC(e, t, n) {
     const r = wu()
       , i = Bg(e, r, n);
     return i ? [{
@@ -17230,14 +17240,14 @@ function _C(e, t, n) {
         content: i
     }] : []
 }
-function bC(e, t, n) {
+function TC(e, t, n) {
     return !e || !t ? [] : [{
         [n]: "i18n-og",
         property: "og:locale",
         content: Hg(t)
     }]
 }
-function EC(e, t, n) {
+function kC(e, t, n) {
     return e.filter(i=>i.iso && i.iso !== t).map(i=>({
         [n]: `i18n-og-alt-${i.iso}`,
         property: "og:locale:alternate",
@@ -17250,19 +17260,19 @@ function Hg(e) {
 function hc(e, t) {
     return e.match(/^https?:\/\//) ? e : t + e
 }
-function TC(e, t) {
+function SC(e, t) {
     return jo(e, "setLocale", t)
 }
-function kC(e, t) {
+function wC(e, t) {
     return jo(e, "setLocaleCookie", t)
 }
-function SC(e, t, n) {
+function AC(e, t, n) {
     return jo(e, "mergeLocaleMessage", t, n)
 }
-function wC(e, t, n, r, i) {
+function LC(e, t, n, r, i) {
     return jo(e, "onBeforeLanguageSwitch", t, n, r, i)
 }
-function AC(e, t, n) {
+function CC(e, t, n) {
     return jo(e, "onLanguageSwitched", t, n)
 }
 function Au(e) {
@@ -17284,25 +17294,25 @@ async function ih(e, t, n=!1) {
         return [s, a];
     if (a === e)
         return [s, a];
-    const l = await wC(t, a, e, n, o)
-      , u = $L(t);
+    const l = await LC(t, a, e, n, o)
+      , u = tC(t);
     if (l && u && u.includes(l)) {
         if (l === a)
             return [s, a];
         e = l
     }
-    const c = PC(t, "fallbackLocale");
+    const c = DC(t, "fallbackLocale");
     {
-        const f = (d,m)=>SC(t, d, m);
+        const f = (d,m)=>AC(t, d, m);
         if (c) {
             const d = xg(c, [e]);
             await Promise.all(d.map(m=>dc(m, uc, f)))
         }
         await dc(e, uc, f)
     }
-    return i && kC(t, e),
+    return i && wC(t, e),
     Vg(t, e),
-    await AC(t, a, e),
+    await CC(t, a, e),
     s = !0,
     [s, a]
 }
@@ -17310,13 +17320,13 @@ function oh(e, t, n, r, i) {
     const {strategy: o, defaultLocale: s, differentDomains: a, detectBrowserLanguage: l} = gt
       , u = Ze(r) ? r() : r
       , {ssg: c, callType: f, firstAccess: d, localeCookie: m} = i
-      , {locale: _, stat: b, reason: k, from: g} = l ? Yg(e, n, i, u) : Kg;
-    if (k === "detect_ignore_on_ssg")
+      , {locale: _, stat: b, reason: S, from: g} = l ? Yg(e, n, i, u) : Kg;
+    if (S === "detect_ignore_on_ssg")
         return u;
     if ((g === "navigator_or_header" || g === "cookie" || g === "fallback") && _)
         return _;
     let E = _;
-    return E || (a ? E = FC(ku) : o !== "no_prefix" ? E = t(e) : l || (E = u)),
+    return E || (a ? E = UC(ku) : o !== "no_prefix" ? E = t(e) : l || (E = u)),
     !E && l && l.useCookie && (E = m.value || ""),
     E || (E = s || ""),
     E
@@ -17337,7 +17347,7 @@ function sh({route: e, targetLocale: t, routeLocaleGetter: n, calledWithRouting:
     }
     return l
 }
-function LC(e) {
+function OC(e) {
     return Fe(e) && "path"in e && "statusCode"in e
 }
 function ah(e, t) {
@@ -17350,13 +17360,13 @@ async function lh(e, {status: t=302, enableNavigate: n=!1}={}) {
       , {i18n: i, locale: o, route: s} = e;
     let {redirectPath: a} = e;
     if (s.path === "/" && r)
-        return re(r) ? a = "/" + r : LC(r) && (a = "/" + r.path,
+        return re(r) ? a = "/" + r : OC(r) && (a = "/" + r.path,
         t = r.statusCode),
         ah(a, t);
     if (a)
         return ah(a, t)
 }
-function CC(e, t) {
+function RC(e, t) {
     ti(e, "$i18n", Ar(t)),
     ti(e, "$getRouteBaseName", wi),
     ti(e, "$localePath", rn(va)),
@@ -17364,13 +17374,13 @@ function CC(e, t) {
     ti(e, "$switchLocalePath", rn(Ai)),
     ti(e, "$localeHead", rn(Ug))
 }
-function OC() {
-    return e=>hC(e) && !gt.differentDomains
-}
-function RC() {
-    return (e,t)=>mC(e)
-}
 function IC() {
+    return e=>mC(e) && !gt.differentDomains
+}
+function PC() {
+    return (e,t)=>yC(e)
+}
+function MC() {
     return ()=>{
         var o;
         const e = ne()
@@ -17389,7 +17399,7 @@ function jo(e, t, ...n) {
       , [i,o] = [r, r[t]];
     return Reflect.apply(o, i, [...n])
 }
-function PC(e, t) {
+function DC(e, t) {
     const n = Ar(e);
     return G(n[t])
 }
@@ -17403,10 +17413,10 @@ function rn(e, t=Au()) {
 }
 function jg() {
     let e;
-    return navigator.languages && (e = iC(ku, navigator.languages)),
+    return navigator.languages && (e = sC(ku, navigator.languages)),
     e
 }
-function MC() {
+function NC() {
     const e = gt.detectBrowserLanguage
       , t = e && e.cookieKey || ga.detectBrowserLanguage.cookieKey
       , n = new Date
@@ -17417,9 +17427,9 @@ function MC() {
         secure: e && e.cookieCrossOrigin || e && e.cookieSecure
     };
     return e && e.cookieDomain && (r.domain = e.cookieDomain),
-    UL(t, r)
+    HL(t, r)
 }
-function DC(e) {
+function VC(e) {
     const t = gt.detectBrowserLanguage;
     if (!t || !t.useCookie)
         return;
@@ -17427,7 +17437,7 @@ function DC(e) {
     if (n && zr.includes(n))
         return n
 }
-function NC(e, t) {
+function FC(e, t) {
     const {useCookie: n} = gt.detectBrowserLanguage || ga.detectBrowserLanguage;
     n && (e.value = t)
 }
@@ -17469,13 +17479,13 @@ function Yg(e, t, n, r="") {
                 reason: "not_redirect_on_no_prefix"
             }
     }
-    let _ = "unknown", b, k;
-    f && (k = b = l.value,
+    let _ = "unknown", b, S;
+    f && (S = b = l.value,
     _ = "cookie"),
-    k || (k = jg(),
+    S || (S = jg(),
     _ = "navigator_or_header");
-    const g = k || d;
-    !k && d && (_ = "fallback");
+    const g = S || d;
+    !S && d && (_ = "fallback");
     const E = r || t;
     if (g && (!f || c || !b)) {
         if (i === "no_prefix")
@@ -17516,13 +17526,13 @@ function Yg(e, t, n, r="") {
         reason: "not_found_match"
     }
 }
-function VC() {
+function xC() {
     let e;
     return e = window.location.host,
     e
 }
-function FC(e) {
-    let t = VC() || "";
+function UC(e) {
+    let t = xC() || "";
     if (t) {
         const n = e.find(r=>{
             if (r && r.domain) {
@@ -17542,14 +17552,14 @@ function FC(e) {
 function qg() {
     return rn(va)
 }
-function zM() {
+function XM() {
     return rn(Ai)
 }
 const el = ()=>({
     haptic: !0,
     coins_animation: !0
 })
-  , xC = Sn("settings", {
+  , BC = Sn("settings", {
     state: ()=>({
         settings: el()
     }),
@@ -17582,7 +17592,7 @@ const el = ()=>({
         }
     }
 })
-  , QM = xe({
+  , ZM = xe({
     __name: "BackButton",
     props: {
         visible: {
@@ -17594,7 +17604,7 @@ const el = ()=>({
     setup(e, {emit: t}) {
         const n = e
           , r = t
-          , {showBackButton: i, onBackButtonClicked: o, hideBackButton: s} = JC();
+          , {showBackButton: i, onBackButtonClicked: o, hideBackButton: s} = QC();
         return je(()=>n.visible, a=>{
             a ? i() : s()
         }
@@ -17605,34 +17615,34 @@ const el = ()=>({
         (a,l)=>null
     }
 })
-  , {initData: UC, initDataUnsafe: BC, version: HC, platform: jC, isVersionAtLeast: KC, sendData: YC, close: qC} = Telegram.WebApp
+  , {initData: HC, initDataUnsafe: jC, version: KC, platform: YC, isVersionAtLeast: qC, sendData: WC, close: GC} = Telegram.WebApp
   , Wg = le(!1)
-  , WC = (...e)=>{
+  , JC = (...e)=>{
     Telegram.WebApp.ready(...e),
     Wg.value = !0
 }
   , Gg = e=>Telegram.WebApp.platform === e
   , Jg = Gg("unknown")
-  , GC = !Jg && Telegram.WebApp.initData === "";
+  , zC = !Jg && Telegram.WebApp.initData === "";
 function zg() {
     return {
-        initData: UC,
-        initDataUnsafe: BC,
-        version: HC,
-        platform: jC,
-        isVersionAtLeast: KC,
+        initData: HC,
+        initDataUnsafe: jC,
+        version: KC,
+        platform: YC,
+        isVersionAtLeast: qC,
         onEvent: (...e)=>{
             Vt(()=>Telegram.WebApp.onEvent(...e)),
             Ri(()=>Telegram.WebApp.offEvent(...e))
         }
         ,
-        sendData: YC,
-        ready: WC,
-        close: qC,
+        sendData: WC,
+        ready: JC,
+        close: GC,
         isReady: dr(Wg),
         isPlatform: Gg,
         isPlatformUnknown: Jg,
-        canSendData: GC
+        canSendData: zC
     }
 }
 const Qg = le(Telegram.WebApp.BackButton.isVisible);
@@ -17647,7 +17657,7 @@ function uh(...e) {
     Telegram.WebApp.BackButton.hide(...e),
     Xg()
 }
-function JC() {
+function QC() {
     const {onEvent: e} = zg()
       , t = n=>e("backButtonClicked", n);
     return {
@@ -17667,12 +17677,12 @@ function JC() {
 Telegram.WebApp;
 le(Telegram.WebApp.isClosingConfirmationEnabled);
 Telegram.WebApp.CloudStorage;
-const {impactOccurred: zC, notificationOccurred: QC, selectionChanged: XC} = Telegram.WebApp.HapticFeedback;
-function ZC() {
+const {impactOccurred: XC, notificationOccurred: ZC, selectionChanged: $C} = Telegram.WebApp.HapticFeedback;
+function e1() {
     return {
-        impactOccurred: zC,
-        notificationOccurred: QC,
-        selectionChanged: XC
+        impactOccurred: XC,
+        notificationOccurred: ZC,
+        selectionChanged: $C
     }
 }
 le(Telegram.WebApp.MainButton.text);
@@ -17773,7 +17783,7 @@ const Gt = Sn("ui", {
             this.progress_loading >= 100 && (this.progress_loading = 100)
         },
         useHapticFeedback(e="medium") {
-            xC().settings.haptic && ZC().impactOccurred(e)
+            BC().settings.haptic && e1().impactOccurred(e)
         },
         isRu(e) {
             return this.language_code === "ru" || e === "ru"
@@ -17840,7 +17850,7 @@ const Gt = Sn("ui", {
             return window.btoa(e)
         },
         convertMorseToText(e) {
-            return e.split("/").map(t=>FL[t.trim()] || "").join("")
+            return e.split("/").map(t=>UL[t.trim()] || "").join("")
         },
         convertTapsToMorse() {
             return this.taps.map(e=>e.type).join("")
@@ -18396,7 +18406,8 @@ function Ui(e) {
                 s.public.appEnv !== "production" && console.log("%c Request error => ", "background: #16161a; color: #ff0000; line-height: 20px;", l),
                 gn.error({
                     title: ne().$i18n.t("messages.network_error_title"),
-                    message: ne().$i18n.t("messages.network_error_description")
+                    message: ne().$i18n.t("messages.network_error_description"),
+                    duration: 2e3
                 }),
                 r.onRequestError(),
                 r.onError()
@@ -18530,7 +18541,7 @@ const Zg = Sn("earn", {
 class ji extends Error {
 }
 ji.prototype.name = "InvalidTokenError";
-function $C(e) {
+function t1(e) {
     return decodeURIComponent(atob(e).replace(/(.)/g, (t,n)=>{
         let r = n.charCodeAt(0).toString(16).toUpperCase();
         return r.length < 2 && (r = "0" + r),
@@ -18538,7 +18549,7 @@ function $C(e) {
     }
     ))
 }
-function e1(e) {
+function n1(e) {
     let t = e.replace(/-/g, "+").replace(/_/g, "/");
     switch (t.length % 4) {
     case 0:
@@ -18553,7 +18564,7 @@ function e1(e) {
         throw new Error("base64 string is not of the correct length")
     }
     try {
-        return $C(t)
+        return t1(t)
     } catch {
         return atob(t)
     }
@@ -18568,7 +18579,7 @@ function fh(e, t) {
         throw new ji(`Invalid token specified: missing part #${n + 1}`);
     let i;
     try {
-        i = e1(r)
+        i = n1(r)
     } catch (o) {
         throw new ji(`Invalid token specified: invalid base64 for part #${n + 1} (${o.message})`)
     }
@@ -18745,14 +18756,14 @@ const Dt = Sn("auth", {
     },
     getters: {}
 })
-  , t1 = async(e,t)=>{
+  , r1 = async(e,t)=>{
     var i, o;
     const n = ne();
     Dt(n.$pinia);
     const r = Ot(n.$pinia);
     e && !((o = (i = e.name) == null ? void 0 : i.toString()) != null && o.includes("index")) && !r.exchangeId && xo(Ho.GAME_SETTINGS_EXCHANGE)
 }
-  , n1 = async e=>{
+  , i1 = async e=>{
     let t, n;
     const r = ([t,n] = In(()=>Bm(e.path)),
     t = await t,
@@ -18761,9 +18772,9 @@ const Dt = Sn("auth", {
     if (r.redirect)
         return r.redirect
 }
-  , r1 = [$k, t1, n1]
+  , o1 = [$k, r1, i1]
   , Zi = {};
-function i1(e, t, n) {
+function s1(e, t, n) {
     const {pathname: r, search: i, hash: o} = t
       , s = e.indexOf("#");
     if (s > -1) {
@@ -18778,17 +18789,17 @@ function i1(e, t, n) {
     }) ? a : n;
     return l + (l.includes("?") ? "" : i) + o
 }
-const o1 = Ft({
+const a1 = Ft({
     name: "nuxt:router",
     enforce: "pre",
     async setup(e) {
-        var b, k;
+        var b, S;
         let t, n, r = Jn().app.baseURL;
         Yt.hashMode && !r.includes("#") && (r += "#");
         const i = ((b = Yt.history) == null ? void 0 : b.call(Yt, r)) ?? (Yt.hashMode ? Ek(r) : Qm(r))
-          , o = ((k = Yt.routes) == null ? void 0 : k.call(Yt, pd)) ?? pd;
+          , o = ((S = Yt.routes) == null ? void 0 : S.call(Yt, pd)) ?? pd;
         let s;
-        const a = i1(r, window.location, e.payload.path)
+        const a = s1(r, window.location, e.payload.path)
           , l = qk({
             ...Yt,
             scrollBehavior: (g,E,p)=>{
@@ -18861,7 +18872,7 @@ const o1 = Ft({
             e.isHydrating && _ && !qr(g.meta.layout) && (g.meta.layout = _),
             e._processingMiddleware = !0;
             {
-                const y = new Set([...r1, ...e._middleware.global]);
+                const y = new Set([...o1, ...e._middleware.global]);
                 for (const T of g.matched) {
                     const w = T.meta.middleware;
                     if (w)
@@ -18939,7 +18950,7 @@ const o1 = Ft({
     , 1)
 }
 )
-  , s1 = globalThis.cancelIdleCallback || (e=>{
+  , l1 = globalThis.cancelIdleCallback || (e=>{
     clearTimeout(e)
 }
 )
@@ -18950,7 +18961,7 @@ const o1 = Ft({
     }
     ) : pc(e)
 }
-  , a1 = Ft({
+  , c1 = Ft({
     name: "nuxt:payload",
     setup(e) {
         Qt().beforeResolve(async(t,n)=>{
@@ -18971,7 +18982,7 @@ const o1 = Ft({
         )
     }
 })
-  , l1 = Ft(e=>{
+  , u1 = Ft(e=>{
     let t;
     async function n() {
         const r = await ua();
@@ -19007,7 +19018,7 @@ async function $g(e, t=Qt()) {
     }
     await Promise.all(i)
 }
-function c1(e={}) {
+function f1(e={}) {
     const t = e.path || window.location.pathname;
     let n = {};
     try {
@@ -19029,7 +19040,7 @@ function c1(e={}) {
         window.location.pathname !== t ? window.location.href = t : window.location.reload()
     }
 }
-const u1 = (...e)=>e.find(t=>t !== void 0);
+const d1 = (...e)=>e.find(t=>t !== void 0);
 function ey(e) {
     const t = e.componentName || "NuxtLink";
     function n(r, i) {
@@ -19139,13 +19150,13 @@ function ey(e) {
                 d.value = r.custom ? (b = _ == null ? void 0 : _.$el) == null ? void 0 : b.nextElementSibling : _ == null ? void 0 : _.$el
             }
             ;
-            if (r.prefetch !== !1 && r.noPrefetch !== !0 && r.target !== "_blank" && !d1()) {
+            if (r.prefetch !== !1 && r.noPrefetch !== !0 && r.target !== "_blank" && !p1()) {
                 const b = ne();
-                let k, g = null;
+                let S, g = null;
                 Vt(()=>{
-                    const E = f1();
+                    const E = h1();
                     Lu(()=>{
-                        k = pc(()=>{
+                        S = pc(()=>{
                             var p;
                             (p = d == null ? void 0 : d.value) != null && p.tagName && (g = E.observe(d.value, async()=>{
                                 g == null || g(),
@@ -19164,7 +19175,7 @@ function ey(e) {
                 }
                 ),
                 Tn(()=>{
-                    k && s1(k),
+                    S && l1(S),
                     g == null || g(),
                     g = null
                 }
@@ -19188,7 +19199,7 @@ function ey(e) {
                 }
                 const _ = typeof a.value == "object" ? ((g = o.resolve(a.value)) == null ? void 0 : g.href) ?? null : a.value && !r.external && !l.value ? n(Ii(s.app.baseURL, a.value), o.resolve) : a.value || null
                   , b = r.target || null
-                  , k = u1(r.noRel ? "" : r.rel, e.externalRelAttribute, l.value || u.value ? "noopener noreferrer" : "") || null;
+                  , S = d1(r.noRel ? "" : r.rel, e.externalRelAttribute, l.value || u.value ? "noopener noreferrer" : "") || null;
                 if (r.custom) {
                     if (!i.default)
                         return null;
@@ -19218,7 +19229,7 @@ function ey(e) {
                                 href: _
                             }
                         },
-                        rel: k,
+                        rel: S,
                         target: b,
                         isExternal: c.value,
                         isActive: !1,
@@ -19228,19 +19239,19 @@ function ey(e) {
                 return ft("a", {
                     ref: d,
                     href: _,
-                    rel: k,
+                    rel: S,
                     target: b
                 }, (E = i.default) == null ? void 0 : E.call(i))
             }
         }
     })
 }
-const XM = ey(NT);
+const $M = ey(NT);
 function dh(e, t) {
     const n = t === "append" ? po : No;
     return xn(e) && !e.startsWith("http") ? e : n(e, !0)
 }
-function f1() {
+function h1() {
     const e = ne();
     if (e._observer)
         return e._observer;
@@ -19266,11 +19277,11 @@ function f1() {
         observe: r
     }
 }
-function d1() {
+function p1() {
     const e = navigator.connection;
     return !!(e && (e.saveData || /2g/.test(e.effectiveType)))
 }
-const h1 = Ft(e=>{
+const m1 = Ft(e=>{
     const t = vL();
     return e.vueApp.use(t),
     Bo(t),
@@ -19282,14 +19293,14 @@ const h1 = Ft(e=>{
     }
 }
 )
-  , p1 = Ft({
+  , g1 = Ft({
     name: "nuxt:global-components"
 })
   , hr = {
-    default: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/default.BZYqWZnD.js"), __vite__mapDeps([32, 16, 2, 8, 18, 7, 27, 1, 5]), import.meta.url).then(e=>e.default || e),
-    main: ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/main.BjR8bfvk.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    default: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/default.DtYMY8ww.js"), __vite__mapDeps([32, 16, 3, 8, 18, 1, 27, 2, 6]), import.meta.url).then(e=>e.default || e),
+    main: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/main.InwQlEF2.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }
-  , m1 = Ft({
+  , y1 = Ft({
     name: "nuxt:prefetch",
     setup(e) {
         const t = Qt();
@@ -19322,7 +19333,7 @@ var vt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
 function Mi(e) {
     return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e
 }
-function ZM(e) {
+function eD(e) {
     if (e.__esModule)
         return e;
     var t = e.default;
@@ -19369,7 +19380,7 @@ var ty = {
           , m = "year"
           , _ = "date"
           , b = "Invalid Date"
-          , k = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/
+          , S = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/
           , g = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g
           , E = {
             name: "en",
@@ -19490,7 +19501,7 @@ var ty = {
                     if (x instanceof Date)
                         return new Date(x);
                     if (typeof x == "string" && !/Z$/i.test(x)) {
-                        var j = x.match(k);
+                        var j = x.match(S);
                         if (j) {
                             var ce = j[2] - 1 || 0
                               , ve = (j[7] || "0").substring(0, 3);
@@ -19856,9 +19867,9 @@ var ny = {
     })
 }
 )(ny);
-var g1 = ny.exports;
-const y1 = Mi(g1);
-var v1 = {
+var v1 = ny.exports;
+const _1 = Mi(v1);
+var b1 = {
     exports: {}
 };
 (function(e, t) {
@@ -19930,8 +19941,8 @@ var v1 = {
         a
     })
 }
-)(v1);
-var _1 = {
+)(b1);
+var E1 = {
     exports: {}
 };
 (function(e, t) {
@@ -19951,8 +19962,8 @@ var _1 = {
         }
     })
 }
-)(_1);
-var b1 = {
+)(E1);
+var T1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20005,8 +20016,8 @@ var b1 = {
         o
     })
 }
-)(b1);
-var E1 = {
+)(T1);
+var k1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20060,8 +20071,8 @@ var E1 = {
         o
     })
 }
-)(E1);
-var T1 = {
+)(k1);
+var S1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20113,8 +20124,8 @@ var T1 = {
         o
     })
 }
-)(T1);
-var k1 = {
+)(S1);
+var w1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20167,8 +20178,8 @@ var k1 = {
         o
     })
 }
-)(k1);
-var S1 = {
+)(w1);
+var A1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20222,8 +20233,8 @@ var S1 = {
         o
     })
 }
-)(S1);
-var w1 = {
+)(A1);
+var L1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20242,16 +20253,16 @@ var w1 = {
           , a = "янв._февр._мар._апр._мая_июня_июля_авг._сент._окт._нояб._дек.".split("_")
           , l = "янв._февр._март_апр._май_июнь_июль_авг._сент._окт._нояб._дек.".split("_")
           , u = /D[oD]?(\[[^[\]]*\]|\s)+MMMM?/;
-        function c(_, b, k) {
+        function c(_, b, S) {
             var g, E;
-            return k === "m" ? b ? "минута" : "минуту" : _ + " " + (g = +_,
+            return S === "m" ? b ? "минута" : "минуту" : _ + " " + (g = +_,
             E = {
                 mm: b ? "минута_минуты_минут" : "минуту_минуты_минут",
                 hh: "час_часа_часов",
                 dd: "день_дня_дней",
                 MM: "месяц_месяца_месяцев",
                 yy: "год_года_лет"
-            }[k].split("_"),
+            }[S].split("_"),
             g % 10 == 1 && g % 100 != 11 ? E[0] : g % 10 >= 2 && g % 10 <= 4 && (g % 100 < 10 || g % 100 >= 20) ? E[1] : E[2])
         }
         var f = function(_, b) {
@@ -20307,8 +20318,8 @@ var w1 = {
         m
     })
 }
-)(w1);
-var A1 = {
+)(L1);
+var C1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20360,8 +20371,8 @@ var A1 = {
         o
     })
 }
-)(A1);
-var L1 = {
+)(C1);
+var O1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20414,8 +20425,8 @@ var L1 = {
         o
     })
 }
-)(L1);
-var C1 = {
+)(O1);
+var R1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20468,8 +20479,8 @@ var C1 = {
         o
     })
 }
-)(C1);
-var O1 = {
+)(R1);
+var I1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20526,8 +20537,8 @@ var O1 = {
         o
     })
 }
-)(O1);
-var R1 = {
+)(I1);
+var P1 = {
     exports: {}
 };
 (function(e, t) {
@@ -20580,7 +20591,7 @@ var R1 = {
         o
     })
 }
-)(R1);
+)(P1);
 var ry = {
     exports: {}
 };
@@ -20612,7 +20623,7 @@ var ry = {
             }
             i.en.relativeTime = s,
             o.fromToBase = function(u, c, f, d, m) {
-                for (var _, b, k, g = f.$locale().relativeTime || s, E = n.thresholds || [{
+                for (var _, b, S, g = f.$locale().relativeTime || s, E = n.thresholds || [{
                     l: "s",
                     r: 44,
                     d: "second"
@@ -20654,18 +20665,18 @@ var ry = {
                     var T = E[y];
                     T.d && (_ = d ? i(u).diff(f, T.d, !0) : f.diff(u, T.d, !0));
                     var w = (n.rounding || Math.round)(Math.abs(_));
-                    if (k = _ > 0,
+                    if (S = _ > 0,
                     w <= T.r || !T.r) {
                         w <= 1 && y > 0 && (T = E[y - 1]);
                         var L = g[T.l];
                         m && (w = m("" + w)),
-                        b = typeof L == "string" ? L.replace("%d", w) : L(w, c, T.l, k);
+                        b = typeof L == "string" ? L.replace("%d", w) : L(w, c, T.l, S);
                         break
                     }
                 }
                 if (c)
                     return b;
-                var C = k ? g.future : g.past;
+                var C = S ? g.future : g.past;
                 return typeof C == "function" ? C(b) : C.replace("%s", b)
             }
             ,
@@ -20691,8 +20702,8 @@ var ry = {
     })
 }
 )(ry);
-var I1 = ry.exports;
-const P1 = Mi(I1);
+var M1 = ry.exports;
+const D1 = Mi(M1);
 var iy = {
     exports: {}
 };
@@ -20707,20 +20718,20 @@ var iy = {
         return function(o, s, a) {
             var l = s.prototype;
             a.utc = function(b) {
-                var k = {
+                var S = {
                     date: b,
                     utc: !0,
                     args: arguments
                 };
-                return new s(k)
+                return new s(S)
             }
             ,
             l.utc = function(b) {
-                var k = a(this.toDate(), {
+                var S = a(this.toDate(), {
                     locale: this.$L,
                     utc: !0
                 });
-                return b ? k.add(this.utcOffset(), n) : k
+                return b ? S.add(this.utcOffset(), n) : S
             }
             ,
             l.local = function() {
@@ -20754,7 +20765,7 @@ var iy = {
             }
             ;
             var f = l.utcOffset;
-            l.utcOffset = function(b, k) {
+            l.utcOffset = function(b, S) {
                 var g = this.$utils().u;
                 if (g(b))
                     return this.$u ? 0 : g(this.$offset) ? f.call(this) : this.$offset;
@@ -20772,7 +20783,7 @@ var iy = {
                     return this;
                 var E = Math.abs(b) <= 16 ? 60 * b : b
                   , p = this;
-                if (k)
+                if (S)
                     return p.$offset = E,
                     p.$u = b === 0,
                     p;
@@ -20787,8 +20798,8 @@ var iy = {
             ;
             var d = l.format;
             l.format = function(b) {
-                var k = b || (this.$u ? "YYYY-MM-DDTHH:mm:ss[Z]" : "");
-                return d.call(this, k)
+                var S = b || (this.$u ? "YYYY-MM-DDTHH:mm:ss[Z]" : "");
+                return d.call(this, S)
             }
             ,
             l.valueOf = function() {
@@ -20814,19 +20825,19 @@ var iy = {
             }
             ;
             var _ = l.diff;
-            l.diff = function(b, k, g) {
+            l.diff = function(b, S, g) {
                 if (b && this.$u === b.$u)
-                    return _.call(this, b, k, g);
+                    return _.call(this, b, S, g);
                 var E = this.local()
                   , p = a(b).local();
-                return _.call(E, p, k, g)
+                return _.call(E, p, S, g)
             }
         }
     })
 }
 )(iy);
-var M1 = iy.exports;
-const D1 = Mi(M1);
+var N1 = iy.exports;
+const V1 = Mi(N1);
 var oy = {
     exports: {}
 };
@@ -20848,7 +20859,7 @@ var oy = {
             var a, l = function(d, m, _) {
                 _ === void 0 && (_ = {});
                 var b = new Date(d)
-                  , k = function(g, E) {
+                  , S = function(g, E) {
                     E === void 0 && (E = {});
                     var p = E.timeZoneName || "short"
                       , y = g + "|" + p
@@ -20867,10 +20878,10 @@ var oy = {
                     r[y] = T),
                     T
                 }(m, _);
-                return k.formatToParts(b)
+                return S.formatToParts(b)
             }, u = function(d, m) {
-                for (var _ = l(d, m), b = [], k = 0; k < _.length; k += 1) {
-                    var g = _[k]
+                for (var _ = l(d, m), b = [], S = 0; S < _.length; S += 1) {
+                    var g = _[S]
                       , E = g.type
                       , p = g.value
                       , y = n[E];
@@ -20886,11 +20897,11 @@ var oy = {
                 d === void 0 && (d = a);
                 var _ = this.utcOffset()
                   , b = this.toDate()
-                  , k = b.toLocaleString("en-US", {
+                  , S = b.toLocaleString("en-US", {
                     timeZone: d
                 })
-                  , g = Math.round((b - new Date(k)) / 1e3 / 60)
-                  , E = s(k, {
+                  , g = Math.round((b - new Date(S)) / 1e3 / 60)
+                  , E = s(S, {
                     locale: this.$L
                 }).$set("millisecond", this.$ms).utcOffset(15 * -Math.round(b.getTimezoneOffset() / 15) - g, !0);
                 if (m) {
@@ -20923,10 +20934,10 @@ var oy = {
             ,
             s.tz = function(d, m, _) {
                 var b = _ && m
-                  , k = _ || m || a
-                  , g = u(+s(), k);
+                  , S = _ || m || a
+                  , g = u(+s(), S);
                 if (typeof d != "string")
-                    return s(d).tz(k);
+                    return s(d).tz(S);
                 var E = function(w, L, C) {
                     var O = w - 60 * L * 1e3
                       , D = u(O, C);
@@ -20934,11 +20945,11 @@ var oy = {
                         return [O, L];
                     var B = u(O -= 60 * (D - L) * 1e3, C);
                     return D === B ? [O, D] : [w - 60 * Math.min(D, B) * 1e3, Math.max(D, B)]
-                }(s.utc(d, b).valueOf(), g, k)
+                }(s.utc(d, b).valueOf(), g, S)
                   , p = E[0]
                   , y = E[1]
                   , T = s(p).utcOffset(y);
-                return T.$x.$timezone = k,
+                return T.$x.$timezone = S,
                 T
             }
             ,
@@ -20953,8 +20964,8 @@ var oy = {
     })
 }
 )(oy);
-var N1 = oy.exports;
-const V1 = Mi(N1);
+var F1 = oy.exports;
+const x1 = Mi(F1);
 var sy = {
     exports: {}
 };
@@ -20980,8 +20991,8 @@ var sy = {
                 var u = this.$locale().formats
                   , c = function(f, d) {
                     return f.replace(/(\[[^\]]+])|(LTS?|l{1,4}|L{1,4})/g, function(m, _, b) {
-                        var k = b && b.toUpperCase();
-                        return _ || d[b] || n[b] || d[k].replace(/(\[[^\]]+])|(MMMM|MM|DD|dddd)/g, function(g, E, p) {
+                        var S = b && b.toUpperCase();
+                        return _ || d[b] || n[b] || d[S].replace(/(\[[^\]]+])|(MMMM|MM|DD|dddd)/g, function(g, E, p) {
                             return E || p.slice(1)
                         })
                     })
@@ -20992,29 +21003,29 @@ var sy = {
     })
 }
 )(sy);
-var F1 = sy.exports;
-const x1 = Mi(F1);
-Un.extend(y1);
-Un.extend(P1);
+var U1 = sy.exports;
+const B1 = Mi(U1);
+Un.extend(_1);
 Un.extend(D1);
 Un.extend(V1);
 Un.extend(x1);
+Un.extend(B1);
 Un.tz.setDefault("Europe/Moscow");
 Un.updateLocale("en");
 Un.locale("en");
-const U1 = Ft(async e=>e.provide("dayjs", Un))
-  , B1 = ["top", "right", "bottom", "left"]
+const H1 = Ft(async e=>e.provide("dayjs", Un))
+  , j1 = ["top", "right", "bottom", "left"]
   , hh = ["start", "end"]
-  , ph = B1.reduce((e,t)=>e.concat(t, t + "-" + hh[0], t + "-" + hh[1]), [])
+  , ph = j1.reduce((e,t)=>e.concat(t, t + "-" + hh[0], t + "-" + hh[1]), [])
   , To = Math.min
   , Vr = Math.max
-  , H1 = {
+  , K1 = {
     left: "right",
     right: "left",
     bottom: "top",
     top: "bottom"
 }
-  , j1 = {
+  , Y1 = {
     start: "end",
     end: "start"
 };
@@ -21051,14 +21062,14 @@ function ly(e, t, n) {
     return t.reference[o] > t.floating[o] && (s = Hs(s)),
     [s, Hs(s)]
 }
-function K1(e) {
+function q1(e) {
     const t = Hs(e);
     return [Bs(e), t, Bs(t)]
 }
 function Bs(e) {
-    return e.replace(/start|end/g, t=>j1[t])
+    return e.replace(/start|end/g, t=>Y1[t])
 }
-function Y1(e, t, n) {
+function W1(e, t, n) {
     const r = ["left", "right"]
       , i = ["right", "left"]
       , o = ["top", "bottom"]
@@ -21074,17 +21085,17 @@ function Y1(e, t, n) {
         return []
     }
 }
-function q1(e, t, n, r) {
+function G1(e, t, n, r) {
     const i = yn(e);
-    let o = Y1(Fn(e), n === "start", r);
+    let o = W1(Fn(e), n === "start", r);
     return i && (o = o.map(s=>s + "-" + i),
     t && (o = o.concat(o.map(Bs)))),
     o
 }
 function Hs(e) {
-    return e.replace(/left|right|bottom|top/g, t=>H1[t])
+    return e.replace(/left|right|bottom|top/g, t=>K1[t])
 }
-function W1(e) {
+function J1(e) {
     return {
         top: 0,
         right: 0,
@@ -21094,7 +21105,7 @@ function W1(e) {
     }
 }
 function cy(e) {
-    return typeof e != "number" ? W1(e) : {
+    return typeof e != "number" ? J1(e) : {
         top: e,
         right: e,
         bottom: e,
@@ -21166,7 +21177,7 @@ function mh(e, t, n) {
     }
     return m
 }
-const G1 = async(e,t,n)=>{
+const z1 = async(e,t,n)=>{
     const {placement: r="bottom", strategy: i="absolute", middleware: o=[], platform: s} = n
       , a = o.filter(Boolean)
       , l = await (s.isRTL == null ? void 0 : s.isRTL(t));
@@ -21180,7 +21191,7 @@ const G1 = async(e,t,n)=>{
       , m = {}
       , _ = 0;
     for (let b = 0; b < a.length; b++) {
-        const {name: k, fn: g} = a[b]
+        const {name: S, fn: g} = a[b]
           , {x: E, y: p, data: y, reset: T} = await g({
             x: c,
             y: f,
@@ -21199,8 +21210,8 @@ const G1 = async(e,t,n)=>{
         f = p ?? f,
         m = {
             ...m,
-            [k]: {
-                ...m[k],
+            [S]: {
+                ...m[S],
                 ...y
             }
         },
@@ -21229,9 +21240,9 @@ async function ba(e, t) {
     const {x: r, y: i, platform: o, rects: s, elements: a, strategy: l} = e
       , {boundary: u="clippingAncestors", rootBoundary: c="viewport", elementContext: f="floating", altBoundary: d=!1, padding: m=0} = $r(t, e)
       , _ = cy(m)
-      , k = a[d ? f === "floating" ? "reference" : "floating" : f]
+      , S = a[d ? f === "floating" ? "reference" : "floating" : f]
       , g = $i(await o.getClippingRect({
-        element: (n = await (o.isElement == null ? void 0 : o.isElement(k))) == null || n ? k : k.contextElement || await (o.getDocumentElement == null ? void 0 : o.getDocumentElement(a.floating)),
+        element: (n = await (o.isElement == null ? void 0 : o.isElement(S))) == null || n ? S : S.contextElement || await (o.getDocumentElement == null ? void 0 : o.getDocumentElement(a.floating)),
         boundary: u,
         rootBoundary: c,
         strategy: l
@@ -21263,7 +21274,7 @@ async function ba(e, t) {
         right: (T.right - g.right + _.right) / y.x
     }
 }
-const J1 = e=>({
+const Q1 = e=>({
     name: "arrow",
     options: e,
     async fn(t) {
@@ -21279,10 +21290,10 @@ const J1 = e=>({
           , m = Ou(i)
           , _ = Cu(m)
           , b = await s.getDimensions(u)
-          , k = m === "y"
-          , g = k ? "top" : "left"
-          , E = k ? "bottom" : "right"
-          , p = k ? "clientHeight" : "clientWidth"
+          , S = m === "y"
+          , g = S ? "top" : "left"
+          , E = S ? "bottom" : "right"
+          , p = S ? "clientHeight" : "clientWidth"
           , y = o.reference[_] + o.reference[m] - d[m] - o.floating[_]
           , T = d[m] - o.reference[m]
           , w = await (s.getOffsetParent == null ? void 0 : s.getOffsetParent(u));
@@ -21311,10 +21322,10 @@ const J1 = e=>({
         }
     }
 });
-function z1(e, t, n) {
+function X1(e, t, n) {
     return (e ? [...n.filter(i=>yn(i) === e), ...n.filter(i=>yn(i) !== e)] : n.filter(i=>Fn(i) === i)).filter(i=>e ? yn(i) === e || (t ? Bs(i) !== i : !1) : !0)
 }
-const Q1 = function(e) {
+const Z1 = function(e) {
     return e === void 0 && (e = {}),
     {
         name: "autoPlacement",
@@ -21323,8 +21334,8 @@ const Q1 = function(e) {
             var n, r, i;
             const {rects: o, middlewareData: s, placement: a, platform: l, elements: u} = t
               , {crossAxis: c=!1, alignment: f, allowedPlacements: d=ph, autoAlignment: m=!0, ..._} = $r(e, t)
-              , b = f !== void 0 || d === ph ? z1(f || null, m, d) : d
-              , k = await ba(t, _)
+              , b = f !== void 0 || d === ph ? X1(f || null, m, d) : d
+              , S = await ba(t, _)
               , g = ((n = s.autoPlacement) == null ? void 0 : n.index) || 0
               , E = b[g];
             if (E == null)
@@ -21336,7 +21347,7 @@ const Q1 = function(e) {
                         placement: b[0]
                     }
                 };
-            const y = [k[Fn(E)], k[p[0]], k[p[1]]]
+            const y = [S[Fn(E)], S[p[0]], S[p[1]]]
               , T = [...((r = s.autoPlacement) == null ? void 0 : r.overflows) || [], {
                 placement: E,
                 overflows: y
@@ -21370,7 +21381,7 @@ const Q1 = function(e) {
         }
     }
 }
-  , X1 = function(e) {
+  , $1 = function(e) {
     return e === void 0 && (e = {}),
     {
         name: "flip",
@@ -21378,16 +21389,16 @@ const Q1 = function(e) {
         async fn(t) {
             var n, r;
             const {placement: i, middlewareData: o, rects: s, initialPlacement: a, platform: l, elements: u} = t
-              , {mainAxis: c=!0, crossAxis: f=!0, fallbackPlacements: d, fallbackStrategy: m="bestFit", fallbackAxisSideDirection: _="none", flipAlignment: b=!0, ...k} = $r(e, t);
+              , {mainAxis: c=!0, crossAxis: f=!0, fallbackPlacements: d, fallbackStrategy: m="bestFit", fallbackAxisSideDirection: _="none", flipAlignment: b=!0, ...S} = $r(e, t);
             if ((n = o.arrow) != null && n.alignmentOffset)
                 return {};
             const g = Fn(i)
               , E = Fn(a) === a
               , p = await (l.isRTL == null ? void 0 : l.isRTL(u.floating))
-              , y = d || (E || !b ? [Hs(a)] : K1(a));
-            !d && _ !== "none" && y.push(...q1(a, b, _, p));
+              , y = d || (E || !b ? [Hs(a)] : q1(a));
+            !d && _ !== "none" && y.push(...G1(a, b, _, p));
             const T = [a, ...y]
-              , w = await ba(t, k)
+              , w = await ba(t, S)
               , L = [];
             let C = ((r = o.flip) == null ? void 0 : r.overflows) || [];
             if (c && L.push(w[g]),
@@ -21438,7 +21449,7 @@ const Q1 = function(e) {
         }
     }
 };
-async function Z1(e, t) {
+async function eO(e, t) {
     const {placement: n, platform: r, elements: i} = e
       , o = await (r.isRTL == null ? void 0 : r.isRTL(i.floating))
       , s = Fn(n)
@@ -21466,7 +21477,7 @@ async function Z1(e, t) {
         y: m * c
     }
 }
-const $1 = function(e) {
+const tO = function(e) {
     return e === void 0 && (e = 0),
     {
         name: "offset",
@@ -21474,7 +21485,7 @@ const $1 = function(e) {
         async fn(t) {
             var n, r;
             const {x: i, y: o, placement: s, middlewareData: a} = t
-              , l = await Z1(t, e);
+              , l = await eO(t, e);
             return s === ((n = a.offset) == null ? void 0 : n.placement) && (r = a.arrow) != null && r.alignmentOffset ? {} : {
                 x: i + l.x,
                 y: o + l.y,
@@ -21486,7 +21497,7 @@ const $1 = function(e) {
         }
     }
 }
-  , eO = function(e) {
+  , nO = function(e) {
     return e === void 0 && (e = {}),
     {
         name: "shift",
@@ -21494,8 +21505,8 @@ const $1 = function(e) {
         async fn(t) {
             const {x: n, y: r, placement: i} = t
               , {mainAxis: o=!0, crossAxis: s=!1, limiter: a={
-                fn: k=>{
-                    let {x: g, y: E} = k;
+                fn: S=>{
+                    let {x: g, y: E} = S;
                     return {
                         x: g,
                         y: E
@@ -21512,16 +21523,16 @@ const $1 = function(e) {
             let m = u[d]
               , _ = u[f];
             if (o) {
-                const k = d === "y" ? "top" : "left"
+                const S = d === "y" ? "top" : "left"
                   , g = d === "y" ? "bottom" : "right"
-                  , E = m + c[k]
+                  , E = m + c[S]
                   , p = m - c[g];
                 m = mc(E, m, p)
             }
             if (s) {
-                const k = f === "y" ? "top" : "left"
+                const S = f === "y" ? "top" : "left"
                   , g = f === "y" ? "bottom" : "right"
-                  , E = _ + c[k]
+                  , E = _ + c[S]
                   , p = _ - c[g];
                 _ = mc(E, _, p)
             }
@@ -21540,7 +21551,7 @@ const $1 = function(e) {
         }
     }
 }
-  , tO = function(e) {
+  , rO = function(e) {
     return e === void 0 && (e = {}),
     {
         name: "size",
@@ -21558,17 +21569,17 @@ const $1 = function(e) {
             u === "top" || u === "bottom" ? (_ = u,
             b = c === (await (i.isRTL == null ? void 0 : i.isRTL(o.floating)) ? "start" : "end") ? "left" : "right") : (b = u,
             _ = c === "end" ? "top" : "bottom");
-            const k = m - l[_]
+            const S = m - l[_]
               , g = d - l[b]
               , E = !t.middlewareData.shift;
-            let p = k
+            let p = S
               , y = g;
             if (f) {
                 const w = d - l.left - l.right;
                 y = c || E ? To(g, w) : w
             } else {
                 const w = m - l.top - l.bottom;
-                p = c || E ? To(k, w) : w
+                p = c || E ? To(S, w) : w
             }
             if (E && !c) {
                 const w = Vr(l.left, 0)
@@ -21643,7 +21654,7 @@ function Ea(e) {
     const {overflow: t, overflowX: n, overflowY: r, display: i} = Dn(e);
     return /auto|scroll|overlay|hidden|clip/.test(t + r + n) && !["inline", "contents"].includes(i)
 }
-function nO(e) {
+function iO(e) {
     return ["table", "td", "th"].includes(Tr(e))
 }
 function gc(e) {
@@ -21700,9 +21711,9 @@ function ko(e, t, n, r) {
       , _ = s.height / l.y;
     if (a) {
         const b = an(a)
-          , k = r && vr(r) ? an(r) : r;
+          , S = r && vr(r) ? an(r) : r;
         let g = b.frameElement;
-        for (; g && r && k !== b; ) {
+        for (; g && r && S !== b; ) {
             const E = mi(g)
               , p = g.getBoundingClientRect()
               , y = getComputedStyle(g);
@@ -21820,7 +21831,7 @@ function _h(e) {
 function bh(e) {
     const t = an(e);
     let n = _h(e);
-    for (; n && nO(n) && Dn(n).position === "static"; )
+    for (; n && iO(n) && Dn(n).position === "static"; )
         n = _h(n);
     return n && (Tr(n) === "html" || Tr(n) === "body" && Dn(n).position === "static" && !gc(n)) ? t : n || function(r) {
         let i = So(r);
@@ -21832,7 +21843,7 @@ function bh(e) {
         return null
     }(e) || t
 }
-function rO(e, t, n) {
+function oO(e, t, n) {
     const r = Nn(t)
       , i = _r(t)
       , o = ko(e, !0, n === "fixed", t);
@@ -21859,21 +21870,21 @@ function rO(e, t, n) {
         height: o.height
     }
 }
-const iO = {
+const sO = {
     getClippingRect: function(e) {
         let {element: t, boundary: n, rootBoundary: r, strategy: i} = e;
         const o = n === "clippingAncestors" ? function(u, c) {
             const f = c.get(u);
             if (f)
                 return f;
-            let d = Ks(u).filter(k=>vr(k) && Tr(k) !== "body")
+            let d = Ks(u).filter(S=>vr(S) && Tr(S) !== "body")
               , m = null;
             const _ = Dn(u).position === "fixed";
             let b = _ ? So(u) : u;
             for (; vr(b) && !Ru(b); ) {
-                const k = Dn(b)
+                const S = Dn(b)
                   , g = gc(b);
-                (_ ? g || m : g || k.position !== "static" || !m || !["absolute", "fixed"].includes(m.position)) ? m = k : d = d.filter(E=>E !== b),
+                (_ ? g || m : g || S.position !== "static" || !m || !["absolute", "fixed"].includes(m.position)) ? m = S : d = d.filter(E=>E !== b),
                 b = So(b)
             }
             return c.set(u, d),
@@ -21941,7 +21952,7 @@ const iO = {
         const i = this.getOffsetParent || bh
           , o = this.getDimensions;
         return {
-            reference: rO(t, await i(n), r),
+            reference: oO(t, await i(n), r),
             floating: {
                 x: 0,
                 y: 0,
@@ -21952,17 +21963,17 @@ const iO = {
     getClientRects: e=>Array.from(e.getClientRects()),
     isRTL: e=>Dn(e).direction === "rtl"
 }
-  , oO = (e,t,n)=>{
+  , aO = (e,t,n)=>{
     const r = new Map
       , i = {
-        platform: iO,
+        platform: sO,
         ...n
     }
       , o = {
         ...i.platform,
         _c: r
     };
-    return G1(e, t, {
+    return z1(e, t, {
         ...i,
         platform: o
     })
@@ -22029,7 +22040,7 @@ function wo(e, t) {
     while (n);
     return r
 }
-function sO(e) {
+function lO(e) {
     const t = [e];
     let n = vn.themes[e] || {};
     do
@@ -22474,24 +22485,24 @@ const il = "__floating-vue__popper"
                 strategy: this.strategy,
                 middleware: []
             };
-            (this.distance || this.skidding) && e.middleware.push($1({
+            (this.distance || this.skidding) && e.middleware.push(tO({
                 mainAxis: this.distance,
                 crossAxis: this.skidding
             }));
             const t = this.placement.startsWith("auto");
-            if (t ? e.middleware.push(Q1({
+            if (t ? e.middleware.push(Z1({
                 alignment: this.placement.split("-")[1] ?? ""
             })) : e.placement = this.placement,
-            this.preventOverflow && (this.shift && e.middleware.push(eO({
+            this.preventOverflow && (this.shift && e.middleware.push(nO({
                 padding: this.overflowPadding,
                 boundary: this.boundary,
                 crossAxis: this.shiftCrossAxis
             })),
-            !t && this.flip && e.middleware.push(X1({
+            !t && this.flip && e.middleware.push($1({
                 padding: this.overflowPadding,
                 boundary: this.boundary
             }))),
-            e.middleware.push(J1({
+            e.middleware.push(Q1({
                 element: this.$_arrowNode,
                 padding: this.arrowPadding
             })),
@@ -22533,7 +22544,7 @@ const il = "__floating-vue__popper"
             }
             (this.autoMaxSize || this.autoBoundaryMaxSize) && (this.$_innerNode.style.maxWidth = null,
             this.$_innerNode.style.maxHeight = null,
-            e.middleware.push(tO({
+            e.middleware.push(rO({
                 boundary: this.boundary,
                 padding: this.overflowPadding,
                 apply: ({availableWidth: r, availableHeight: i})=>{
@@ -22541,7 +22552,7 @@ const il = "__floating-vue__popper"
                     this.$_innerNode.style.maxHeight = i != null ? `${i}px` : null
                 }
             })));
-            const n = await oO(this.$_referenceNode, this.$_popperNode, e);
+            const n = await aO(this.$_referenceNode, this.$_popperNode, e);
             Object.assign(this.result, {
                 x: n.x,
                 y: n.y,
@@ -22799,7 +22810,7 @@ if (typeof document < "u" && typeof window < "u") {
     } else
         window.addEventListener("mousedown", e=>Lh(e, !1), !0),
         window.addEventListener("click", e=>Ch(e, !1), !0);
-    window.addEventListener("resize", lO)
+    window.addEventListener("resize", uO)
 }
 function Lh(e, t) {
     if (vn.autoHideOnMousedown)
@@ -22844,9 +22855,9 @@ function Ty(e, t) {
     }
 }
 function Oh(e, t, n) {
-    return n.closeAllPopover || n.closePopover && t || aO(e, n) && !t
+    return n.closeAllPopover || n.closePopover && t || cO(e, n) && !t
 }
-function aO(e, t) {
+function cO(e, t) {
     if (typeof e.autoHide == "function") {
         const n = e.autoHide(t);
         return e.lastAutoHide = n,
@@ -22854,7 +22865,7 @@ function aO(e, t) {
     }
     return e.autoHide
 }
-function lO() {
+function uO() {
     for (let e = 0; e < mn.length; e++)
         mn[e].$_computePosition()
 }
@@ -22876,7 +22887,7 @@ function us(e, t, n, r, i, o, s, a) {
       , u = ((n - e) * (t - o) - (r - t) * (e - i)) / ((a - o) * (n - e) - (s - i) * (r - t));
     return l >= 0 && l <= 1 && u >= 0 && u <= 1
 }
-const cO = {
+const fO = {
     extends: Ey()
 }
   , ka = (e,t)=>{
@@ -22886,7 +22897,7 @@ const cO = {
     return n
 }
 ;
-function uO(e, t, n, r, i, o) {
+function dO(e, t, n, r, i, o) {
     return pe(),
     Ge("div", {
         ref: "reference",
@@ -22895,8 +22906,8 @@ function uO(e, t, n, r, i, o) {
         }])
     }, [Er(e.$slots, "default", cn(zt(e.slotData)))], 2)
 }
-const fO = ka(cO, [["render", uO]]);
-function dO() {
+const hO = ka(fO, [["render", dO]]);
+function pO() {
     var e = window.navigator.userAgent
       , t = e.indexOf("MSIE ");
     if (t > 0)
@@ -22912,7 +22923,7 @@ function dO() {
 let vs;
 function vc() {
     vc.init || (vc.init = !0,
-    vs = dO() !== -1)
+    vs = pO() !== -1)
 }
 var Sa = {
     name: "ResizeObserver",
@@ -22976,26 +22987,26 @@ var Sa = {
         }
     }
 };
-const hO = _0();
+const mO = _0();
 y0("data-v-b329ee4c");
-const pO = {
+const gO = {
     class: "resize-observer",
     tabindex: "-1"
 };
 v0();
-const mO = hO((e,t,n,r,i,o)=>(pe(),
-bt("div", pO)));
-Sa.render = mO;
+const yO = mO((e,t,n,r,i,o)=>(pe(),
+bt("div", gO)));
+Sa.render = yO;
 Sa.__scopeId = "data-v-b329ee4c";
 Sa.__file = "src/components/ResizeObserver.vue";
 const ky = (e="theme")=>({
     computed: {
         themeClass() {
-            return sO(this[e])
+            return lO(this[e])
         }
     }
 })
-  , gO = xe({
+  , vO = xe({
     name: "VPopperContent",
     components: {
         ResizeObserver: Sa
@@ -23019,19 +23030,19 @@ const ky = (e="theme")=>({
         }
     }
 })
-  , yO = ["id", "aria-hidden", "tabindex", "data-popper-placement"]
-  , vO = {
+  , _O = ["id", "aria-hidden", "tabindex", "data-popper-placement"]
+  , bO = {
     ref: "inner",
     class: "v-popper__inner"
 }
-  , _O = me("div", {
+  , EO = me("div", {
     class: "v-popper__arrow-outer"
 }, null, -1)
-  , bO = me("div", {
+  , TO = me("div", {
     class: "v-popper__arrow-inner"
 }, null, -1)
-  , EO = [_O, bO];
-function TO(e, t, n, r, i, o) {
+  , kO = [EO, TO];
+function SO(e, t, n, r, i, o) {
     const s = Wr("ResizeObserver");
     return pe(),
     Ge("div", {
@@ -23064,7 +23075,7 @@ function TO(e, t, n, r, i, o) {
         style: Mn(e.result ? {
             transformOrigin: e.result.transformOrigin
         } : void 0)
-    }, [me("div", vO, [e.mounted ? (pe(),
+    }, [me("div", bO, [e.mounted ? (pe(),
     Ge(mt, {
         key: 0
     }, [me("div", null, [Er(e.$slots, "default")]), e.handleResize ? (pe(),
@@ -23078,9 +23089,9 @@ function TO(e, t, n, r, i, o) {
             left: e.toPx(e.result.arrow.x),
             top: e.toPx(e.result.arrow.y)
         } : void 0)
-    }, EO, 4)], 4)], 46, yO)
+    }, kO, 4)], 4)], 46, _O)
 }
-const Sy = ka(gO, [["render", TO]])
+const Sy = ka(vO, [["render", SO]])
   , wy = {
     methods: {
         show(...e) {
@@ -23099,10 +23110,10 @@ const Sy = ka(gO, [["render", TO]])
 };
 let _c = function() {};
 typeof window < "u" && (_c = window.Element);
-const kO = xe({
+const wO = xe({
     name: "VPopperWrapper",
     components: {
-        Popper: fO,
+        Popper: hO,
         PopperContent: Sy
     },
     mixins: [wy, ky("finalTheme")],
@@ -23285,7 +23296,7 @@ const kO = xe({
         }
     }
 });
-function SO(e, t, n, r, i, o) {
+function AO(e, t, n, r, i, o) {
     const s = Wr("PopperContent")
       , a = Wr("Popper");
     return pe(),
@@ -23306,7 +23317,7 @@ function SO(e, t, n, r, i, o) {
         onAutoHide: t[7] || (t[7] = ()=>e.$emit("auto-hide")),
         onResize: t[8] || (t[8] = ()=>e.$emit("resize"))
     }), {
-        default: un(({popperId: l, isShown: u, shouldMountContent: c, skipTransition: f, autoHide: d, show: m, hide: _, handleResize: b, onResize: k, classes: g, result: E})=>[Er(e.$slots, "default", {
+        default: un(({popperId: l, isShown: u, shouldMountContent: c, skipTransition: f, autoHide: d, show: m, hide: _, handleResize: b, onResize: S, classes: g, result: E})=>[Er(e.$slots, "default", {
             shown: u,
             show: m,
             hide: _
@@ -23322,7 +23333,7 @@ function SO(e, t, n, r, i, o) {
             classes: g,
             result: E,
             onHide: _,
-            onResize: k
+            onResize: S
         }, {
             default: un(()=>[Er(e.$slots, "popper", {
                 shown: u,
@@ -23333,23 +23344,23 @@ function SO(e, t, n, r, i, o) {
         _: 3
     }, 16, ["theme", "target-nodes", "popper-node", "class"])
 }
-const Iu = ka(kO, [["render", SO]])
-  , wO = {
+const Iu = ka(wO, [["render", AO]])
+  , LO = {
     ...Iu,
     name: "VDropdown",
     vPopperTheme: "dropdown"
 }
-  , AO = {
+  , CO = {
     ...Iu,
     name: "VMenu",
     vPopperTheme: "menu"
 }
-  , LO = {
+  , OO = {
     ...Iu,
     name: "VTooltip",
     vPopperTheme: "tooltip"
 }
-  , CO = xe({
+  , RO = xe({
     name: "VTooltipDirective",
     components: {
         Popper: Ey(),
@@ -23433,9 +23444,9 @@ const Iu = ka(kO, [["render", SO]])
         }
     }
 })
-  , OO = ["innerHTML"]
-  , RO = ["textContent"];
-function IO(e, t, n, r, i, o) {
+  , IO = ["innerHTML"]
+  , PO = ["textContent"];
+function MO(e, t, n, r, i, o) {
     const s = Wr("PopperContent")
       , a = Wr("Popper");
     return pe(),
@@ -23448,7 +23459,7 @@ function IO(e, t, n, r, i, o) {
         onApplyShow: e.onShow,
         onApplyHide: e.onHide
     }), {
-        default: un(({popperId: l, isShown: u, shouldMountContent: c, skipTransition: f, autoHide: d, hide: m, handleResize: _, onResize: b, classes: k, result: g})=>[$e(s, {
+        default: un(({popperId: l, isShown: u, shouldMountContent: c, skipTransition: f, autoHide: d, hide: m, handleResize: _, onResize: b, classes: S, result: g})=>[$e(s, {
             ref: "popperContent",
             class: Mt({
                 "v-popper--tooltip-loading": e.loading
@@ -23460,7 +23471,7 @@ function IO(e, t, n, r, i, o) {
             "skip-transition": f,
             "auto-hide": d,
             "handle-resize": _,
-            classes: k,
+            classes: S,
             result: g,
             onHide: m,
             onResize: b
@@ -23469,19 +23480,19 @@ function IO(e, t, n, r, i, o) {
             Ge("div", {
                 key: 0,
                 innerHTML: e.finalContent
-            }, null, 8, OO)) : (pe(),
+            }, null, 8, IO)) : (pe(),
             Ge("div", {
                 key: 1,
                 textContent: en(e.finalContent)
-            }, null, 8, RO))]),
+            }, null, 8, PO))]),
             _: 2
         }, 1032, ["class", "popper-id", "theme", "shown", "mounted", "skip-transition", "auto-hide", "handle-resize", "classes", "result", "onHide", "onResize"])]),
         _: 1
     }, 16, ["theme", "target-nodes", "popper-node", "onApplyShow", "onApplyHide"])
 }
-const PO = ka(CO, [["render", IO]])
+const DO = ka(RO, [["render", MO]])
   , Ay = "v-popper--has-tooltip";
-function MO(e, t) {
+function NO(e, t) {
     let n = e.placement;
     if (!n && t)
         for (const r of by)
@@ -23497,13 +23508,13 @@ function Ly(e, t, n) {
     } : t && i === "object" ? r = t : r = {
         content: !1
     },
-    r.placement = MO(r, n),
+    r.placement = NO(r, n),
     r.targetNodes = ()=>[e],
     r.referenceNode = ()=>e,
     r
 }
-let ol, Ao, DO = 0;
-function NO() {
+let ol, Ao, VO = 0;
+function FO() {
     if (ol)
         return;
     Ao = le([]),
@@ -23515,7 +23526,7 @@ function NO() {
             }
         },
         render() {
-            return this.directives.map(t=>ft(PO, {
+            return this.directives.map(t=>ft(DO, {
                 ...t.options,
                 shown: t.shown || t.options.shown,
                 key: t.id
@@ -23529,12 +23540,12 @@ function NO() {
     document.body.appendChild(e),
     ol.mount(e)
 }
-function VO(e, t, n) {
-    NO();
+function xO(e, t, n) {
+    FO();
     const r = le(Ly(e, t, n))
       , i = le(!1)
       , o = {
-        id: DO++,
+        id: VO++,
         options: r,
         shown: i
     };
@@ -23568,12 +23579,12 @@ function Rh(e, {value: t, modifiers: n}) {
     else {
         let i;
         e.$_popper ? (i = e.$_popper,
-        i.options.value = r) : i = VO(e, t, n),
+        i.options.value = r) : i = xO(e, t, n),
         typeof t.shown < "u" && t.shown !== e.$_popperOldShown && (e.$_popperOldShown = t.shown,
         t.shown ? i.show() : i.hide())
     }
 }
-const FO = {
+const UO = {
     beforeMount: Rh,
     updated: Rh,
     beforeUnmount(e) {
@@ -23623,7 +23634,7 @@ function Iy(e) {
     const t = e.currentTarget;
     t.$_vclosepopover_touch = !1
 }
-const xO = {
+const BO = {
     beforeMount(e, {value: t, modifiers: n}) {
         e.$_closePopoverModifiers = n,
         (typeof t > "u" || t) && Ih(e)
@@ -23636,22 +23647,22 @@ const xO = {
         Ph(e)
     }
 };
-function UO(e, t={}) {
+function HO(e, t={}) {
     e.$_vTooltipInstalled || (e.$_vTooltipInstalled = !0,
     vy(vn, t),
-    e.directive("tooltip", FO),
-    e.directive("close-popper", xO),
-    e.component("VTooltip", LO),
-    e.component("VDropdown", wO),
-    e.component("VMenu", AO))
+    e.directive("tooltip", UO),
+    e.directive("close-popper", BO),
+    e.component("VTooltip", OO),
+    e.component("VDropdown", LO),
+    e.component("VMenu", CO))
 }
-const BO = {
+const jO = {
     version: "5.2.2",
-    install: UO,
+    install: HO,
     options: vn
 }
-  , HO = Ft(e=>{
-    e.vueApp.use(BO)
+  , KO = Ft(e=>{
+    e.vueApp.use(jO)
 }
 );
 function Py(e) {
@@ -23662,7 +23673,7 @@ function Py(e) {
             e[t] = Py(e[t]);
     return e
 }
-const jO = Ft(({vueApp: e})=>{
+const YO = Ft(({vueApp: e})=>{
     var i;
     const t = ((i = Jn().public) == null ? void 0 : i.notivue) || {}
       , n = Py(JSON.parse(JSON.stringify(t)));
@@ -23671,20 +23682,20 @@ const jO = Ft(({vueApp: e})=>{
     e.use(r)
 }
 );
-function KO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=WL, hooks: i={}, context: o={}}={}) {
+function qO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=JL, hooks: i={}, context: o={}}={}) {
     const s = Io()
       , a = e.install;
     return e.install = (l,...u)=>{
-        const c = WO(u[0]) ? dt({}, u[0]) : {
+        const c = JO(u[0]) ? dt({}, u[0]) : {
             inject: !0
         };
         c.inject == null && (c.inject = !0);
         const f = c.__composerExtend;
         if (c.__composerExtend = b=>{
-            const k = Si(e);
-            b.locales = ue(()=>k.locales.value),
-            b.localeCodes = ue(()=>k.localeCodes.value),
-            b.baseUrl = ue(()=>k.baseUrl.value);
+            const S = Si(e);
+            b.locales = ue(()=>S.locales.value),
+            b.localeCodes = ue(()=>S.localeCodes.value),
+            b.baseUrl = ue(()=>S.baseUrl.value);
             let g;
             return Ze(f) && (g = Reflect.apply(f, c, [b])),
             ()=>{
@@ -23694,10 +23705,10 @@ function KO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=WL, hooks: i={}, co
         ,
         e.mode === "legacy") {
             const b = c.__vueI18nExtend;
-            c.__vueI18nExtend = k=>{
-                Mh(k, i.onExtendVueI18n);
+            c.__vueI18nExtend = S=>{
+                Mh(S, i.onExtendVueI18n);
                 let g;
-                return Ze(b) && (g = Reflect.apply(b, c, [k])),
+                return Ze(b) && (g = Reflect.apply(b, c, [S])),
                 ()=>{
                     g && g()
                 }
@@ -23707,7 +23718,7 @@ function KO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=WL, hooks: i={}, co
         Reflect.apply(a, e, [l, ...u]);
         const d = Si(e);
         s.run(()=>{
-            YO(d, {
+            WO(d, {
                 locales: t,
                 localeCodes: n,
                 baseUrl: r,
@@ -23719,7 +23730,7 @@ function KO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=WL, hooks: i={}, co
         );
         const m = l
           , _ = e.mode === "composition" ? m.config.globalProperties.$i18n : null;
-        if (_ && qO(_, d, i.onExtendExportedGlobal),
+        if (_ && GO(_, d, i.onExtendExportedGlobal),
         c.inject) {
             const b = Au(e);
             l.mixin({
@@ -23728,7 +23739,7 @@ function KO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=WL, hooks: i={}, co
                     resolveRoute: rn(_a, b),
                     localePath: rn(va, b),
                     localeRoute: rn(Su, b),
-                    localeLocation: rn(pC, b),
+                    localeLocation: rn(gC, b),
                     switchLocalePath: rn(Ai, b),
                     localeHead: rn(Ug, b)
                 }
@@ -23745,7 +23756,7 @@ function KO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=WL, hooks: i={}, co
     ,
     s
 }
-function YO(e, t) {
+function WO(e, t) {
     const {locales: n, localeCodes: r, baseUrl: i, context: o} = t
       , s = le(n)
       , a = le(r)
@@ -23753,7 +23764,7 @@ function YO(e, t) {
     e.locales = ue(()=>s.value),
     e.localeCodes = ue(()=>a.value),
     e.baseUrl = ue(()=>l.value),
-    JL ? je(e.locale, ()=>{
+    QL ? je(e.locale, ()=>{
         l.value = nh(i, o)
     }
     , {
@@ -23784,17 +23795,17 @@ function My(e, t, n) {
         for (const [o,s] of Object.entries(i))
             Object.defineProperty(t, o, s)
 }
-function qO(e, t, n) {
+function GO(e, t, n) {
     My(t, e, n)
 }
 function Mh(e, t) {
     const n = Si(e);
     My(n, e, t)
 }
-function WO(e) {
+function JO(e) {
     return Fe(e) && ("inject"in e || "__composerExtend"in e || "__vueI18nExtend"in e)
 }
-function GO() {
+function zO() {
     const {routesNameSeparator: e, defaultLocaleRouteNameSuffix: t} = gt
       , n = `(${zr.join("|")})`
       , r = `(?:${e}${t})?`
@@ -23819,9 +23830,9 @@ function GO() {
         return ""
     }
 }
-const JO = Ft({
+const QO = Ft({
     name: "i18n:plugin",
-    parallel: YL,
+    parallel: WL,
     async setup(e) {
         let t, n;
         const r = aa()
@@ -23830,23 +23841,23 @@ const JO = Ft({
           , s = {
             ...gt
         };
-        s.baseUrl = IC();
-        const a = ([t,n] = In(()=>oC(KL, ne())),
+        s.baseUrl = MC();
+        const a = ([t,n] = In(()=>aC(qL, ne())),
         t = await t,
         n(),
         t);
         a.messages = a.messages || {},
         a.fallbackLocale = a.fallbackLocale ?? !1;
-        const l = GO()
+        const l = zO()
           , u = p=>p || a.locale || "en-US"
-          , c = MC();
+          , c = NC();
         let f = oh(r, l, a.locale, u(s.defaultLocale), {
             ssg: s.strategy === "no_prefix" ? "ssg_ignore" : "normal",
             callType: "setup",
             firstAccess: !0,
             localeCookie: c
         });
-        a.messages = ([t,n] = In(()=>sC(a.messages, uc, {
+        a.messages = ([t,n] = In(()=>lC(a.messages, uc, {
             localeCodes: zr,
             initialLocale: f,
             lazy: s.lazy,
@@ -23864,19 +23875,19 @@ const JO = Ft({
         let m = !0;
         const _ = p=>f !== p && m;
         let b = !0;
-        const k = ()=>b;
-        k() && s.strategy === "no_prefix" && e.hook("app:mounted", async()=>{
+        const S = ()=>b;
+        S() && s.strategy === "no_prefix" && e.hook("app:mounted", async()=>{
             const {locale: p, stat: y, reason: T, from: w} = s.detectBrowserLanguage ? Yg(r, a.locale, {
                 ssg: "ssg_setup",
                 callType: "setup",
                 firstAccess: !0,
                 localeCookie: c
             }, f) : Kg;
-            TC(d, p),
+            SC(d, p),
             b = !1
         }
         ),
-        KO(d, {
+        qO(d, {
             locales: s.locales,
             localeCodes: zr,
             baseUrl: s.baseUrl,
@@ -23911,8 +23922,8 @@ const JO = Ft({
                     p.differentDomains = s.differentDomains,
                     p.defaultLocale = s.defaultLocale,
                     p.getBrowserLocale = ()=>jg(),
-                    p.getLocaleCookie = ()=>DC(c),
-                    p.setLocaleCookie = y=>NC(c, y),
+                    p.getLocaleCookie = ()=>VC(c),
+                    p.setLocaleCookie = y=>FC(c, y),
                     p.onBeforeLanguageSwitch = (y,T,w,L)=>e.callHook("i18n:beforeLocaleSwitch", {
                         oldLocale: y,
                         newLocale: T,
@@ -24081,12 +24092,12 @@ const JO = Ft({
             }
         };
         i.use(d, g),
-        CC(o, d);
+        RC(o, d);
         let E = 0;
         OE("locale-changing", async(p,y)=>{
             let T, w;
             const L = oh(p, l, a.locale, ()=>ya(d) || u(s.defaultLocale), {
-                ssg: k() && s.strategy === "no_prefix" ? "ssg_ignore" : "normal",
+                ssg: S() && s.strategy === "no_prefix" ? "ssg_ignore" : "normal",
                 callType: "routing",
                 firstAccess: E === 0,
                 localeCookie: c
@@ -24132,17 +24143,17 @@ function Dy(e) {
 function Pu(e) {
     return typeof e == "function" ? e() : G(e)
 }
-const zO = typeof window < "u" && typeof document < "u";
+const XO = typeof window < "u" && typeof document < "u";
 typeof WorkerGlobalScope < "u" && globalThis instanceof WorkerGlobalScope;
-const QO = e=>e != null
-  , XO = Object.prototype.toString
-  , qs = e=>XO.call(e) === "[object Object]"
+const ZO = e=>e != null
+  , $O = Object.prototype.toString
+  , qs = e=>$O.call(e) === "[object Object]"
   , ro = ()=>{}
 ;
 function Ny(e) {
     return e || kn()
 }
-function ZO(...e) {
+function eR(...e) {
     if (e.length !== 1)
         return oi(...e);
     const t = e[0];
@@ -24151,10 +24162,10 @@ function ZO(...e) {
         set: ro
     }))) : le(t)
 }
-function $O(e, t=!0, n) {
+function tR(e, t=!0, n) {
     Ny() ? Vt(e, n) : t ? e() : Jt(e)
 }
-function eR(e, t) {
+function nR(e, t) {
     Ny(t) && Ri(e, t)
 }
 function io(e) {
@@ -24162,7 +24173,7 @@ function io(e) {
     const n = Pu(e);
     return (t = n == null ? void 0 : n.$el) != null ? t : n
 }
-const Vy = zO ? window : void 0;
+const Vy = XO ? window : void 0;
 function Ut(...e) {
     let t, n, r, i;
     if (typeof e[0] == "string" || Array.isArray(e[0]) ? ([n,r,i] = e,
@@ -24199,7 +24210,7 @@ function Ut(...e) {
     return Dy(u),
     u
 }
-function tR() {
+function rR() {
     const e = le(!1)
       , t = kn();
     return t && Vt(()=>{
@@ -24208,17 +24219,17 @@ function tR() {
     , t),
     e
 }
-function nR(e) {
-    const t = tR();
+function iR(e) {
+    const t = rR();
     return ue(()=>(t.value,
     !!e()))
 }
-function rR(e, t, n={}) {
+function oR(e, t, n={}) {
     const {root: r, rootMargin: i="0px", threshold: o=.1, window: s=Vy, immediate: a=!0} = n
-      , l = nR(()=>s && "IntersectionObserver"in s)
+      , l = iR(()=>s && "IntersectionObserver"in s)
       , u = ue(()=>{
         const _ = Pu(e);
-        return (Array.isArray(_) ? _ : [_]).map(io).filter(QO)
+        return (Array.isArray(_) ? _ : [_]).map(io).filter(ZO)
     }
     );
     let c = ro;
@@ -24227,14 +24238,14 @@ function rR(e, t, n={}) {
         if (c(),
         !f.value || !_.length)
             return;
-        const k = new IntersectionObserver(t,{
+        const S = new IntersectionObserver(t,{
             root: io(b),
             rootMargin: i,
             threshold: o
         });
-        _.forEach(g=>g && k.observe(g)),
+        _.forEach(g=>g && S.observe(g)),
         c = ()=>{
-            k.disconnect(),
+            S.disconnect(),
             c = ro
         }
     }
@@ -24262,8 +24273,8 @@ function rR(e, t, n={}) {
         stop: m
     }
 }
-function $M(e, t={}) {
-    const n = ZO(e)
+function tD(e, t={}) {
+    const n = eR(e)
       , {threshold: r=50, onSwipe: i, onSwipeEnd: o, onSwipeStart: s, disableTextSelect: a=!1} = t
       , l = St({
         x: 0,
@@ -24284,10 +24295,10 @@ function $M(e, t={}) {
       , d = ue(()=>l.x - c.x)
       , m = ue(()=>l.y - c.y)
       , {max: _, abs: b} = Math
-      , k = ue(()=>_(b(d.value), b(m.value)) >= r)
+      , S = ue(()=>_(b(d.value), b(m.value)) >= r)
       , g = le(!1)
       , E = le(!1)
-      , p = ue(()=>k.value ? b(d.value) > b(m.value) ? d.value > 0 ? "left" : "right" : m.value > 0 ? "up" : "down" : "none")
+      , p = ue(()=>S.value ? b(d.value) > b(m.value) ? d.value > 0 ? "left" : "right" : m.value > 0 ? "up" : "down" : "none")
       , y = L=>{
         var C, O, D;
         const B = L.buttons === 0
@@ -24310,7 +24321,7 @@ function $M(e, t={}) {
             return;
         const {clientX: C, clientY: O} = L;
         f(C, O),
-        !g.value && k.value && (g.value = !0),
+        !g.value && S.value && (g.value = !0),
         g.value && (i == null || i(L))
     }
     ), Ut(e, "pointerup", L=>{
@@ -24319,7 +24330,7 @@ function $M(e, t={}) {
         g.value = !1)
     }
     )];
-    $O(()=>{
+    tR(()=>{
         var L, C, O, D, B, F, Z, W;
         (C = (L = n.value) == null ? void 0 : L.style) == null || C.setProperty("touch-action", "none"),
         a && ((D = (O = n.value) == null ? void 0 : O.style) == null || D.setProperty("-webkit-user-select", "none"),
@@ -24339,9 +24350,9 @@ function $M(e, t={}) {
     }
 }
 const Fy = 1 / 60 * 1e3
-  , iR = typeof performance < "u" ? ()=>performance.now() : ()=>Date.now()
-  , xy = typeof window < "u" ? e=>window.requestAnimationFrame(e) : e=>setTimeout(()=>e(iR()), Fy);
-function oR(e) {
+  , sR = typeof performance < "u" ? ()=>performance.now() : ()=>Date.now()
+  , xy = typeof window < "u" ? e=>window.requestAnimationFrame(e) : e=>setTimeout(()=>e(sR()), Fy);
+function aR(e) {
     let t = []
       , n = []
       , r = 0
@@ -24387,7 +24398,7 @@ function oR(e) {
     };
     return a
 }
-const sR = 40;
+const lR = 40;
 let bc = !0
   , Lo = !1
   , Ec = !1;
@@ -24396,31 +24407,31 @@ const gi = {
     timestamp: 0
 }
   , Yo = ["read", "update", "preRender", "render", "postRender"]
-  , wa = Yo.reduce((e,t)=>(e[t] = oR(()=>Lo = !0),
+  , wa = Yo.reduce((e,t)=>(e[t] = aR(()=>Lo = !0),
 e), {})
   , Tc = Yo.reduce((e,t)=>{
     const n = wa[t];
-    return e[t] = (r,i=!1,o=!1)=>(Lo || cR(),
+    return e[t] = (r,i=!1,o=!1)=>(Lo || fR(),
     n.schedule(r, i, o)),
     e
 }
 , {})
-  , aR = Yo.reduce((e,t)=>(e[t] = wa[t].cancel,
+  , cR = Yo.reduce((e,t)=>(e[t] = wa[t].cancel,
 e), {});
 Yo.reduce((e,t)=>(e[t] = ()=>wa[t].process(gi),
 e), {});
-const lR = e=>wa[e].process(gi)
+const uR = e=>wa[e].process(gi)
   , Uy = e=>{
     Lo = !1,
-    gi.delta = bc ? Fy : Math.max(Math.min(e - gi.timestamp, sR), 1),
+    gi.delta = bc ? Fy : Math.max(Math.min(e - gi.timestamp, lR), 1),
     gi.timestamp = e,
     Ec = !0,
-    Yo.forEach(lR),
+    Yo.forEach(uR),
     Ec = !1,
     Lo && (bc = !1,
     xy(Uy))
 }
-  , cR = ()=>{
+  , fR = ()=>{
     Lo = !0,
     bc = !0,
     Ec || xy(Uy)
@@ -24438,14 +24449,14 @@ function Hy(e, t) {
 var Dh = function() {};
 const kc = (e,t,n)=>Math.min(Math.max(n, e), t)
   , sl = .001
-  , uR = .01
-  , fR = 10
-  , dR = .05
-  , hR = 1;
-function pR({duration: e=800, bounce: t=.25, velocity: n=0, mass: r=1}) {
+  , dR = .01
+  , hR = 10
+  , pR = .05
+  , mR = 1;
+function gR({duration: e=800, bounce: t=.25, velocity: n=0, mass: r=1}) {
     let i, o, s = 1 - t;
-    s = kc(dR, hR, s),
-    e = kc(uR, fR, e / 1e3),
+    s = kc(pR, mR, s),
+    e = kc(dR, hR, e / 1e3),
     s < 1 ? (i = u=>{
         const c = u * s
           , f = c * e
@@ -24476,7 +24487,7 @@ function pR({duration: e=800, bounce: t=.25, velocity: n=0, mass: r=1}) {
     }
     );
     const a = 5 / e
-      , l = gR(i, o, a);
+      , l = vR(i, o, a);
     if (e = e * 1e3,
     isNaN(l))
         return {
@@ -24493,22 +24504,22 @@ function pR({duration: e=800, bounce: t=.25, velocity: n=0, mass: r=1}) {
         }
     }
 }
-const mR = 12;
-function gR(e, t, n) {
+const yR = 12;
+function vR(e, t, n) {
     let r = n;
-    for (let i = 1; i < mR; i++)
+    for (let i = 1; i < yR; i++)
         r = r - e(r) / t(r);
     return r
 }
 function Sc(e, t) {
     return e * Math.sqrt(1 - t * t)
 }
-const yR = ["duration", "bounce"]
-  , vR = ["stiffness", "damping", "mass"];
+const _R = ["duration", "bounce"]
+  , bR = ["stiffness", "damping", "mass"];
 function Nh(e, t) {
     return t.some(n=>e[n] !== void 0)
 }
-function _R(e) {
+function ER(e) {
     let t = Object.assign({
         velocity: 0,
         stiffness: 100,
@@ -24516,8 +24527,8 @@ function _R(e) {
         mass: 1,
         isResolvedFromDuration: !1
     }, e);
-    if (!Nh(e, vR) && Nh(e, yR)) {
-        const n = pR(e);
+    if (!Nh(e, bR) && Nh(e, _R)) {
+        const n = gR(e);
         t = Object.assign(Object.assign(Object.assign({}, t), n), {
             velocity: 0,
             mass: 1
@@ -24533,11 +24544,11 @@ function Mu(e) {
         done: !1,
         value: t
     };
-    let {stiffness: a, damping: l, mass: u, velocity: c, duration: f, isResolvedFromDuration: d} = _R(o)
+    let {stiffness: a, damping: l, mass: u, velocity: c, duration: f, isResolvedFromDuration: d} = ER(o)
       , m = Vh
       , _ = Vh;
     function b() {
-        const k = c ? -(c / 1e3) : 0
+        const S = c ? -(c / 1e3) : 0
           , g = n - t
           , E = l / (2 * Math.sqrt(a * u))
           , p = Math.sqrt(a / u) / 1e3;
@@ -24546,32 +24557,32 @@ function Mu(e) {
             const y = Sc(p, E);
             m = T=>{
                 const w = Math.exp(-E * p * T);
-                return n - w * ((k + E * p * g) / y * Math.sin(y * T) + g * Math.cos(y * T))
+                return n - w * ((S + E * p * g) / y * Math.sin(y * T) + g * Math.cos(y * T))
             }
             ,
             _ = T=>{
                 const w = Math.exp(-E * p * T);
-                return E * p * w * (Math.sin(y * T) * (k + E * p * g) / y + g * Math.cos(y * T)) - w * (Math.cos(y * T) * (k + E * p * g) - y * g * Math.sin(y * T))
+                return E * p * w * (Math.sin(y * T) * (S + E * p * g) / y + g * Math.cos(y * T)) - w * (Math.cos(y * T) * (S + E * p * g) - y * g * Math.sin(y * T))
             }
         } else if (E === 1)
-            m = y=>n - Math.exp(-p * y) * (g + (k + p * g) * y);
+            m = y=>n - Math.exp(-p * y) * (g + (S + p * g) * y);
         else {
             const y = p * Math.sqrt(E * E - 1);
             m = T=>{
                 const w = Math.exp(-E * p * T)
                   , L = Math.min(y * T, 300);
-                return n - w * ((k + E * p * g) * Math.sinh(L) + y * g * Math.cosh(L)) / y
+                return n - w * ((S + E * p * g) * Math.sinh(L) + y * g * Math.cosh(L)) / y
             }
         }
     }
     return b(),
     {
-        next: k=>{
-            const g = m(k);
+        next: S=>{
+            const g = m(S);
             if (d)
-                s.done = k >= f;
+                s.done = S >= f;
             else {
-                const E = _(k) * 1e3
+                const E = _(S) * 1e3
                   , p = Math.abs(E) <= r
                   , y = Math.abs(n - g) <= i;
                 s.done = p && y
@@ -24598,7 +24609,7 @@ const Vh = e=>0
   , oo = e=>e % 1 ? Number(e.toFixed(5)) : e
   , Co = /(-)?([\d]*\.?[\d])+/g
   , wc = /(#[0-9a-f]{6}|#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?[\d\.]+%?[,\s]+){2}(-?[\d\.]+%?)\s*[\,\/]?\s*[\d\.]*%?\))/gi
-  , bR = /^(#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?[\d\.]+%?[,\s]+){2}(-?[\d\.]+%?)\s*[\,\/]?\s*[\d\.]*%?\))$/i;
+  , TR = /^(#[0-9a-f]{3}|#(?:[0-9a-f]{2}){2,4}|(rgb|hsl)a?\((-?[\d\.]+%?[,\s]+){2}(-?[\d\.]+%?)\s*[\,\/]?\s*[\d\.]*%?\))$/i;
 function qo(e) {
     return typeof e == "string"
 }
@@ -24625,7 +24636,7 @@ const Wo = {
     parse: e=>ao.parse(e) / 100,
     transform: e=>ao.transform(e * 100)
 })
-  , Vu = (e,t)=>n=>!!(qo(n) && bR.test(n) && n.startsWith(e) || t && Object.prototype.hasOwnProperty.call(n, t))
+  , Vu = (e,t)=>n=>!!(qo(n) && TR.test(n) && n.startsWith(e) || t && Object.prototype.hasOwnProperty.call(n, t))
   , Yy = (e,t,n)=>r=>{
     if (!qo(r))
         return r;
@@ -24642,16 +24653,16 @@ const Wo = {
     parse: Yy("hue", "saturation", "lightness"),
     transform: ({hue: e, saturation: t, lightness: n, alpha: r=1})=>"hsla(" + Math.round(e) + ", " + ao.transform(oo(t)) + ", " + ao.transform(oo(n)) + ", " + oo(so.transform(r)) + ")"
 }
-  , ER = Ky(0, 255)
+  , kR = Ky(0, 255)
   , al = Object.assign(Object.assign({}, Wo), {
-    transform: e=>Math.round(ER(e))
+    transform: e=>Math.round(kR(e))
 })
   , pr = {
     test: Vu("rgb", "red"),
     parse: Yy("red", "green", "blue"),
     transform: ({red: e, green: t, blue: n, alpha: r=1})=>"rgba(" + al.transform(e) + ", " + al.transform(t) + ", " + al.transform(n) + ", " + oo(so.transform(r)) + ")"
 };
-function TR(e) {
+function SR(e) {
     let t = ""
       , n = ""
       , r = ""
@@ -24676,7 +24687,7 @@ function TR(e) {
 }
 const Ac = {
     test: Vu("#"),
-    parse: TR,
+    parse: SR,
     transform: pr.transform
 }
   , Ht = {
@@ -24686,7 +24697,7 @@ const Ac = {
 }
   , qy = "${c}"
   , Wy = "${n}";
-function kR(e) {
+function wR(e) {
     var t, n, r, i;
     return isNaN(e) && qo(e) && ((n = (t = e.match(Co)) === null || t === void 0 ? void 0 : t.length) !== null && n !== void 0 ? n : 0) + ((i = (r = e.match(wc)) === null || r === void 0 ? void 0 : r.length) !== null && i !== void 0 ? i : 0) > 0
 }
@@ -24720,19 +24731,19 @@ function zy(e) {
         return s
     }
 }
-const SR = e=>typeof e == "number" ? 0 : e;
-function wR(e) {
+const AR = e=>typeof e == "number" ? 0 : e;
+function LR(e) {
     const t = Jy(e);
-    return zy(e)(t.map(SR))
+    return zy(e)(t.map(AR))
 }
 const Go = {
-    test: kR,
+    test: wR,
     parse: Jy,
     createTransformer: zy,
-    getAnimatableNone: wR
+    getAnimatableNone: LR
 }
-  , AR = new Set(["brightness", "contrast", "saturate", "opacity"]);
-function LR(e) {
+  , CR = new Set(["brightness", "contrast", "saturate", "opacity"]);
+function OR(e) {
     let[t,n] = e.slice(0, -1).split("(");
     if (t === "drop-shadow")
         return e;
@@ -24740,15 +24751,15 @@ function LR(e) {
     if (!r)
         return e;
     const i = n.replace(r, "");
-    let o = AR.has(t) ? 1 : 0;
+    let o = CR.has(t) ? 1 : 0;
     return r !== n && (o *= 100),
     t + "(" + o + i + ")"
 }
-const CR = /([a-z-]*)\(.*?\)/g
+const RR = /([a-z-]*)\(.*?\)/g
   , Lc = Object.assign(Object.assign({}, Go), {
     getAnimatableNone: e=>{
-        const t = e.match(CR);
-        return t ? t.map(LR).join(" ") : e
+        const t = e.match(RR);
+        return t ? t.map(OR).join(" ") : e
     }
 });
 function ll(e, t, n) {
@@ -24779,13 +24790,13 @@ function xh({hue: e, saturation: t, lightness: n, alpha: r}) {
         alpha: r
     }
 }
-const OR = (e,t,n)=>{
+const IR = (e,t,n)=>{
     const r = e * e
       , i = t * t;
     return Math.sqrt(Math.max(0, n * (i - r) + r))
 }
-  , RR = [Ac, pr, Ur]
-  , Uh = e=>RR.find(t=>t.test(e))
+  , PR = [Ac, pr, Ur]
+  , Uh = e=>PR.find(t=>t.test(e))
   , Qy = (e,t)=>{
     let n = Uh(e)
       , r = Uh(t)
@@ -24798,16 +24809,16 @@ const OR = (e,t,n)=>{
     const s = Object.assign({}, i);
     return a=>{
         for (const l in s)
-            l !== "alpha" && (s[l] = OR(i[l], o[l], a));
+            l !== "alpha" && (s[l] = IR(i[l], o[l], a));
         return s.alpha = Du(i.alpha, o.alpha, a),
         n.transform(s)
     }
 }
-  , IR = e=>typeof e == "number"
-  , PR = (e,t)=>n=>t(e(n))
-  , Xy = (...e)=>e.reduce(PR);
+  , MR = e=>typeof e == "number"
+  , DR = (e,t)=>n=>t(e(n))
+  , Xy = (...e)=>e.reduce(DR);
 function Zy(e, t) {
-    return IR(e) ? n=>Du(e, t, n) : Ht.test(e) ? Qy(e, t) : ev(e, t)
+    return MR(e) ? n=>Du(e, t, n) : Ht.test(e) ? Qy(e, t) : ev(e, t)
 }
 const $y = (e,t)=>{
     const n = [...e]
@@ -24819,7 +24830,7 @@ const $y = (e,t)=>{
         return n
     }
 }
-  , MR = (e,t)=>{
+  , NR = (e,t)=>{
     const n = Object.assign(Object.assign({}, e), t)
       , r = {};
     for (const i in n)
@@ -24852,20 +24863,20 @@ const ev = (e,t)=>{
       , i = Bh(t);
     return r.numHSL === i.numHSL && r.numRGB === i.numRGB && r.numNumbers >= i.numNumbers ? Xy($y(r.parsed, i.parsed), n) : s=>`${s > 0 ? t : e}`
 }
-  , DR = (e,t)=>n=>Du(e, t, n);
-function NR(e) {
+  , VR = (e,t)=>n=>Du(e, t, n);
+function FR(e) {
     if (typeof e == "number")
-        return DR;
+        return VR;
     if (typeof e == "string")
         return Ht.test(e) ? Qy : ev;
     if (Array.isArray(e))
         return $y;
     if (typeof e == "object")
-        return MR
+        return NR
 }
-function VR(e, t, n) {
+function xR(e, t, n) {
     const r = []
-      , i = n || NR(e[0])
+      , i = n || FR(e[0])
       , o = e.length - 1;
     for (let s = 0; s < o; s++) {
         let a = i(e[s], e[s + 1]);
@@ -24877,10 +24888,10 @@ function VR(e, t, n) {
     }
     return r
 }
-function FR([e,t], [n]) {
+function UR([e,t], [n]) {
     return r=>n(jy(e, t, r))
 }
-function xR(e, t) {
+function BR(e, t) {
     const n = e.length
       , r = n - 1;
     return i=>{
@@ -24906,52 +24917,52 @@ function tv(e, t, {clamp: n=!0, ease: r, mixer: i}={}) {
     t = [].concat(t),
     e.reverse(),
     t.reverse());
-    const s = VR(t, r, i)
-      , a = o === 2 ? FR(e, s) : xR(e, s);
+    const s = xR(t, r, i)
+      , a = o === 2 ? UR(e, s) : BR(e, s);
     return n ? l=>a(kc(e[0], e[o - 1], l)) : a
 }
 const Aa = e=>t=>1 - e(1 - t)
   , Fu = e=>t=>t <= .5 ? e(2 * t) / 2 : (2 - e(2 * (1 - t))) / 2
-  , UR = e=>t=>Math.pow(t, e)
+  , HR = e=>t=>Math.pow(t, e)
   , nv = e=>t=>t * t * ((e + 1) * t - e)
-  , BR = e=>{
+  , jR = e=>{
     const t = nv(e);
     return n=>(n *= 2) < 1 ? .5 * t(n) : .5 * (2 - Math.pow(2, -10 * (n - 1)))
 }
   , rv = 1.525
-  , HR = 4 / 11
-  , jR = 8 / 11
-  , KR = 9 / 10
+  , KR = 4 / 11
+  , YR = 8 / 11
+  , qR = 9 / 10
   , iv = e=>e
-  , xu = UR(2)
-  , YR = Aa(xu)
+  , xu = HR(2)
+  , WR = Aa(xu)
   , ov = Fu(xu)
   , sv = e=>1 - Math.sin(Math.acos(e))
   , av = Aa(sv)
-  , qR = Fu(av)
+  , GR = Fu(av)
   , Uu = nv(rv)
-  , WR = Aa(Uu)
-  , GR = Fu(Uu)
-  , JR = BR(rv)
-  , zR = 4356 / 361
-  , QR = 35442 / 1805
-  , XR = 16061 / 1805
+  , JR = Aa(Uu)
+  , zR = Fu(Uu)
+  , QR = jR(rv)
+  , XR = 4356 / 361
+  , ZR = 35442 / 1805
+  , $R = 16061 / 1805
   , Ws = e=>{
     if (e === 1 || e === 0)
         return e;
     const t = e * e;
-    return e < HR ? 7.5625 * t : e < jR ? 9.075 * t - 9.9 * e + 3.4 : e < KR ? zR * t - QR * e + XR : 10.8 * e * e - 20.52 * e + 10.72
+    return e < KR ? 7.5625 * t : e < YR ? 9.075 * t - 9.9 * e + 3.4 : e < qR ? XR * t - ZR * e + $R : 10.8 * e * e - 20.52 * e + 10.72
 }
-  , ZR = Aa(Ws)
-  , $R = e=>e < .5 ? .5 * (1 - Ws(1 - e * 2)) : .5 * Ws(e * 2 - 1) + .5;
-function eI(e, t) {
+  , eI = Aa(Ws)
+  , tI = e=>e < .5 ? .5 * (1 - Ws(1 - e * 2)) : .5 * Ws(e * 2 - 1) + .5;
+function nI(e, t) {
     return e.map(()=>t || ov).splice(0, e.length - 1)
 }
-function tI(e) {
+function rI(e) {
     const t = e.length;
     return e.map((n,r)=>r !== 0 ? r / (t - 1) : 0)
 }
-function nI(e, t) {
+function iI(e, t) {
     return e.map(n=>n * t)
 }
 function _s({from: e=0, to: t=1, ease: n, offset: r, duration: i=300}) {
@@ -24960,10 +24971,10 @@ function _s({from: e=0, to: t=1, ease: n, offset: r, duration: i=300}) {
         value: e
     }
       , s = Array.isArray(t) ? t : [e, t]
-      , a = nI(r && r.length === s.length ? r : tI(s), i);
+      , a = iI(r && r.length === s.length ? r : rI(s), i);
     function l() {
         return tv(a, s, {
-            ease: Array.isArray(n) ? n : eI(s, n)
+            ease: Array.isArray(n) ? n : nI(s, n)
         })
     }
     let u = l();
@@ -24977,7 +24988,7 @@ function _s({from: e=0, to: t=1, ease: n, offset: r, duration: i=300}) {
         }
     }
 }
-function rI({velocity: e=0, from: t=0, power: n=.8, timeConstant: r=350, restDelta: i=.5, modifyTarget: o}) {
+function oI({velocity: e=0, from: t=0, power: n=.8, timeConstant: r=350, restDelta: i=.5, modifyTarget: o}) {
     const s = {
         done: !1,
         value: t
@@ -25000,9 +25011,9 @@ function rI({velocity: e=0, from: t=0, power: n=.8, timeConstant: r=350, restDel
 const Hh = {
     keyframes: _s,
     spring: Mu,
-    decay: rI
+    decay: oI
 };
-function iI(e) {
+function sI(e) {
     if (Array.isArray(e.to))
         return _s;
     if (Hh[e.type])
@@ -25013,37 +25024,37 @@ function iI(e) {
 function lv(e, t, n=0) {
     return e - t - n
 }
-function oI(e, t, n=0, r=!0) {
+function aI(e, t, n=0, r=!0) {
     return r ? lv(t + -e, t, n) : t - (e - t) + n
 }
-function sI(e, t, n, r) {
+function lI(e, t, n, r) {
     return r ? e >= t + n : e <= -n
 }
-const aI = e=>{
+const cI = e=>{
     const t = ({delta: n})=>e(n);
     return {
         start: ()=>Tc.update(t, !0),
-        stop: ()=>aR.update(t)
+        stop: ()=>cR.update(t)
     }
 }
 ;
 function cv(e) {
-    var t, n, {from: r, autoplay: i=!0, driver: o=aI, elapsed: s=0, repeat: a=0, repeatType: l="loop", repeatDelay: u=0, onPlay: c, onStop: f, onComplete: d, onRepeat: m, onUpdate: _} = e, b = Hy(e, ["from", "autoplay", "driver", "elapsed", "repeat", "repeatType", "repeatDelay", "onPlay", "onStop", "onComplete", "onRepeat", "onUpdate"]);
-    let {to: k} = b, g, E = 0, p = b.duration, y, T = !1, w = !0, L;
-    const C = iI(b);
-    !((n = (t = C).needsInterpolation) === null || n === void 0) && n.call(t, r, k) && (L = tv([0, 100], [r, k], {
+    var t, n, {from: r, autoplay: i=!0, driver: o=cI, elapsed: s=0, repeat: a=0, repeatType: l="loop", repeatDelay: u=0, onPlay: c, onStop: f, onComplete: d, onRepeat: m, onUpdate: _} = e, b = Hy(e, ["from", "autoplay", "driver", "elapsed", "repeat", "repeatType", "repeatDelay", "onPlay", "onStop", "onComplete", "onRepeat", "onUpdate"]);
+    let {to: S} = b, g, E = 0, p = b.duration, y, T = !1, w = !0, L;
+    const C = sI(b);
+    !((n = (t = C).needsInterpolation) === null || n === void 0) && n.call(t, r, S) && (L = tv([0, 100], [r, S], {
         clamp: !1
     }),
     r = 0,
-    k = 100);
+    S = 100);
     const O = C(Object.assign(Object.assign({}, b), {
         from: r,
-        to: k
+        to: S
     }));
     function D() {
         E++,
         l === "reverse" ? (w = E % 2 === 0,
-        s = oI(s, p, u, w)) : (s = lv(s, p, u),
+        s = aI(s, p, u, w)) : (s = lv(s, p, u),
         l === "mirror" && O.flipTarget()),
         T = !1,
         m && m()
@@ -25063,7 +25074,7 @@ function cv(e) {
         }
         _ == null || _(y),
         T && (E === 0 && (p ?? (p = s)),
-        E < a ? sI(s, p, u, w) && D() : B())
+        E < a ? lI(s, p, u, w) && D() : B())
     }
     function Z() {
         c == null || c(),
@@ -25081,12 +25092,12 @@ function cv(e) {
 function uv(e, t) {
     return t ? e * (1e3 / t) : 0
 }
-function lI({from: e=0, velocity: t=0, min: n, max: r, power: i=.8, timeConstant: o=750, bounceStiffness: s=500, bounceDamping: a=10, restDelta: l=1, modifyTarget: u, driver: c, onUpdate: f, onComplete: d, onStop: m}) {
+function uI({from: e=0, velocity: t=0, min: n, max: r, power: i=.8, timeConstant: o=750, bounceStiffness: s=500, bounceDamping: a=10, restDelta: l=1, modifyTarget: u, driver: c, onUpdate: f, onComplete: d, onStop: m}) {
     let _;
     function b(p) {
         return n !== void 0 && p < n || r !== void 0 && p > r
     }
-    function k(p) {
+    function S(p) {
         return n === void 0 ? r : r === void 0 || Math.abs(n - p) < Math.abs(r - p) ? n : r
     }
     function g(p) {
@@ -25115,12 +25126,12 @@ function lI({from: e=0, velocity: t=0, min: n, max: r, power: i=.8, timeConstant
         E({
             from: e,
             velocity: t,
-            to: k(e)
+            to: S(e)
         });
     else {
         let p = i * t + e;
         typeof u < "u" && (p = u(p));
-        const y = k(p)
+        const y = S(p)
           , T = y === n ? -1 : 1;
         let w, L;
         const C = O=>{
@@ -25154,21 +25165,21 @@ const fv = (e,t)=>1 - 3 * t + 3 * e
   , hv = e=>3 * e
   , Gs = (e,t,n)=>((fv(t, n) * e + dv(t, n)) * e + hv(t)) * e
   , pv = (e,t,n)=>3 * fv(t, n) * e * e + 2 * dv(t, n) * e + hv(t)
-  , cI = 1e-7
-  , uI = 10;
-function fI(e, t, n, r, i) {
+  , fI = 1e-7
+  , dI = 10;
+function hI(e, t, n, r, i) {
     let o, s, a = 0;
     do
         s = t + (n - t) / 2,
         o = Gs(s, r, i) - e,
         o > 0 ? n = s : t = s;
-    while (Math.abs(o) > cI && ++a < uI);
+    while (Math.abs(o) > fI && ++a < dI);
     return s
 }
-const dI = 8
-  , hI = .001;
-function pI(e, t, n, r) {
-    for (let i = 0; i < dI; ++i) {
+const pI = 8
+  , mI = .001;
+function gI(e, t, n, r) {
+    for (let i = 0; i < pI; ++i) {
         const o = pv(t, n, r);
         if (o === 0)
             return t;
@@ -25179,7 +25190,7 @@ function pI(e, t, n, r) {
 }
 const bs = 11
   , ds = 1 / (bs - 1);
-function mI(e, t, n, r) {
+function yI(e, t, n, r) {
     if (e === t && n === r)
         return iv;
     const i = new Float32Array(bs);
@@ -25195,23 +25206,23 @@ function mI(e, t, n, r) {
         const c = (s - i[l]) / (i[l + 1] - i[l])
           , f = a + c * ds
           , d = pv(f, e, n);
-        return d >= hI ? pI(s, f, e, n) : d === 0 ? f : fI(s, a, a + ds, e, n)
+        return d >= mI ? gI(s, f, e, n) : d === 0 ? f : hI(s, a, a + ds, e, n)
     }
     return s=>s === 0 || s === 1 ? s : Gs(o(s), t, r)
 }
 const cl = {};
-var gI = Object.defineProperty
-  , yI = (e,t,n)=>t in e ? gI(e, t, {
+var vI = Object.defineProperty
+  , _I = (e,t,n)=>t in e ? vI(e, t, {
     enumerable: !0,
     configurable: !0,
     writable: !0,
     value: n
 }) : e[t] = n
-  , vI = (e,t,n)=>(yI(e, typeof t != "symbol" ? t + "" : t, n),
+  , bI = (e,t,n)=>(_I(e, typeof t != "symbol" ? t + "" : t, n),
 n);
-class _I {
+class EI {
     constructor() {
-        vI(this, "subscriptions", new Set)
+        bI(this, "subscriptions", new Set)
     }
     add(t) {
         return this.subscriptions.add(t),
@@ -25226,25 +25237,25 @@ class _I {
         this.subscriptions.clear()
     }
 }
-var bI = Object.defineProperty
-  , EI = (e,t,n)=>t in e ? bI(e, t, {
+var TI = Object.defineProperty
+  , kI = (e,t,n)=>t in e ? TI(e, t, {
     enumerable: !0,
     configurable: !0,
     writable: !0,
     value: n
 }) : e[t] = n
-  , Ln = (e,t,n)=>(EI(e, typeof t != "symbol" ? t + "" : t, n),
+  , Ln = (e,t,n)=>(kI(e, typeof t != "symbol" ? t + "" : t, n),
 n);
 function jh(e) {
     return !isNaN(parseFloat(e))
 }
-class TI {
+class SI {
     constructor(t) {
         Ln(this, "current"),
         Ln(this, "prev"),
         Ln(this, "timeDelta", 0),
         Ln(this, "lastUpdated", 0),
-        Ln(this, "updateSubscribers", new _I),
+        Ln(this, "updateSubscribers", new EI),
         Ln(this, "stopAnimation"),
         Ln(this, "canTrackVelocity", !1),
         Ln(this, "updateAndNotify", n=>{
@@ -25307,11 +25318,11 @@ class TI {
         this.stop()
     }
 }
-function kI(e) {
-    return new TI(e)
+function wI(e) {
+    return new SI(e)
 }
-const {isArray: SI} = Array;
-function wI() {
+const {isArray: AI} = Array;
+function LI() {
     const e = le({})
       , t = r=>{
         const i = o=>{
@@ -25320,25 +25331,25 @@ function wI() {
             delete e.value[o])
         }
         ;
-        r ? SI(r) ? r.forEach(i) : i(r) : Object.keys(e.value).forEach(i)
+        r ? AI(r) ? r.forEach(i) : i(r) : Object.keys(e.value).forEach(i)
     }
       , n = (r,i,o)=>{
         if (e.value[r])
             return e.value[r];
-        const s = kI(i);
+        const s = wI(i);
         return s.onChange(a=>o[r] = a),
         e.value[r] = s,
         s
     }
     ;
-    return eR(t),
+    return nR(t),
     {
         motionValues: e,
         get: n,
         stop: t
     }
 }
-function AI(e) {
+function CI(e) {
     return Array.isArray(e)
 }
 function Mr() {
@@ -25359,7 +25370,7 @@ function ul(e) {
         restSpeed: 10
     }
 }
-function LI(e) {
+function OI(e) {
     return {
         type: "spring",
         stiffness: 550,
@@ -25375,7 +25386,7 @@ function fl() {
         duration: 300
     }
 }
-function CI(e) {
+function RI(e) {
     return {
         type: "keyframes",
         duration: 800,
@@ -25383,7 +25394,7 @@ function CI(e) {
     }
 }
 const Kh = {
-    default: LI,
+    default: OI,
     x: Mr,
     y: Mr,
     z: Mr,
@@ -25400,7 +25411,7 @@ const Kh = {
 };
 function mv(e, t) {
     let n;
-    return AI(t) ? n = CI : n = Kh[e] || Kh.default,
+    return CI(t) ? n = RI : n = Kh[e] || Kh.default,
     {
         to: t,
         ...n(t)
@@ -25486,78 +25497,78 @@ const Yh = {
 function yv(e, t) {
     return t && typeof e == "number" && t.transform ? t.transform(e) : e
 }
-function OI(e, t) {
+function II(e, t) {
     let n = Bu(e);
     return n !== Lc && (n = Go),
     n.getAnimatableNone ? n.getAnimatableNone(t) : void 0
 }
-const RI = {
+const PI = {
     linear: iv,
     easeIn: xu,
     easeInOut: ov,
-    easeOut: YR,
+    easeOut: WR,
     circIn: sv,
-    circInOut: qR,
+    circInOut: GR,
     circOut: av,
     backIn: Uu,
-    backInOut: GR,
-    backOut: WR,
-    anticipate: JR,
-    bounceIn: ZR,
-    bounceInOut: $R,
+    backInOut: zR,
+    backOut: JR,
+    anticipate: QR,
+    bounceIn: eI,
+    bounceInOut: tI,
     bounceOut: Ws
 };
 function qh(e) {
     if (Array.isArray(e)) {
         const [t,n,r,i] = e;
-        return mI(t, n, r, i)
+        return yI(t, n, r, i)
     } else if (typeof e == "string")
-        return RI[e];
+        return PI[e];
     return e
 }
-function II(e) {
+function MI(e) {
     return Array.isArray(e) && typeof e[0] != "number"
 }
 function Wh(e, t) {
     return e === "zIndex" ? !1 : !!(typeof t == "number" || Array.isArray(t) || typeof t == "string" && Go.test(t) && !t.startsWith("url("))
 }
-function PI(e) {
+function DI(e) {
     return Array.isArray(e.to) && e.to[0] === null && (e.to = [...e.to],
     e.to[0] = e.from),
     e
 }
-function MI({ease: e, times: t, delay: n, ...r}) {
+function NI({ease: e, times: t, delay: n, ...r}) {
     const i = {
         ...r
     };
     return t && (i.offset = t),
-    e && (i.ease = II(e) ? e.map(qh) : qh(e)),
+    e && (i.ease = MI(e) ? e.map(qh) : qh(e)),
     n && (i.elapsed = -n),
     i
 }
-function DI(e, t, n) {
+function VI(e, t, n) {
     return Array.isArray(t.to) && (e.duration || (e.duration = 800)),
-    PI(t),
-    NI(e) || (e = {
+    DI(t),
+    FI(e) || (e = {
         ...e,
         ...mv(n, t.to)
     }),
     {
         ...t,
-        ...MI(e)
+        ...NI(e)
     }
 }
-function NI({delay: e, repeat: t, repeatType: n, repeatDelay: r, from: i, ...o}) {
+function FI({delay: e, repeat: t, repeatType: n, repeatDelay: r, from: i, ...o}) {
     return !!Object.keys(o).length
 }
-function VI(e, t) {
+function xI(e, t) {
     return e[t] || e.default || e
 }
-function FI(e, t, n, r, i) {
-    const o = VI(r, e);
+function UI(e, t, n, r, i) {
+    const o = xI(r, e);
     let s = o.from === null || o.from === void 0 ? t.get() : o.from;
     const a = Wh(e, n);
-    s === "none" && a && typeof n == "string" && (s = OI(e, n));
+    s === "none" && a && typeof n == "string" && (s = II(e, n));
     const l = Wh(e, s);
     function u(f) {
         const d = {
@@ -25566,11 +25577,11 @@ function FI(e, t, n, r, i) {
             velocity: r.velocity ? r.velocity : t.getVelocity(),
             onUpdate: m=>t.set(m)
         };
-        return o.type === "inertia" || o.type === "decay" ? lI({
+        return o.type === "inertia" || o.type === "decay" ? uI({
             ...d,
             ...o
         }) : cv({
-            ...DI(o, d, e),
+            ...VI(o, d, e),
             onUpdate: m=>{
                 d.onUpdate(m),
                 o.onUpdate && o.onUpdate(m)
@@ -25594,8 +25605,8 @@ function FI(e, t, n, r, i) {
     }
     return !l || !a || o.type === !1 ? c : u
 }
-function xI() {
-    const {motionValues: e, stop: t, get: n} = wI();
+function BI() {
+    const {motionValues: e, stop: t, get: n} = LI();
     return {
         motionValues: e,
         stop: t,
@@ -25606,12 +25617,12 @@ function xI() {
                 c.set(o);
                 return
             }
-            const f = FI(i, c, o, a, l);
+            const f = UI(i, c, o, a, l);
             c.start(f)
         }
     }
 }
-function UI(e, t={}, {motionValues: n, push: r, stop: i}=xI()) {
+function HI(e, t={}, {motionValues: n, push: r, stop: i}=BI()) {
     const o = G(t)
       , s = le(!1);
     je(n, f=>{
@@ -25661,10 +25672,10 @@ function UI(e, t={}, {motionValues: n, push: r, stop: i}=xI()) {
     }
 }
 const Hu = typeof window < "u"
-  , BI = ()=>Hu && window.onpointerdown === null
-  , HI = ()=>Hu && window.ontouchstart === null
-  , jI = ()=>Hu && window.onmousedown === null;
-function KI({target: e, state: t, variants: n, apply: r}) {
+  , jI = ()=>Hu && window.onpointerdown === null
+  , KI = ()=>Hu && window.ontouchstart === null
+  , YI = ()=>Hu && window.onmousedown === null;
+function qI({target: e, state: t, variants: n, apply: r}) {
     const i = G(n)
       , o = le(!1)
       , s = le(!1)
@@ -25699,17 +25710,17 @@ function KI({target: e, state: t, variants: n, apply: r}) {
         s.value = !1
     }
     )),
-    i.tapped && (jI() && (Ut(e, "mousedown", ()=>s.value = !0),
+    i.tapped && (YI() && (Ut(e, "mousedown", ()=>s.value = !0),
     Ut(e, "mouseup", ()=>s.value = !1)),
-    BI() && (Ut(e, "pointerdown", ()=>s.value = !0),
+    jI() && (Ut(e, "pointerdown", ()=>s.value = !0),
     Ut(e, "pointerup", ()=>s.value = !1)),
-    HI() && (Ut(e, "touchstart", ()=>s.value = !0),
+    KI() && (Ut(e, "touchstart", ()=>s.value = !0),
     Ut(e, "touchend", ()=>s.value = !1))),
     i.focused && (Ut(e, "focus", ()=>a.value = !0),
     Ut(e, "blur", ()=>a.value = !1)),
     je(u, r)
 }
-function YI({set: e, target: t, variants: n, variant: r}) {
+function WI({set: e, target: t, variants: n, variant: r}) {
     const i = G(n);
     je(()=>t, ()=>{
         i && (i.initial && e("initial"),
@@ -25720,7 +25731,7 @@ function YI({set: e, target: t, variants: n, variant: r}) {
         flush: "pre"
     })
 }
-function qI({state: e, apply: t}) {
+function GI({state: e, apply: t}) {
     je(e, n=>{
         n && t(n)
     }
@@ -25730,21 +25741,21 @@ function qI({state: e, apply: t}) {
 }
 function vv({target: e, variants: t, variant: n}) {
     const r = G(t);
-    r && (r.visible || r.visibleOnce) && rR(e, ([{isIntersecting: i}])=>{
+    r && (r.visible || r.visibleOnce) && oR(e, ([{isIntersecting: i}])=>{
         r.visible ? i ? n.value = "visible" : n.value = "initial" : r.visibleOnce && (i && n.value !== "visibleOnce" ? n.value = "visibleOnce" : n.value || (n.value = "initial"))
     }
     )
 }
-function WI(e, t={
+function JI(e, t={
     syncVariants: !0,
     lifeCycleHooks: !0,
     visibilityHooks: !0,
     eventListeners: !0
 }) {
-    t.lifeCycleHooks && YI(e),
-    t.syncVariants && qI(e),
+    t.lifeCycleHooks && WI(e),
+    t.syncVariants && GI(e),
     t.visibilityHooks && vv(e),
-    t.eventListeners && KI(e)
+    t.eventListeners && qI(e)
 }
 function _v(e={}) {
     const t = St({
@@ -25777,7 +25788,7 @@ function ju(e, t) {
         immediate: !0
     })
 }
-const GI = {
+const zI = {
     x: "translateX",
     y: "translateY",
     z: "translateZ"
@@ -25800,7 +25811,7 @@ function bv(e={}, t=!0) {
                 continue;
             const u = Bu(a)
               , c = yv(l, u);
-            o += `${GI[a] || a}(${c}) `
+            o += `${zI[a] || a}(${c}) `
         }
         t && !s && (o += "translateZ(0px) "),
         r.value = o.trim()
@@ -25814,26 +25825,26 @@ function bv(e={}, t=!0) {
         transform: r
     }
 }
-const JI = ["", "X", "Y", "Z"]
-  , zI = ["perspective", "translate", "scale", "rotate", "skew"]
+const QI = ["", "X", "Y", "Z"]
+  , XI = ["perspective", "translate", "scale", "rotate", "skew"]
   , Ev = ["transformPerspective", "x", "y", "z"];
-zI.forEach(e=>{
-    JI.forEach(t=>{
+XI.forEach(e=>{
+    QI.forEach(t=>{
         const n = e + t;
         Ev.push(n)
     }
     )
 }
 );
-const QI = new Set(Ev);
+const ZI = new Set(Ev);
 function Ku(e) {
-    return QI.has(e)
+    return ZI.has(e)
 }
-const XI = new Set(["originX", "originY", "originZ"]);
+const $I = new Set(["originX", "originY", "originZ"]);
 function Tv(e) {
-    return XI.has(e)
+    return $I.has(e)
 }
-function ZI(e) {
+function eP(e) {
     const t = {}
       , n = {};
     return Object.entries(e).forEach(([r,i])=>{
@@ -25846,13 +25857,13 @@ function ZI(e) {
     }
 }
 function kv(e) {
-    const {transform: t, style: n} = ZI(e)
+    const {transform: t, style: n} = eP(e)
       , {transform: r} = bv(t)
       , {style: i} = _v(n);
     return r.value && (i.value.transform = r.value),
     i.value
 }
-function $I(e, t) {
+function tP(e, t) {
     let n, r;
     const {state: i, style: o} = _v();
     return ju(e, s=>{
@@ -25878,7 +25889,7 @@ function $I(e, t) {
         style: i
     }
 }
-function eP(e) {
+function nP(e) {
     const t = e.trim().split(/\) |\)/);
     if (t.length === 1)
         return {};
@@ -25896,8 +25907,8 @@ function eP(e) {
     }
     , {})
 }
-function tP(e, t) {
-    Object.entries(eP(t)).forEach(([n,r])=>{
+function rP(e, t) {
+    Object.entries(nP(t)).forEach(([n,r])=>{
         const i = ["x", "y", "z"];
         if (n === "translate3d") {
             if (r === 0) {
@@ -25924,12 +25935,12 @@ function tP(e, t) {
     }
     )
 }
-function nP(e, t) {
+function iP(e, t) {
     let n, r;
     const {state: i, transform: o} = bv();
     return ju(e, s=>{
         r = s,
-        s.style.transform && tP(i, s.style.transform),
+        s.style.transform && rP(i, s.style.transform),
         n && (s.style.transform = n),
         t && t(i)
     }
@@ -25948,11 +25959,11 @@ function nP(e, t) {
         transform: i
     }
 }
-function rP(e, t) {
+function oP(e, t) {
     const n = St({})
       , r = s=>Object.entries(s).forEach(([a,l])=>n[a] = l)
-      , {style: i} = $I(e, r)
-      , {transform: o} = nP(e, r);
+      , {style: i} = tP(e, r)
+      , {transform: o} = iP(e, r);
     return je(n, s=>{
         Object.entries(s).forEach(([a,l])=>{
             const u = Ku(a) ? o : i;
@@ -25971,7 +25982,7 @@ function rP(e, t) {
         transform: o
     }
 }
-function iP(e={}) {
+function sP(e={}) {
     const t = G(e)
       , n = le();
     return {
@@ -25984,9 +25995,9 @@ function iP(e={}) {
     }
 }
 function Sv(e, t={}, n) {
-    const {motionProperties: r} = rP(e)
-      , {variant: i, state: o} = iP(t)
-      , s = UI(r, t)
+    const {motionProperties: r} = oP(e)
+      , {variant: i, state: o} = sP(t)
+      , s = HI(r, t)
       , a = {
         target: e,
         variant: i,
@@ -25995,17 +26006,17 @@ function Sv(e, t={}, n) {
         motionProperties: r,
         ...s
     };
-    return WI(a, n),
+    return JI(a, n),
     a
 }
-const oP = ["initial", "enter", "leave", "visible", "visible-once", "visibleOnce", "hovered", "tapped", "focused", "delay"];
-function sP(e, t) {
+const aP = ["initial", "enter", "leave", "visible", "visible-once", "visibleOnce", "hovered", "tapped", "focused", "delay"];
+function lP(e, t) {
     const n = e.props ? e.props : e.data && e.data.attrs ? e.data.attrs : {};
     n && (n.variants && qs(n.variants) && (t.value = {
         ...t.value,
         ...n.variants
     }),
-    oP.forEach(r=>{
+    aP.forEach(r=>{
         if (r === "delay") {
             if (n && n[r] && typeof n[r] == "number") {
                 const i = n[r];
@@ -26042,7 +26053,7 @@ function dl(e) {
             s && cl[s] && cl[s].stop();
             const a = le(e || {});
             typeof i.value == "object" && (a.value = i.value),
-            sP(o, a);
+            lP(o, a);
             const u = Sv(r, a, {
                 eventListeners: !0,
                 lifeCycleHooks: !0,
@@ -26067,47 +26078,27 @@ function dl(e) {
         }
     }
 }
-const aP = {
+const cP = {
     initial: {
         opacity: 0
     },
     enter: {
-        opacity: 1
-    }
-}
-  , lP = {
-    initial: {
-        opacity: 0
-    },
-    visible: {
-        opacity: 1
-    }
-}
-  , cP = {
-    initial: {
-        opacity: 0
-    },
-    visibleOnce: {
         opacity: 1
     }
 }
   , uP = {
     initial: {
-        scale: 0,
         opacity: 0
     },
-    enter: {
-        scale: 1,
+    visible: {
         opacity: 1
     }
 }
   , fP = {
     initial: {
-        scale: 0,
         opacity: 0
     },
-    visible: {
-        scale: 1,
+    visibleOnce: {
         opacity: 1
     }
 }
@@ -26116,32 +26107,28 @@ const aP = {
         scale: 0,
         opacity: 0
     },
-    visibleOnce: {
+    enter: {
         scale: 1,
         opacity: 1
     }
 }
   , hP = {
     initial: {
-        x: -100,
-        rotate: 90,
+        scale: 0,
         opacity: 0
     },
-    enter: {
-        x: 0,
-        rotate: 0,
+    visible: {
+        scale: 1,
         opacity: 1
     }
 }
   , pP = {
     initial: {
-        x: -100,
-        rotate: 90,
+        scale: 0,
         opacity: 0
     },
-    visible: {
-        x: 0,
-        rotate: 0,
+    visibleOnce: {
+        scale: 1,
         opacity: 1
     }
 }
@@ -26151,7 +26138,7 @@ const aP = {
         rotate: 90,
         opacity: 0
     },
-    visibleOnce: {
+    enter: {
         x: 0,
         rotate: 0,
         opacity: 1
@@ -26159,11 +26146,11 @@ const aP = {
 }
   , gP = {
     initial: {
-        x: 100,
-        rotate: -90,
+        x: -100,
+        rotate: 90,
         opacity: 0
     },
-    enter: {
+    visible: {
         x: 0,
         rotate: 0,
         opacity: 1
@@ -26171,11 +26158,11 @@ const aP = {
 }
   , yP = {
     initial: {
-        x: 100,
-        rotate: -90,
+        x: -100,
+        rotate: 90,
         opacity: 0
     },
-    visible: {
+    visibleOnce: {
         x: 0,
         rotate: 0,
         opacity: 1
@@ -26187,7 +26174,7 @@ const aP = {
         rotate: -90,
         opacity: 0
     },
-    visibleOnce: {
+    enter: {
         x: 0,
         rotate: 0,
         opacity: 1
@@ -26195,24 +26182,24 @@ const aP = {
 }
   , _P = {
     initial: {
-        y: -100,
+        x: 100,
         rotate: -90,
         opacity: 0
     },
-    enter: {
-        y: 0,
+    visible: {
+        x: 0,
         rotate: 0,
         opacity: 1
     }
 }
   , bP = {
     initial: {
-        y: -100,
+        x: 100,
         rotate: -90,
         opacity: 0
     },
-    visible: {
-        y: 0,
+    visibleOnce: {
+        x: 0,
         rotate: 0,
         opacity: 1
     }
@@ -26223,7 +26210,7 @@ const aP = {
         rotate: -90,
         opacity: 0
     },
-    visibleOnce: {
+    enter: {
         y: 0,
         rotate: 0,
         opacity: 1
@@ -26231,11 +26218,11 @@ const aP = {
 }
   , TP = {
     initial: {
-        y: 100,
-        rotate: 90,
+        y: -100,
+        rotate: -90,
         opacity: 0
     },
-    enter: {
+    visible: {
         y: 0,
         rotate: 0,
         opacity: 1
@@ -26243,11 +26230,11 @@ const aP = {
 }
   , kP = {
     initial: {
-        y: 100,
-        rotate: 90,
+        y: -100,
+        rotate: -90,
         opacity: 0
     },
-    visible: {
+    visibleOnce: {
         y: 0,
         rotate: 0,
         opacity: 1
@@ -26259,7 +26246,7 @@ const aP = {
         rotate: 90,
         opacity: 0
     },
-    visibleOnce: {
+    enter: {
         y: 0,
         rotate: 0,
         opacity: 1
@@ -26267,21 +26254,25 @@ const aP = {
 }
   , wP = {
     initial: {
-        x: -100,
+        y: 100,
+        rotate: 90,
         opacity: 0
     },
-    enter: {
-        x: 0,
+    visible: {
+        y: 0,
+        rotate: 0,
         opacity: 1
     }
 }
   , AP = {
     initial: {
-        x: -100,
+        y: 100,
+        rotate: 90,
         opacity: 0
     },
-    visible: {
-        x: 0,
+    visibleOnce: {
+        y: 0,
+        rotate: 0,
         opacity: 1
     }
 }
@@ -26290,27 +26281,27 @@ const aP = {
         x: -100,
         opacity: 0
     },
-    visibleOnce: {
+    enter: {
         x: 0,
         opacity: 1
     }
 }
   , CP = {
     initial: {
-        x: 100,
+        x: -100,
         opacity: 0
     },
-    enter: {
+    visible: {
         x: 0,
         opacity: 1
     }
 }
   , OP = {
     initial: {
-        x: 100,
+        x: -100,
         opacity: 0
     },
-    visible: {
+    visibleOnce: {
         x: 0,
         opacity: 1
     }
@@ -26320,28 +26311,28 @@ const aP = {
         x: 100,
         opacity: 0
     },
-    visibleOnce: {
+    enter: {
         x: 0,
         opacity: 1
     }
 }
   , IP = {
     initial: {
-        y: -100,
+        x: 100,
         opacity: 0
     },
-    enter: {
-        y: 0,
+    visible: {
+        x: 0,
         opacity: 1
     }
 }
   , PP = {
     initial: {
-        y: -100,
+        x: 100,
         opacity: 0
     },
-    visible: {
-        y: 0,
+    visibleOnce: {
+        x: 0,
         opacity: 1
     }
 }
@@ -26350,12 +26341,32 @@ const aP = {
         y: -100,
         opacity: 0
     },
-    visibleOnce: {
+    enter: {
         y: 0,
         opacity: 1
     }
 }
   , DP = {
+    initial: {
+        y: -100,
+        opacity: 0
+    },
+    visible: {
+        y: 0,
+        opacity: 1
+    }
+}
+  , NP = {
+    initial: {
+        y: -100,
+        opacity: 0
+    },
+    visibleOnce: {
+        y: 0,
+        opacity: 1
+    }
+}
+  , VP = {
     initial: {
         y: 100,
         opacity: 0
@@ -26365,7 +26376,7 @@ const aP = {
         opacity: 1
     }
 }
-  , NP = {
+  , FP = {
     initial: {
         y: 100,
         opacity: 0
@@ -26375,7 +26386,7 @@ const aP = {
         opacity: 1
     }
 }
-  , VP = {
+  , xP = {
     initial: {
         y: 100,
         opacity: 0
@@ -26387,38 +26398,38 @@ const aP = {
 }
   , Cc = {
     __proto__: null,
-    fade: aP,
-    fadeVisible: lP,
-    fadeVisibleOnce: cP,
-    pop: uP,
-    popVisible: fP,
-    popVisibleOnce: dP,
-    rollBottom: TP,
-    rollLeft: hP,
-    rollRight: gP,
-    rollTop: _P,
-    rollVisibleBottom: kP,
-    rollVisibleLeft: pP,
-    rollVisibleOnceBottom: SP,
-    rollVisibleOnceLeft: mP,
-    rollVisibleOnceRight: vP,
-    rollVisibleOnceTop: EP,
-    rollVisibleRight: yP,
-    rollVisibleTop: bP,
-    slideBottom: DP,
-    slideLeft: wP,
-    slideRight: CP,
-    slideTop: IP,
-    slideVisibleBottom: NP,
-    slideVisibleLeft: AP,
-    slideVisibleOnceBottom: VP,
-    slideVisibleOnceLeft: LP,
-    slideVisibleOnceRight: RP,
-    slideVisibleOnceTop: MP,
-    slideVisibleRight: OP,
-    slideVisibleTop: PP
+    fade: cP,
+    fadeVisible: uP,
+    fadeVisibleOnce: fP,
+    pop: dP,
+    popVisible: hP,
+    popVisibleOnce: pP,
+    rollBottom: SP,
+    rollLeft: mP,
+    rollRight: vP,
+    rollTop: EP,
+    rollVisibleBottom: wP,
+    rollVisibleLeft: gP,
+    rollVisibleOnceBottom: AP,
+    rollVisibleOnceLeft: yP,
+    rollVisibleOnceRight: bP,
+    rollVisibleOnceTop: kP,
+    rollVisibleRight: _P,
+    rollVisibleTop: TP,
+    slideBottom: VP,
+    slideLeft: LP,
+    slideRight: RP,
+    slideTop: MP,
+    slideVisibleBottom: FP,
+    slideVisibleLeft: CP,
+    slideVisibleOnceBottom: xP,
+    slideVisibleOnceLeft: OP,
+    slideVisibleOnceRight: PP,
+    slideVisibleOnceTop: NP,
+    slideVisibleRight: IP,
+    slideVisibleTop: DP
 }
-  , FP = xe({
+  , UP = xe({
     props: {
         is: {
             type: [String, Object],
@@ -26557,20 +26568,20 @@ const aP = {
         return (((a = e.default) == null ? void 0 : a.call(e)) || []).map((l,u)=>o(l, u))
     }
 });
-function xP(e) {
+function BP(e) {
     const t = "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;"
       , n = "aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------"
       , r = new RegExp(t.split("").join("|"),"g");
     return e.toString().replace(/[A-Z]/g, i=>`-${i}`).toLowerCase().replace(/\s+/g, "-").replace(r, i=>n.charAt(t.indexOf(i))).replace(/&/g, "-and-").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "-").replace(/^-+/, "").replace(/-+$/, "")
 }
-const UP = {
+const HP = {
     install(e, t) {
         if (e.directive("motion", dl()),
-        e.component("Motion", FP),
+        e.component("Motion", UP),
         !t || t && !t.excludePresets)
             for (const n in Cc) {
                 const r = Cc[n];
-                e.directive(`motion-${xP(n)}`, dl(r))
+                e.directive(`motion-${BP(n)}`, dl(r))
             }
         if (t && t.directives)
             for (const n in t.directives) {
@@ -26580,12 +26591,12 @@ const UP = {
             }
     }
 }
-  , BP = Ft(e=>{
+  , jP = Ft(e=>{
     const t = Jn();
-    e.vueApp.use(UP, t.public.motion)
+    e.vueApp.use(HP, t.public.motion)
 }
 )
-  , HP = Ft({
+  , KP = Ft({
     name: "nuxt:chunk-reload",
     setup(e) {
         const t = Qt()
@@ -26601,7 +26612,7 @@ const UP = {
         );
         function i(o) {
             const a = "href"in o && o.href[0] === "#" ? n.app.baseURL + o.href : Ii(n.app.baseURL, o.fullPath);
-            c1({
+            f1({
                 path: a,
                 persistState: !0
             })
@@ -26616,7 +26627,7 @@ const UP = {
         )
     }
 });
-function jP(e) {
+function YP(e) {
     return {
         all: e = e || new Map,
         on: function(t, n) {
@@ -26638,8 +26649,8 @@ function jP(e) {
         }
     }
 }
-const KP = Ft(()=>{
-    const e = jP();
+const qP = Ft(()=>{
+    const e = YP();
     return {
         provide: {
             event: e.emit,
@@ -26649,8 +26660,8 @@ const KP = Ft(()=>{
     }
 }
 )
-  , YP = [jT, YT, o1, a1, l1, h1, p1, m1, U1, HO, jO, JO, BP, HP, KP]
-  , qP = xe({
+  , WP = [jT, YT, a1, c1, u1, m1, g1, y1, H1, KO, YO, QO, jP, KP, qP]
+  , GP = xe({
     props: {
         vnode: {
             type: Object,
@@ -26678,7 +26689,7 @@ const KP = Ft(()=>{
         })
     }
 })
-  , WP = xe({
+  , JP = xe({
     name: "NuxtPage",
     inheritAttrs: !1,
     props: {
@@ -26726,7 +26737,7 @@ const KP = Ft(()=>{
             ...t
         }, {
             default: c=>{
-                const f = JP(o, c.route, c.Component)
+                const f = QP(o, c.route, c.Component)
                   , d = o && o.matched.length === c.route.matched.length;
                 if (!c.Component) {
                     if (l && !d)
@@ -26739,16 +26750,16 @@ const KP = Ft(()=>{
                 if (f && o && (!a || a != null && a.isCurrent(o)))
                     return d ? l : null;
                 const m = zl(c, e.pageKey);
-                !r.isHydrating && !zP(o, c.route, c.Component) && s === m && r.callHook("page:loading:end"),
+                !r.isHydrating && !XP(o, c.route, c.Component) && s === m && r.callHook("page:loading:end"),
                 s = m;
                 const _ = !!(e.transition ?? c.route.meta.pageTransition ?? ql)
-                  , b = _ && GP([e.transition, c.route.meta.pageTransition, ql, {
+                  , b = _ && zP([e.transition, c.route.meta.pageTransition, ql, {
                     onAfterLeave: ()=>{
                         r.callHook("page:transition:finish", c.Component)
                     }
                 }].filter(Boolean))
-                  , k = e.keepalive ?? c.route.meta.keepalive ?? DT;
-                return l = tg(Do, _ && b, zk(k, ft(Gc, {
+                  , S = e.keepalive ?? c.route.meta.keepalive ?? DT;
+                return l = tg(Do, _ && b, zk(S, ft(Gc, {
                     suspensible: !0,
                     onPending: ()=>r.callHook("page:start", c.Component),
                     onResolve: ()=>{
@@ -26756,7 +26767,7 @@ const KP = Ft(()=>{
                     }
                 }, {
                     default: ()=>{
-                        const g = ft(qP, {
+                        const g = ft(GP, {
                             key: m || void 0,
                             vnode: c.Component,
                             route: c.route,
@@ -26764,7 +26775,7 @@ const KP = Ft(()=>{
                             trackRootNodes: _,
                             vnodeRef: i
                         });
-                        return k && (g.type.name = c.Component.type.name || c.Component.type.__name || "RouteProvider"),
+                        return S && (g.type.name = c.Component.type.name || c.Component.type.__name || "RouteProvider"),
                         g
                     }
                 }))).default(),
@@ -26773,14 +26784,14 @@ const KP = Ft(()=>{
         })
     }
 });
-function GP(e) {
+function zP(e) {
     const t = e.map(n=>({
         ...n,
         onAfterLeave: n.onAfterLeave ? du(n.onAfterLeave) : void 0
     }));
     return su(...t)
 }
-function JP(e, t, n) {
+function QP(e, t, n) {
     if (!e)
         return !1;
     const r = t.matched.findIndex(i=>{
@@ -26800,14 +26811,14 @@ function JP(e, t, n) {
         Component: n
     })
 }
-function zP(e, t, n) {
+function XP(e, t, n) {
     return e ? t.matched.findIndex(i=>{
         var o;
         return ((o = i.components) == null ? void 0 : o.default) === (n == null ? void 0 : n.type)
     }
     ) < t.matched.length - 1 : !1
 }
-const QP = xe({
+const ZP = xe({
     name: "LayoutLoader",
     inheritAttrs: !1,
     props: {
@@ -26819,7 +26830,7 @@ const QP = xe({
         return ()=>ft(n, e.layoutProps, t.slots)
     }
 })
-  , XP = xe({
+  , $P = xe({
     name: "NuxtLayout",
     inheritAttrs: !1,
     props: {
@@ -26861,7 +26872,7 @@ const QP = xe({
                         Jt(a)
                     }
                 }, {
-                    default: ()=>ft(ZP, {
+                    default: ()=>ft(eM, {
                         layoutProps: _i(t.attrs, {
                             ref: s
                         }),
@@ -26875,7 +26886,7 @@ const QP = xe({
         }
     }
 })
-  , ZP = xe({
+  , eM = xe({
     name: "NuxtLayoutProvider",
     inheritAttrs: !1,
     props: {
@@ -26899,7 +26910,7 @@ const QP = xe({
         }),
         ()=>{
             var r, i;
-            return !n || typeof n == "string" && !(n in hr) ? (i = (r = t.slots).default) == null ? void 0 : i.call(r) : ft(QP, {
+            return !n || typeof n == "string" && !(n in hr) ? (i = (r = t.slots).default) == null ? void 0 : i.call(r) : ft(ZP, {
                 key: n,
                 layoutProps: e.layoutProps,
                 name: n
@@ -26907,25 +26918,25 @@ const QP = xe({
         }
     }
 })
-  , $P = (e,t)=>{
+  , tM = (e,t)=>{
     const n = e.__vccOpts || e;
     for (const [r,i] of t)
         n[r] = i;
     return n
 }
-  , eM = {};
-function tM(e, t) {
-    const n = WP
-      , r = XP;
+  , nM = {};
+function rM(e, t) {
+    const n = JP
+      , r = $P;
     return pe(),
     bt(r, null, {
         default: un(()=>[$e(n)]),
         _: 1
     })
 }
-const nM = $P(eM, [["render", tM]])
-  , rM = ["innerHTML"]
-  , iM = xe({
+const iM = tM(nM, [["render", rM]])
+  , oM = ["innerHTML"]
+  , sM = xe({
     __name: "Icon",
     props: {
         name: {}
@@ -26934,49 +26945,51 @@ const nM = $P(eM, [["render", tM]])
         let t, n;
         const r = e
           , i = Object.fromEntries(Object.entries(Object.assign({
-            "/assets/svg/icons/alarm-clock-glow.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/alarm-clock-glow.aC8bZIm6.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/alarm.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/alarm.DhXSImdX.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/app-bar-boost.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-boost.CCdq5ioD.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/app-bar-earn.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-earn.Bb212ucL.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/app-bar-friends.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-friends.CTyi4Yjj.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/app-bar-mine.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-mine.BkoJ97Sz.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/app-bar-playground.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-playground.acdgU1sm.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/arrow-onboarding-new.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/arrow-onboarding-new.BEtKb0Zx.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/arrow-onboarding.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/arrow-onboarding.BJzvMlow.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/caret-right.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/caret-right.Be5C5AdH.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/check.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/check.DpGtnzuV.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/clock.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/clock.BeWcAb1-.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/close-simple.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/close-simple.BHIZU7ZI.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/close.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/close.KB0mydBa.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/complete.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/complete.lDxhBE40.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/copy.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/copy.CjcTersn.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/energy.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/energy.DhIj__pU.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/eyes.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/eyes.DfHV8DJi.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/friends.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/friends.D9yHF85E.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/gift.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/gift.D56pTUEE.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/glow.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/glow.DR87XU47.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/gr.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/gr.CE-S70jU.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/heart.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/heart.uEUhPDEu.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/info.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/info.CwbDISi0.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/key.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/key.CBMDGpK3.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/ln-arrow.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ln-arrow.C4l_4b2T.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/ln-discord.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ln-discord.DNbmOmlO.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/ln-medium.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ln-medium.BrOe8wIZ.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/ln-telegram.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ln-telegram.cBOmGQCr.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/ln-x.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ln-x.CdWKHoAz.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/ln-youtube.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ln-youtube.q1Uak5_E.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/loading-background.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/loading-background.DLKaIbsv.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/loading-image.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/loading-image.DD2lTtqq.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/loading-yellow.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/loading-yellow.BmzMALSJ.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/loading.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/loading.D5-YfgbB.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/lock.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/lock.FuE0uKjd.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/markets.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/markets.Bq8f52NT.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/not-support-phone-glow.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/not-support-phone-glow.BSB35vgE.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/refresh.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/refresh.BvInaMMK.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/robots.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/robots.BmOab4DB.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/settings.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/settings.CezmlWen.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/ticket.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/ticket.DQ5Qpq-5.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
-            "/assets/svg/icons/wallet.svg": ()=>S(()=>import("https://hamsterkombatgame.io/_nuxt/wallet.3o12uypq.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default)
+            "/assets/svg/icons/alarm-clock-glow.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/alarm-clock-glow.aC8bZIm6.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/alarm.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/alarm.DhXSImdX.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/app-bar-boost.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-boost.CCdq5ioD.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/app-bar-earn.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-earn.Bb212ucL.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/app-bar-friends.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-friends.CTyi4Yjj.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/app-bar-mine.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-mine.BkoJ97Sz.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/app-bar-playground.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/app-bar-playground.acdgU1sm.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/arrow-onboarding-new.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/arrow-onboarding-new.BEtKb0Zx.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/arrow-onboarding.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/arrow-onboarding.BJzvMlow.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/caret-right.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/caret-right.Be5C5AdH.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/check.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/check.DpGtnzuV.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/clock.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/clock.BeWcAb1-.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/close-simple.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/close-simple.BHIZU7ZI.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/close.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/close.KB0mydBa.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/complete.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/complete.lDxhBE40.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/copy.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/copy.CjcTersn.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/energy.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/energy.DhIj__pU.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/eyes.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/eyes.DfHV8DJi.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/friends.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.D9yHF85E.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/gift.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/gift.D56pTUEE.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/glow.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/glow.DR87XU47.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/gr.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/gr.CE-S70jU.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/heart.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/heart.uEUhPDEu.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/info.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/info.CwbDISi0.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/key.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/key.CBMDGpK3.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/ln-arrow.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ln-arrow.C4l_4b2T.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/ln-discord.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ln-discord.DNbmOmlO.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/ln-medium.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ln-medium.BrOe8wIZ.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/ln-telegram.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ln-telegram.cBOmGQCr.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/ln-x.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ln-x.CdWKHoAz.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/ln-youtube.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ln-youtube.q1Uak5_E.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/loading-background.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/loading-background.DLKaIbsv.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/loading-image.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/loading-image.DD2lTtqq.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/loading-yellow.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/loading-yellow.BmzMALSJ.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/loading.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/loading.D5-YfgbB.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/lock.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/lock.FuE0uKjd.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/markets.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/markets.Bq8f52NT.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/medal-gradient.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/medal-gradient.BJt4jnRV.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/medal.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/medal.CqNqzNKF.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/not-support-phone-glow.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/not-support-phone-glow.BSB35vgE.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/refresh.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/refresh.BvInaMMK.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/robots.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/robots.BmOab4DB.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/settings.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/settings.CezmlWen.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/ticket.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ticket.DQ5Qpq-5.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default),
+            "/assets/svg/icons/wallet.svg": ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/wallet.3o12uypq.js"), __vite__mapDeps([]), import.meta.url).then(s=>s.default)
         })).map(([s,a])=>[s.split("/").pop().split(".").shift(), a]))
           , o = r.name && ([t,n] = Q0(()=>{
             var s;
@@ -26991,33 +27004,33 @@ const nM = $P(eM, [["render", tM]])
             key: 0,
             class: "icon",
             innerHTML: G(o)
-        }, null, 8, rM)) : Wt("", !0)
+        }, null, 8, oM)) : Wt("", !0)
     }
 })
-  , oM = {
+  , aM = {
     class: "is-token"
 }
-  , sM = ["srcset", "alt"]
-  , aM = ["src", "alt"]
-  , lM = xe({
+  , lM = ["srcset", "alt"]
+  , cM = ["src", "alt"]
+  , uM = xe({
     __name: "Token",
     setup(e) {
         return (t,n)=>(pe(),
-        Ge("picture", oM, [me("source", {
+        Ge("picture", aM, [me("source", {
             srcset: G(lc).TOKEN_WEBP,
             type: "image/webp",
             alt: G($t).GAME_NAME
-        }, null, 8, sM), me("img", {
+        }, null, 8, lM), me("img", {
             class: "img-responsive",
             src: G(lc).TOKEN,
             alt: G($t).GAME_NAME
-        }, null, 8, aM)]))
+        }, null, 8, cM)]))
     }
 })
   , Gh = ey({
     componentName: "NuxtLinkLocale"
 })
-  , cM = xe({
+  , fM = xe({
     name: "NuxtLinkLocale",
     props: {
         ...Gh.props,
@@ -27056,63 +27069,63 @@ const nM = $P(eM, [["render", tM]])
         return ()=>ft(Gh, o(), t.default)
     }
 });
-function uM() {
+function dM() {
     return Un
 }
-const fM = {
+const hM = {
     class: "ln"
 }
-  , dM = {
+  , pM = {
     class: "ln-header"
 }
-  , hM = {
+  , mM = {
     class: "ln-header-left"
 }
-  , pM = {
+  , gM = {
     class: "ln-header-social"
 }
-  , mM = ["href"]
-  , gM = ["href"]
-  , yM = ["innerHTML"]
-  , vM = {
+  , yM = ["href"]
+  , vM = ["href"]
+  , _M = ["innerHTML"]
+  , bM = {
     class: "ln-header-center"
 }
-  , _M = {
+  , EM = {
     class: "ln-header-center-logo"
 }
-  , bM = {
+  , TM = {
     class: "ln-header-right"
 }
-  , EM = {
+  , kM = {
     class: "button"
 }
-  , TM = ["innerHTML"]
-  , kM = me("span", null, "coming soon", -1)
-  , SM = {
+  , SM = ["innerHTML"]
+  , wM = me("span", null, "coming soon", -1)
+  , AM = {
     class: "ln-content"
 }
-  , wM = {
+  , LM = {
     key: 0
 }
-  , AM = {
-    class: "is-small-text"
-}
-  , LM = {
-    key: 1,
-    class: "is-small-text"
-}
   , CM = {
-    key: 2,
     class: "is-small-text"
 }
   , OM = {
+    key: 1,
+    class: "is-small-text"
+}
+  , RM = {
+    key: 2,
+    class: "is-small-text"
+}
+  , IM = {
     class: "ln-content-button"
 }
-  , RM = ["innerHTML"]
-  , IM = me("div", {
+  , PM = ["innerHTML"]
+  , MM = me("div", {
     class: "ln-bottom"
 }, null, -1)
-  , PM = xe({
+  , DM = xe({
     __name: "error",
     props: {
         error: Object
@@ -27125,7 +27138,7 @@ const fM = {
             title: `${((s = n.error) == null ? void 0 : s.statusCode) ?? 500} - ${$t.GAME_NAME}`
         });
         const r = le("")
-          , i = uM()
+          , i = dM()
           , o = le(i.tz.guess());
         return Vt(()=>{
             r.value = navigator.userAgent,
@@ -27141,41 +27154,41 @@ const fM = {
         ),
         (a,l)=>{
             var d, m, _;
-            const u = iM
-              , c = lM
-              , f = cM;
+            const u = sM
+              , c = uM
+              , f = fM;
             return pe(),
-            Ge("main", fM, [me("div", dM, [me("div", hM, [me("div", pM, [me("a", {
+            Ge("main", hM, [me("div", pM, [me("div", mM, [me("div", gM, [me("a", {
                 class: "is-x",
                 href: G(t).link_twitter,
                 target: "_blank"
             }, [$e(u, {
                 name: "ln-x"
-            })], 8, mM), me("a", {
+            })], 8, yM), me("a", {
                 class: "is-telegram",
                 href: G(t).link_telegram,
                 target: "_blank"
             }, [$e(u, {
                 name: "ln-telegram"
-            })], 8, gM), me("p", {
+            })], 8, vM), me("p", {
                 innerHTML: a.$t("landing.join_us")
-            }, null, 8, yM)])]), me("div", vM, [me("div", _M, [$e(c)]), me("p", null, en(G($t).GAME_NAME), 1)]), me("div", bM, [me("button", EM, [me("p", {
+            }, null, 8, _M)])]), me("div", bM, [me("div", EM, [$e(c)]), me("p", null, en(G($t).GAME_NAME), 1)]), me("div", TM, [me("button", kM, [me("p", {
                 innerHTML: a.$t("landing.whitepaper")
-            }, null, 8, TM), $e(u, {
+            }, null, 8, SM), $e(u, {
                 class: "is-ln-arrow",
                 name: "ln-arrow"
-            }), kM])])]), me("div", SM, [me("h1", null, en(e.error.statusCode ?? 500), 1), (d = e.error) != null && d.statusMessage ? (pe(),
-            Ge("p", wM, "Status: " + en(((m = e.error) == null ? void 0 : m.statusMessage) ?? ""), 1)) : Wt("", !0), me("p", AM, en((_ = e.error) == null ? void 0 : _.toJSON()), 1), G(r) ? (pe(),
-            Ge("p", LM, "User Agent: " + en(G(r)), 1)) : Wt("", !0), G(o) ? (pe(),
-            Ge("p", CM, "TimeZone: " + en(G(o)), 1)) : Wt("", !0), me("div", OM, [$e(f, {
+            }), wM])])]), me("div", AM, [me("h1", null, en(e.error.statusCode ?? 500), 1), (d = e.error) != null && d.statusMessage ? (pe(),
+            Ge("p", LM, "Status: " + en(((m = e.error) == null ? void 0 : m.statusMessage) ?? ""), 1)) : Wt("", !0), me("p", CM, en((_ = e.error) == null ? void 0 : _.toJSON()), 1), G(r) ? (pe(),
+            Ge("p", OM, "User Agent: " + en(G(r)), 1)) : Wt("", !0), G(o) ? (pe(),
+            Ge("p", RM, "TimeZone: " + en(G(o)), 1)) : Wt("", !0), me("div", IM, [$e(f, {
                 class: "button",
                 to: G(Ho).LANDING
             }, {
                 default: un(()=>[me("span", {
                     innerHTML: a.$t("buttons.home")
-                }, null, 8, RM)]),
+                }, null, 8, PM)]),
                 _: 1
-            }, 8, ["to"])])]), IM])
+            }, 8, ["to"])])]), MM])
         }
     }
 })
@@ -27206,7 +27219,7 @@ const fM = {
             onResolve: G(r)
         }, {
             default: un(()=>[G(o) ? (pe(),
-            bt(G(PM), {
+            bt(G(DM), {
                 key: 0,
                 error: G(o)
             }, null, 8, ["error"])) : G(s) ? (pe(),
@@ -27217,7 +27230,7 @@ const fM = {
             bt(_l(G(i)), {
                 key: 2
             })) : (pe(),
-            bt(G(nM), {
+            bt(G(iM), {
                 key: 3
             }))]),
             _: 1
@@ -27241,7 +27254,7 @@ let zh;
         }
         r.config.errorHandler = o;
         try {
-            await uE(i, YP)
+            await uE(i, WP)
         } catch (l) {
             o(l)
         }
@@ -27264,10 +27277,10 @@ let zh;
     }
     )
 }
-export {Sn as $, DL as A, MM as B, DM as C, Mt as D, W0 as E, mt as F, lM as G, wL as H, SL as I, qg as J, At as K, xo as L, RL as M, KM as N, $P as O, cc as P, xC as Q, cM as R, uM as S, $t as T, Ho as U, VM as V, AL as W, YM as X, qM as Y, IL as Z, iM as _, Ge as a, ze as a0, Eo as a1, Dt as a2, Zp as a3, Dg as a4, WM as a5, GM as a6, Mn as a7, un as a8, FM as a9, CT as aA, Mm as aB, Ri as aC, $M as aD, Do as aE, _l as aF, _i as aG, Sv as aH, aa as aI, HM as aJ, UL as aK, tt as aL, WP as aM, UM as aN, QM as aO, jM as aP, BM as aQ, JM as aR, lt as aa, xM as ab, nl as ac, tl as ad, PL as ae, ML as af, S as ag, OL as ah, Q0 as ai, CL as aj, LL as ak, NL as al, Wr as am, St as an, Kr as ao, Qc as ap, je as aq, Jt as ar, ft as as, j0 as at, VL as au, zM as av, Er as aw, lc as ax, Jn as ay, NM as az, G as b, ue as c, xe as d, me as e, vt as f, Mi as g, ZM as h, Zg as i, Ot as j, ma as k, $e as l, bt as m, gn as n, pe as o, ne as p, Gt as q, le as r, Vt as s, Tn as t, Ne as u, en as v, ht as w, Wt as x, XM as y, Lt as z};
+export {GM as $, DL as A, Lt as B, NM as C, VM as D, FL as E, mt as F, W0 as G, xM as H, SL as I, uM as J, xL as K, wL as L, qg as M, At as N, xo as O, RL as P, qM as Q, tM as R, cc as S, BC as T, Ho as U, fM as V, dM as W, $t as X, AL as Y, WM as Z, sM as _, Ge as a, IL as a0, Sn as a1, ze as a2, Eo as a3, Dt as a4, Zp as a5, Dg as a6, JM as a7, zM as a8, Mn as a9, Jn as aA, FM as aB, CT as aC, Mm as aD, Ri as aE, tD as aF, Do as aG, _l as aH, _i as aI, Sv as aJ, aa as aK, KM as aL, HL as aM, tt as aN, JP as aO, HM as aP, ZM as aQ, YM as aR, jM as aS, QM as aT, un as aa, UM as ab, lt as ac, BM as ad, nl as ae, tl as af, PL as ag, ML as ah, k as ai, OL as aj, Q0 as ak, CL as al, LL as am, NL as an, Wr as ao, St as ap, Kr as aq, Qc as ar, je as as, Jt as at, ft as au, j0 as av, VL as aw, XM as ax, Er as ay, lc as az, me as b, ue as c, xe as d, bt as e, G as f, $e as g, Ne as h, vt as i, Mi as j, eD as k, Zg as l, Ot as m, Mt as n, pe as o, gn as p, ne as q, le as r, Gt as s, Vt as t, ma as u, Tn as v, en as w, ht as x, Wt as y, $M as z};
 function __vite__mapDeps(indexes) {
     if (!__vite__mapDeps.viteFileDeps) {
-        __vite__mapDeps.viteFileDeps = ["https://hamsterkombatgame.io/_nuxt/airdrop.iBd047SO.js", "https://hamsterkombatgame.io/_nuxt/airdrop.BqHeGTCy.js", "https://hamsterkombatgame.io/_nuxt/Preloader.vue.svXexKF3.js", "https://hamsterkombatgame.io/_nuxt/boost.Dt_a2uGg.js", "https://hamsterkombatgame.io/_nuxt/BalanceLarge.vue.DWFDbsiS.js", "https://hamsterkombatgame.io/_nuxt/Price.vue.C2ysufc6.js", "https://hamsterkombatgame.io/_nuxt/earn.D3w4Ys4t.js", "https://hamsterkombatgame.io/_nuxt/Image.vue.Ahn-yEsT.js", "https://hamsterkombatgame.io/_nuxt/attraction.2ba_P3sT.js", "https://hamsterkombatgame.io/_nuxt/friends.Cb6Y4M_H.js", "https://hamsterkombatgame.io/_nuxt/index.DEmT2X5F.js", "https://hamsterkombatgame.io/_nuxt/navigation.BGPYwjbO.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.B03Sw-pO.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.vkSr05gD.css", "https://hamsterkombatgame.io/_nuxt/navigation.Bw5XmvsK.css", "https://hamsterkombatgame.io/_nuxt/Earn.vue.CsTZGk0G.js", "https://hamsterkombatgame.io/_nuxt/image.vue.DJuQIKOa.js", "https://hamsterkombatgame.io/_nuxt/Hamster.vue.CZR80DQd.js", "https://hamsterkombatgame.io/_nuxt/MiniGameLose.vue.CPXvbOpi.js", "https://hamsterkombatgame.io/_nuxt/index.ZtWAHUSw.js", "https://hamsterkombatgame.io/_nuxt/mine.BCQSaw1r.js", "https://hamsterkombatgame.io/_nuxt/playground.CRG7i5CW.js", "https://hamsterkombatgame.io/_nuxt/bingx.dY3CjWfN.js", "https://hamsterkombatgame.io/_nuxt/exchange.CTAx2eA0.js", "https://hamsterkombatgame.io/_nuxt/index.BOiYW8Lj.js", "https://hamsterkombatgame.io/_nuxt/achievements.BEPfjonZ.js", "https://hamsterkombatgame.io/_nuxt/AchievementStat.vue.Cr0fHzSw.js", "https://hamsterkombatgame.io/_nuxt/Circles.vue.BDRHhKQh.js", "https://hamsterkombatgame.io/_nuxt/index._G1Krmo7.js", "https://hamsterkombatgame.io/_nuxt/index.Bmrl5h1f.js", "https://hamsterkombatgame.io/_nuxt/LandingHeader.vue.BY3NVDPk.js", "https://hamsterkombatgame.io/_nuxt/privacy-policy.CVvDQ1oB.js", "https://hamsterkombatgame.io/_nuxt/default.BZYqWZnD.js"]
+        __vite__mapDeps.viteFileDeps = ["https://hamsterkombatgame.io/_nuxt/airdrop.tXhIEUxe.js", "https://hamsterkombatgame.io/_nuxt/Image.vue.W356o-rE.js", "https://hamsterkombatgame.io/_nuxt/airdrop.b_5O5khW.js", "https://hamsterkombatgame.io/_nuxt/Preloader.vue.DDK03JFa.js", "https://hamsterkombatgame.io/_nuxt/boost.C652eIDm.js", "https://hamsterkombatgame.io/_nuxt/BalanceLarge.vue.BXmqqc3G.js", "https://hamsterkombatgame.io/_nuxt/Price.vue.BSWiADld.js", "https://hamsterkombatgame.io/_nuxt/earn.Cnln4jXp.js", "https://hamsterkombatgame.io/_nuxt/attraction.2t5DwPn1.js", "https://hamsterkombatgame.io/_nuxt/friends.CS8qFufZ.js", "https://hamsterkombatgame.io/_nuxt/index.DnmqXbdH.js", "https://hamsterkombatgame.io/_nuxt/navigation.MN2MbCOB.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.CDEPL7z9.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.vkSr05gD.css", "https://hamsterkombatgame.io/_nuxt/navigation.Bw5XmvsK.css", "https://hamsterkombatgame.io/_nuxt/Earn.vue.0-627gXQ.js", "https://hamsterkombatgame.io/_nuxt/image.vue.Dto08AJA.js", "https://hamsterkombatgame.io/_nuxt/Hamster.vue.ZdyvNt_y.js", "https://hamsterkombatgame.io/_nuxt/MiniGameLose.vue.Dk-xkIAX.js", "https://hamsterkombatgame.io/_nuxt/index.DKIryEEo.js", "https://hamsterkombatgame.io/_nuxt/mine.ZgDpL38O.js", "https://hamsterkombatgame.io/_nuxt/playground.BZ5-N14t.js", "https://hamsterkombatgame.io/_nuxt/bingx.C65cVyOU.js", "https://hamsterkombatgame.io/_nuxt/exchange.BA1xRH8X.js", "https://hamsterkombatgame.io/_nuxt/index.DM_yOa9o.js", "https://hamsterkombatgame.io/_nuxt/achievements.D6vgnYr7.js", "https://hamsterkombatgame.io/_nuxt/AchievementStat.vue.bsj-e2Aj.js", "https://hamsterkombatgame.io/_nuxt/Circles.vue.eaJWv4AA.js", "https://hamsterkombatgame.io/_nuxt/index.DuUW96UN.js", "https://hamsterkombatgame.io/_nuxt/index.Duq857P3.js", "https://hamsterkombatgame.io/_nuxt/LandingHeader.vue.Ch52VTN7.js", "https://hamsterkombatgame.io/_nuxt/privacy-policy.Dy2p7QGw.js", "https://hamsterkombatgame.io/_nuxt/default.DtYMY8ww.js"]
     }
     return indexes.map((i)=>__vite__mapDeps.viteFileDeps[i])
 }
