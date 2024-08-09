@@ -68,8 +68,8 @@ const rt = {}
     return isNaN(t) ? e : t
 }
 ;
-let Wu;
-const tp = ()=>Wu || (Wu = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
+let Gu;
+const tp = ()=>Gu || (Gu = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
 function Mn(e) {
     if (fe(e)) {
         const t = {};
@@ -98,13 +98,13 @@ function Nv(e) {
     ),
     t
 }
-function Mt(e) {
+function Dt(e) {
     let t = "";
     if (ot(e))
         t = e;
     else if (fe(e))
         for (let n = 0; n < e.length; n++) {
-            const r = Mt(e[n]);
+            const r = Dt(e[n]);
             r && (t += r + " ")
         }
     else if (nt(e))
@@ -116,7 +116,7 @@ function cn(e) {
     if (!e)
         return null;
     let {class: t, style: n} = e;
-    return t && !ot(t) && (e.class = Mt(t)),
+    return t && !ot(t) && (e.class = Dt(t)),
     n && (e.style = Mn(n)),
     e
 }
@@ -252,7 +252,7 @@ class Mc {
             return mr = !0,
             Br = this,
             this._runnings++,
-            Gu(this),
+            Wu(this),
             this.fn()
         } finally {
             Ju(this),
@@ -263,7 +263,7 @@ class Mc {
     }
     stop() {
         var t;
-        this.active && (Gu(this),
+        this.active && (Wu(this),
         Ju(this),
         (t = this.onStop) == null || t.call(this),
         this.active = !1)
@@ -272,7 +272,7 @@ class Mc {
 function Hv(e) {
     return e.value
 }
-function Gu(e) {
+function Wu(e) {
     e._trackId++,
     e._depsLength = 0
 }
@@ -440,7 +440,7 @@ class fp {
         }
         const a = Reflect.get(t, n, r);
         return (Ci(n) ? up.has(n) : Kv(n)) || (i || jt(t, "get", n),
-        o) ? a : lt(a) ? s && Pc(n) ? a : a.value : nt(a) ? i ? dr(a) : St(a) : a
+        o) ? a : lt(a) ? s && Pc(n) ? a : a.value : nt(a) ? i ? dr(a) : wt(a) : a
     }
 }
 class dp extends fp {
@@ -479,7 +479,7 @@ class dp extends fp {
         Reflect.ownKeys(t)
     }
 }
-class Wv extends fp {
+class Gv extends fp {
     constructor(t=!1) {
         super(!0, t)
     }
@@ -490,8 +490,8 @@ class Wv extends fp {
         return !0
     }
 }
-const Gv = new dp
-  , Jv = new Wv
+const Wv = new dp
+  , Jv = new Gv
   , zv = new dp(!0)
   , Vc = e=>e
   , Zs = e=>Reflect.getPrototypeOf(e);
@@ -706,8 +706,8 @@ function o0(e) {
 function s0(e) {
     return e.__v_skip || !Object.isExtensible(e) ? 0 : o0(Ov(e))
 }
-function St(e) {
-    return qr(e) ? e : xc(e, !1, Gv, t0, hp)
+function wt(e) {
+    return qr(e) ? e : xc(e, !1, Wv, t0, hp)
 }
 function Oi(e) {
     return xc(e, !1, zv, n0, pp)
@@ -748,7 +748,7 @@ function ht(e) {
     return Object.isExtensible(e) && Es(e, "__v_skip", !0),
     e
 }
-const lo = e=>nt(e) ? St(e) : e
+const lo = e=>nt(e) ? wt(e) : e
   , Uc = e=>nt(e) ? dr(e) : e;
 class yp {
     constructor(t, n, r, i) {
@@ -832,11 +832,11 @@ class l0 {
 function _p(e) {
     fi(e, 4)
 }
-function G(e) {
+function W(e) {
     return lt(e) ? e.value : e
 }
 const c0 = {
-    get: (e,t,n)=>G(Reflect.get(e, t, n)),
+    get: (e,t,n)=>W(Reflect.get(e, t, n)),
     set: (e,t,n,r)=>{
         const i = e[t];
         return lt(i) && !lt(n) ? (i.value = n,
@@ -959,7 +959,7 @@ function h0(e, t, n, r=!0) {
 }
 let co = !1
   , yl = !1;
-const Ot = [];
+const Rt = [];
 let Rn = 0;
 const di = [];
 let sr = null
@@ -972,17 +972,17 @@ function Jt(e) {
 }
 function p0(e) {
     let t = Rn + 1
-      , n = Ot.length;
+      , n = Rt.length;
     for (; t < n; ) {
         const r = t + n >>> 1
-          , i = Ot[r]
+          , i = Rt[r]
           , o = uo(i);
         o < e || o === e && i.pre ? t = r + 1 : n = r
     }
     return t
 }
 function Kc(e) {
-    (!Ot.length || !Ot.includes(e, co && e.allowRecurse ? Rn + 1 : Rn)) && (e.id == null ? Ot.push(e) : Ot.splice(p0(e.id), 0, e),
+    (!Rt.length || !Rt.includes(e, co && e.allowRecurse ? Rn + 1 : Rn)) && (e.id == null ? Rt.push(e) : Rt.splice(p0(e.id), 0, e),
     Sp())
 }
 function Sp() {
@@ -990,20 +990,20 @@ function Sp() {
     jc = kp.then(wp))
 }
 function m0(e) {
-    const t = Ot.indexOf(e);
-    t > Rn && Ot.splice(t, 1)
+    const t = Rt.indexOf(e);
+    t > Rn && Rt.splice(t, 1)
 }
 function vl(e) {
     fe(e) ? di.push(...e) : (!sr || !sr.includes(e, e.allowRecurse ? Fr + 1 : Fr)) && di.push(e),
     Sp()
 }
 function ef(e, t, n=co ? Rn + 1 : 0) {
-    for (; n < Ot.length; n++) {
-        const r = Ot[n];
+    for (; n < Rt.length; n++) {
+        const r = Rt[n];
         if (r && r.pre) {
             if (e && r.id !== e.uid)
                 continue;
-            Ot.splice(n, 1),
+            Rt.splice(n, 1),
             n--,
             r()
         }
@@ -1039,19 +1039,19 @@ const uo = e=>e.id == null ? 1 / 0 : e.id
 function wp(e) {
     yl = !1,
     co = !0,
-    Ot.sort(g0);
+    Rt.sort(g0);
     try {
-        for (Rn = 0; Rn < Ot.length; Rn++) {
-            const t = Ot[Rn];
+        for (Rn = 0; Rn < Rt.length; Rn++) {
+            const t = Rt[Rn];
             t && t.active !== !1 && yr(t, null, 14)
         }
     } finally {
         Rn = 0,
-        Ot.length = 0,
+        Rt.length = 0,
         Ss(),
         co = !1,
         jc = null,
-        (Ot.length || di.length) && wp()
+        (Rt.length || di.length) && wp()
     }
 }
 function y0(e, t, ...n) {
@@ -1164,7 +1164,7 @@ function Ra(e) {
             g = t.props ? l : T0(l)
         }
     } catch (y) {
-        Wi.length = 0,
+        Gi.length = 0,
         Mo(y, e, 1),
         S = $e(Nt)
     }
@@ -1173,9 +1173,9 @@ function Ra(e) {
         const y = Object.keys(g)
           , {shapeFlag: T} = p;
         y.length && T & 7 && (s && y.some(Oc) && (g = k0(g, s)),
-        p = Wn(p, g))
+        p = Gn(p, g))
     }
-    return n.dirs && (p = Wn(p),
+    return n.dirs && (p = Gn(p),
     p.dirs = p.dirs ? p.dirs.concat(n.dirs) : n.dirs),
     n.transition && (p.transition = n.transition),
     S = p,
@@ -1257,18 +1257,18 @@ function Yc({vnode: e, parent: t}, n) {
 }
 const qc = "components"
   , w0 = "directives";
-function Wr(e, t) {
-    return Wc(qc, e, !0, t) || e
+function Gr(e, t) {
+    return Gc(qc, e, !0, t) || e
 }
 const Lp = Symbol.for("v-ndc");
 function _l(e) {
-    return ot(e) ? Wc(qc, e, !1) || e : e || Lp
+    return ot(e) ? Gc(qc, e, !1) || e : e || Lp
 }
 function VM(e) {
-    return Wc(w0, e)
+    return Gc(w0, e)
 }
-function Wc(e, t, n=!0, r=!1) {
-    const i = pt || Et;
+function Gc(e, t, n=!0, r=!1) {
+    const i = pt || Tt;
     if (i) {
         const o = i.type;
         if (e === qc) {
@@ -1305,7 +1305,7 @@ const A0 = {
     create: Jc,
     normalize: R0
 }
-  , Gc = A0;
+  , Wc = A0;
 function fo(e, t) {
     const n = e.props && e.props[t];
     ge(n) && n()
@@ -1384,17 +1384,17 @@ function Jc(e, t, n, r, i, o, s, a, l, u, c=!1) {
         isUnmounted: !1,
         effects: [],
         resolve(w=!1, L=!1) {
-            const {vnode: C, activeBranch: O, pendingBranch: D, pendingId: B, effects: F, parentComponent: Z, container: W} = T;
+            const {vnode: C, activeBranch: O, pendingBranch: D, pendingId: B, effects: F, parentComponent: Z, container: G} = T;
             let K = !1;
             T.isHydrating ? T.isHydrating = !1 : w || (K = O && D.transition && D.transition.mode === "out-in",
             K && (O.transition.afterLeave = ()=>{
-                B === T.pendingId && (d(D, W, o === y ? _(O) : o, 0),
+                B === T.pendingId && (d(D, G, o === y ? _(O) : o, 0),
                 vl(F))
             }
             ),
             O && (b(O.el) !== T.hiddenContainer && (o = _(O)),
             m(O, Z, T, !0)),
-            K || d(D, W, o, 0)),
+            K || d(D, G, o, 0)),
             hi(T, D),
             T.pendingBranch = null,
             T.isInFallback = !1;
@@ -1424,11 +1424,11 @@ function Jc(e, t, n, r, i, o, s, a, l, u, c=!1) {
                 T.isInFallback && (f(null, w, D, F, O, null, B, a, l),
                 hi(T, w))
             }
-              , W = w.transition && w.transition.mode === "out-in";
-            W && (C.transition.afterLeave = Z),
+              , G = w.transition && w.transition.mode === "out-in";
+            G && (C.transition.afterLeave = Z),
             T.isInFallback = !0,
             m(C, O, null, !0),
-            W || Z()
+            G || Z()
         },
         move(w, L, C) {
             T.activeBranch && d(T.activeBranch, w, L, C),
@@ -1514,7 +1514,7 @@ function I0(e) {
     return ((t = e.props) == null ? void 0 : t.suspensible) != null && e.props.suspensible !== !1
 }
 const P0 = Symbol.for("v-scx")
-  , M0 = ()=>kt(P0);
+  , M0 = ()=>St(P0);
 function D0(e, t) {
     return zc(e, null, t)
 }
@@ -1530,7 +1530,7 @@ function zc(e, t, {immediate: n, deep: r, flush: i, once: o, onTrack: s, onTrigg
             T()
         }
     }
-    const l = Et
+    const l = Tt
       , u = w=>r === !0 ? w : xr(w, r === !1 ? 1 : void 0);
     let c, f = !1, d = !1;
     if (lt(e) ? (c = ()=>e.value,
@@ -1580,7 +1580,7 @@ function zc(e, t, {immediate: n, deep: r, flush: i, once: o, onTrack: s, onTrigg
     ;
     g.allowRecurse = !!t;
     let E;
-    i === "sync" ? E = g : i === "post" ? E = ()=>wt(g, l && l.suspense) : (g.pre = !0,
+    i === "sync" ? E = g : i === "post" ? E = ()=>At(g, l && l.suspense) : (g.pre = !0,
     l && (g.id = l.uid),
     E = ()=>Kc(g));
     const p = new Mc(c,on,E)
@@ -1590,7 +1590,7 @@ function zc(e, t, {immediate: n, deep: r, flush: i, once: o, onTrack: s, onTrigg
         y && Rc(y.effects, p)
     }
     ;
-    return t ? n ? g() : S = p.run() : i === "post" ? wt(p.run.bind(p), l && l.suspense) : p.run(),
+    return t ? n ? g() : S = p.run() : i === "post" ? At(p.run.bind(p), l && l.suspense) : p.run(),
     b && b.push(T),
     T
 }
@@ -1818,9 +1818,9 @@ function El(e, t, n, r) {
                 else
                     return;
             let F = !1;
-            const Z = C[es] = W=>{
+            const Z = C[es] = G=>{
                 F || (F = !0,
-                W ? T(B, [C]) : T(D, [C]),
+                G ? T(B, [C]) : T(D, [C]),
                 L.delayedLeave && L.delayedLeave(),
                 C[es] = void 0)
             }
@@ -1853,7 +1853,7 @@ function El(e, t, n, r) {
 }
 function Ia(e) {
     if (ta(e))
-        return e = Wn(e),
+        return e = Gn(e),
         e.children = null,
         e
 }
@@ -1871,7 +1871,7 @@ function Mp(e, t=!1, n) {
         let s = e[o];
         const a = n == null ? s.key : String(n) + String(s.key != null ? s.key : o);
         s.type === mt ? (s.patchFlag & 128 && i++,
-        r = r.concat(Mp(s.children, t, a))) : (t || s.type !== Nt) && r.push(a != null ? Wn(s, {
+        r = r.concat(Mp(s.children, t, a))) : (t || s.type !== Nt) && r.push(a != null ? Gn(s, {
             key: a
         }) : s)
     }
@@ -1917,7 +1917,7 @@ const jr = e=>!!e.type.__asyncLoader
             const L = E.component;
             u(E, p, y, 0, a),
             l(L.vnode, E, p, y, L, a, T, E.slotScopeIds, w),
-            wt(()=>{
+            At(()=>{
                 L.isDeactivated = !1,
                 L.a && ui(L.a);
                 const C = E.props && E.props.onVnodeMounted;
@@ -1929,7 +1929,7 @@ const jr = e=>!!e.type.__asyncLoader
         r.deactivate = E=>{
             const p = E.component;
             u(E, d, null, 1, a),
-            wt(()=>{
+            At(()=>{
                 p.da && ui(p.da);
                 const y = E.props && E.props.onVnodeUnmounted;
                 y && Bt(y, p.parent, E),
@@ -1977,7 +1977,7 @@ const jr = e=>!!e.type.__asyncLoader
                 if (E.type === T.type && E.key === T.key) {
                     Pa(T);
                     const w = T.component.da;
-                    w && wt(w, y);
+                    w && At(w, y);
                     return
                 }
                 m(E)
@@ -2006,7 +2006,7 @@ const jr = e=>!!e.type.__asyncLoader
                 p;
             const D = y.key == null ? T : y.key
               , B = i.get(D);
-            return y.el && (y = Wn(y),
+            return y.el && (y = Gn(y),
             p.shapeFlag & 128 && (p.ssContent = y)),
             S = D,
             B ? (y.el = B.el,
@@ -2032,7 +2032,7 @@ function Dp(e, t) {
 function Np(e, t) {
     Vp(e, "da", t)
 }
-function Vp(e, t, n=Et) {
+function Vp(e, t, n=Tt) {
     const r = e.__wdc || (e.__wdc = ()=>{
         let i = n;
         for (; i; ) {
@@ -2065,7 +2065,7 @@ function Pa(e) {
 function Ma(e) {
     return e.shapeFlag & 128 ? e.ssContent : e
 }
-function na(e, t, n=Et, r=!1) {
+function na(e, t, n=Tt, r=!1) {
     if (n) {
         const i = n[e] || (n[e] = [])
           , o = t.__weh || (t.__weh = (...s)=>{
@@ -2083,20 +2083,20 @@ function na(e, t, n=Et, r=!1) {
         o
     }
 }
-const Gn = e=>(t,n=Et)=>(!oa || e === "sp") && na(e, (...r)=>t(...r), n)
-  , j0 = Gn("bm")
-  , Vt = Gn("m")
-  , K0 = Gn("bu")
-  , Qc = Gn("u")
-  , kn = Gn("bum")
-  , Ri = Gn("um")
-  , Y0 = Gn("sp")
-  , q0 = Gn("rtg")
-  , W0 = Gn("rtc");
-function Fp(e, t=Et) {
+const Wn = e=>(t,n=Tt)=>(!oa || e === "sp") && na(e, (...r)=>t(...r), n)
+  , j0 = Wn("bm")
+  , Vt = Wn("m")
+  , K0 = Wn("bu")
+  , Qc = Wn("u")
+  , kn = Wn("bum")
+  , Ri = Wn("um")
+  , Y0 = Wn("sp")
+  , q0 = Wn("rtg")
+  , G0 = Wn("rtc");
+function Fp(e, t=Tt) {
     na("ec", e, t)
 }
-function G0(e, t, n, r) {
+function W0(e, t, n, r) {
     let i;
     const o = n && n[r];
     if (fe(e) || ot(e)) {
@@ -2131,7 +2131,7 @@ function Er(e, t, n={}, r, i) {
     o && o._c && (o._d = !1),
     pe();
     const s = o && xp(o(n))
-      , a = bt(mt, {
+      , a = Et(mt, {
         key: n.key || s && s.key || `_${t}`
     }, s || (r ? r() : []), s && e._ === 1 ? 64 : -2);
     return !i && a.scopeId && (a.slotScopeIds = [a.scopeId + "-s"]),
@@ -2271,7 +2271,7 @@ function Z0(e) {
       , r = e.ctx;
     Sl = !1,
     t.beforeCreate && sf(t.beforeCreate, e, "bc");
-    const {data: i, computed: o, methods: s, watch: a, provide: l, inject: u, created: c, beforeMount: f, mounted: d, beforeUpdate: m, updated: _, activated: b, deactivated: S, beforeDestroy: g, beforeUnmount: E, destroyed: p, unmounted: y, render: T, renderTracked: w, renderTriggered: L, errorCaptured: C, serverPrefetch: O, expose: D, inheritAttrs: B, components: F, directives: Z, filters: W} = t;
+    const {data: i, computed: o, methods: s, watch: a, provide: l, inject: u, created: c, beforeMount: f, mounted: d, beforeUpdate: m, updated: _, activated: b, deactivated: S, beforeDestroy: g, beforeUnmount: E, destroyed: p, unmounted: y, render: T, renderTracked: w, renderTriggered: L, errorCaptured: C, serverPrefetch: O, expose: D, inheritAttrs: B, components: F, directives: Z, filters: G} = t;
     if (u && $0(u, r, null),
     s)
         for (const Y in s) {
@@ -2280,7 +2280,7 @@ function Z0(e) {
         }
     if (i) {
         const Y = i.call(n, n);
-        nt(Y) && (e.data = St(Y))
+        nt(Y) && (e.data = wt(Y))
     }
     if (Sl = !0,
     o)
@@ -2320,7 +2320,7 @@ function Z0(e) {
     N(Dp, b),
     N(Np, S),
     N(Fp, C),
-    N(W0, w),
+    N(G0, w),
     N(q0, L),
     N(kn, E),
     N(Ri, y),
@@ -2347,7 +2347,7 @@ function $0(e, t, n=on) {
     for (const r in e) {
         const i = e[r];
         let o;
-        nt(i) ? "default"in i ? o = kt(i.from || r, i.default, !0) : o = kt(i.from || r) : o = kt(i),
+        nt(i) ? "default"in i ? o = St(i.from || r, i.default, !0) : o = St(i.from || r) : o = St(i),
         lt(o) ? Object.defineProperty(t, r, {
             enumerable: !0,
             configurable: !0,
@@ -2403,20 +2403,20 @@ const e_ = {
     emits: lf,
     methods: Hi,
     computed: Hi,
-    beforeCreate: It,
-    created: It,
-    beforeMount: It,
-    mounted: It,
-    beforeUpdate: It,
-    updated: It,
-    beforeDestroy: It,
-    beforeUnmount: It,
-    destroyed: It,
-    unmounted: It,
-    activated: It,
-    deactivated: It,
-    errorCaptured: It,
-    serverPrefetch: It,
+    beforeCreate: Pt,
+    created: Pt,
+    beforeMount: Pt,
+    mounted: Pt,
+    beforeUpdate: Pt,
+    updated: Pt,
+    beforeDestroy: Pt,
+    beforeUnmount: Pt,
+    destroyed: Pt,
+    unmounted: Pt,
+    activated: Pt,
+    deactivated: Pt,
+    errorCaptured: Pt,
+    serverPrefetch: Pt,
     components: Hi,
     directives: Hi,
     watch: n_,
@@ -2441,7 +2441,7 @@ function wl(e) {
     }
     return e
 }
-function It(e, t) {
+function Pt(e, t) {
     return e ? [...new Set([].concat(e, t))] : t
 }
 function Hi(e, t) {
@@ -2457,7 +2457,7 @@ function n_(e, t) {
         return e;
     const n = yt(Object.create(null), e);
     for (const r in t)
-        n[r] = It(e[r], t[r]);
+        n[r] = Pt(e[r], t[r]);
     return n
 }
 function Bp() {
@@ -2554,15 +2554,15 @@ function i_(e, t) {
 }
 let pi = null;
 function Kr(e, t) {
-    if (Et) {
-        let n = Et.provides;
-        const r = Et.parent && Et.parent.provides;
-        r === n && (n = Et.provides = Object.create(r)),
+    if (Tt) {
+        let n = Tt.provides;
+        const r = Tt.parent && Tt.parent.provides;
+        r === n && (n = Tt.provides = Object.create(r)),
         n[e] = t
     }
 }
-function kt(e, t, n=!1) {
-    const r = Et || pt;
+function St(e, t, n=!1) {
+    const r = Tt || pt;
     if (r || pi) {
         const i = r ? r.parent == null ? r.vnode.appContext && r.vnode.appContext.provides : r.parent.provides : pi._context.provides;
         if (i && e in i)
@@ -2572,7 +2572,7 @@ function kt(e, t, n=!1) {
     }
 }
 function Zc() {
-    return !!(Et || pt || pi)
+    return !!(Tt || pt || pi)
 }
 function o_(e, t, n, r=!1) {
     const i = {}
@@ -2820,7 +2820,7 @@ function Cs(e, t, n, r, i=!1) {
             }
             ;
             s ? (_.id = -1,
-            wt(_, n)) : _()
+            At(_, n)) : _()
         }
     }
 }
@@ -2852,14 +2852,14 @@ function d_(e) {
       , f = (p,y,T,w,L,C=!1)=>{
         const O = ns(p) && p.data === "["
           , D = ()=>b(p, y, T, w, L, O)
-          , {type: B, ref: F, shapeFlag: Z, patchFlag: W} = y;
+          , {type: B, ref: F, shapeFlag: Z, patchFlag: G} = y;
         let K = p.nodeType;
         y.el = p,
-        W === -2 && (C = !1,
+        G === -2 && (C = !1,
         y.dynamicChildren = null);
         let N = null;
         switch (B) {
-        case Gr:
+        case Wr:
             K !== 3 ? y.children === "" ? (l(y.el = i(""), s(p), p),
             N = p) : N = D() : (p.data !== y.children && (Xn = !0,
             p.data = y.children),
@@ -2909,15 +2909,15 @@ function d_(e) {
     }
       , d = (p,y,T,w,L,C)=>{
         C = C || !!y.dynamicChildren;
-        const {type: O, props: D, patchFlag: B, shapeFlag: F, dirs: Z, transition: W} = y
+        const {type: O, props: D, patchFlag: B, shapeFlag: F, dirs: Z, transition: G} = y
           , K = O === "input" || O === "option";
         if (K || B !== -1) {
             Z && On(y, null, T, "created");
             let N = !1;
             if (E(p)) {
-                N = Gp(w, W) && T && T.vnode.props && T.vnode.props.appear;
+                N = Wp(w, G) && T && T.vnode.props && T.vnode.props.appear;
                 const x = p.content.firstChild;
-                N && W.beforeEnter(x),
+                N && G.beforeEnter(x),
                 g(x, p, T),
                 y.el = p = x
             }
@@ -2943,7 +2943,7 @@ function d_(e) {
             Z && On(y, null, T, "beforeMount"),
             ((Y = D && D.onVnodeMounted) || Z || N) && Op(()=>{
                 Y && Bt(Y, T, y),
-                N && W.enter(p),
+                N && G.enter(p),
                 Z && On(y, null, T, "mounted")
             }
             , w)
@@ -2959,7 +2959,7 @@ function d_(e) {
             if (p)
                 p = f(p, Z, w, L, C, O);
             else {
-                if (Z.type === Gr && !Z.children)
+                if (Z.type === Wr && !Z.children)
                     continue;
                 Xn = !0,
                 n(null, Z, T, null, w, L, ts(T), C)
@@ -3018,14 +3018,14 @@ function d_(e) {
       , E = p=>p.nodeType === 1 && p.tagName.toLowerCase() === "template";
     return [c, f]
 }
-const wt = Op;
+const At = Op;
 function h_(e) {
-    return Wp(e)
+    return Gp(e)
 }
 function p_(e) {
-    return Wp(e, d_)
+    return Gp(e, d_)
 }
-function Wp(e, t) {
+function Gp(e, t) {
     const n = tp();
     n.__VUE__ = !0;
     const {insert: r, remove: i, patchProp: o, createElement: s, createText: a, createComment: l, setText: u, setElementText: c, parentNode: f, nextSibling: d, setScopeId: m=on, insertStaticContent: _} = e
@@ -3039,7 +3039,7 @@ function Wp(e, t) {
         v.dynamicChildren = null);
         const {type: J, ref: oe, shapeFlag: ie} = v;
         switch (J) {
-        case Gr:
+        case Wr:
             S(h, v, A, R);
             break;
         case Nt:
@@ -3104,10 +3104,10 @@ function Wp(e, t) {
             (J = oe.onVnodeBeforeMount) && Bt(J, R, h)
         }
         U && On(h, null, R, "beforeMount");
-        const se = Gp(V, I);
+        const se = Wp(V, I);
         se && I.beforeEnter(ee),
         r(ee, v, A),
-        ((J = oe && oe.onVnodeMounted) || se || U) && wt(()=>{
+        ((J = oe && oe.onVnodeMounted) || se || U) && At(()=>{
             J && Bt(J, R, h),
             se && I.enter(ee),
             U && On(h, null, R, "mounted")
@@ -3153,16 +3153,16 @@ function Wp(e, t) {
             ee & 8) {
                 const se = v.dynamicProps;
                 for (let he = 0; he < se.length; he++) {
-                    const Ge = se[he]
-                      , st = ie[Ge]
-                      , _t = I[Ge];
-                    (_t !== st || Ge === "value") && o(z, Ge, st, _t, V, h.children, A, R, et)
+                    const We = se[he]
+                      , st = ie[We]
+                      , _t = I[We];
+                    (_t !== st || We === "value") && o(z, We, st, _t, V, h.children, A, R, et)
                 }
             }
             ee & 1 && h.children !== v.children && c(z, v.children)
         } else
             !X && J == null && B(z, v, ie, I, A, R, V);
-        ((U = I.onVnodeUpdated) || oe) && wt(()=>{
+        ((U = I.onVnodeUpdated) || oe) && At(()=>{
             U && Bt(U, A, v, h),
             oe && On(v, h, A, "updated")
         }
@@ -3203,9 +3203,9 @@ function Wp(e, t) {
     }
       , Z = (h,v,A,R,V,q,X,z,ee)=>{
         v.slotScopeIds = z,
-        h == null ? v.shapeFlag & 512 ? V.ctx.activate(v, A, R, X, ee) : W(v, A, R, V, q, X, ee) : K(h, v, ee)
+        h == null ? v.shapeFlag & 512 ? V.ctx.activate(v, A, R, X, ee) : G(v, A, R, V, q, X, ee) : K(h, v, ee)
     }
-      , W = (h,v,A,R,V,q,X)=>{
+      , G = (h,v,A,R,V,q,X)=>{
         const z = h.component = k_(h, R, V);
         if (ta(h) && (z.ctx.renderer = $),
         S_(z),
@@ -3249,12 +3249,12 @@ function Wp(e, t) {
                         return
                     }
                 }
-                let he = oe, Ge;
+                let he = oe, We;
                 Lr(h, !1),
                 oe ? (oe.el = se.el,
                 Y(h, oe, X)) : oe = se,
                 ie && ui(ie),
-                (Ge = oe.props && oe.props.onVnodeBeforeUpdate) && Bt(Ge, U, oe, se),
+                (We = oe.props && oe.props.onVnodeBeforeUpdate) && Bt(We, U, oe, se),
                 Lr(h, !0);
                 const st = Ra(h)
                   , _t = h.subTree;
@@ -3262,16 +3262,16 @@ function Wp(e, t) {
                 b(_t, st, f(_t.el), H(_t), h, V, q),
                 oe.el = st.el,
                 he === null && Yc(h, st.el),
-                I && wt(I, V),
-                (Ge = oe.props && oe.props.onVnodeUpdated) && wt(()=>Bt(Ge, U, oe, se), V)
+                I && At(I, V),
+                (We = oe.props && oe.props.onVnodeUpdated) && At(()=>Bt(We, U, oe, se), V)
             } else {
                 let oe;
                 const {el: ie, props: I} = v
                   , {bm: U, m: se, parent: he} = h
-                  , Ge = jr(v);
+                  , We = jr(v);
                 if (Lr(h, !1),
                 U && ui(U),
-                !Ge && (oe = I && I.onVnodeBeforeMount) && Bt(oe, he, v),
+                !We && (oe = I && I.onVnodeBeforeMount) && Bt(oe, he, v),
                 Lr(h, !0),
                 ie && Ue) {
                     const st = ()=>{
@@ -3279,18 +3279,18 @@ function Wp(e, t) {
                         Ue(ie, h.subTree, h, V, null)
                     }
                     ;
-                    Ge ? v.type.__asyncLoader().then(()=>!h.isUnmounted && st()) : st()
+                    We ? v.type.__asyncLoader().then(()=>!h.isUnmounted && st()) : st()
                 } else {
                     const st = h.subTree = Ra(h);
                     b(null, st, A, R, h, V, q),
                     v.el = st.el
                 }
-                if (se && wt(se, V),
-                !Ge && (oe = I && I.onVnodeMounted)) {
+                if (se && At(se, V),
+                !We && (oe = I && I.onVnodeMounted)) {
                     const st = v;
-                    wt(()=>Bt(oe, he, st), V)
+                    At(()=>Bt(oe, he, st), V)
                 }
-                (v.shapeFlag & 256 || he && jr(he.vnode) && he.vnode.shapeFlag & 256) && h.a && wt(h.a, V),
+                (v.shapeFlag & 256 || he && jr(he.vnode) && he.vnode.shapeFlag & 256) && h.a && At(h.a, V),
                 h.isMounted = !0,
                 v = A = R = null
             }
@@ -3390,7 +3390,7 @@ function Wp(e, t) {
                 const Kt = v[J] = ee ? lr(v[J]) : tn(v[J]);
                 Kt.key != null && he.set(Kt.key, J)
             }
-            let Ge, st = 0;
+            let We, st = 0;
             const _t = I - se + 1;
             let zn = !1
               , La = 0;
@@ -3407,9 +3407,9 @@ function Wp(e, t) {
                 if (Kt.key != null)
                     wn = he.get(Kt.key);
                 else
-                    for (Ge = se; Ge <= I; Ge++)
-                        if (Di[Ge - se] === 0 && mn(Kt, v[Ge])) {
-                            wn = Ge;
+                    for (We = se; We <= I; We++)
+                        if (Di[We - se] === 0 && mn(Kt, v[We])) {
+                            wn = We;
                             break
                         }
                 wn === void 0 ? ve(Kt, V, q, !0) : (Di[wn - se] = J + 1,
@@ -3418,12 +3418,12 @@ function Wp(e, t) {
                 st++)
             }
             const Yu = zn ? m_(Di) : ai;
-            for (Ge = Yu.length - 1,
+            for (We = Yu.length - 1,
             J = _t - 1; J >= 0; J--) {
                 const Kt = se + J
                   , wn = v[Kt]
                   , qu = Kt + 1 < oe ? v[Kt + 1].el : R;
-                Di[J] === 0 ? b(null, wn, A, qu, V, q, X, z, ee) : zn && (Ge < 0 || J !== Yu[Ge] ? ce(wn, A, qu, 2) : Ge--)
+                Di[J] === 0 ? b(null, wn, A, qu, V, q, X, z, ee) : zn && (We < 0 || J !== Yu[We] ? ce(wn, A, qu, 2) : We--)
             }
         }
     }
@@ -3456,7 +3456,7 @@ function Wp(e, t) {
             if (R === 0)
                 z.beforeEnter(q),
                 r(q, v, A),
-                wt(()=>z.enter(q), V);
+                At(()=>z.enter(q), V);
             else {
                 const {leave: ie, delayLeave: I, afterLeave: U} = z
                   , se = ()=>r(q, v, A)
@@ -3493,15 +3493,15 @@ function Wp(e, t) {
             }
             U && On(h, null, v, "beforeUnmount"),
             oe & 64 ? h.type.remove(h, v, A, V, $, R) : J && (q !== mt || ie > 0 && ie & 64) ? et(J, v, A, !1, !0) : (q === mt && ie & 384 || !V && oe & 16) && et(ee, v, A),
-            R && We(h)
+            R && Ge(h)
         }
-        (se && (he = X && X.onVnodeUnmounted) || U) && wt(()=>{
+        (se && (he = X && X.onVnodeUnmounted) || U) && At(()=>{
             he && Bt(he, v, h),
             U && On(h, null, v, "unmounted")
         }
         , A)
     }
-      , We = h=>{
+      , Ge = h=>{
         const {type: v, el: A, anchor: R, transition: V} = h;
         if (v === mt) {
             Qe(A, R);
@@ -3537,8 +3537,8 @@ function Wp(e, t) {
         V.stop(),
         q && (q.active = !1,
         ve(X, h, v, A)),
-        z && wt(z, v),
-        wt(()=>{
+        z && At(z, v),
+        At(()=>{
             h.isUnmounted = !0
         }
         , v),
@@ -3563,8 +3563,8 @@ function Wp(e, t) {
         p: b,
         um: ve,
         m: ce,
-        r: We,
-        mt: W,
+        r: Ge,
+        mt: G,
         mc: C,
         pc: x,
         pbc: D,
@@ -3585,7 +3585,7 @@ function Na({type: e, props: t}, n) {
 function Lr({effect: e, update: t}, n) {
     e.allowRecurse = t.allowRecurse = n
 }
-function Gp(e, t) {
+function Wp(e, t) {
     return (!e || e && !e.pendingBranch) && t && !t.persisted
 }
 function eu(e, t, n=!1) {
@@ -3598,7 +3598,7 @@ function eu(e, t, n=!1) {
             a.shapeFlag & 1 && !a.dynamicChildren && ((a.patchFlag <= 0 || a.patchFlag === 32) && (a = i[o] = lr(i[o]),
             a.el = s.el),
             n || eu(s, a)),
-            a.type === Gr && (a.el = s.el)
+            a.type === Wr && (a.el = s.el)
         }
 }
 function m_(e) {
@@ -3745,17 +3745,17 @@ function zp(e) {
     }
 }
 const mt = Symbol.for("v-fgt")
-  , Gr = Symbol.for("v-txt")
+  , Wr = Symbol.for("v-txt")
   , Nt = Symbol.for("v-cmt")
   , qi = Symbol.for("v-stc")
-  , Wi = [];
+  , Gi = [];
 let sn = null;
 function pe(e=!1) {
-    Wi.push(sn = e ? null : [])
+    Gi.push(sn = e ? null : [])
 }
 function Qp() {
-    Wi.pop(),
-    sn = Wi[Wi.length - 1] || null
+    Gi.pop(),
+    sn = Gi[Gi.length - 1] || null
 }
 let yi = 1;
 function mf(e) {
@@ -3770,7 +3770,7 @@ function Xp(e) {
 function Je(e, t, n, r, i, o) {
     return Xp(me(e, t, n, r, i, o, !0))
 }
-function bt(e, t, n, r, i) {
+function Et(e, t, n, r, i) {
     return Xp($e(e, t, n, r, i, !0))
 }
 function vi(e) {
@@ -3826,7 +3826,7 @@ const $e = b_;
 function b_(e, t=null, n=null, r=0, i=null, o=!1) {
     if ((!e || e === Lp) && (e = Nt),
     vi(e)) {
-        const a = Wn(e, t, !0);
+        const a = Gn(e, t, !0);
         return n && tu(a, n),
         yi > 0 && !o && sn && (a.shapeFlag & 6 ? sn[sn.indexOf(e)] = a : sn.push(a)),
         a.patchFlag |= -2,
@@ -3836,7 +3836,7 @@ function b_(e, t=null, n=null, r=0, i=null, o=!1) {
     t) {
         t = zt(t);
         let {class: a, style: l} = t;
-        a && !ot(a) && (t.class = Mt(a)),
+        a && !ot(a) && (t.class = Dt(a)),
         nt(l) && (gp(l) && !fe(l) && (l = yt({}, l)),
         t.style = Mn(l))
     }
@@ -3846,7 +3846,7 @@ function b_(e, t=null, n=null, r=0, i=null, o=!1) {
 function zt(e) {
     return e ? gp(e) || ia in e ? yt({}, e) : e : null
 }
-function Wn(e, t, n=!1) {
+function Gn(e, t, n=!1) {
     const {props: r, ref: i, patchFlag: o, children: s} = e
       , a = t ? _i(r || {}, t) : r;
     return {
@@ -3871,8 +3871,8 @@ function Wn(e, t, n=!1) {
         transition: e.transition,
         component: e.component,
         suspense: e.suspense,
-        ssContent: e.ssContent && Wn(e.ssContent),
-        ssFallback: e.ssFallback && Wn(e.ssFallback),
+        ssContent: e.ssContent && Gn(e.ssContent),
+        ssFallback: e.ssFallback && Gn(e.ssFallback),
         el: e.el,
         anchor: e.anchor,
         ctx: e.ctx,
@@ -3880,22 +3880,22 @@ function Wn(e, t, n=!1) {
     }
 }
 function $p(e=" ", t=0) {
-    return $e(Gr, null, e, t)
+    return $e(Wr, null, e, t)
 }
 function xM(e, t) {
     const n = $e(qi, null, e);
     return n.staticCount = t,
     n
 }
-function Wt(e="", t=!1) {
+function Gt(e="", t=!1) {
     return t ? (pe(),
-    bt(Nt, null, e)) : $e(Nt, null, e)
+    Et(Nt, null, e)) : $e(Nt, null, e)
 }
 function tn(e) {
-    return e == null || typeof e == "boolean" ? $e(Nt) : fe(e) ? $e(mt, null, e.slice()) : typeof e == "object" ? lr(e) : $e(Gr, null, String(e))
+    return e == null || typeof e == "boolean" ? $e(Nt) : fe(e) ? $e(mt, null, e.slice()) : typeof e == "object" ? lr(e) : $e(Wr, null, String(e))
 }
 function lr(e) {
-    return e.el === null && e.patchFlag !== -1 || e.memo ? e : Wn(e)
+    return e.el === null && e.patchFlag !== -1 || e.memo ? e : Gn(e)
 }
 function tu(e, t) {
     let n = 0;
@@ -3934,7 +3934,7 @@ function _i(...e) {
         const r = e[n];
         for (const i in r)
             if (i === "class")
-                t.class !== r.class && (t.class = Mt([t.class, r.class]));
+                t.class !== r.class && (t.class = Dt([t.class, r.class]));
             else if (i === "style")
                 t.style = Mn([t.style, r.style]);
             else if (Oo(i)) {
@@ -4022,8 +4022,8 @@ function k_(e, t, n) {
     e.ce && e.ce(o),
     o
 }
-let Et = null;
-const Sn = ()=>Et || pt;
+let Tt = null;
+const Sn = ()=>Tt || pt;
 let Os, Cl;
 {
     const e = tp()
@@ -4036,11 +4036,11 @@ let Os, Cl;
         }
     }
     ;
-    Os = t("__VUE_INSTANCE_SETTERS__", n=>Et = n),
+    Os = t("__VUE_INSTANCE_SETTERS__", n=>Tt = n),
     Cl = t("__VUE_SSR_SETTERS__", n=>oa = n)
 }
 const Jr = e=>{
-    const t = Et;
+    const t = Tt;
     return Os(e),
     e.scope.on(),
     ()=>{
@@ -4049,7 +4049,7 @@ const Jr = e=>{
     }
 }
   , Ol = ()=>{
-    Et && Et.scope.off(),
+    Tt && Tt.scope.off(),
     Os(null)
 }
 ;
@@ -4279,10 +4279,10 @@ function I_(e) {
       , b = _ && _[0]
       , S = _ && _[1]
       , {onBeforeEnter: g, onEnter: E, onEnterCancelled: p, onLeave: y, onLeaveCancelled: T, onBeforeAppear: w=g, onAppear: L=E, onAppearCancelled: C=p} = t
-      , O = (F,Z,W)=>{
+      , O = (F,Z,G)=>{
         Or(F, Z ? c : a),
         Or(F, Z ? u : s),
-        W && W()
+        G && G()
     }
       , D = (F,Z)=>{
         F._isLeaving = !1,
@@ -4291,9 +4291,9 @@ function I_(e) {
         Or(F, d),
         Z && Z()
     }
-      , B = F=>(Z,W)=>{
+      , B = F=>(Z,G)=>{
         const K = F ? L : E
-          , N = ()=>O(Z, F, W);
+          , N = ()=>O(Z, F, G);
         Cr(K, [Z, N]),
         _f(()=>{
             Or(Z, F ? l : o),
@@ -4318,17 +4318,17 @@ function I_(e) {
         onAppear: B(!0),
         onLeave(F, Z) {
             F._isLeaving = !0;
-            const W = ()=>D(F, Z);
+            const G = ()=>D(F, Z);
             $n(F, f),
             N_(),
             $n(F, d),
             _f(()=>{
                 F._isLeaving && (Or(F, f),
                 $n(F, m),
-                vf(y) || bf(F, r, S, W))
+                vf(y) || bf(F, r, S, G))
             }
             ),
-            Cr(y, [F, W])
+            Cr(y, [F, G])
         },
         onEnterCancelled(F) {
             O(F, !1),
@@ -4601,8 +4601,8 @@ function q_(e) {
     return [e[2] === ":" ? e.slice(3) : Qr(e.slice(2)), t]
 }
 let xa = 0;
-const W_ = Promise.resolve()
-  , G_ = ()=>xa || (W_.then(()=>xa = 0),
+const G_ = Promise.resolve()
+  , W_ = ()=>xa || (G_.then(()=>xa = 0),
 xa = Date.now());
 function J_(e, t) {
     const n = r=>{
@@ -4614,7 +4614,7 @@ function J_(e, t) {
     }
     ;
     return n.value = e,
-    n.attached = G_(),
+    n.attached = W_(),
     n
 }
 function z_(e, t) {
@@ -4748,14 +4748,14 @@ const Ua = Symbol("_assign")
   , sm = yt({
     patchProp: Q_
 }, R_);
-let Gi, If = !1;
+let Wi, If = !1;
 function rb() {
-    return Gi || (Gi = h_(sm))
+    return Wi || (Wi = h_(sm))
 }
 function ib() {
-    return Gi = If ? Gi : p_(sm),
+    return Wi = If ? Wi : p_(sm),
     If = !0,
-    Gi
+    Wi
 }
 const am = (...e)=>{
     const t = rb().createApp(...e)
@@ -5137,8 +5137,8 @@ function qb(e, t, n=globalThis.Headers) {
     }
     return r
 }
-const Wb = new Set([408, 409, 425, 429, 500, 502, 503, 504])
-  , Gb = new Set([101, 204, 205, 304]);
+const Gb = new Set([408, 409, 425, 429, 500, 502, 503, 504])
+  , Wb = new Set([101, 204, 205, 304]);
 function pm(e={}) {
     const {fetch: t=globalThis.fetch, Headers: n=globalThis.Headers, AbortController: r=globalThis.AbortController} = e;
     async function i(a) {
@@ -5147,7 +5147,7 @@ function pm(e={}) {
             let c;
             typeof a.options.retry == "number" ? c = a.options.retry : c = Df(a.options.method) ? 0 : 1;
             const f = a.response && a.response.status || 500;
-            if (c > 0 && (Array.isArray(a.options.retryStatusCodes) ? a.options.retryStatusCodes.includes(f) : Wb.has(f))) {
+            if (c > 0 && (Array.isArray(a.options.retryStatusCodes) ? a.options.retryStatusCodes.includes(f) : Gb.has(f))) {
                 const d = a.options.retryDelay || 0;
                 return d > 0 && await new Promise(m=>setTimeout(m, d)),
                 o(a.request, {
@@ -5192,7 +5192,7 @@ function pm(e={}) {
             c.options.onRequestError && await c.options.onRequestError(c),
             await i(c)
         }
-        if (c.response.body && !Gb.has(c.response.status) && c.options.method !== "HEAD") {
+        if (c.response.body && !Wb.has(c.response.status) && c.options.method !== "HEAD") {
             const m = (c.options.parseResponse ? "json" : c.options.responseType) || Yb(c.response.headers.get("content-type") || "");
             switch (m) {
             case "json":
@@ -5536,7 +5536,7 @@ function cE(e) {
                 return n.vueApp.version
             }
         },
-        payload: St({
+        payload: wt({
             data: {},
             state: {},
             once: new Set,
@@ -5592,7 +5592,7 @@ function cE(e) {
         );
         n.hook("app:mounted", i)
     }
-    const r = St(n.payload.config);
+    const r = wt(n.payload.config);
     return n.provide("config", r),
     n
 }
@@ -6209,7 +6209,7 @@ const Sm = Symbol("layout-meta")
     var e;
     return (e = ne()) == null ? void 0 : e.$router
 }
-  , aa = ()=>Zc() ? kt(Fo, ne()._route) : ne()._route;
+  , aa = ()=>Zc() ? St(Fo, ne()._route) : ne()._route;
 const RE = (e,t,n={})=>{
     const r = ne()
       , i = n.global || typeof e != "string"
@@ -6445,9 +6445,9 @@ function YE(e, t) {
 function qE(e) {
     return Array.isArray(e) ? e : [e]
 }
-const WE = ["title", "titleTemplate", "script", "style", "noscript"]
+const GE = ["title", "titleTemplate", "script", "style", "noscript"]
   , ms = ["base", "meta", "link", "style", "script", "noscript"]
-  , GE = ["title", "titleTemplate", "templateParams", "base", "htmlAttrs", "bodyAttrs", "meta", "link", "style", "script", "noscript"]
+  , WE = ["title", "titleTemplate", "templateParams", "base", "htmlAttrs", "bodyAttrs", "meta", "link", "style", "script", "noscript"]
   , JE = ["base", "title", "titleTemplate", "bodyAttrs", "htmlAttrs", "templateParams"]
   , Am = ["tagPosition", "tagPriority", "tagDuplicateStrategy", "children", "innerHTML", "textContent", "processTemplateParams"]
   , zE = typeof window < "u";
@@ -6517,7 +6517,7 @@ function Om(e, t) {
     }
     ).join(t.entrySeparator || "")
 }
-const Rt = e=>({
+const It = e=>({
     keyValue: e,
     metaKey: "property"
 })
@@ -6533,10 +6533,10 @@ const Rt = e=>({
             }
         }
     },
-    articleExpirationTime: Rt("article:expiration_time"),
-    articleModifiedTime: Rt("article:modified_time"),
-    articlePublishedTime: Rt("article:published_time"),
-    bookReleaseDate: Rt("book:release_date"),
+    articleExpirationTime: It("article:expiration_time"),
+    articleModifiedTime: It("article:modified_time"),
+    articlePublishedTime: It("article:published_time"),
+    bookReleaseDate: It("book:release_date"),
     charset: {
         metaKey: "charset"
     },
@@ -6555,20 +6555,20 @@ const Rt = e=>({
     defaultStyle: {
         metaKey: "http-equiv"
     },
-    fbAppId: Rt("fb:app_id"),
+    fbAppId: It("fb:app_id"),
     msapplicationConfig: Ka("msapplication-Config"),
     msapplicationTileColor: Ka("msapplication-TileColor"),
     msapplicationTileImage: Ka("msapplication-TileImage"),
-    ogAudioSecureUrl: Rt("og:audio:secure_url"),
-    ogAudioUrl: Rt("og:audio"),
-    ogImageSecureUrl: Rt("og:image:secure_url"),
-    ogImageUrl: Rt("og:image"),
-    ogSiteName: Rt("og:site_name"),
-    ogVideoSecureUrl: Rt("og:video:secure_url"),
-    ogVideoUrl: Rt("og:video"),
-    profileFirstName: Rt("profile:first_name"),
-    profileLastName: Rt("profile:last_name"),
-    profileUsername: Rt("profile:username"),
+    ogAudioSecureUrl: It("og:audio:secure_url"),
+    ogAudioUrl: It("og:audio"),
+    ogImageSecureUrl: It("og:image:secure_url"),
+    ogImageUrl: It("og:image"),
+    ogSiteName: It("og:site_name"),
+    ogVideoSecureUrl: It("og:video:secure_url"),
+    ogVideoUrl: It("og:video"),
+    profileFirstName: It("profile:first_name"),
+    profileLastName: It("profile:last_name"),
+    profileUsername: It("profile:username"),
     refresh: {
         metaKey: "http-equiv",
         unpack: {
@@ -6711,7 +6711,7 @@ async function ZE(e, t, n) {
     };
     return Am.forEach(i=>{
         const o = typeof r.props[i] < "u" ? r.props[i] : n[i];
-        typeof o < "u" && ((!["innerHTML", "textContent", "children"].includes(i) || WE.includes(r.tag)) && (r[i === "children" ? "innerHTML" : i] = o),
+        typeof o < "u" && ((!["innerHTML", "textContent", "children"].includes(i) || GE.includes(r.tag)) && (r[i === "children" ? "innerHTML" : i] = o),
         delete r.props[i])
     }
     ),
@@ -6749,7 +6749,7 @@ async function Nm(e, t) {
 const eT = 10;
 async function tT(e) {
     const t = [];
-    return Object.entries(e.resolvedInput).filter(([n,r])=>typeof r < "u" && GE.includes(n)).forEach(([n,r])=>{
+    return Object.entries(e.resolvedInput).filter(([n,r])=>typeof r < "u" && WE.includes(n)).forEach(([n,r])=>{
         const i = qE(r);
         t.push(...i.map(o=>ZE(n, o, e)).flat())
     }
@@ -6759,11 +6759,11 @@ async function tT(e) {
     n._p = (e._i << eT) + r,
     n))
 }
-const Wf = {
+const Gf = {
     base: -10,
     title: 10
 }
-  , Gf = {
+  , Wf = {
     critical: -80,
     high: -10,
     low: 20
@@ -6773,8 +6773,8 @@ function Ds(e) {
     const n = e.tagPriority;
     return typeof n == "number" ? n : (e.tag === "meta" ? (e.props["http-equiv"] === "content-security-policy" && (t = -30),
     e.props.charset && (t = -20),
-    e.props.name === "viewport" && (t = -15)) : e.tag === "link" && e.props.rel === "preconnect" ? t = 20 : e.tag in Wf && (t = Wf[e.tag]),
-    typeof n == "string" && n in Gf ? t + Gf[n] : t)
+    e.props.name === "viewport" && (t = -15)) : e.tag === "link" && e.props.rel === "preconnect" ? t = 20 : e.tag in Gf && (t = Gf[e.tag]),
+    typeof n == "string" && n in Wf ? t + Wf[n] : t)
 }
 const nT = [{
     prefix: "before:",
@@ -7265,13 +7265,13 @@ function ET() {
 }
 const TT = rm.startsWith("3");
 function kT(e) {
-    return typeof e == "function" ? e() : G(e)
+    return typeof e == "function" ? e() : W(e)
 }
 function Ns(e, t="") {
     if (e instanceof Promise)
         return e;
     const n = kT(e);
-    return !e || !n ? n : Array.isArray(n) ? n.map(r=>Ns(r, t)) : typeof n == "object" ? Object.fromEntries(Object.entries(n).map(([r,i])=>r === "titleTemplate" || r.startsWith("on") ? [r, G(i)] : [r, Ns(i, r)])) : n
+    return !e || !n ? n : Array.isArray(n) ? n.map(r=>Ns(r, t)) : typeof n == "object" ? Object.fromEntries(Object.entries(n).map(([r,i])=>r === "titleTemplate" || r.startsWith("on") ? [r, W(i)] : [r, Ns(i, r)])) : n
 }
 const ST = {
     hooks: {
@@ -7306,7 +7306,7 @@ function LT(e) {
 function CT() {
     if (Yl in Kl)
         return Kl[Yl]();
-    const e = kt(Um);
+    const e = St(Um);
     return e || ET()
 }
 function OT(e, t={}) {
@@ -7381,13 +7381,13 @@ function Cn(e) {
 }
 const IT = {
     nuxt: {
-        buildId: "369a852d-0a06-45f9-91a9-c6da84f4c1d9"
+        buildId: "ed6c3550-c5dd-46d5-8a0e-40e18ed8b93c"
     }
 }
   , PT = SE(IT);
 function MT() {
     const e = ne();
-    return e._appConfig || (e._appConfig = St(PT)),
+    return e._appConfig || (e._appConfig = wt(PT)),
     e._appConfig
 }
 const DT = !1
@@ -7481,7 +7481,7 @@ const Xf = {
     ShallowRef: e=>bn(e),
     ShallowReactive: e=>Oi(e),
     Ref: e=>le(e),
-    Reactive: e=>St(e)
+    Reactive: e=>wt(e)
 }
   , KT = Ft({
     name: "nuxt:revive-payload:client",
@@ -7537,7 +7537,7 @@ const Xf = {
   * @license MIT
   */
 const ri = typeof document < "u";
-function WT(e) {
+function GT(e) {
     return e.__esModule || e[Symbol.toStringTag] === "Module"
 }
 const Xe = Object.assign;
@@ -7552,16 +7552,16 @@ function Ya(e, t) {
 const Ji = ()=>{}
   , En = Array.isArray
   , Ym = /#/g
-  , GT = /&/g
+  , WT = /&/g
   , JT = /\//g
   , zT = /=/g
   , QT = /\?/g
   , qm = /\+/g
   , XT = /%5B/g
   , ZT = /%5D/g
-  , Wm = /%5E/g
+  , Gm = /%5E/g
   , $T = /%60/g
-  , Gm = /%7B/g
+  , Wm = /%7B/g
   , ek = /%7C/g
   , Jm = /%7D/g
   , tk = /%20/g;
@@ -7569,13 +7569,13 @@ function cu(e) {
     return encodeURI("" + e).replace(ek, "|").replace(XT, "[").replace(ZT, "]")
 }
 function nk(e) {
-    return cu(e).replace(Gm, "{").replace(Jm, "}").replace(Wm, "^")
+    return cu(e).replace(Wm, "{").replace(Jm, "}").replace(Gm, "^")
 }
-function Wl(e) {
-    return cu(e).replace(qm, "%2B").replace(tk, "+").replace(Ym, "%23").replace(GT, "%26").replace($T, "`").replace(Gm, "{").replace(Jm, "}").replace(Wm, "^")
+function Gl(e) {
+    return cu(e).replace(qm, "%2B").replace(tk, "+").replace(Ym, "%23").replace(WT, "%26").replace($T, "`").replace(Wm, "{").replace(Jm, "}").replace(Gm, "^")
 }
 function rk(e) {
-    return Wl(e).replace(zT, "%3D")
+    return Gl(e).replace(zT, "%3D")
 }
 function ik(e) {
     return cu(e).replace(Ym, "%23").replace(QT, "%3F")
@@ -7714,13 +7714,13 @@ function gk(e) {
 function ed(e, t) {
     return (history.state ? history.state.position - t : -1) + e
 }
-const Gl = new Map;
+const Wl = new Map;
 function yk(e, t) {
-    Gl.set(e, t)
+    Wl.set(e, t)
 }
 function vk(e) {
-    const t = Gl.get(e);
-    return Gl.delete(e),
+    const t = Wl.get(e);
+    return Wl.delete(e),
     t
 }
 let _k = ()=>location.protocol + "//" + location.host;
@@ -8363,7 +8363,7 @@ function ld(e) {
             r !== void 0 && (t += (t.length ? "&" : "") + n);
             continue
         }
-        (En(r) ? r.map(o=>o && Wl(o)) : [r && Wl(r)]).forEach(o=>{
+        (En(r) ? r.map(o=>o && Gl(o)) : [r && Gl(r)]).forEach(o=>{
             o !== void 0 && (t += (t.length ? "&" : "") + n,
             o != null && (t += "=" + o))
         }
@@ -8422,7 +8422,7 @@ function ur(e, t, n, r, i, o=s=>s()) {
     }
     )
 }
-function Wa(e, t, n, r, i=o=>o()) {
+function Ga(e, t, n, r, i=o=>o()) {
     const o = [];
     for (const s of e)
         for (const a in s.components) {
@@ -8436,7 +8436,7 @@ function Wa(e, t, n, r, i=o=>o()) {
                     o.push(()=>u.then(c=>{
                         if (!c)
                             return Promise.reject(new Error(`Couldn't resolve component "${a}" at "${s.path}"`));
-                        const f = WT(c) ? c.default : c;
+                        const f = GT(c) ? c.default : c;
                         s.components[a] = f;
                         const m = (f.__vccOpts || f)[t];
                         return m && ur(m, n, r, s, a, i)()
@@ -8450,9 +8450,9 @@ function Bk(e) {
     return typeof e == "object" || "displayName"in e || "props"in e || "__vccOpts"in e
 }
 function ud(e) {
-    const t = kt(uu)
-      , n = kt(fu)
-      , r = ue(()=>t.resolve(G(e.to)))
+    const t = St(uu)
+      , n = St(fu)
+      , r = ue(()=>t.resolve(W(e.to)))
       , i = ue(()=>{
         const {matched: l} = r.value
           , {length: u} = l
@@ -8470,7 +8470,7 @@ function ud(e) {
       , o = ue(()=>i.value > -1 && Yk(n.params, r.value.params))
       , s = ue(()=>i.value > -1 && i.value === n.matched.length - 1 && zm(n.params, r.value.params));
     function a(l={}) {
-        return Kk(l) ? t[G(e.replace) ? "replace" : "push"](G(e.to)).catch(Ji) : Promise.resolve()
+        return Kk(l) ? t[W(e.replace) ? "replace" : "push"](W(e.to)).catch(Ji) : Promise.resolve()
     }
     return {
         route: r,
@@ -8501,8 +8501,8 @@ const Hk = xe({
     },
     useLink: ud,
     setup(e, {slots: t}) {
-        const n = St(ud(e))
-          , {options: r} = kt(uu)
+        const n = wt(ud(e))
+          , {options: r} = St(uu)
           , i = ue(()=>({
             [dd(e.activeClass, r.linkActiveClass, "router-link-active")]: n.isActive,
             [dd(e.exactActiveClass, r.linkExactActiveClass, "router-link-exact-active")]: n.isExactActive
@@ -8560,11 +8560,11 @@ const dd = (e,t,n)=>e ?? t ?? n
         MODE: 3
     },
     setup(e, {attrs: t, slots: n}) {
-        const r = kt(Jl)
+        const r = St(Jl)
           , i = ue(()=>e.route || r.value)
-          , o = kt(cd, 0)
+          , o = St(cd, 0)
           , s = ue(()=>{
-            let u = G(o);
+            let u = W(o);
             const {matched: c} = i.value;
             let f;
             for (; (f = c[u]) && !f.components; )
@@ -8619,7 +8619,7 @@ function hd(e, t) {
     return n.length === 1 ? n[0] : n
 }
 const tg = qk;
-function Wk(e) {
+function Gk(e) {
     const t = Mk(e.routes, e)
       , n = e.parseQuery || Fk
       , r = e.stringifyQuery || ld
@@ -8776,8 +8776,8 @@ function Wk(e) {
     }
     function D(H, te) {
         let Q;
-        const [$,ye,Ue] = Gk(H, te);
-        Q = Wa($.reverse(), "beforeRouteLeave", H, te);
+        const [$,ye,Ue] = Wk(H, te);
+        Q = Ga($.reverse(), "beforeRouteLeave", H, te);
         for (const v of $)
             v.leaveGuards.forEach(A=>{
                 Q.push(ur(A, H, te))
@@ -8793,7 +8793,7 @@ function Wk(e) {
             et(Q)
         }
         ).then(()=>{
-            Q = Wa(ye, "beforeRouteUpdate", H, te);
+            Q = Ga(ye, "beforeRouteUpdate", H, te);
             for (const v of ye)
                 v.updateGuards.forEach(A=>{
                     Q.push(ur(A, H, te))
@@ -8815,7 +8815,7 @@ function Wk(e) {
             et(Q)
         }
         ).then(()=>(H.matched.forEach(v=>v.enterCallbacks = {}),
-        Q = Wa(Ue, "beforeRouteEnter", H, te, O),
+        Q = Ga(Ue, "beforeRouteEnter", H, te, O),
         Q.push(h),
         et(Q))).then(()=>{
             Q = [];
@@ -8843,7 +8843,7 @@ function Wk(e) {
         j()
     }
     let Z;
-    function W() {
+    function G() {
         Z || (Z = i.listen((H,te,Q)=>{
             if (!ct.listening)
                 return;
@@ -8887,7 +8887,7 @@ function Wk(e) {
     }
     function j(H) {
         return Y || (Y = !H,
-        W(),
+        G(),
         K.list().forEach(([te,Q])=>H ? Q(H) : te()),
         K.reset()),
         H
@@ -8900,7 +8900,7 @@ function Wk(e) {
         return Jt().then(()=>ye(H, te, Ue)).then(h=>h && gk(h)).catch(h=>x(h, H, te))
     }
     const ve = H=>i.go(H);
-    let We;
+    let Ge;
     const Qe = new Set
       , ct = {
         currentRoute: l,
@@ -8928,9 +8928,9 @@ function Wk(e) {
             H.config.globalProperties.$router = te,
             Object.defineProperty(H.config.globalProperties, "$route", {
                 enumerable: !0,
-                get: ()=>G(l)
+                get: ()=>W(l)
             }),
-            ri && !We && l.value === hn && (We = !0,
+            ri && !Ge && l.value === hn && (Ge = !0,
             y(i.location).catch(ye=>{}
             ));
             const Q = {};
@@ -8950,7 +8950,7 @@ function Wk(e) {
                 Z && Z(),
                 Z = null,
                 l.value = hn,
-                We = !1,
+                Ge = !1,
                 Y = !1),
                 $()
             }
@@ -8961,7 +8961,7 @@ function Wk(e) {
     }
     return ct
 }
-function Gk(e, t) {
+function Wk(e, t) {
     const n = []
       , r = []
       , i = []
@@ -8975,7 +8975,7 @@ function Gk(e, t) {
     return [n, r, i]
 }
 function Jk() {
-    return kt(fu)
+    return St(fu)
 }
 const zk = (e,t)=>t.path.replace(/(:\w+)\([^)]+\)/g, "$1").replace(/(:\w+)[?+*]/g, "$1").replace(/:\w+/g, n=>{
     var r;
@@ -9024,1547 +9024,1547 @@ const be = null
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___en",
     path: "/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___es",
     path: "/es/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___fr",
     path: "/fr/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___hi",
     path: "/hi/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___id",
     path: "/id/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___pt",
     path: "/pt/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___ru",
     path: "/ru/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___th",
     path: "/th/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___tl",
     path: "/tl/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___tr",
     path: "/tr/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___uz",
     path: "/uz/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-airdrop___vi",
     path: "/vi/clicker/airdrop",
     meta: {},
     alias: [],
     redirect: be == null ? void 0 : be.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js"), __vite__mapDeps([0, 1, 2, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___de",
     path: "/de/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___en",
     path: "/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___es",
     path: "/es/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___fr",
     path: "/fr/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___hi",
     path: "/hi/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___id",
     path: "/id/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___pt",
     path: "/pt/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___ru",
     path: "/ru/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___th",
     path: "/th/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___tl",
     path: "/tl/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___tr",
     path: "/tr/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___uz",
     path: "/uz/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-boost___vi",
     path: "/vi/clicker/boost",
     meta: {},
     alias: [],
     redirect: Ee == null ? void 0 : Ee.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js"), __vite__mapDeps([4, 5, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___de",
     path: "/de/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___en",
     path: "/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___es",
     path: "/es/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___fr",
     path: "/fr/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___hi",
     path: "/hi/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___id",
     path: "/id/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___pt",
     path: "/pt/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___ru",
     path: "/ru/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___th",
     path: "/th/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___tl",
     path: "/tl/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___tr",
     path: "/tr/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___uz",
     path: "/uz/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-earn___vi",
     path: "/vi/clicker/earn",
     meta: {},
     alias: [],
     redirect: Te == null ? void 0 : Te.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js"), __vite__mapDeps([7, 1, 6, 3, 8]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___de",
     path: "/de/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___en",
     path: "/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___es",
     path: "/es/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___fr",
     path: "/fr/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___hi",
     path: "/hi/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___id",
     path: "/id/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___pt",
     path: "/pt/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___ru",
     path: "/ru/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___th",
     path: "/th/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___tl",
     path: "/tl/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___tr",
     path: "/tr/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___uz",
     path: "/uz/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-friends___vi",
     path: "/vi/clicker/friends",
     meta: {},
     alias: [],
     redirect: ke == null ? void 0 : ke.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js"), __vite__mapDeps([9, 3, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___de",
     path: "/de/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___en",
     path: "/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___es",
     path: "/es/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___fr",
     path: "/fr/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___hi",
     path: "/hi/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___id",
     path: "/id/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___pt",
     path: "/pt/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___ru",
     path: "/ru/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___th",
     path: "/th/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___tl",
     path: "/tl/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___tr",
     path: "/tr/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___uz",
     path: "/uz/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker___vi",
     path: "/vi/clicker",
     meta: {},
     alias: [],
     redirect: Se == null ? void 0 : Se.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js"), __vite__mapDeps([10, 6, 3, 11, 12, 13, 14, 15, 16, 17, 18, 5]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___de",
     path: "/de/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___en",
     path: "/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___es",
     path: "/es/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___fr",
     path: "/fr/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___hi",
     path: "/hi/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___id",
     path: "/id/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___pt",
     path: "/pt/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___ru",
     path: "/ru/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___th",
     path: "/th/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___tl",
     path: "/tl/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___tr",
     path: "/tr/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___uz",
     path: "/uz/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-league___vi",
     path: "/vi/clicker/league",
     meta: {},
     alias: [],
     redirect: we == null ? void 0 : we.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js"), __vite__mapDeps([19, 13, 3, 12, 6, 15, 16]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___de",
     path: "/de/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___en",
     path: "/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___es",
     path: "/es/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___fr",
     path: "/fr/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___hi",
     path: "/hi/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___id",
     path: "/id/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___pt",
     path: "/pt/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___ru",
     path: "/ru/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___th",
     path: "/th/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___tl",
     path: "/tl/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___tr",
     path: "/tr/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___uz",
     path: "/uz/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-mine___vi",
     path: "/vi/clicker/mine",
     meta: {},
     alias: [],
     redirect: Ae == null ? void 0 : Ae.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js"), __vite__mapDeps([20, 11, 12, 6, 13, 5, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___de",
     path: "/de/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___en",
     path: "/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___es",
     path: "/es/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___fr",
     path: "/fr/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___hi",
     path: "/hi/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___id",
     path: "/id/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___pt",
     path: "/pt/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___ru",
     path: "/ru/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___th",
     path: "/th/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___tl",
     path: "/tl/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___tr",
     path: "/tr/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___uz",
     path: "/uz/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-playground___vi",
     path: "/vi/clicker/playground",
     meta: {},
     alias: [],
     redirect: Le == null ? void 0 : Le.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js"), __vite__mapDeps([21, 1, 3, 14, 15, 16, 17]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___de",
     path: "/de/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___en",
     path: "/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___es",
     path: "/es/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___fr",
     path: "/fr/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___hi",
     path: "/hi/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___id",
     path: "/id/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___pt",
     path: "/pt/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___ru",
     path: "/ru/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___th",
     path: "/th/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___tl",
     path: "/tl/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___tr",
     path: "/tr/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___uz",
     path: "/uz/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-bingx___vi",
     path: "/vi/clicker/settings/bingx",
     meta: {},
     alias: [],
     redirect: Ce == null ? void 0 : Ce.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js"), __vite__mapDeps([22, 3, 12, 6]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___de",
     path: "/de/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___en",
     path: "/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___es",
     path: "/es/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___fr",
     path: "/fr/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___hi",
     path: "/hi/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___id",
     path: "/id/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___pt",
     path: "/pt/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___ru",
     path: "/ru/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___th",
     path: "/th/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___tl",
     path: "/tl/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___tr",
     path: "/tr/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___uz",
     path: "/uz/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-exchange___vi",
     path: "/vi/clicker/settings/exchange",
     meta: {},
     alias: [],
     redirect: Oe == null ? void 0 : Oe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js"), __vite__mapDeps([23, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___de",
     path: "/de/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___en",
     path: "/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___es",
     path: "/es/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___fr",
     path: "/fr/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___hi",
     path: "/hi/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___id",
     path: "/id/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___pt",
     path: "/pt/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___ru",
     path: "/ru/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___th",
     path: "/th/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___tl",
     path: "/tl/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___tr",
     path: "/tr/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___uz",
     path: "/uz/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings___vi",
     path: "/vi/clicker/settings",
     meta: {},
     alias: [],
     redirect: Re == null ? void 0 : Re.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js"), __vite__mapDeps([24, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___de",
     path: "/de/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___en",
     path: "/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___es",
     path: "/es/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___fr",
     path: "/fr/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___hi",
     path: "/hi/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___id",
     path: "/id/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___pt",
     path: "/pt/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___ru",
     path: "/ru/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___th",
     path: "/th/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___tl",
     path: "/tl/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___tr",
     path: "/tr/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___uz",
     path: "/uz/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-settings-language___vi",
     path: "/vi/clicker/settings/language",
     meta: {},
     alias: [],
     redirect: Ie == null ? void 0 : Ie.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.CxSrYdI0.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/language.C6NUxogd.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___de",
     path: "/de/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___en",
     path: "/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___es",
     path: "/es/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___fr",
     path: "/fr/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___hi",
     path: "/hi/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___id",
     path: "/id/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___pt",
     path: "/pt/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___ru",
     path: "/ru/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___th",
     path: "/th/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___tl",
     path: "/tl/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___tr",
     path: "/tr/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___uz",
     path: "/uz/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-achievements___vi",
     path: "/vi/clicker/user/achievements",
     meta: {},
     alias: [],
     redirect: Pe == null ? void 0 : Pe.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js"), __vite__mapDeps([25, 1, 26, 27]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___de",
     path: "/de/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___en",
     path: "/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___es",
     path: "/es/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___fr",
     path: "/fr/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___hi",
     path: "/hi/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___id",
     path: "/id/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___pt",
     path: "/pt/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___ru",
     path: "/ru/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___th",
     path: "/th/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___tl",
     path: "/tl/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___tr",
     path: "/tr/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___uz",
     path: "/uz/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user-avatar___vi",
     path: "/vi/clicker/user/avatar",
     meta: {},
     alias: [],
     redirect: Me == null ? void 0 : Me.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.C2ZqQ57s.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/avatar.DRx66Ogm.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___de",
     path: "/de/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___en",
     path: "/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___es",
     path: "/es/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___fr",
     path: "/fr/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___hi",
     path: "/hi/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___id",
     path: "/id/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___pt",
     path: "/pt/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___ru",
     path: "/ru/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___th",
     path: "/th/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___tl",
     path: "/tl/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___tr",
     path: "/tr/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___uz",
     path: "/uz/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: "clicker-user___vi",
     path: "/vi/clicker/user",
     meta: {},
     alias: [],
     redirect: De == null ? void 0 : De.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js"), __vite__mapDeps([28, 1, 26, 27, 6, 3]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___de",
     path: (P == null ? void 0 : P.path) ?? "/de",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___en",
     path: (P == null ? void 0 : P.path) ?? "/",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___es",
     path: (P == null ? void 0 : P.path) ?? "/es",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___fr",
     path: (P == null ? void 0 : P.path) ?? "/fr",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___hi",
     path: (P == null ? void 0 : P.path) ?? "/hi",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___id",
     path: (P == null ? void 0 : P.path) ?? "/id",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___pt",
     path: (P == null ? void 0 : P.path) ?? "/pt",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___ru",
     path: (P == null ? void 0 : P.path) ?? "/ru",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___th",
     path: (P == null ? void 0 : P.path) ?? "/th",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___tl",
     path: (P == null ? void 0 : P.path) ?? "/tl",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___tr",
     path: (P == null ? void 0 : P.path) ?? "/tr",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___uz",
     path: (P == null ? void 0 : P.path) ?? "/uz",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (P == null ? void 0 : P.name) ?? "index___vi",
     path: (P == null ? void 0 : P.path) ?? "/vi",
     meta: P || {},
     alias: (P == null ? void 0 : P.alias) || [],
     redirect: P == null ? void 0 : P.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js"), __vite__mapDeps([29, 30, 13, 12]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___de",
     path: (M == null ? void 0 : M.path) ?? "/de/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___en",
     path: (M == null ? void 0 : M.path) ?? "/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___es",
     path: (M == null ? void 0 : M.path) ?? "/es/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___fr",
     path: (M == null ? void 0 : M.path) ?? "/fr/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___hi",
     path: (M == null ? void 0 : M.path) ?? "/hi/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___id",
     path: (M == null ? void 0 : M.path) ?? "/id/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___pt",
     path: (M == null ? void 0 : M.path) ?? "/pt/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___ru",
     path: (M == null ? void 0 : M.path) ?? "/ru/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___th",
     path: (M == null ? void 0 : M.path) ?? "/th/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___tl",
     path: (M == null ? void 0 : M.path) ?? "/tl/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___tr",
     path: (M == null ? void 0 : M.path) ?? "/tr/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___uz",
     path: (M == null ? void 0 : M.path) ?? "/uz/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }, {
     name: (M == null ? void 0 : M.name) ?? "privacy-policy___vi",
     path: (M == null ? void 0 : M.path) ?? "/vi/privacy-policy",
     meta: M || {},
     alias: (M == null ? void 0 : M.alias) || [],
     redirect: M == null ? void 0 : M.redirect,
-    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
+    component: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js"), __vite__mapDeps([31, 30]), import.meta.url).then(e=>e.default || e)
 }]
   , ng = (e,t,n)=>(t = t === !0 ? {} : t,
 {
@@ -10851,7 +10851,7 @@ function gS(e) {
     return t === null || Object.getPrototypeOf(t) === null
 }
 function yS(e, t) {
-    return Hc(St(hu(e, t)))
+    return Hc(wt(hu(e, t)))
 }
 function vS(e) {
     return Object.entries(e).reduce((t,[n,{value: r}])=>it(de({}, t), {
@@ -11195,10 +11195,10 @@ function LS(e={}) {
     }
 }
 function kr() {
-    return kt(ag)
+    return St(ag)
 }
 function CS() {
-    return pS ? it(de({}, Hc(St(rg))), {
+    return pS ? it(de({}, Hc(wt(rg))), {
         isTopAlign: ue(()=>!0),
         update: ()=>{}
     }) : kr().config
@@ -11241,7 +11241,7 @@ const lg = {
             role: t.item.ariaRole,
             "aria-live": t.item.ariaLive,
             key: `${r.item.id}_${r.item.type}`
-        }, en(G(sg)(t.item)), 9, RS))
+        }, en(W(sg)(t.item)), 9, RS))
     }
 });
 function PS() {
@@ -11272,11 +11272,11 @@ function MS() {
         onPointerdown: n
     } : {})
 }
-const Ga = {
+const Wa = {
     boxSizing: "border-box"
 }
   , Ja = {
-    list: it(de({}, Ga), {
+    list: it(de({}, Wa), {
         display: "flex",
         justifyContent: "center",
         listStyle: "none",
@@ -11287,14 +11287,14 @@ const Ga = {
         position: "fixed",
         zIndex: "var(--nv-z, 500)"
     }),
-    listItem: it(de({}, Ga), {
+    listItem: it(de({}, Wa), {
         display: "flex",
         margin: "0",
         position: "absolute",
         transitionProperty: "transform",
         width: "100%"
     }),
-    itemContainer: it(de({}, Ga), {
+    itemContainer: it(de({}, Wa), {
         maxWidth: "100%",
         padding: "0 0 var(--nv-gap, 0.75rem) 0",
         pointerEvents: "auto"
@@ -11422,48 +11422,48 @@ const BS = ["data-notivue-align", "aria-label"]
         (l,u)=>{
             var c;
             return pe(),
-            bt(__, {
-                to: G(n).teleportTo.value === !1 ? void 0 : G(n).teleportTo.value,
-                disabled: G(n).teleportTo.value === !1
-            }, [G(r).length > 0 ? (pe(),
+            Et(__, {
+                to: W(n).teleportTo.value === !1 ? void 0 : W(n).teleportTo.value,
+                disabled: W(n).teleportTo.value === !1
+            }, [W(r).length > 0 ? (pe(),
             Je("ol", _i({
                 key: 0
-            }, de(de(de({}, G(s)), G(a)), G(i).rootAttrs.value), {
-                "data-notivue-align": G(n).isTopAlign.value ? "top" : "bottom",
+            }, de(de(de({}, W(s)), W(a)), W(i).rootAttrs.value), {
+                "data-notivue-align": W(n).isTopAlign.value ? "top" : "bottom",
                 "aria-label": t.listAriaLabel,
-                ref: G(i).root,
+                ref: W(i).root,
                 class: t.class,
-                style: de(de({}, G(o).list), (c = t.styles) == null ? void 0 : c.list)
+                style: de(de({}, W(o).list), (c = t.styles) == null ? void 0 : c.list)
             }), [(pe(!0),
-            Je(mt, null, G0(G(r).entries.value, (f,d)=>{
+            Je(mt, null, W0(W(r).entries.value, (f,d)=>{
                 var m, _, b, S;
                 return pe(),
                 Je("li", {
                     tabindex: "-1",
                     key: f.id,
                     "data-notivue-id": f.id,
-                    "aria-setsize": G(r).length,
+                    "aria-setsize": W(r).length,
                     "aria-posinset": d + 1,
                     ref_for: !0,
-                    ref: G(i).items,
-                    style: Mn(de(de(de({}, G(o).listItem), f.positionStyles), (m = t.styles) == null ? void 0 : m.listItem))
+                    ref: W(i).items,
+                    style: Mn(de(de(de({}, W(o).listItem), f.positionStyles), (m = t.styles) == null ? void 0 : m.listItem))
                 }, [f.ariaLiveOnly ? (pe(),
-                bt(IS, {
+                Et(IS, {
                     key: 0,
                     item: f
                 }, null, 8, ["item"])) : (pe(),
                 Je("div", _i({
                     key: 1
                 }, f.animationAttrs, {
-                    "aria-label": G(sg)(f),
+                    "aria-label": W(sg)(f),
                     tabindex: (b = (_ = l.containersTabIndex) == null ? void 0 : _[f.id]) != null ? b : -1,
                     "data-notivue-container": f.id,
                     ref_for: !0,
-                    ref: G(i).containers,
-                    style: de(de({}, G(o).itemContainer), (S = t.styles) == null ? void 0 : S.itemContainer)
-                }), [Er(l.$slots, "default", cn(zt(G(og)(f))))], 16, jS))], 12, HS)
+                    ref: W(i).containers,
+                    style: de(de({}, W(o).itemContainer), (S = t.styles) == null ? void 0 : S.itemContainer)
+                }), [Er(l.$slots, "default", cn(zt(W(og)(f))))], 16, jS))], 12, HS)
             }
-            ), 128))], 16, BS)) : Wt("", !0)], 8, ["to", "disabled"])
+            ), 128))], 16, BS)) : Gt("", !0)], 8, ["to", "disabled"])
         }
     }
 })
@@ -11478,7 +11478,7 @@ const BS = ["data-notivue-align", "aria-label"]
     setup(e) {
         const t = e;
         return (n,r)=>(pe(),
-        bt(G(OS), null, {
+        Et(W(OS), null, {
             default: un(()=>[$e(KS, cn(zt(t)), {
                 default: un(i=>[Er(n.$slots, "default", cn(zt(i)))]),
                 _: 3
@@ -11583,9 +11583,9 @@ const BS = ["data-notivue-align", "aria-label"]
             if (!r.root.value || !d.value)
                 return !1;
             const {clientWidth: ce, offsetLeft: ve} = d.value
-              , We = ve + r.root.value.offsetLeft
-              , Qe = We + ce;
-            return j.clientX > We && j.clientX < Qe
+              , Ge = ve + r.root.value.offsetLeft
+              , Qe = Ge + ce;
+            return j.clientX > Ge && j.clientX < Qe
         }
         function C(j) {
             return fr(j) ? za.Mouse : za.Touch
@@ -11630,9 +11630,9 @@ const BS = ["data-notivue-align", "aria-label"]
                 currentX: j.clientX - _.startX
             }),
             Math.abs(_.currentX) > ce * u.value && (_.isClearing = !0,
-            W(j))
+            G(j))
         }
-        function W(j) {
+        function G(j) {
             if (o.item.destroy(),
             fr(j) && L(j)) {
                 const ce = r.getSortedItems();
@@ -11704,15 +11704,15 @@ const BS = ["data-notivue-align", "aria-label"]
         }, [Er(j.$slots, "default")], 4))
     }
 })
-  , WS = me("path", {
+  , GS = me("path", {
     d: "M6,-0c-3.308,-0 -6,2.692 -6,6c-0,3.308 2.692,6 6,6c3.308,-0 6,-2.692 6,-6c-0,-3.308 -2.692,-6 -6,-6Zm3.123,3.989l-3.877,4.616c-0.086,0.102 -0.213,0.162 -0.346,0.164l-0.008,0c-0.131,0 -0.256,-0.055 -0.343,-0.153l-1.662,-1.846c-0.081,-0.085 -0.126,-0.199 -0.126,-0.316c0,-0.254 0.209,-0.462 0.462,-0.462c0.135,0 0.263,0.059 0.35,0.161l1.307,1.451l3.536,-4.209c0.087,-0.101 0.215,-0.159 0.349,-0.159c0.253,-0 0.461,0.208 0.461,0.461c0,0.107 -0.036,0.21 -0.103,0.292Z"
 }, null, -1)
-  , GS = [WS]
+  , WS = [GS]
   , _d = xe({
     __name: "SuccessIcon",
     setup(e) {
         return (t,n)=>(pe(),
-        Je("svg", cn(zt(G(Pi))), GS, 16))
+        Je("svg", cn(zt(W(Pi))), WS, 16))
     }
 })
   , JS = me("path", {
@@ -11723,7 +11723,7 @@ const BS = ["data-notivue-align", "aria-label"]
     __name: "ErrorIcon",
     setup(e) {
         return (t,n)=>(pe(),
-        Je("svg", cn(zt(G(Pi))), zS, 16))
+        Je("svg", cn(zt(W(Pi))), zS, 16))
     }
 })
   , QS = me("path", {
@@ -11734,7 +11734,7 @@ const BS = ["data-notivue-align", "aria-label"]
     __name: "InfoIcon",
     setup(e) {
         return (t,n)=>(pe(),
-        Je("svg", cn(zt(G(Pi))), XS, 16))
+        Je("svg", cn(zt(W(Pi))), XS, 16))
     }
 })
   , $S = me("path", {
@@ -11748,7 +11748,7 @@ const BS = ["data-notivue-align", "aria-label"]
     __name: "SuccessOutlineIcon",
     setup(e) {
         return (t,n)=>(pe(),
-        Je("svg", cn(zt(G(Pi))), tw, 16))
+        Je("svg", cn(zt(W(Pi))), tw, 16))
     }
 })
   , nw = me("path", {
@@ -11765,7 +11765,7 @@ const BS = ["data-notivue-align", "aria-label"]
     __name: "ErrorOutlineIcon",
     setup(e) {
         return (t,n)=>(pe(),
-        Je("svg", cn(zt(G(Pi))), ow, 16))
+        Je("svg", cn(zt(W(Pi))), ow, 16))
     }
 })
   , sw = me("path", {
@@ -11782,7 +11782,7 @@ const BS = ["data-notivue-align", "aria-label"]
     __name: "InfoOutlineIcon",
     setup(e) {
         return (t,n)=>(pe(),
-        Je("svg", cn(zt(G(Pi))), cw, 16))
+        Je("svg", cn(zt(W(Pi))), cw, 16))
     }
 })
   , fw = me("path", {
@@ -11798,7 +11798,7 @@ const BS = ["data-notivue-align", "aria-label"]
     __name: "PromiseIcon",
     setup(e) {
         return (t,n)=>(pe(),
-        Je("svg", cn(zt(it(de({}, G(pu)), {
+        Je("svg", cn(zt(it(de({}, W(pu)), {
             width: 28,
             height: 28,
             fill: "currentColor"
@@ -11822,7 +11822,7 @@ const BS = ["data-notivue-align", "aria-label"]
     __name: "CloseIcon",
     setup(e) {
         return (t,n)=>(pe(),
-        Je("svg", cn(zt(G(yw))), gw, 16))
+        Je("svg", cn(zt(W(yw))), gw, 16))
     }
 })
   , pu = {
@@ -11981,7 +11981,7 @@ const YM = it(de({}, Uo), {
         }),
         (i,o)=>(pe(),
         Je("div", {
-            class: Mt(G(Hn).NOTIFICATION),
+            class: Dt(W(Hn).NOTIFICATION),
             "data-notivue": i.item.type,
             "data-notivue-has-title": !!i.item.title,
             style: Mn(i.theme)
@@ -11989,54 +11989,54 @@ const YM = it(de({}, Uo), {
         Je(mt, {
             key: 0
         }, [typeof n.value == "object" ? (pe(),
-        bt(Do, {
+        Et(Do, {
             key: 0,
-            name: G(Hn).TRANSITION,
+            name: W(Hn).TRANSITION,
             mode: "out-in"
         }, {
             default: un(()=>[typeof n.value == "object" ? (pe(),
-            bt(_l(n.value), {
+            Et(_l(n.value), {
                 key: 0,
-                class: Mt(G(Hn).ICON),
+                class: Dt(W(Hn).ICON),
                 "aria-hidden": "true"
-            }, null, 8, ["class"])) : Wt("", !0)]),
+            }, null, 8, ["class"])) : Gt("", !0)]),
             _: 1
         }, 8, ["name"])) : typeof n.value == "string" ? (pe(),
         Je("div", {
             key: 1,
-            class: Mt(G(Hn).ICON),
+            class: Dt(W(Hn).ICON),
             "aria-hidden": "true"
-        }, en(n.value), 3)) : Wt("", !0)], 64)) : Wt("", !0), me("div", {
-            class: Mt(G(Hn).CONTENT),
+        }, en(n.value), 3)) : Gt("", !0)], 64)) : Gt("", !0), me("div", {
+            class: Dt(W(Hn).CONTENT),
             "aria-live": i.item.ariaLive,
             role: i.item.ariaRole,
             "aria-atomic": "true"
         }, [i.item.title ? (pe(),
         Je("h3", {
             key: 0,
-            class: Mt(G(Hn).TITLE),
-            textContent: en(G(i.item.title))
-        }, null, 10, kw)) : Wt("", !0), me("p", {
-            class: Mt(G(Hn).MESSAGE),
-            textContent: en(G(i.item.message))
-        }, null, 10, Sw)], 10, Tw), !t.hideClose && G(r) && i.item.type !== "promise" ? (pe(),
+            class: Dt(W(Hn).TITLE),
+            textContent: en(W(i.item.title))
+        }, null, 10, kw)) : Gt("", !0), me("p", {
+            class: Dt(W(Hn).MESSAGE),
+            textContent: en(W(i.item.message))
+        }, null, 10, Sw)], 10, Tw), !t.hideClose && W(r) && i.item.type !== "promise" ? (pe(),
         Je("button", {
             key: 1,
-            class: Mt(G(Hn).CLOSE),
+            class: Dt(W(Hn).CLOSE),
             "aria-label": i.closeAriaLabel,
             type: "button",
             tabindex: "-1",
             onClick: o[0] || (o[0] = (...s)=>i.item.clear && i.item.clear(...s))
-        }, [typeof G(r) == "object" ? (pe(),
-        bt(_l(G(r)), {
+        }, [typeof W(r) == "object" ? (pe(),
+        Et(_l(W(r)), {
             key: 0,
-            class: Mt(G(Hn).CLOSE_ICON)
-        }, null, 8, ["class"])) : typeof G(r) == "string" ? (pe(),
+            class: Dt(W(Hn).CLOSE_ICON)
+        }, null, 8, ["class"])) : typeof W(r) == "string" ? (pe(),
         Je("div", {
             key: 1,
             "aria-hidden": "true",
-            textContent: en(G(r))
-        }, null, 8, Aw)) : Wt("", !0)], 10, ww)) : Wt("", !0)], 14, Ew))
+            textContent: en(W(r))
+        }, null, 8, Aw)) : Gt("", !0)], 10, ww)) : Gt("", !0)], 14, Ew))
     }
 });
 /*!
@@ -12052,7 +12052,7 @@ const Vs = typeof window < "u"
     s: n
 })
   , Cw = e=>JSON.stringify(e).replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029").replace(/\u0027/g, "\\u0027")
-  , Tt = e=>typeof e == "number" && isFinite(e)
+  , kt = e=>typeof e == "number" && isFinite(e)
   , Ow = e=>dg(e) === "[object Date]"
   , Fs = e=>dg(e) === "[object RegExp]"
   , da = e=>He(e) && Object.keys(e).length === 0
@@ -12165,7 +12165,7 @@ function Vw(e) {
 }
 const jn = " "
   , Fw = "\r"
-  , Pt = `
+  , Mt = `
 `
   , xw = "\u2028"
   , Uw = "\u2029";
@@ -12175,8 +12175,8 @@ function Bw(e) {
       , r = 1
       , i = 1
       , o = 0;
-    const s = L=>t[L] === Fw && t[L + 1] === Pt
-      , a = L=>t[L] === Pt
+    const s = L=>t[L] === Fw && t[L + 1] === Mt
+      , a = L=>t[L] === Mt
       , l = L=>t[L] === Uw
       , u = L=>t[L] === xw
       , c = L=>s(L) || a(L) || l(L) || u(L)
@@ -12184,7 +12184,7 @@ function Bw(e) {
       , d = ()=>r
       , m = ()=>i
       , _ = ()=>o
-      , b = L=>s(L) || l(L) || u(L) ? Pt : t[L]
+      , b = L=>s(L) || l(L) || u(L) ? Mt : t[L]
       , S = ()=>b(n)
       , g = ()=>b(n + o);
     function E() {
@@ -12288,7 +12288,7 @@ function Kw(e, t={}) {
     }
     function b(h) {
         let v = "";
-        for (; h.currentPeek() === jn || h.currentPeek() === Pt; )
+        for (; h.currentPeek() === jn || h.currentPeek() === Mt; )
             v += h.currentPeek(),
             h.peek();
         return v
@@ -12371,7 +12371,7 @@ function Kw(e, t={}) {
             return !1;
         const R = ()=>{
             const q = h.currentPeek();
-            return q === "{" ? g(h.peek()) : q === "@" || q === "%" || q === "|" || q === ":" || q === "." || q === jn || !q ? !1 : q === Pt ? (h.peek(),
+            return q === "{" ? g(h.peek()) : q === "@" || q === "%" || q === "|" || q === ":" || q === "." || q === jn || !q ? !1 : q === Mt ? (h.peek(),
             R()) : g(q)
         }
           , V = R();
@@ -12397,9 +12397,9 @@ function Kw(e, t={}) {
         const A = (V=!1,q="",X=!1)=>{
             const z = h.currentPeek();
             return z === "{" ? q === "%" ? !1 : V : z === "@" || !z ? q === "%" ? !0 : V : z === "%" ? (h.peek(),
-            A(V, "%", !0)) : z === "|" ? q === "%" || X ? !0 : !(q === jn || q === Pt) : z === jn ? (h.peek(),
-            A(!0, jn, X)) : z === Pt ? (h.peek(),
-            A(!0, Pt, X)) : !0
+            A(V, "%", !0)) : z === "|" ? q === "%" || X ? !0 : !(q === jn || q === Mt) : z === jn ? (h.peek(),
+            A(!0, jn, X)) : z === Mt ? (h.peek(),
+            A(!0, Mt, X)) : !0
         }
           , R = A();
         return v && h.resetPeek(),
@@ -12410,7 +12410,7 @@ function Kw(e, t={}) {
         return A === tr ? tr : v(A) ? (h.next(),
         A) : null
     }
-    function W(h) {
+    function G(h) {
         return Z(h, A=>{
             const R = A.charCodeAt(0);
             return R >= 97 && R <= 122 || R >= 65 && R <= 90 || R >= 48 && R <= 57 || R === 95 || R === 36
@@ -12457,7 +12457,7 @@ function Kw(e, t={}) {
                     h.next();
                 else
                     break;
-            else if (A === jn || A === Pt)
+            else if (A === jn || A === Mt)
                 if (F(h))
                     v += A,
                     h.next();
@@ -12477,7 +12477,7 @@ function Kw(e, t={}) {
         S(h);
         let v = ""
           , A = "";
-        for (; v = W(h); )
+        for (; v = G(h); )
             A += v;
         return h.currentChar() === tr && f(ze.UNTERMINATED_CLOSING_BRACE, o(), 0),
         A
@@ -12495,17 +12495,17 @@ function Kw(e, t={}) {
         _(h, "'");
         let v = ""
           , A = "";
-        const R = q=>q !== kd && q !== Pt;
+        const R = q=>q !== kd && q !== Mt;
         for (; v = Z(h, R); )
-            v === "\\" ? A += We(h) : A += v;
+            v === "\\" ? A += Ge(h) : A += v;
         const V = h.currentChar();
-        return V === Pt || V === tr ? (f(ze.UNTERMINATED_SINGLE_QUOTE_IN_PLACEHOLDER, o(), 0),
-        V === Pt && (h.next(),
+        return V === Mt || V === tr ? (f(ze.UNTERMINATED_SINGLE_QUOTE_IN_PLACEHOLDER, o(), 0),
+        V === Mt && (h.next(),
         _(h, "'")),
         A) : (_(h, "'"),
         A)
     }
-    function We(h) {
+    function Ge(h) {
         const v = h.currentChar();
         switch (v) {
         case "\\":
@@ -12538,7 +12538,7 @@ function Kw(e, t={}) {
         S(h);
         let v = ""
           , A = "";
-        const R = V=>V !== "{" && V !== "}" && V !== jn && V !== Pt;
+        const R = V=>V !== "{" && V !== "}" && V !== jn && V !== Mt;
         for (; v = Z(h, R); )
             A += v;
         return A
@@ -12546,14 +12546,14 @@ function Kw(e, t={}) {
     function et(h) {
         let v = ""
           , A = "";
-        for (; v = W(h); )
+        for (; v = G(h); )
             A += v;
         return A
     }
     function H(h) {
         const v = (A=!1,R)=>{
             const V = h.currentChar();
-            return V === "{" || V === "%" || V === "@" || V === "|" || V === "(" || V === ")" || !V || V === jn ? R : V === Pt || V === Hw ? (R += V,
+            return V === "{" || V === "%" || V === "@" || V === "|" || V === "(" || V === ")" || !V || V === jn ? R : V === Mt || V === Hw ? (R += V,
             h.next(),
             v(A, R)) : (R += V,
             h.next(),
@@ -12630,7 +12630,7 @@ function Kw(e, t={}) {
         const {currentType: A} = v;
         let R = null;
         const V = h.currentChar();
-        switch ((A === 8 || A === 9 || A === 12 || A === 10) && (V === Pt || V === jn) && f(ze.INVALID_LINKED_FORMAT, o(), 0),
+        switch ((A === 8 || A === 9 || A === 12 || A === 10) && (V === Mt || V === jn) && f(ze.INVALID_LINKED_FORMAT, o(), 0),
         V) {
         case "@":
             return h.next(),
@@ -12709,7 +12709,7 @@ function Kw(e, t={}) {
 }
 const Yw = "parser"
   , qw = /(?:\\\\|\\'|\\u([0-9a-fA-F]{4})|\\U([0-9a-fA-F]{6}))/g;
-function Ww(e, t, n) {
+function Gw(e, t, n) {
     switch (e) {
     case "\\\\":
         return "\\";
@@ -12722,7 +12722,7 @@ function Ww(e, t, n) {
         }
     }
 }
-function Gw(e={}) {
+function Ww(e={}) {
     const t = e.location !== !1
       , {onError: n} = e;
     function r(g, E, p, y, ...T) {
@@ -12784,7 +12784,7 @@ function Gw(e={}) {
         const p = g.context()
           , {lastOffset: y, lastStartLoc: T} = p
           , w = i(9, y, T);
-        return w.value = E.replace(qw, Ww),
+        return w.value = E.replace(qw, Gw),
         g.nextToken(),
         o(w, g.currentOffset(), g.currentPosition()),
         w
@@ -13224,7 +13224,7 @@ function rA(e, t={}) {
       , r = !!n.jit
       , i = !!n.minify
       , o = n.optimize == null ? !0 : n.optimize
-      , a = Gw(n).parse(e);
+      , a = Ww(n).parse(e);
     return r ? (o && Qw(a),
     i && ii(a),
     {
@@ -13413,8 +13413,8 @@ function Ld(e, t) {
     t === 2 ? e ? e > 1 ? 1 : 0 : 1 : e ? Math.min(e, 2) : 0
 }
 function vA(e) {
-    const t = Tt(e.pluralIndex) ? e.pluralIndex : -1;
-    return e.named && (Tt(e.named.count) || Tt(e.named.n)) ? Tt(e.named.count) ? e.named.count : Tt(e.named.n) ? e.named.n : t : t
+    const t = kt(e.pluralIndex) ? e.pluralIndex : -1;
+    return e.named && (kt(e.named.count) || kt(e.named.n)) ? kt(e.named.count) ? e.named.count : kt(e.named.n) ? e.named.n : t : t
 }
 function _A(e, t) {
     t.count || (t.count = e),
@@ -13429,7 +13429,7 @@ function bA(e={}) {
       , s = e.list || []
       , a = g=>s[g]
       , l = e.named || {};
-    Tt(e.pluralIndex) && _A(n, l);
+    kt(e.pluralIndex) && _A(n, l);
     const u = g=>l[g];
     function c(g) {
         const E = Ze(e.messages) ? e.messages(g) : Fe(e.messages) ? e.messages[g] : !1;
@@ -13866,12 +13866,12 @@ function KA(e, t, n) {
 function $l(...e) {
     const [t,n,r] = e
       , i = {};
-    if (!re(t) && !Tt(t) && !nn(t) && !ki(t))
+    if (!re(t) && !kt(t) && !nn(t) && !ki(t))
         throw Yn(Pn.INVALID_ARGUMENT);
-    const o = Tt(t) ? String(t) : (nn(t),
+    const o = kt(t) ? String(t) : (nn(t),
     t);
-    return Tt(n) ? i.plural = n : re(n) ? i.default = n : He(n) && !da(n) ? i.named = n : ut(n) && (i.list = n),
-    Tt(r) ? i.plural = r : re(r) ? i.default = r : He(r) && dt(i, r),
+    return kt(n) ? i.plural = n : re(n) ? i.default = n : He(n) && !da(n) ? i.named = n : ut(n) && (i.list = n),
+    kt(r) ? i.plural = r : re(r) ? i.default = r : He(r) && dt(i, r),
     [o, i]
 }
 function YA(e, t, n, r, i, o) {
@@ -13913,7 +13913,7 @@ function qA(e, t, n, r) {
     return e.processor && (d.processor = e.processor),
     r.list && (d.list = r.list),
     r.named && (d.named = r.named),
-    Tt(r.plural) && (d.pluralIndex = r.plural),
+    kt(r.plural) && (d.pluralIndex = r.plural),
     d
 }
 function Fd(e, ...t) {
@@ -13963,7 +13963,7 @@ function ec(...e) {
         if (isNaN(t.getTime()))
             throw Yn(Pn.INVALID_DATE_ARGUMENT);
         a = t
-    } else if (Tt(t))
+    } else if (kt(t))
         a = t;
     else
         throw Yn(Pn.INVALID_ARGUMENT);
@@ -14014,7 +14014,7 @@ function tc(...e) {
     const [t,n,r,i] = e
       , o = {};
     let s = {};
-    if (!Tt(t))
+    if (!kt(t))
         throw Yn(Pn.INVALID_ARGUMENT);
     const a = t;
     return re(n) ? o.key = n : He(n) && Object.keys(n).forEach(l=>{
@@ -14038,8 +14038,8 @@ iA();
   * (c) 2024 kazuya kawaguchi
   * Released under the MIT License.
   */
-const WA = "9.9.1";
-function GA() {
+const GA = "9.9.1";
+function WA() {
     typeof __INTLIFY_PROD_DEVTOOLS__ != "boolean" && (gu().__INTLIFY_PROD_DEVTOOLS__ = !1)
 }
 const Sg = wA.__EXTEND_POINT__
@@ -14157,7 +14157,7 @@ function QA(e, t, n) {
     }
 }
 function Hd(e) {
-    return $e(Gr, null, e, 0)
+    return $e(Wr, null, e, 0)
 }
 const jd = "__INTLIFY_META__"
   , Kd = ()=>[]
@@ -14203,7 +14203,7 @@ function Cg(e={}, t) {
     C = (()=>{
         i && Pd(null);
         const I = {
-            version: WA,
+            version: GA,
             locale: l.value,
             fallbackLocale: u.value,
             messages: c.value,
@@ -14252,7 +14252,7 @@ function Cg(e={}, t) {
         }
     })
       , Z = ue(()=>c.value)
-      , W = ue(()=>f.value)
+      , G = ue(()=>f.value)
       , K = ue(()=>d.value);
     function N() {
         return Ze(p) ? p : null
@@ -14269,7 +14269,7 @@ function Cg(e={}, t) {
         g = I,
         C.missing = E
     }
-    const j = (I,U,se,he,Ge,st)=>{
+    const j = (I,U,se,he,We,st)=>{
         D();
         let _t;
         try {
@@ -14280,9 +14280,9 @@ function Cg(e={}, t) {
             __INTLIFY_PROD_DEVTOOLS__,
             i || (C.fallbackContext = void 0)
         }
-        if (se !== "translate exists" && Tt(_t) && _t === pa || se === "translate exists" && !_t) {
+        if (se !== "translate exists" && kt(_t) && _t === pa || se === "translate exists" && !_t) {
             const [zn,La] = U();
-            return n && b ? he(n) : Ge(zn)
+            return n && b ? he(n) : We(zn)
         } else {
             if (st(_t))
                 return _t;
@@ -14301,14 +14301,14 @@ function Cg(e={}, t) {
             resolvedMessage: !0
         }, he || {}))
     }
-    function We(...I) {
+    function Ge(...I) {
         return j(U=>Reflect.apply(Fd, null, [U, ...I]), ()=>ec(...I), "datetime format", U=>Reflect.apply(U.d, U, [...I]), ()=>Rd, U=>re(U))
     }
     function Qe(...I) {
         return j(U=>Reflect.apply(Ud, null, [U, ...I]), ()=>tc(...I), "number format", U=>Reflect.apply(U.n, U, [...I]), ()=>Rd, U=>re(U))
     }
     function ct(I) {
-        return I.map(U=>re(U) || Tt(U) || at(U) ? Hd(String(U)) : U)
+        return I.map(U=>re(U) || kt(U) || at(U) ? Hd(String(U)) : U)
     }
     const H = {
         normalize: ct,
@@ -14345,8 +14345,8 @@ function Cg(e={}, t) {
                 return !1;
             const se = re(U) ? U : l.value
               , he = A(se)
-              , Ge = C.messageResolver(he, I);
-            return ki(Ge) || nn(Ge) || re(Ge)
+              , We = C.messageResolver(he, I);
+            return ki(We) || nn(We) || re(We)
         }
         , ()=>[I], "translate exists", se=>Reflect.apply(se.te, se, [I, U]), XA, se=>at(se))
     }
@@ -14354,8 +14354,8 @@ function Cg(e={}, t) {
         let U = null;
         const se = pg(C, u.value, l.value);
         for (let he = 0; he < se.length; he++) {
-            const Ge = c.value[se[he]] || {}
-              , st = C.messageResolver(Ge, I);
+            const We = c.value[se[he]] || {}
+              , st = C.messageResolver(We, I);
             if (st != null) {
                 U = st;
                 break
@@ -14510,12 +14510,12 @@ function Cg(e={}, t) {
         setMissingHandler: ae,
         [JA]: ye
     };
-    return ie.datetimeFormats = W,
+    return ie.datetimeFormats = G,
     ie.numberFormats = K,
     ie.rt = ve,
     ie.te = Ue,
     ie.tm = v,
-    ie.d = We,
+    ie.d = Ge,
     ie.n = Qe,
     ie.getDateTimeFormat = q,
     ie.setDateTimeFormat = X,
@@ -14565,7 +14565,7 @@ const eL = xe({
         },
         plural: {
             type: [Number, String],
-            validator: e=>Tt(e) || !isNaN(e)
+            validator: e=>kt(e) || !isNaN(e)
         }
     }, Tu),
     setup(e, t) {
@@ -14587,7 +14587,7 @@ const eL = xe({
         }
     }
 })
-  , Wd = eL;
+  , Gd = eL;
 function tL(e) {
     return ut(e) && !re(e[0])
 }
@@ -14640,7 +14640,7 @@ const nL = xe({
         return Rg(e, t, kg, (...r)=>n[ic](...r))
     }
 })
-  , Gd = nL
+  , Wd = nL
   , rL = xe({
     name: "i18n-d",
     props: dt({
@@ -14732,15 +14732,15 @@ function Qd(e) {
       , s = {}
       , a = r || {};
     return re(n) && (s.locale = n),
-    Tt(i) && (s.plural = i),
-    Tt(o) && (s.plural = o),
+    kt(i) && (s.plural = i),
+    kt(o) && (s.plural = o),
     [t, a, s]
 }
 function sL(e, t, ...n) {
     const r = He(n[0]) ? n[0] : {}
       , i = !!r.useI18nComponentName;
-    (at(r.globalInstall) ? r.globalInstall : !0) && ([i ? "i18n" : Wd.name, "I18nT"].forEach(s=>e.component(s, Wd)),
-    [Gd.name, "I18nN"].forEach(s=>e.component(s, Gd)),
+    (at(r.globalInstall) ? r.globalInstall : !0) && ([i ? "i18n" : Gd.name, "I18nT"].forEach(s=>e.component(s, Gd)),
+    [Wd.name, "I18nN"].forEach(s=>e.component(s, Wd)),
     [Jd.name, "I18nD"].forEach(s=>e.component(s, Jd))),
     e.directive("t", oL(t))
 }
@@ -14842,7 +14842,7 @@ function cL(e, t, n) {
 }
 function uL(e) {
     {
-        const t = kt(e.isCE ? aL : e.appContext.app.__VUE_I18N_SYMBOL__);
+        const t = St(e.isCE ? aL : e.appContext.app.__VUE_I18N_SYMBOL__);
         if (!t)
             throw Tn(e.isCE ? fn.NOT_INSTALLED_WITH_PROVIDE : fn.UNEXPECTED_ERROR);
         return t
@@ -14921,7 +14921,7 @@ function yL(e, t) {
         )
     }
 }
-GA();
+WA();
 IA(HA);
 PA(dA);
 MA(pg);
@@ -14930,7 +14930,7 @@ if (__INTLIFY_PROD_DEVTOOLS__) {
     e.__INTLIFY__ = !0,
     EA(e.__INTLIFY_DEVTOOLS_GLOBAL_HOOK__)
 }
-const At = window.setInterval
+const Lt = window.setInterval
   , vL = !1;
 /*!
  * pinia v2.1.7
@@ -15094,7 +15094,7 @@ function Dg(e, t, n={}, r, i, o) {
             function Z(N) {
                 B.push(N)
             }
-            function W(N) {
+            function G(N) {
                 F.push(N)
             }
             ei(d, {
@@ -15102,7 +15102,7 @@ function Dg(e, t, n={}, r, i, o) {
                 name: C,
                 store: T,
                 after: Z,
-                onError: W
+                onError: G
             });
             let K;
             try {
@@ -15137,7 +15137,7 @@ function Dg(e, t, n={}, r, i, o) {
         },
         $dispose: E
     }
-      , T = St(y);
+      , T = wt(y);
     r._s.set(e, T);
     const L = (r._a && r._a.runWithContext || bL)(()=>r._e.run(()=>(s = Io()).run(t)));
     for (const C in L) {
@@ -15184,7 +15184,7 @@ function dn(e, t, n) {
     r = e.id);
     function s(a, l) {
         const u = Zc();
-        return a = a || (u ? kt(Pg, null) : null),
+        return a = a || (u ? St(Pg, null) : null),
         a && Bo(a),
         a = Ig,
         a._s.has(r) || (o ? Dg(r, t, i, a) : SL(r, i, a)),
@@ -15193,8 +15193,8 @@ function dn(e, t, n) {
     return s.$id = r,
     s
 }
-const WM = "data:image/png;base64,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"
-  , GM = "data:image/webp;base64,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"
+const GM = "data:image/png;base64,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"
+  , WM = "data:image/webp;base64,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"
   , wL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAABzCAMAAABgiOYeAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAFKUExURUdwTNfCpOba0ODQsd/Kpd/MquPRseDKpNzJq/bgqefUr+nMivnip9vIrvnhouXHhdnHrfXgq+HEhcutd9O0etzAifjjq9jEqNK0eNS2eOHQuN2/fuLQtOvXsfjhpOHCgNu9f/Pal/TamPTbmfPamPXalvPZl/bcmvLXk/PZlvTZlfPYk/fenfjgoPPYlfLWkf/tsurLh8WgWeKqRdWMIfPalvrjpMGbV//qrvTbmO/Sje/Ng/DUkOjJhO7KfeXFfufHgcOeWP3mqO3Pi9mGGPDQh/LUjeLCe+rCcuKjONSUNvC2QM+NMe3GdtuSI86BH9uOHee4X+m+aeG+dtuXLsmkXOC4bs6GJdrFpuWwT+CxYei1Ve2xPNugR+CcMc6pYdSZRcdxEsZ6IO68VtmlU96rWOmqNteyatJ6Etu7hN3Krdi/mMJnC8SYTZSX2RgAAAAjdFJOUwD+Bg80H1xtrrFC7s+F9ePMlcgzU5h952+J3bb8/uPVsP70MZMrxwAAFCJJREFUaN7UmOtX2tgaxmdptcU6nnGmyzWn0/bMmuxcSYIXQiUEiFyUZgUjYqHiYgSKqw5T//+v5333LVHbaXvafjgb5Rryy/O8l703P/zw/zSW11a3NnO5dRy5XG7r4dqDpe8OXVpZ28q9cEqObdu6jnfwb8PrjfXN1QfL30/sKlAdHZhyKPIZXsHG+taD7wFey204doan6Ipy9xJsx1nfWvm23JWtFw4HKBSqsDtJTy/D2citfUPw5oadMimV0bl0hV+R8N5ZX136VmBdUhUJp/coV9H50zT03wZOwfo9NoXBjaQ+MNMF/avhS1sb+of13nrJhSu6kk259a9J97V1W79L+OAVCLqu64q0397YWv4KycpHBjECf6cahtWmH5hEkUnP2crXCV/J3QGzuBLX788n8TCZ4ZjOZkkSj0c7hbJQr2fyzt54+L+Y/YKfimToatAfx0kyHBaL+AcjSZJrHMNoVHGl+Zl021z+YrP/uG+yP4qGyRChMGJ4ZGgYrRa+Fc37Bi96XZab/YWmL2fNZrLNcELV8gHQ2XT6no7pNGkVj4/Pjs+K0ciXvouIv1j7MjK5rdisA1hik1kST64GR2G1Wg07o/lkOH0/TYrHZ2dnx/GVTzIph+K/IODLOSFV6N6ZJIKbzOLxoFkwcBQK7NHIG83BJAE6wM/iUSHtMxTvbH42mSCZCLdJMG9JvfFVtWDgDYFyGPhnVEbD2TA6O4uiPhHJzgLubC59ruasalIvIvkYweOQikWsZbmWaZoWPJoq/OctvITaeJYgfOxn5zVdcXJLn6c5k12KP6aSj4vDeORTg/OAtSyVEE8jmkpMzyMevIInSA8Gw1kMrg+IrDO8d3KfLrJNj5rNPCdKeAzkE/R6FEBoC3Byy/RMj5QBdtjJe6bqaRo8x9eeZwLfGKHyaBxkeiyyP6X7ocaoTDXpCMnjCs0pEGwSMSpWr9cu5C2qmQ7gA931x7M4iiZNOblj0D+Va2t/EKXMqHDzeq2TkxOIcvE0BZcFxRzsl/Z6lUPDUtUy80jBTzTTco8SFB7yaYU2edv58R8D/Ri+T8+Mh2tXlHzSGreRjGBPfAj3neb+fu38lLLL9HsAoRcGxvsTiHh8JOc37C3PV/+hfT7Syimbko9Piq0rCs5Ipmj/CNCNi4tuu2BZpFxOmx8IB9tHYDpji3nUefbxnvrQJaKk4etzJIPbHYNK9mAQYTd8Pgj97e19/fxtzS+AbBAsKxJd18xaMozifjnTXpynH1uurjwWfsJQe5xcY1HW2EeKyKhOnaL3O9JyJa1KFvLmcBhF1cxqwn7+6CPoR5o4ORzXoeQTRobmQQSawZv9ehhsA7txjpbnVZWUiTScDs9sI9vPsJ2PhHvNTzWTSgvAnAyVrGXrBw/p1+uhgej9w/PTGsi2ymUsDsYu08NAN3g+yUzjivP0g53lZ41zsW0fo+bjYoe6DYntyYui564g2t2msnsXncohyC4rZRlrFnBiViDXrjLrN+eDlj8JhNtE0cZUNJYz1pQnuwjHG4M6oDWqet8573XbEO1MlotkI+bRLKZpLuZ/59n92XvpX5o4t0J6jDyicbaIqt1BQ44BWtmmsvcrzHIoPd4D4Z8+xeY2mEZRkC6c7OdP7zXUJ4Y8ueKzFPuT5bZn3hXdHoTVsB7aHF3qQaYd5q0ykXMtPrA6NMezaE7kahqKe/VjkcavcbsrVLPlpZr5GODqpF51OLph8OJWCbllOG0PAVjeT3cszj3ZD/z0zGEL0a0e6yTmbcVo99EOrMHrO6Vtxm6UOhe8uGmBlYksb2QfgeVu5oLuyv49LVxyRhvoWSGAWcnSPKLdJvu9ZhPZHA2J1lBlcWO8FV7+vMa9SRIN0vnTfnZb9srjVHSnhehWLQDRppbJbt5FT/3Ab+5Uq80GJaPjTo9bDllOyqnt7Bs+VJiRBiK4LftXV84LSoTokz2D1pWaRcO04JHKISkEgN5haCq7ZOxhcRt0HinTFGPFzXJtNIvepWjt2U93kwzaBvoTXiO6BfMkBM/LolVchfhtR3cLIHvH3xdkkF3Zg+Km3/Aw4tx3lrjEjeOJKdHWYpGZRVZ20vIZtwDdeoVrIWjdLL2RD1dhqkan6zi2YgTNZjPY52BQ7Tijvbc1ZFt04UDSHoGjP4vqqezm4sd7fuOBAexiYLQPMcegj2kmTv0gVzW60DJVB4auGX7TN7YlulFybLV72jutGWzNiKtGgknHop1PonkW/TRF/+ZqIo8H10h+VQhw1rBg+oGbZR7Wat1ON9BsJINsN4DNrUQ3Gsi2db3QhaNqbM2qqmqam6Mkk2jGm8WDdF0ku4YSXwP7uksLCwy3PKNWq0Fq0fmWkYFNYPmgyEgjukTfx0W3Ual1uhW6nrJUXiH+LOqns0g9dfwXX6KD6XQKcC76sBvWKpYifpTjaFAIlrt6Bl3iaDpw7d2sSfkI16J4nna6cPFTGmpAM/oANo7X0zEmWa1er6iZXwMlmlquEVs0lBQt6Ow7bcC3jTwWiTaYZTpauFiIaft3V9PoOp6UJ7hnfQ+TZT64PAroj6AZMkdjYGH+Ey1c2J3qZsfCu8a418bpHtyM06VS+81CTJ3/MTXheILo6SG2k87N63dI50NP4SW0XC9l0HfJDtqgk2Cyt3cBczkxtVmcdhX1LxHs5dDUZKjB7+uY7ufM0c3B7uvLfpPc0sLQ8FbawjOiHY61Fc/MF8av9vZ6NVwsk8kwU15/iWD/0iTcbxIi+XpewPx286OXB7u7QH9Xdbkg5neJhrYh0Sm7VILntkJgD+q6hTmSO5UCbB28/nRSloun/oJPIU8C0bKUEaCT6SlOHKqVN65eHhzsHlB66DqlFIzstIXzRKPO69CEYMsLG15jBOQLWMAUMMn9aZxWdl/00l8N7rdH5kBuTSu0IVpmPtg9QN27THvd4FxO2k7ZeGugXKbXBbAx+JOScUMIAXWncVOiOwueZ/92Mc0ofjKFhjLFmcM1AW00bzgbpQP9qOBQicgWaJpqFMv2majZNYz62d7e+SmsnMBBPPksDuW+vfNmscrRHtsjYy9rFVuJgaH2TBd/JriRuhEO9H7TbtCxL8ANR6d7Hei5iGWqq0h+261AsdB9sRKLTRDund/wFMey5m10iOiYbWfprxVGeMDCfSDgSN/RSgyNcnW+ftGo1SY6njd2xkDudSs+krGnmJN4IH+sqP0t0HA0nzySpFUcRpBlqknZpmsc3bzkumm6v758fXl5+W4QFmgJsTUBXYNRNsW7RpOSO0Cm+0QMxVwWNlEqfy/YVuA3ILM2D+jiSWuCtYUzFsDB85FgH3A4skG6KXd2hLZhkw6MNmhmZYWaLX7E1fCd+K2CZNCyjyawFh1OUDWI1jzQgSV2wzzfPTjIsP9bvbX2pLGt4YO22tQ0Nm2Nbc6HnWYuzIJmJogTwswINJTLIGq5FJGbpAJu0vT/fz3vZa2ZoVp33bv7w1kVYiLl4Xnvl0XZ4hJI1pLQ1dK7QGq3cgt2Ky/A6k5C317eqloRWA8lNIhJJ2ztEqA/zbH8pmqIOGSdBdnax48JfV8PHMum4UdRS9RuyD1bXTIyGnc8ehkxa+qFSwloaWfF9jGU/nM5NYESHJQHNhPMQeZ0IkO/zmGw1aPmKka3ThazyK3YuOkVS9a1NDMJfQBCkc7VUtCGIGgdvM61LL9VKEjwjwzdowGlzR3OBnplrhzaycrSjlxv0R7EIUVBv0OF0GvMKUCfk3O5IDpUHxIHX/leiHkD9G2AA1LHsXVVdzKAq1uLc3Ir5pzomebtsmpKIKRIaAikSuKL4/P++SXlLdcE1q6rs5+Wvydpo7gdJwgCS+jKaiX1wbFyKyub7NagTqkqu9QGCvpNwFWhif+x3+9fZDGE26aghIZmDnFxTiJHeGDdsxAXj2VEvR3NG8RlHkysCa2IJTJusmO6xMJQftDecPhCJk0RJc1P/dnswqN+3sVeA+UBdp6FBFr4iD8Ife0Rsoc/lp4YJGhF0WZFg1vZFLpVAya+zuWwQSPWu3GpwNDWp9lsdlzGwY1h0izUxBkYuPeIWRN0BZA9deyov0J6ooV+hVHMjto1gg6+LuIZE0DLvmufogHahAakw/4oYg3acjkfLUHZpO6jowEBV+Xx7ERTXUToDiYNjmKx6fcub9WASTNuh8MnUQcgZE26nIVhOM1S5nLJNzDKAu0lISP2NXaaeHJ0qlBoSFx44yyypu7LzCQbcwjhlWjw66+HQ1mSvrNQ4uQJzX64WvUzaOKYU1wyUgxsi0KBaR+VCZlxT06g4wwStC2I3uBZgQxj0RTNbM+tqPkF3zqMhke2sjNxjtA+NQCC2jxMSMK1I+hbRFbAlUrlJJdLYNtQFTHrxAAGbN9hVfMniXwL7YytESSXzq/gdCxue0jROnq4ZA3irkbIEhvArWg6ZXQBukkC3wivvcuBcn6tGBk4ttcicq9muJpMQoFVjaCZAuAi7++k6gKIOwGM0xycoOXizqLM0Fmhx74Ev+LAUsnGW0dWRsoWuuQ9mwB0jYoFlwWOZmZ9Z9aDH5AriN2o5Ew1K6mGcsCwwRpcS81X4NMNU4fROOV11eZ0a+rp8WRyOhnLPtVEF4M4LmrsW19iYSeggXdV5+W55oR5mhUbG6l01I4bzaSq0bNtNfvV/dXk9DQ0stCfY2mDjg2sS0y6HCNLRSN2o9GoeHLNYUpojqLSvt321FIjZ12sE6qmephEC0gf8gA96SBtbOxJ07o4I+hbDyEZWPKl02iUKw4L3MBAynPLePDUbI/i1F75Nkwlhimvc+BenC60EtGmhYOgngSIiyYif8nFiiYdA2S5wb80KjbPxRS0G4+7zNbcU0lLx9yxOUKyhcqcRPu0k0FsA1MuuvUAxd2rxrIuNwaL+XI06DE+nBxjX+Xz2OxkE2Y2ANIRtLdODXc2R9JCtSCavwLoVZ16H1Q3xFMxkOI+IfOqlHsjCPb5fDhdDHqIjueEzLyDQdxj72LeQXsaxKuzRip1uL05k+b2HrE/jJH2VZEm4YJWdvYtuDTxZcYjxM2PO91md7kEcEavYvLuSugonGWW86YWDY3NdSp1sDkkfWuxvDGKOET7DFkbqAcokq4LhV5VBpHeMgyxFOk2z0q+75c6BA7oZQ8E3qQg7mQj7yq1l0KPEiYa2ZMf1z3U/tAj3UXaIeUQTF8g8OvCdVUCY8GJwIBb87x64NVq3dGIwMtg5pVQDg5dbl4FrnWjPWkRSN/ZQWD6UiUDO9iVgV0L1ArQxn05qqA/NUZEeIyEawCLK1bM3rUzot6oCM2XkTQj++Zlv6mpLamu576lUndWENv7tmsKhi7WSeQdA02N+p+jQa5SHuTDBOFALe0Rvu75SB1MzVP5g8XdbY24IObEBqRf3l3pvg1wJMpVTbqG2OEZbcYR+kuukdAwEAZYB7f1/LAs5O6Plrc5C8JZE4cDAqdWfuvKSlwCKKdSqXu2i1uvbK6SSOSsbh9NDXhby3xSw3W5Qxc0UMzYBI6Sr3UXA3gZCRwHlV5rWlU7KjjOfZrmkOZiSOOAn+6gumceRTVXdMexhnmhnLUztktychEe0R2n7tVKHV4JYBiut/K+KtLxGXw6df9a88AyoyzC3g3Y8K5YsWQ8nJWiaclNti24H3R1LlltFDwZXa1Ww0WIqTv9sGQklhFVsLGfLLG3/5AhzUTTTF8Rdo31nbEcT+ECYxwfmC5dV8CXC4w8GZa7gy+CXsqot6bNuB6Guu1+G5Mi3xPvqWAg9A83hN00MHfbGeqySMU2d/E635Qgt6BGwcV7GhmLVpHCLJ2HJT3eMnII/fkG+61nYmnALqZJfY8MFDqpEy+h2Dw84PiDJaspzYMEL/Cl2LJ1jvO+Wp3RowzifuBezhaom0K5KW0NCrXJbOoQNg7iBM1LUL7SFUyT61ZWElY19AGC+UVY01U/hP9Q0c8euqVB6lZvBdhniB0eNym4oNJtpmyaciWSPFREmugmla/tRT2xbNf0YP1jxrq7ut8XuhmtI/S0FyL2p5bH2HJWY0ZkEwWYTrEQaGcXF/ORoUCJOJrY4V9d/3qyF011OLB1oCmYff5zWefOF/8aRT3VJURP2Cj12vNlRVOVGWHb6NE7f3kfh7FjPmkvD003gE/r4N44ReQy1WVsRmX5U1HRnua7RmRfBJ5d/xIyupgZiZySSbp5/Lkfhv2LaakIFROFEpN3fTrbuIudCvziLFvTq069mLxSoRWtXupB497gbbtJ3uhmxzPsSo5bnVqRJpiEj2s3cnCUg57pTVsQ5n1NCVtad33wy8iAvS87oXgJpXVnITYH4ef+8ixr8E2njIv5CS9DGf5o2grH0NWntcSina4k/qq0pZ2/or5XTyhdS5euQggx49PV7Lw/HfGkO2vV/WZnOe3PrsbjcdNRwJG09erjkDG2VPVNoaPBGWed8er0Bs7pZBXOZrP+DAvTq/EN8G3WtMTYRs1PTyCSHD7y2vabPep83Q2L07UPRqnbgaR2E53x+KZ75qXTmytUbjCdBsawR9/fffrKYd78FIGb2NjV/dIZnlKpZqVj9WobtHV//QgD2xD6uz3MSvHgbVP+RV1tTJNHi6/O2JgwXv7N+9KvXznvdTnOM3+4LHEf6MbfifLB3/5axNbOnm2a+iOOgg4a/4CyTGW7+9a98n7oFD2S9T++lb+1u+/cdbSfcwZXRsaHu7/juwhbb14FsbU9/Bm07Mn6tzCOQ+vBnvUT2KThmdUGGtez57/1Sz9bzw/2gwcZ26UGEd79zV94Ye67/93zLP2u6N8HJ401FiLP/hVcSX779ZuDP/b397C19v0cTnPW62/fUi+fvXj+9N//chV9hCc7uy/47O7sPN3+z//T+R+stb7GM4HCBgAAAABJRU5ErkJggg=="
   , JM = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACABAMAAAAxEHz4AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURUdwTP///////////////////////////////////////48EzvsAAAALdFJOUwDMFbBPL5m/ZniGseNS7gAABBFJREFUaN7tWM9v0zAUDlkyut28tMnaU6YCYzs1FUM7dhrTYKcUJvHjtG4TXMk2OJcBQ9y6CcSODCHBn4kd24ndxPbLkLiQ79Kqjr88v/f8vfdqWTVq1Kihgn2WeIdh6cpOFJSvSNhGGH5cXHBHZGXRtH8epWgX3mSP6MrEQPCOPobulVpGqA0eQBxjeaGRLcSQE2C8kReeZAv6M9zkjy1OOcE+5yuvtQRD9pRP99u7Dz9ssa8RW1oAEYxp4BPyPfgZil5oQQhSB9wacav9geAGCIFHXnk3yfyGvNP8EHqCpfSZPv7mCPsxA7GhC/DBDDfAHiEJxKvUhJ6WoMENeIqmsMZN0OeBSx7BL3NQATgwbkJXdcCWN4UrIYDcww3jXSBhmIiZL5swb/KhZc2lLtwoI8CW2cn0JSsios+VICDMnlGRuj0WzCJwdGb7Zk0clLqQudENQbqKFAiBwjyvItgDEiypCFpAgisVQRtYWlT700AC4CgJ0ABEMKsmgHnxhprgCEQwVBPAwrChJmiCCM7VBLA4MjV8GwnxO6CfnQoEi2JG/2D3ywMR0Df3xIQKWdGsQrDHv9B9s/+QYBWpCbAzjHAjHYEXg9OonMDcpTWQnsAo65mYYHFOBB2YASbjnJD2QnmaCBdkAmoTMX4LBd4/k2vkdcQIJkvLEIIjYxIa4AFimOHw8e3NCmfolvU11ib8DNMVJW338h7VGAe7pJ6XGaasL47isG5Js6NuEsXeEP/27DRXSSSkOaggnKRxGReFvgUqCMHXMOUkT7+IQOVBCgId3BrMEY50ig4gD/ng111jEboC5GLJfsvmIZOyITSlQVCSrU5kIhDCvU8nnmOaia/ozLOKDKOfK+eq+4uNn3jkbMey2hgIgjgblS8sayXzST7ExHofrOWjcounVzpMd2FOTO/gNvK2rjhB+0GUHiuLRKjNA3IH75CPOU4wJlrXz00ItJlILiupbxNiEiWICRepam6S3TL1XWiyWV8gCFOxO5EeUd/GMROG76Rb6pGi1mb994CrZks3uvv8PXhKdy7JtPhowKSiyaWhpxPlIz7xNAunI/mxrKtuNrOzKyiqdJP67HShRpW9XBf2CiOIT8/Q1lW2Vq6tqQkrF2ICDVJPL+gq00QokB3MkGAa95tQUmZ1PQZ+UygqG2aLPLFp8MmV07VqQ1+SBRyu9+uS3OM4jHTDr9OU5o2FwhCGHTvUdkkDqTo0C3KPfdyoMLO1C7/41Wa2oCj35rlNqrBpzq5Um9ukmS14iZFUm9ucRNcfBYDJsasj2If0+5/U+09gs7Ny+O4A/0BQMfixZf0NQwe8HzMUu0u0HlpV8HyqOfQ+Vv6He0eg8L6EVnXYu58PMMnx/cut62yvUaNGjf8PfwAoSwbZp4082gAAAABJRU5ErkJggg=="
   , zM = "data:image/png;base64,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"
@@ -15276,8 +15276,8 @@ const WM = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF0AAABdCAMAAADwr5rxAA
                     boostId: e,
                     timestamp: Ne().getNowTimestamp()
                 }
-            }).then(t=>(Gt().useHapticFeedback("heavy"),
-            Lt().setUserResponseData(t),
+            }).then(t=>(Wt().useHapticFeedback("heavy"),
+            Ct().setUserResponseData(t),
             t != null && t.upgradesForBuy && Eo().setUpgradesForBuy(t.upgradesForBuy),
             t != null && t.boostsForBuy && this.setBoostsForBuy(t.boostsForBuy),
             Ne().trackEvent(Ne().camelToSnake(e)),
@@ -15507,6 +15507,7 @@ e.gym_hamster = "gym_hamster",
 e.university_hamster = "university_hamster",
 e.ton_listing = "ton_listing",
 e.vipassana_hamster = "vipassana_hamster",
+e.adv_integration_0908 = "adv_integration_0908",
 e.hamster_helps_whales = "hamster_helps_whales",
 e.hamster_with_friends = "hamster_with_friends",
 e))(RL || {})
@@ -15694,7 +15695,7 @@ const BL = {
         },
         cooldownStartTimer(e) {
             const t = this.cooldowns[e];
-            t && t.intervalId === void 0 && (t.intervalId = At(()=>{
+            t && t.intervalId === void 0 && (t.intervalId = Lt(()=>{
                 if (t.cooldownSeconds > 0) {
                     const n = Ne().getNowTimestampWithMS()
                       , r = n - ((t == null ? void 0 : t.timestamp) ?? n);
@@ -15725,8 +15726,8 @@ const BL = {
                 }
             }).then(t=>{
                 var r, i;
-                Gt().useHapticFeedback("heavy"),
-                Lt().setUserResponseData(t),
+                Wt().useHapticFeedback("heavy"),
+                Ct().setUserResponseData(t),
                 t != null && t.upgradesForBuy && this.setUpgradesForBuy(t.upgradesForBuy),
                 t != null && t.boostsForBuy && AL().setBoostsForBuy(t.boostsForBuy),
                 t != null && t.dailyCombo && this.setDailyCombo(t.dailyCombo);
@@ -15739,8 +15740,8 @@ const BL = {
             )
         },
         async postClaimDailyCombo() {
-            return await Ye.post("/clicker/claim-daily-combo", {}).then(e=>(Gt().useHapticFeedback("heavy"),
-            Lt().setUserResponseData(e),
+            return await Ye.post("/clicker/claim-daily-combo", {}).then(e=>(Wt().useHapticFeedback("heavy"),
+            Ct().setUserResponseData(e),
             e != null && e.dailyCombo && this.setDailyCombo(e.dailyCombo),
             e))
         },
@@ -15760,7 +15761,7 @@ const BL = {
             const t = {
                 ...this.dailyCombo
             };
-            this.isDailyComboHasNewOpenedItems((e == null ? void 0 : e.upgradeIds) ?? [], (t == null ? void 0 : t.upgradeIds) ?? []) && !Lt().first_time_load && setTimeout(()=>{
+            this.isDailyComboHasNewOpenedItems((e == null ? void 0 : e.upgradeIds) ?? [], (t == null ? void 0 : t.upgradeIds) ?? []) && !Ct().first_time_load && setTimeout(()=>{
                 this.setDailyComboSuccess(!0)
             }
             , 200),
@@ -15773,7 +15774,7 @@ const BL = {
             }
             )),
             e.remainSeconds && this.startDailyComboInterval(),
-            this.getDailyComboNotClaimed && !Lt().first_time_load && (Ne().trackEvent(Ng.DAILY_COMBO_FOUND_3),
+            this.getDailyComboNotClaimed && !Ct().first_time_load && (Ne().trackEvent(Ng.DAILY_COMBO_FOUND_3),
             setTimeout(()=>{
                 const {$event: n} = ne();
                 n("daily-combo:claim")
@@ -15816,7 +15817,7 @@ const BL = {
         },
         startDailyComboInterval() {
             this.resetDailyComboInterval(),
-            this.dailyComboInterval = At(()=>{
+            this.dailyComboInterval = Lt(()=>{
                 var e;
                 if ((e = this.dailyCombo) != null && e.remainSeconds) {
                     let t = 1;
@@ -15856,7 +15857,7 @@ const BL = {
         }
     }
 })
-  , Lt = dn("clicker", {
+  , Ct = dn("clicker", {
     state: ()=>({
         achievements: [],
         animate_interval: null,
@@ -15901,7 +15902,7 @@ const BL = {
             const r = (Ve(this.balanceCoins) ?? 0) + e
               , i = e / 50
               , o = Math.floor(800 / e * i);
-            let s = At(()=>{
+            let s = Lt(()=>{
                 this.balanceCoins += i,
                 this.balanceCoins >= r && (this.balanceCoins = r,
                 clearInterval(s),
@@ -15910,7 +15911,7 @@ const BL = {
             , o)
         },
         animateBalance() {
-            this.balanceCoins < this.balanceTarget && (this.animate_interval = At(()=>{
+            this.balanceCoins < this.balanceTarget && (this.animate_interval = Lt(()=>{
                 if (this.balanceCoins >= this.balanceTarget) {
                     clearInterval(this.animate_interval),
                     this.animate_interval = null;
@@ -15919,7 +15920,7 @@ const BL = {
                 this.balanceCoins++
             }
             , $t.BALANCE_ANIMATION_SPEED)),
-            this.balanceTarget < this.balanceCoins && (this.animate_interval = At(()=>{
+            this.balanceTarget < this.balanceCoins && (this.animate_interval = Lt(()=>{
                 if (this.balanceTarget >= this.balanceCoins) {
                     clearInterval(this.animate_interval),
                     this.animate_interval = null;
@@ -15938,30 +15939,30 @@ const BL = {
             this.timestamp_energy = t
         },
         calcPassive() {
-            if (Ct().maxPassiveDtSeconds_local <= (Ct().maxPassiveDtSeconds ?? 28800)) {
+            if (Ot().maxPassiveDtSeconds_local <= (Ot().maxPassiveDtSeconds ?? 28800)) {
                 let e = 1;
                 const t = Ne().getNowTimestamp();
                 this.timestamp_passive && t - this.timestamp_passive > 1 && (e = t - this.timestamp_passive);
                 const n = this.earnPassivePerSec ?? 0;
                 this.totalCoins = this.totalCoins + e * n,
                 this.balanceCoins = this.balanceCoins + e * n,
-                Ct().maxPassiveDtSeconds_local += e,
+                Ot().maxPassiveDtSeconds_local += e,
                 this.timestamp_passive = t
             }
         },
         checkAchievements() {
             var e;
             this.clearAchievementsInterval(),
-            (e = this.achievements) != null && e.filter(t=>!t.isClaimed).length && (this.achievements_interval = At(()=>{
-                Dt().loading || (this.clearAchievementsInterval(),
+            (e = this.achievements) != null && e.filter(t=>!t.isClaimed).length && (this.achievements_interval = Lt(()=>{
+                bt().loading || (this.clearAchievementsInterval(),
                 this.setAchievementsShow(!0))
             }
             , 500))
         },
         checkLevelUp() {
-            this.coinsToLevelUp && this.coinsToLevelUp <= this.balanceCoins && this.timer_leveUp !== null && !Dt().loading && (this.setStop(!0),
+            this.coinsToLevelUp && this.coinsToLevelUp <= this.balanceCoins && this.timer_leveUp !== null && !bt().loading && (this.setStop(!0),
             this.timerLevelUpReset(),
-            Gt().notificationLevelUp = yn.promise({
+            Wt().notificationLevelUp = yn.promise({
                 title: ne().$i18n.t("messages.level_up_processing")
             }),
             this.earnStartInterval())
@@ -15974,7 +15975,7 @@ const BL = {
             this.animate_interval !== null && (clearInterval(this.animate_interval),
             this.animate_interval = null,
             this.balanceCoins = this.balanceTarget),
-            this.tap_interval === null && (this.tap_interval = At(()=>{
+            this.tap_interval === null && (this.tap_interval = Lt(()=>{
                 this.tapDuration += 1
             }
             , 1e3)),
@@ -16008,7 +16009,7 @@ const BL = {
         },
         getCoinsToLevelUpByLevel(e) {
             var t, n;
-            return ((n = (t = Ct().userLevels_balanceCoins) == null ? void 0 : t.find(r=>r.level === e)) == null ? void 0 : n.coinsToLeveUp) ?? 0
+            return ((n = (t = Ot().userLevels_balanceCoins) == null ? void 0 : t.find(r=>r.level === e)) == null ? void 0 : n.coinsToLeveUp) ?? 0
         },
         async postAchievementStat(e) {
             return await Ye.post("/clicker/achievement-stat", {
@@ -16051,7 +16052,7 @@ const BL = {
         async postSkinsGet() {
             return await Ye.post("/clicker/get-skin", {
                 body: {}
-            }).then(e=>(e.skins && Ct().mergeSkinsAndState(e.skins),
+            }).then(e=>(e.skins && Ot().mergeSkinsAndState(e.skins),
             e))
         },
         async postSync() {
@@ -16081,7 +16082,7 @@ const BL = {
                     title: ne().$i18n.t("messages.request_error"),
                     message: ne().$i18n.t("messages.no_tap")
                 }),
-                Gt().rejectNotificationLevelUp()
+                Wt().rejectNotificationLevelUp()
             }
             )
         },
@@ -16129,7 +16130,7 @@ const BL = {
             var t;
             if (this.exchangeId = e,
             e) {
-                const n = (t = Ct().exchanges) == null ? void 0 : t.find(r=>r.id === e);
+                const n = (t = Ot().exchanges) == null ? void 0 : t.find(r=>r.id === e);
                 n && this.setCurrentExchange(n)
             }
         },
@@ -16148,12 +16149,12 @@ const BL = {
         setLastSyncUpdate(e) {
             this.lastSyncUpdate = e,
             this.dtServer = Math.floor(new Date().getTime() / 1e3) - e,
-            Ct().maxPassiveDtSeconds_local = 0
+            Ot().maxPassiveDtSeconds_local = 0
         },
         setLevel(e) {
             var t, n;
             this.level = e,
-            this.coinsToLevelUp = (n = (t = Ct().userLevels_balanceCoins) == null ? void 0 : t.find(r=>r.level === this.level)) == null ? void 0 : n.coinsToLeveUp
+            this.coinsToLevelUp = (n = (t = Ot().userLevels_balanceCoins) == null ? void 0 : t.find(r=>r.level === this.level)) == null ? void 0 : n.coinsToLeveUp
         },
         setMaxTaps(e) {
             this.maxTaps = e
@@ -16186,7 +16187,7 @@ const BL = {
             (r = e == null ? void 0 : e.clickerUser) != null && r.balanceKeys && this.setBalanceKeys(e.clickerUser.balanceKeys),
             (i = e == null ? void 0 : e.clickerUser) != null && i.totalCoins && this.setTotalCoins(e.clickerUser.totalCoins),
             (o = e == null ? void 0 : e.clickerUser) != null && o.balanceCoins && (this.first_time_load ? (s = e == null ? void 0 : e.clickerUser) != null && s.lastPassiveEarn && ((a = e == null ? void 0 : e.clickerUser) == null ? void 0 : a.lastPassiveEarn) > 1 ? (this.setBalanceCoins(e.clickerUser.balanceCoins - e.clickerUser.lastPassiveEarn),
-            this.setLastPassiveEarn(e.clickerUser.lastPassiveEarn)) : this.setBalanceCoins(e.clickerUser.balanceCoins) : Dt().loading || this.setBalanceCoins(e.clickerUser.balanceCoins)),
+            this.setLastPassiveEarn(e.clickerUser.lastPassiveEarn)) : this.setBalanceCoins(e.clickerUser.balanceCoins) : bt().loading || this.setBalanceCoins(e.clickerUser.balanceCoins)),
             Number.isFinite((l = e == null ? void 0 : e.clickerUser) == null ? void 0 : l.availableTaps) && this.setAvailableTaps(e.clickerUser.availableTaps),
             (u = e == null ? void 0 : e.clickerUser) != null && u.earnPerTap && this.setEarnPerTap(e.clickerUser.earnPerTap),
             (c = e == null ? void 0 : e.clickerUser) != null && c.earnPassivePerSec && this.setEarnPassivePerSec(e.clickerUser.earnPassivePerSec),
@@ -16215,7 +16216,7 @@ const BL = {
             this.checkAchievements())
         },
         startTimers() {
-            Dt().error || (this.timerEnergyStart(),
+            bt().error || (this.timerEnergyStart(),
             this.timerLevelUpStart(),
             this.timerPassiveStart(),
             this.timerSyncStart())
@@ -16246,34 +16247,34 @@ const BL = {
             this.timer_energy = null
         },
         timerEnergyStart() {
-            this.timer_energy = At(this.calcEnergy, $t.CALC_INTERVAL)
+            this.timer_energy = Lt(this.calcEnergy, $t.CALC_INTERVAL)
         },
         timerLevelUpReset() {
             this.timer_leveUp && clearInterval(this.timer_leveUp),
             this.timer_leveUp = null
         },
         timerLevelUpStart() {
-            this.level !== this.getMaxUserLevel && this.timer_leveUp === null && (this.timer_leveUp = At(this.checkLevelUp, $t.CALC_INTERVAL))
+            this.level !== this.getMaxUserLevel && this.timer_leveUp === null && (this.timer_leveUp = Lt(this.checkLevelUp, $t.CALC_INTERVAL))
         },
         timerPassiveReset() {
             this.timer_passive && clearInterval(this.timer_passive),
             this.timer_passive = null
         },
         timerPassiveStart() {
-            this.timer_passive = At(this.calcPassive, $t.CALC_INTERVAL)
+            this.timer_passive = Lt(this.calcPassive, $t.CALC_INTERVAL)
         },
         timerSyncReset() {
             this.timer_sync && clearInterval(this.timer_sync),
             this.timer_sync = null
         },
         timerSyncStart() {
-            this.timer_sync = At(()=>{
+            this.timer_sync = Lt(()=>{
                 this.postSync().catch(e=>{
                     yn.error({
                         title: ne().$i18n.t("messages.request_error"),
                         message: ne().$i18n.t("messages.no_sync")
                     }),
-                    Gt().rejectNotificationLevelUp()
+                    Wt().rejectNotificationLevelUp()
                 }
                 )
             }
@@ -16286,14 +16287,14 @@ const BL = {
         },
         getMaxUserLevel() {
             let e = 0;
-            for (const t of Ct().userLevels_balanceCoins)
+            for (const t of Ot().userLevels_balanceCoins)
                 t.level !== null && (e = Math.max(e, t.level));
             return e
         },
         getProgressLevel() {
             var n;
             let e = 0;
-            const t = (n = Ct().userLevels_balanceCoins) == null ? void 0 : n.find(r=>r.level === this.level);
+            const t = (n = Ot().userLevels_balanceCoins) == null ? void 0 : n.find(r=>r.level === this.level);
             return this.level === this.getMaxUserLevel && (e = 100),
             this.level && this.level !== this.getMaxUserLevel && t && (e = this.balanceCoins * 100 / t.coinsToLeveUp),
             Math.min(e, 100)
@@ -16331,7 +16332,7 @@ const BL = {
             return e.value === "tl" ? "tl-ph" : e.value
         },
         getNowTimestamp() {
-            return Math.floor(new Date().getTime() / 1e3) + Lt().dtServer
+            return Math.floor(new Date().getTime() / 1e3) + Ct().dtServer
         },
         getNowTimestampWithMS() {
             return new Date().getTime()
@@ -16533,66 +16534,66 @@ const zr = ["de", "en", "es", "fr", "hi", "id", "pt", "ru", "th", "tl", "tr", "u
     }],
     en: [{
         key: "../locales/en.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/en.CIZ3Nv9A.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/en.B4fRm13L.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     es: [{
         key: "../locales/es.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/es.BOHD6ZfZ.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/es.CbdDLEgG.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     fr: [{
         key: "../locales/fr.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/fr.CTapgT1m.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/fr.YxipdGWZ.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     hi: [{
         key: "../locales/hi.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/hi.DuS2goG7.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/hi.DpzsvQn6.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     id: [{
         key: "../locales/id.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/id.CmJ87ZRq.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/id.CRHEV1YF.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     pt: [{
         key: "../locales/pt.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/pt.C-qB9IuY.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/pt.CTogjGyZ.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     ru: [{
         key: "../locales/ru.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ru.DOQWEEYo.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/ru.DsTe__Z5.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     th: [{
         key: "../locales/th.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/th.6lG38Pb3.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/th.DHwMadHg.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     tl: [{
         key: "../locales/tl.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/tl.BdFyDy6A.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/tl.Bqhj9uTj.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     tr: [{
         key: "../locales/tr.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/tr.DesUhDLC.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/tr.Skl-6CoA.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     uz: [{
         key: "../locales/uz.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/uz.DghcaKWZ.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/uz.Cgz1SV5f.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }],
     vi: [{
         key: "../locales/vi.json",
-        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/vi.Do66L3Kt.js"), __vite__mapDeps([]), import.meta.url),
+        load: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/vi.CMFR0S0D.js"), __vite__mapDeps([]), import.meta.url),
         cache: !0
     }]
 }
-  , WL = [()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/i18n.config.Da3zEwKd.js"), __vite__mapDeps([]), import.meta.url)]
+  , GL = [()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/i18n.config.Da3zEwKd.js"), __vite__mapDeps([]), import.meta.url)]
   , gt = {
     experimental: {
         localeDetector: ""
@@ -16825,7 +16826,7 @@ const zr = ["de", "en", "es", "fr", "hi", "id", "pt", "ru", "th", "tl", "tr", "u
         path: "locales/vi.json"
     }]
 }]
-  , GL = !1
+  , WL = !1
   , JL = {
     PREFIX: "prefix",
     PREFIX_EXCEPT_DEFAULT: "prefix_except_default",
@@ -16861,13 +16862,13 @@ function Si(e) {
     return eC(t) ? t : Vg(t) ? t.__composer : t
 }
 function ya(e) {
-    return G(Ar(e).locale)
+    return W(Ar(e).locale)
 }
 function tC(e) {
-    return G(Ar(e).locales)
+    return W(Ar(e).locales)
 }
 function nC(e) {
-    return G(Ar(e).localeCodes)
+    return W(Ar(e).localeCodes)
 }
 function Fg(e, t) {
     const n = Ar(e);
@@ -17036,7 +17037,7 @@ function mC(e) {
 const gC = mC;
 function wi(e) {
     const {routesNameSeparator: t} = gt
-      , n = G(e);
+      , n = W(e);
     return n == null || !n.name ? void 0 : xg(n.name).split(t)[0]
 }
 function va(e, t, n) {
@@ -17116,7 +17117,7 @@ const vC = e=>e;
 function _C(e) {
     var n;
     const t = e.meta || {};
-    return ((n = G(t)) == null ? void 0 : n[QL]) || {}
+    return ((n = W(t)) == null ? void 0 : n[QL]) || {}
 }
 function Ai(e, t, n) {
     const r = n ?? e.router.currentRoute.value
@@ -17145,7 +17146,7 @@ function Bg(e, {addDirAttribute: t=!1, addSeoAttributes: n=!0, identifierAttribu
         link: [],
         meta: []
     };
-    if (G(o.locales) == null || G(o.baseUrl) == null)
+    if (W(o.locales) == null || W(o.baseUrl) == null)
         return s;
     const a = ya(e.i18n)
       , l = tC(e.i18n)
@@ -17155,14 +17156,14 @@ function Bg(e, {addDirAttribute: t=!1, addSeoAttributes: n=!0, identifierAttribu
       , c = u.iso
       , f = u.dir || i;
     return t && (s.htmlAttrs.dir = f),
-    n && a && G(o.locales) && (c && (s.htmlAttrs.lang = c),
-    s.link.push(...bC(e, G(l), r), ...EC(e, r, n)),
-    s.meta.push(...TC(e, r, n), ...kC(u, c, r), ...SC(G(l), c, r))),
+    n && a && W(o.locales) && (c && (s.htmlAttrs.lang = c),
+    s.link.push(...bC(e, W(l), r), ...EC(e, r, n)),
+    s.meta.push(...TC(e, r, n), ...kC(u, c, r), ...SC(W(l), c, r))),
     s
 }
 function wu() {
     const e = Si(ne().$i18n);
-    return G(e.baseUrl)
+    return W(e.baseUrl)
 }
 function bC(e, t, n) {
     const r = wu()
@@ -17401,7 +17402,7 @@ function jo(e, t, ...n) {
 }
 function NC(e, t) {
     const n = Ar(e);
-    return G(n[t])
+    return W(n[t])
 }
 function ti(e, t, n) {
     Object.defineProperty(e, t, {
@@ -17549,7 +17550,7 @@ function BC(e) {
     }
     return t
 }
-function Wg() {
+function Gg() {
     return rn(va)
 }
 function ZM() {
@@ -17591,7 +17592,7 @@ const ch = dn("promo", {
                 body: {
                     promoCode: e
                 }
-            }).then(t=>(Lt().setUserResponseData(t),
+            }).then(t=>(Ct().setUserResponseData(t),
             this.setSingleState(t.promoState),
             t))
         },
@@ -17671,11 +17672,11 @@ const ch = dn("promo", {
         (a,l)=>null
     }
 })
-  , {initData: jC, initDataUnsafe: KC, version: YC, platform: qC, isVersionAtLeast: WC, sendData: GC, close: JC} = Telegram.WebApp
-  , Gg = le(!1)
+  , {initData: jC, initDataUnsafe: KC, version: YC, platform: qC, isVersionAtLeast: GC, sendData: WC, close: JC} = Telegram.WebApp
+  , Wg = le(!1)
   , zC = (...e)=>{
     Telegram.WebApp.ready(...e),
-    Gg.value = !0
+    Wg.value = !0
 }
   , Jg = e=>Telegram.WebApp.platform === e
   , zg = Jg("unknown")
@@ -17686,16 +17687,16 @@ function Qg() {
         initDataUnsafe: KC,
         version: YC,
         platform: qC,
-        isVersionAtLeast: WC,
+        isVersionAtLeast: GC,
         onEvent: (...e)=>{
             Vt(()=>Telegram.WebApp.onEvent(...e)),
             Ri(()=>Telegram.WebApp.offEvent(...e))
         }
         ,
-        sendData: GC,
+        sendData: WC,
         ready: zC,
         close: JC,
-        isReady: dr(Gg),
+        isReady: dr(Wg),
         isPlatform: Jg,
         isPlatformUnknown: zg,
         canSendData: QC
@@ -17760,7 +17761,7 @@ le(Telegram.WebApp.backgroundColor);
 le(Telegram.WebApp.isExpanded);
 le(Telegram.WebApp.viewportHeight);
 le(Telegram.WebApp.viewportStableHeight);
-const Gt = dn("ui", {
+const Wt = dn("ui", {
     state: ()=>({
         bottom_sheet_close_visible: !0,
         bottom_sheet_open: !1,
@@ -17814,13 +17815,13 @@ const Gt = dn("ui", {
         },
         goBackButton() {
             const {$event: e} = ne()
-              , t = Wg();
+              , t = Gg();
             this.bottom_sheet_open ? e("bs:close") : this.modalOpen ? e("modal:close") : ch().showPromo ? ch().showPromo = !1 : xo(t(Ho.GAME_INDEX))
         },
         rejectNotificationLevelUp() {
             this.notificationLevelUp !== null && (this.notificationLevelUp.reject(ne().$i18n.t("messages.oops")),
             this.notificationLevelUp = null,
-            Lt().setStop(!1))
+            Ct().setStop(!1))
         },
         setBottomSheetOpen(e) {
             this.bottom_sheet_open = e
@@ -17845,31 +17846,34 @@ const Gt = dn("ui", {
             return this.language_code === "ru" || e === "ru"
         },
         isYP() {
-            return ["RU", "BY", "KZ", "UZ", "KG", "AZ", "AM", "GE"].indexOf(Dt().location.country_code ?? "") > -1
+            return ["RU", "BY", "KZ", "UZ", "KG", "AZ", "AM", "GE"].indexOf(bt().location.country_code ?? "") > -1
         },
         isRUBY() {
-            return ["RU", "BY"].indexOf(Dt().location.country_code ?? "") > -1
+            return ["RU", "BY"].indexOf(bt().location.country_code ?? "") > -1
         },
         isPECLMX() {
-            return ["PE", "CL", "MX"].indexOf(Dt().location.country_code ?? "") > -1
+            return ["PE", "CL", "MX"].indexOf(bt().location.country_code ?? "") > -1
         },
         isBR() {
-            return ["BR"].indexOf(Dt().location.country_code ?? "") > -1
+            return ["BR"].indexOf(bt().location.country_code ?? "") > -1
         },
         isET() {
-            return ["ET"].indexOf(Dt().location.country_code ?? "") > -1
+            return ["ET"].indexOf(bt().location.country_code ?? "") > -1
         },
         isGamesRu() {
-            return ["AZ", "AM", "BY", "KZ", "KG", "MD", "RU", "TJ", "TM"].indexOf(Dt().location.country_code ?? "") > -1
+            return ["AZ", "AM", "BY", "KZ", "KG", "MD", "RU", "TJ", "TM"].indexOf(bt().location.country_code ?? "") > -1
         },
         isGamesUz() {
-            return ["UZ"].indexOf(Dt().location.country_code ?? "") > -1
+            return ["UZ"].indexOf(bt().location.country_code ?? "") > -1
         },
         isGamesAr() {
-            return !1
+            return ["AE", "QA", "BH", "OM", "KW", "SA", "JO", "EG"].indexOf(bt().location.country_code ?? "") > -1
         },
         isGamesFr() {
-            return !1
+            return ["CI", "DZ", "MA", "SN", "GN", "NE", "TD", "CG", "BF", "CM"].indexOf(bt().location.country_code ?? "") > -1
+        },
+        isGamesEn() {
+            return ["NG", "GH", "SL", "LR", "GM", "KE", "UG", "TZ", "RW", "SS", "SD", "ZA", "SZ", "BW"].indexOf(bt().location.country_code ?? "") > -1
         }
     }
 })
@@ -17892,7 +17896,7 @@ const Gt = dn("ui", {
     actions: {
         checkCipher() {
             var e;
-            (e = this.dailyCipher) != null && e.cipher && (this.dailyCipher.cipher.startsWith(this.morse_decoded) ? Gt().useHapticFeedback("heavy") : this.resetMorse(),
+            (e = this.dailyCipher) != null && e.cipher && (this.dailyCipher.cipher.startsWith(this.morse_decoded) ? Wt().useHapticFeedback("heavy") : this.resetMorse(),
             this.dailyCipher.cipher === this.morse_decoded && this.getDailyCipherNotClaimed && setTimeout(()=>{
                 this.setDailyCipherSuccess(!0)
             }
@@ -17923,8 +17927,8 @@ const Gt = dn("ui", {
                 body: {
                     cipher: this.morse_decoded
                 }
-            }).then(e=>(Gt().useHapticFeedback("heavy"),
-            Lt().setUserResponseData(e),
+            }).then(e=>(Wt().useHapticFeedback("heavy"),
+            Ct().setUserResponseData(e),
             e != null && e.dailyCipher ? this.setDailyCipher(e.dailyCipher) : (this.dailyCipher = null,
             this.resetMorse()),
             this.resetMorse(),
@@ -17989,7 +17993,7 @@ const Gt = dn("ui", {
         },
         startDailyCipherInterval() {
             this.resetDailyCipherInterval(),
-            this.dailyCipherInterval = At(()=>{
+            this.dailyCipherInterval = Lt(()=>{
                 var e;
                 if ((e = this.dailyCipher) != null && e.remainSeconds) {
                     let t = 1;
@@ -17999,7 +18003,7 @@ const Gt = dn("ui", {
                     this.dailyCipher.remainSeconds <= 0 && (this.dailyCipher.remainSeconds = 0,
                     this.resetDailyCipherInterval(),
                     setTimeout(async()=>{
-                        await Ct().postConfig().then(()=>{
+                        await Ot().postConfig().then(()=>{
                             this.resetMorse()
                         }
                         )
@@ -18075,7 +18079,7 @@ const Gt = dn("ui", {
             this.showTutor = !0
         },
         async postStartDailyKeysMiniGame() {
-            return await Ye.post("/clicker/start-keys-minigame", {}).then(e=>(Lt().setUserResponseData(e),
+            return await Ye.post("/clicker/start-keys-minigame", {}).then(e=>(Ct().setUserResponseData(e),
             e != null && e.dailyKeysMiniGame ? (e.dailyKeysMiniGame.remainSecondsToGuess += .1,
             this.setDailyKeysMiniGame(e.dailyKeysMiniGame)) : this.dailyKeysMiniGame = null,
             e))
@@ -18085,7 +18089,7 @@ const Gt = dn("ui", {
                 body: {
                     cipher: this.cipher
                 }
-            }).then(e=>(Lt().setUserResponseData(e),
+            }).then(e=>(Ct().setUserResponseData(e),
             e != null && e.dailyKeysMiniGame ? this.setDailyKeysMiniGame(e.dailyKeysMiniGame) : this.dailyKeysMiniGame = null,
             e))
         },
@@ -18096,7 +18100,7 @@ const Gt = dn("ui", {
         },
         startMatchMiniGameInterval() {
             this.resetMatchMiniGameInterval(),
-            this.matchMiniGameInterval = At(()=>{
+            this.matchMiniGameInterval = Lt(()=>{
                 var e;
                 if ((e = this.dailyKeysMiniGame) != null && e.remainSecondsToGuess) {
                     let t = 1;
@@ -18118,7 +18122,7 @@ const Gt = dn("ui", {
         },
         startReplayMiniGameInterval() {
             this.resetReplayMiniGameInterval(),
-            this.replayMiniGameInterval = At(()=>{
+            this.replayMiniGameInterval = Lt(()=>{
                 var e;
                 if ((e = this.dailyKeysMiniGame) != null && e.remainSecondsToNextAttempt) {
                     let t = 1;
@@ -18139,7 +18143,7 @@ const Gt = dn("ui", {
         },
         startDailyMiniGameInterval() {
             this.resetDailyMiniGameInterval(),
-            this.dailyMiniGameInterval = At(()=>{
+            this.dailyMiniGameInterval = Lt(()=>{
                 var e;
                 if ((e = this.dailyKeysMiniGame) != null && e.remainSeconds) {
                     let t = 1;
@@ -18155,10 +18159,10 @@ const Gt = dn("ui", {
                         duration: 4e3
                     }),
                     Ne().trackEvent("minigame_puzzle_loose_period"),
-                    Gt().useHapticFeedback("heavy")),
+                    Wt().useHapticFeedback("heavy")),
                     this.dailyKeysMiniGame = null,
                     setTimeout(async()=>{
-                        await Ct().postConfig()
+                        await Ot().postConfig()
                     }
                     , 1e3))
                 }
@@ -18230,7 +18234,7 @@ const Gt = dn("ui", {
         }
     }
 })
-  , Ct = dn("config", {
+  , Ot = dn("config", {
     state: ()=>({
         achievementRareTypes: [],
         achievementTypes: [],
@@ -18293,7 +18297,7 @@ const Gt = dn("ui", {
             e != null && e.skins && this.setSkins(e.skins),
             e != null && e.telegramAuditory && this.setTelegramAuditory(e.telegramAuditory),
             e != null && e.subscribeChannelUrl && this.setTelegramLink(e.subscribeChannelUrl),
-            Lt().exchangeId && Lt().setExchangeId(Lt().exchangeId),
+            Ct().exchangeId && Ct().setExchangeId(Ct().exchangeId),
             e != null && e.achievementRareTypes && this.setAchievementRareTypes(e.achievementRareTypes),
             e != null && e.achievementTypes && this.setAchievementTypes(e.achievementTypes),
             e != null && e.achievements && this.setAchievements(e.achievements),
@@ -18381,7 +18385,7 @@ const Gt = dn("ui", {
         },
         startUpdateInterval() {
             this.resetUpdateInterval(),
-            this.remainSecondsForUpdate && (this.updateInterval = At(()=>{
+            this.remainSecondsForUpdate && (this.updateInterval = Lt(()=>{
                 let e = 1;
                 const t = Ne().getNowTimestamp();
                 t - this.updateTimestamp > 1 && (e = t - this.updateTimestamp),
@@ -18389,7 +18393,7 @@ const Gt = dn("ui", {
                 this.remainSecondsForUpdate <= 0 && (this.remainSecondsForUpdate = 0,
                 this.resetUpdateInterval(),
                 setTimeout(()=>{
-                    Lt().postSync().catch(()=>{}
+                    Ct().postSync().catch(()=>{}
                     )
                 }
                 , 1e3)),
@@ -18430,7 +18434,7 @@ const Gt = dn("ui", {
 };
 function Ui(e) {
     return async(t,n,r={})=>{
-        const i = Dt()
+        const i = bt()
           , o = i.token
           , s = Jn();
         r = {
@@ -18473,9 +18477,9 @@ function Ui(e) {
                 const f = u.headers.get("config-version")
                   , d = u.headers.get("server-time")
                   , m = u.headers.get("config-next-update");
-                f && Ct().setVersion(f),
-                d && Ct().setServerTime(d),
-                m && Ct().setNextUpdateTime(m),
+                f && Ot().setVersion(f),
+                d && Ot().setServerTime(d),
+                m && Ot().setNextUpdateTime(m),
                 r.onResponse()
             },
             async onResponseError(l) {
@@ -18518,8 +18522,8 @@ const $g = dn("earn", {
                     taskId: e
                 }
             }).then(t=>{
-                Gt().useHapticFeedback("heavy"),
-                Lt().setUserResponseData(t),
+                Wt().useHapticFeedback("heavy"),
+                Ct().setUserResponseData(t),
                 setTimeout(()=>{
                     Eo().postUpgradesForBuy()
                 }
@@ -18536,7 +18540,7 @@ const $g = dn("earn", {
             var o, s;
             const t = ne()
               , n = new Map(e.map(a=>[a.id, a]))
-              , r = (o = Ct().earnTasks) == null ? void 0 : o.map(a=>{
+              , r = (o = Ot().earnTasks) == null ? void 0 : o.map(a=>{
                 const l = n.get(a.id);
                 return {
                     ...a,
@@ -18547,13 +18551,13 @@ const $g = dn("earn", {
               , {locale: i} = t.$i18n;
             if (e.length) {
                 let a = r.filter(c=>c.availableOnLocale && c.availableOnLocale.length > 0 ? c.availableOnLocale.includes(i.value) : !0);
-                a = a.filter(c=>c.availableOnCountry && c.availableOnCountry.length > 0 && Dt().location.country_code ? c.availableOnCountry.includes(Dt().location.country_code ?? "") : !0);
+                a = a.filter(c=>c.availableOnCountry && c.availableOnCountry.length > 0 && bt().location.country_code ? c.availableOnCountry.includes(bt().location.country_code ?? "") : !0);
                 const l = localStorage.getItem(tt.EARN_TASKS)
                   , u = e.map(c=>c.id === cc.STREAK_DAYS ? {
                     ...c,
                     remainSeconds: 0
                 } : c);
-                l ? this.hashcode(u) !== Number(l) && (Gt().taskNotification = !0) : Gt().taskNotification = !0,
+                l ? this.hashcode(u) !== Number(l) && (Wt().taskNotification = !0) : Wt().taskNotification = !0,
                 this.tasks = a,
                 localStorage.setItem(tt.EARN_TASKS, JSON.stringify(this.hashcode(u))),
                 this.dailyRewardSeconds = ((s = this.tasks.find(c=>c.id === cc.STREAK_DAYS)) == null ? void 0 : s.remainSeconds) ?? Math.round(Ne().secondsUntilMidnightUTC()),
@@ -18574,7 +18578,7 @@ const $g = dn("earn", {
         },
         startDailyRewardInterval() {
             this.resetDailyRewardInterval(),
-            this.dailyRewardInterval = At(()=>{
+            this.dailyRewardInterval = Lt(()=>{
                 if (this.dailyRewardSeconds) {
                     let e = 1;
                     const t = Ne().getNowTimestamp();
@@ -18645,7 +18649,7 @@ function dh(e, t) {
         throw new ji(`Invalid token specified: invalid json for part #${n + 1} (${o.message})`)
     }
 }
-const Dt = dn("auth", {
+const bt = dn("auth", {
     state: ()=>({
         account_avatar: {},
         account_id: {},
@@ -18815,8 +18819,8 @@ const Dt = dn("auth", {
   , i1 = async(e,t)=>{
     var i, o;
     const n = ne();
-    Dt(n.$pinia);
-    const r = Lt(n.$pinia);
+    bt(n.$pinia);
+    const r = Ct(n.$pinia);
     e && !((o = (i = e.name) == null ? void 0 : i.toString()) != null && o.includes("index")) && !r.exchangeId && xo(Ho.GAME_SETTINGS_EXCHANGE)
 }
   , o1 = async e=>{
@@ -18856,7 +18860,7 @@ const l1 = Ft({
           , o = ((S = Yt.routes) == null ? void 0 : S.call(Yt, pd)) ?? pd;
         let s;
         const a = a1(r, window.location, e.payload.path)
-          , l = Wk({
+          , l = Gk({
             ...Yt,
             scrollBehavior: (g,E,p)=>{
                 if (E === hn) {
@@ -18924,7 +18928,7 @@ const l1 = Ft({
         return l.beforeEach(async(g,E)=>{
             var p;
             await e.callHook("page:loading:start"),
-            g.meta = St(g.meta),
+            g.meta = wt(g.meta),
             e.isHydrating && _ && !qr(g.meta.layout) && (g.meta.layout = _),
             e._processingMiddleware = !0;
             {
@@ -19251,7 +19255,7 @@ function ty(e) {
                     };
                     return r.custom || (f.value && (p.class = r.prefetchedClass || e.prefetchedClass),
                     p.rel = r.rel || void 0),
-                    ft(Wr("RouterLink"), p, i.default)
+                    ft(Gr("RouterLink"), p, i.default)
                 }
                 const _ = typeof a.value == "object" ? ((g = o.resolve(a.value)) == null ? void 0 : g.href) ?? null : a.value && !r.external && !l.value ? n(Ii(s.app.baseURL, a.value), o.resolve) : a.value || null
                   , b = r.target || null
@@ -19353,8 +19357,8 @@ const g1 = Ft(e=>{
     name: "nuxt:global-components"
 })
   , hr = {
-    default: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/default.DKkQc1eL.js"), __vite__mapDeps([32, 12, 3, 8, 18, 1, 27, 2, 6]), import.meta.url).then(e=>e.default || e),
-    main: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/main.BQgos5pb.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
+    default: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/default.D-e8snMr.js"), __vite__mapDeps([32, 12, 3, 8, 18, 1, 27, 2, 6]), import.meta.url).then(e=>e.default || e),
+    main: ()=>k(()=>import("https://hamsterkombatgame.io/_nuxt/main.Cdp5hkno.js"), __vite__mapDeps([]), import.meta.url).then(e=>e.default || e)
 }
   , v1 = Ft({
     name: "nuxt:prefetch",
@@ -19442,38 +19446,38 @@ var ny = {
             name: "en",
             weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
             months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
-            ordinal: function(W) {
+            ordinal: function(G) {
                 var K = ["th", "st", "nd", "rd"]
-                  , N = W % 100;
-                return "[" + W + (K[(N - 20) % 10] || K[N] || K[0]) + "]"
+                  , N = G % 100;
+                return "[" + G + (K[(N - 20) % 10] || K[N] || K[0]) + "]"
             }
         }
-          , p = function(W, K, N) {
-            var Y = String(W);
-            return !Y || Y.length >= K ? W : "" + Array(K + 1 - Y.length).join(N) + W
+          , p = function(G, K, N) {
+            var Y = String(G);
+            return !Y || Y.length >= K ? G : "" + Array(K + 1 - Y.length).join(N) + G
         }
           , y = {
             s: p,
-            z: function(W) {
-                var K = -W.utcOffset()
+            z: function(G) {
+                var K = -G.utcOffset()
                   , N = Math.abs(K)
                   , Y = Math.floor(N / 60)
                   , x = N % 60;
                 return (K <= 0 ? "+" : "-") + p(Y, 2, "0") + ":" + p(x, 2, "0")
             },
-            m: function W(K, N) {
+            m: function G(K, N) {
                 if (K.date() < N.date())
-                    return -W(N, K);
+                    return -G(N, K);
                 var Y = 12 * (N.year() - K.year()) + (N.month() - K.month())
                   , x = K.clone().add(Y, f)
                   , ae = N - x < 0
                   , j = K.clone().add(Y + (ae ? -1 : 1), f);
                 return +(-(Y + (N - x) / (ae ? x - j : j - x)) || 0)
             },
-            a: function(W) {
-                return W < 0 ? Math.ceil(W) || 0 : Math.floor(W)
+            a: function(G) {
+                return G < 0 ? Math.ceil(G) || 0 : Math.floor(G)
             },
-            p: function(W) {
+            p: function(G) {
                 return {
                     M: f,
                     y: m,
@@ -19485,20 +19489,20 @@ var ny = {
                     s,
                     ms: o,
                     Q: d
-                }[W] || String(W || "").toLowerCase().replace(/s$/, "")
+                }[G] || String(G || "").toLowerCase().replace(/s$/, "")
             },
-            u: function(W) {
-                return W === void 0
+            u: function(G) {
+                return G === void 0
             }
         }
           , T = "en"
           , w = {};
         w[T] = E;
         var L = "$isDayjsObject"
-          , C = function(W) {
-            return W instanceof F || !(!W || !W[L])
+          , C = function(G) {
+            return G instanceof F || !(!G || !G[L])
         }
-          , O = function W(K, N, Y) {
+          , O = function G(K, N, Y) {
             var x;
             if (!K)
                 return T;
@@ -19509,7 +19513,7 @@ var ny = {
                 x = ae);
                 var j = K.split("-");
                 if (!x && j.length > 1)
-                    return W(j[0])
+                    return G(j[0])
             } else {
                 var ce = K.name;
                 w[ce] = K,
@@ -19518,19 +19522,19 @@ var ny = {
             return !Y && x && (T = x),
             x || !Y && T
         }
-          , D = function(W, K) {
-            if (C(W))
-                return W.clone();
+          , D = function(G, K) {
+            if (C(G))
+                return G.clone();
             var N = typeof K == "object" ? K : {};
-            return N.date = W,
+            return N.date = G,
             N.args = arguments,
             new F(N)
         }
           , B = y;
         B.l = O,
         B.i = C,
-        B.w = function(W, K) {
-            return D(W, {
+        B.w = function(G, K) {
+            return D(G, {
                 locale: K.$L,
                 utc: K.$u,
                 x: K.$x,
@@ -19539,13 +19543,13 @@ var ny = {
         }
         ;
         var F = function() {
-            function W(N) {
+            function G(N) {
                 this.$L = O(N.locale, null, !0),
                 this.parse(N),
                 this.$x = this.$x || N.x || {},
                 this[L] = !0
             }
-            var K = W.prototype;
+            var K = G.prototype;
             return K.parse = function(N) {
                 this.$d = function(Y) {
                     var x = Y.date
@@ -19625,7 +19629,7 @@ var ny = {
                   , ve = function(Q, $) {
                     return B.w(x.toDate()[Q].apply(x.toDate("s"), (ae ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice($)), x)
                 }
-                  , We = this.$W
+                  , Ge = this.$W
                   , Qe = this.$M
                   , ct = this.$D
                   , et = "set" + (this.$u ? "UTC" : "");
@@ -19636,7 +19640,7 @@ var ny = {
                     return ae ? ce(1, Qe) : ce(0, Qe + 1);
                 case c:
                     var H = this.$locale().weekStart || 0
-                      , te = (We < H ? We + 7 : We) - H;
+                      , te = (Ge < H ? Ge + 7 : Ge) - H;
                     return ce(ae ? ct - te : ct + (6 - te), Qe);
                 case u:
                 case _:
@@ -19668,10 +19672,10 @@ var ny = {
                 x[o] = j + "Milliseconds",
                 x)[ae], ve = ae === u ? this.$D + (Y - this.$W) : Y;
                 if (ae === f || ae === m) {
-                    var We = this.clone().set(_, 1);
-                    We.$d[ce](ve),
-                    We.init(),
-                    this.$d = We.set(_, Math.min(this.$D, We.daysInMonth())).$d
+                    var Ge = this.clone().set(_, 1);
+                    Ge.$d[ce](ve),
+                    Ge.init(),
+                    this.$d = Ge.set(_, Math.min(this.$D, Ge.daysInMonth())).$d
                 } else
                     ce && this.$d[ce](ve);
                 return this.init(),
@@ -19707,8 +19711,8 @@ var ny = {
                 x[l] = i,
                 x[s] = n,
                 x)[j] || 1
-                  , We = this.$d.getTime() + N * ve;
-                return B.w(We, this)
+                  , Ge = this.$d.getTime() + N * ve;
+                return B.w(Ge, this)
             }
             ,
             K.subtract = function(N, Y) {
@@ -19724,7 +19728,7 @@ var ny = {
                   , j = B.z(this)
                   , ce = this.$H
                   , ve = this.$m
-                  , We = this.$M
+                  , Ge = this.$M
                   , Qe = x.weekdays
                   , ct = x.months
                   , et = x.meridiem
@@ -19747,13 +19751,13 @@ var ny = {
                         case "YYYY":
                             return B.s(Y.$y, 4, "0");
                         case "M":
-                            return We + 1;
+                            return Ge + 1;
                         case "MM":
-                            return B.s(We + 1, 2, "0");
+                            return B.s(Ge + 1, 2, "0");
                         case "MMM":
-                            return H(x.monthsShort, We, ct, 3);
+                            return H(x.monthsShort, Ge, ct, 3);
                         case "MMMM":
-                            return H(ct, We);
+                            return H(ct, Ge);
                         case "D":
                             return Y.$D;
                         case "DD":
@@ -19801,7 +19805,7 @@ var ny = {
             }
             ,
             K.diff = function(N, Y, x) {
-                var ae, j = this, ce = B.p(Y), ve = D(N), We = (ve.utcOffset() - this.utcOffset()) * r, Qe = this - ve, ct = function() {
+                var ae, j = this, ce = B.p(Y), ve = D(N), Ge = (ve.utcOffset() - this.utcOffset()) * r, Qe = this - ve, ct = function() {
                     return B.m(j, ve)
                 };
                 switch (ce) {
@@ -19815,10 +19819,10 @@ var ny = {
                     ae = ct() / 3;
                     break;
                 case c:
-                    ae = (Qe - We) / 6048e5;
+                    ae = (Qe - Ge) / 6048e5;
                     break;
                 case u:
-                    ae = (Qe - We) / 864e5;
+                    ae = (Qe - Ge) / 864e5;
                     break;
                 case l:
                     ae = Qe / i;
@@ -19872,25 +19876,25 @@ var ny = {
                 return this.$d.toUTCString()
             }
             ,
-            W
+            G
         }()
           , Z = F.prototype;
         return D.prototype = Z,
-        [["$ms", o], ["$s", s], ["$m", a], ["$H", l], ["$W", u], ["$M", f], ["$y", m], ["$D", _]].forEach(function(W) {
-            Z[W[1]] = function(K) {
-                return this.$g(K, W[0], W[1])
+        [["$ms", o], ["$s", s], ["$m", a], ["$H", l], ["$W", u], ["$M", f], ["$y", m], ["$D", _]].forEach(function(G) {
+            Z[G[1]] = function(K) {
+                return this.$g(K, G[0], G[1])
             }
         }),
-        D.extend = function(W, K) {
-            return W.$i || (W(K, F, D),
-            W.$i = !0),
+        D.extend = function(G, K) {
+            return G.$i || (G(K, F, D),
+            G.$i = !0),
             D
         }
         ,
         D.locale = O,
         D.isDayjs = C,
-        D.unix = function(W) {
-            return D(1e3 * W)
+        D.unix = function(G) {
+            return D(1e3 * G)
         }
         ,
         D.en = w[T],
@@ -21118,14 +21122,14 @@ function cy(e, t, n) {
     return t.reference[o] > t.floating[o] && (s = Hs(s)),
     [s, Hs(s)]
 }
-function W1(e) {
+function G1(e) {
     const t = Hs(e);
     return [Bs(e), t, Bs(t)]
 }
 function Bs(e) {
     return e.replace(/start|end/g, t=>q1[t])
 }
-function G1(e, t, n) {
+function W1(e, t, n) {
     const r = ["left", "right"]
       , i = ["right", "left"]
       , o = ["top", "bottom"]
@@ -21143,7 +21147,7 @@ function G1(e, t, n) {
 }
 function J1(e, t, n, r) {
     const i = vn(e);
-    let o = G1(Fn(e), n === "start", r);
+    let o = W1(Fn(e), n === "start", r);
     return i && (o = o.map(s=>s + "-" + i),
     t && (o = o.concat(o.map(Bs)))),
     o
@@ -21361,15 +21365,15 @@ const X1 = e=>({
           , B = To(f[E], O)
           , F = D
           , Z = L - b[_] - B
-          , W = L / 2 - b[_] / 2 + C
-          , K = mc(F, W, Z)
-          , N = !l.arrow && vn(i) != null && W !== K && o.reference[_] / 2 - (W < F ? D : B) - b[_] / 2 < 0
-          , Y = N ? W < F ? W - F : W - Z : 0;
+          , G = L / 2 - b[_] / 2 + C
+          , K = mc(F, G, Z)
+          , N = !l.arrow && vn(i) != null && G !== K && o.reference[_] / 2 - (G < F ? D : B) - b[_] / 2 < 0
+          , Y = N ? G < F ? G - F : G - Z : 0;
         return {
             [m]: d[m] + Y,
             data: {
                 [m]: K,
-                centerOffset: W - K - Y,
+                centerOffset: G - K - Y,
                 ...N && {
                     alignmentOffset: Y
                 }
@@ -21451,7 +21455,7 @@ const $1 = function(e) {
             const g = Fn(i)
               , E = Fn(a) === a
               , p = await (l.isRTL == null ? void 0 : l.isRTL(u.floating))
-              , y = d || (E || !b ? [Hs(a)] : W1(a));
+              , y = d || (E || !b ? [Hs(a)] : G1(a));
             !d && _ !== "none" && y.push(...J1(a, b, _, p));
             const T = [a, ...y]
               , w = await ba(t, S)
@@ -21480,24 +21484,24 @@ const $1 = function(e) {
                             placement: Z
                         }
                     };
-                let W = (D = C.filter(K=>K.overflows[0] <= 0).sort((K,N)=>K.overflows[1] - N.overflows[1])[0]) == null ? void 0 : D.placement;
-                if (!W)
+                let G = (D = C.filter(K=>K.overflows[0] <= 0).sort((K,N)=>K.overflows[1] - N.overflows[1])[0]) == null ? void 0 : D.placement;
+                if (!G)
                     switch (m) {
                     case "bestFit":
                         {
                             var B;
                             const K = (B = C.map(N=>[N.placement, N.overflows.filter(Y=>Y > 0).reduce((Y,x)=>Y + x, 0)]).sort((N,Y)=>N[1] - Y[1])[0]) == null ? void 0 : B[0];
-                            K && (W = K);
+                            K && (G = K);
                             break
                         }
                     case "initialPlacement":
-                        W = a;
+                        G = a;
                         break
                     }
-                if (i !== W)
+                if (i !== G)
                     return {
                         reset: {
-                            placement: W
+                            placement: G
                         }
                     }
             }
@@ -22957,7 +22961,7 @@ function hO(e, t, n, r, i, o) {
     return pe(),
     Je("div", {
         ref: "reference",
-        class: Mt(["v-popper", {
+        class: Dt(["v-popper", {
             "v-popper--shown": e.slotData.isShown
         }])
     }, [Er(e.$slots, "default", cn(zt(e.slotData)))], 2)
@@ -23051,7 +23055,7 @@ const yO = {
 };
 _0();
 const vO = gO((e,t,n,r,i,o)=>(pe(),
-bt("div", yO)));
+Et("div", yO)));
 Sa.render = vO;
 Sa.__scopeId = "data-v-b329ee4c";
 Sa.__file = "src/components/ResizeObserver.vue";
@@ -23099,12 +23103,12 @@ const Sy = (e="theme")=>({
 }, null, -1)
   , SO = [TO, kO];
 function wO(e, t, n, r, i, o) {
-    const s = Wr("ResizeObserver");
+    const s = Gr("ResizeObserver");
     return pe(),
     Je("div", {
         id: e.popperId,
         ref: "popover",
-        class: Mt(["v-popper__popper", [e.themeClass, e.classes.popperClass, {
+        class: Dt(["v-popper__popper", [e.themeClass, e.classes.popperClass, {
             "v-popper__popper--shown": e.shown,
             "v-popper__popper--hidden": !e.shown,
             "v-popper__popper--show-from": e.classes.showFrom,
@@ -23135,10 +23139,10 @@ function wO(e, t, n, r, i, o) {
     Je(mt, {
         key: 0
     }, [me("div", null, [Er(e.$slots, "default")]), e.handleResize ? (pe(),
-    bt(s, {
+    Et(s, {
         key: 0,
         onNotify: t[1] || (t[1] = a=>e.$emit("resize", a))
-    })) : Wt("", !0)], 64)) : Wt("", !0)], 512), me("div", {
+    })) : Gt("", !0)], 64)) : Gt("", !0)], 512), me("div", {
         ref: "arrow",
         class: "v-popper__arrow-container",
         style: Mn(e.result ? {
@@ -23353,10 +23357,10 @@ const AO = xe({
     }
 });
 function LO(e, t, n, r, i, o) {
-    const s = Wr("PopperContent")
-      , a = Wr("Popper");
+    const s = Gr("PopperContent")
+      , a = Gr("Popper");
     return pe(),
-    bt(a, _i({
+    Et(a, _i({
         ref: "popper"
     }, e.$props, {
         theme: e.finalTheme,
@@ -23503,10 +23507,10 @@ const Iu = ka(AO, [["render", LO]])
   , PO = ["innerHTML"]
   , MO = ["textContent"];
 function DO(e, t, n, r, i, o) {
-    const s = Wr("PopperContent")
-      , a = Wr("Popper");
+    const s = Gr("PopperContent")
+      , a = Gr("Popper");
     return pe(),
-    bt(a, _i({
+    Et(a, _i({
         ref: "popper"
     }, e.$attrs, {
         theme: e.theme,
@@ -23517,7 +23521,7 @@ function DO(e, t, n, r, i, o) {
     }), {
         default: un(({popperId: l, isShown: u, shouldMountContent: c, skipTransition: f, autoHide: d, hide: m, handleResize: _, onResize: b, classes: S, result: g})=>[$e(s, {
             ref: "popperContent",
-            class: Mt({
+            class: Dt({
                 "v-popper--tooltip-loading": e.loading
             }),
             "popper-id": l,
@@ -23738,7 +23742,7 @@ const qO = Ft(({vueApp: e})=>{
     e.use(r)
 }
 );
-function WO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=zL, hooks: i={}, context: o={}}={}) {
+function GO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=zL, hooks: i={}, context: o={}}={}) {
     const s = Io()
       , a = e.install;
     return e.install = (l,...u)=>{
@@ -23774,7 +23778,7 @@ function WO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=zL, hooks: i={}, co
         Reflect.apply(a, e, [l, ...u]);
         const d = Si(e);
         s.run(()=>{
-            GO(d, {
+            WO(d, {
                 locales: t,
                 localeCodes: n,
                 baseUrl: r,
@@ -23812,7 +23816,7 @@ function WO(e, {locales: t=[], localeCodes: n=[], baseUrl: r=zL, hooks: i={}, co
     ,
     s
 }
-function GO(e, t) {
+function WO(e, t) {
     const {locales: n, localeCodes: r, baseUrl: i, context: o} = t
       , s = le(n)
       , a = le(r)
@@ -23888,7 +23892,7 @@ function QO() {
 }
 const XO = Ft({
     name: "i18n:plugin",
-    parallel: GL,
+    parallel: WL,
     async setup(e) {
         let t, n;
         const r = aa()
@@ -23898,7 +23902,7 @@ const XO = Ft({
             ...gt
         };
         s.baseUrl = DC();
-        const a = ([t,n] = In(()=>lC(WL, ne())),
+        const a = ([t,n] = In(()=>lC(GL, ne())),
         t = await t,
         n(),
         t);
@@ -23943,7 +23947,7 @@ const XO = Ft({
             b = !1
         }
         ),
-        WO(d, {
+        GO(d, {
             locales: s.locales,
             localeCodes: zr,
             baseUrl: s.baseUrl,
@@ -24197,7 +24201,7 @@ function Ny(e) {
     !0) : !1
 }
 function Pu(e) {
-    return typeof e == "function" ? e() : G(e)
+    return typeof e == "function" ? e() : W(e)
 }
 const ZO = typeof window < "u" && typeof document < "u";
 typeof WorkerGlobalScope < "u" && globalThis instanceof WorkerGlobalScope;
@@ -24332,7 +24336,7 @@ function sR(e, t, n={}) {
 function nD(e, t={}) {
     const n = tR(e)
       , {threshold: r=50, onSwipe: i, onSwipeEnd: o, onSwipeStart: s, disableTextSelect: a=!1} = t
-      , l = St({
+      , l = wt({
         x: 0,
         y: 0
     })
@@ -24340,7 +24344,7 @@ function nD(e, t={}) {
         l.x = L,
         l.y = C
     }
-      , c = St({
+      , c = wt({
         x: 0,
         y: 0
     })
@@ -24387,11 +24391,11 @@ function nD(e, t={}) {
     }
     )];
     nR(()=>{
-        var L, C, O, D, B, F, Z, W;
+        var L, C, O, D, B, F, Z, G;
         (C = (L = n.value) == null ? void 0 : L.style) == null || C.setProperty("touch-action", "none"),
         a && ((D = (O = n.value) == null ? void 0 : O.style) == null || D.setProperty("-webkit-user-select", "none"),
         (F = (B = n.value) == null ? void 0 : B.style) == null || F.setProperty("-ms-user-select", "none"),
-        (W = (Z = n.value) == null ? void 0 : Z.style) == null || W.setProperty("user-select", "none"))
+        (G = (Z = n.value) == null ? void 0 : Z.style) == null || G.setProperty("user-select", "none"))
     }
     );
     const w = ()=>T.forEach(L=>L());
@@ -24669,15 +24673,15 @@ const Fh = e=>0
 function qo(e) {
     return typeof e == "string"
 }
-const Wo = {
+const Go = {
     test: e=>typeof e == "number",
     parse: parseFloat,
     transform: e=>e
 }
-  , so = Object.assign(Object.assign({}, Wo), {
+  , so = Object.assign(Object.assign({}, Go), {
     transform: Yy(0, 1)
 })
-  , fs = Object.assign(Object.assign({}, Wo), {
+  , fs = Object.assign(Object.assign({}, Go), {
     default: 1
 })
   , Nu = e=>({
@@ -24710,7 +24714,7 @@ const Wo = {
     transform: ({hue: e, saturation: t, lightness: n, alpha: r=1})=>"hsla(" + Math.round(e) + ", " + ao.transform(oo(t)) + ", " + ao.transform(oo(n)) + ", " + oo(so.transform(r)) + ")"
 }
   , SR = Yy(0, 255)
-  , al = Object.assign(Object.assign({}, Wo), {
+  , al = Object.assign(Object.assign({}, Go), {
     transform: e=>Math.round(SR(e))
 })
   , pr = {
@@ -24751,8 +24755,8 @@ const Ac = {
     parse: e=>pr.test(e) ? pr.parse(e) : Ur.test(e) ? Ur.parse(e) : Ac.parse(e),
     transform: e=>qo(e) ? e : e.hasOwnProperty("red") ? pr.transform(e) : Ur.transform(e)
 }
-  , Wy = "${c}"
-  , Gy = "${n}";
+  , Gy = "${c}"
+  , Wy = "${n}";
 function AR(e) {
     var t, n, r, i;
     return isNaN(e) && qo(e) && ((n = (t = e.match(Co)) === null || t === void 0 ? void 0 : t.length) !== null && n !== void 0 ? n : 0) + ((i = (r = e.match(wc)) === null || r === void 0 ? void 0 : r.length) !== null && i !== void 0 ? i : 0) > 0
@@ -24763,11 +24767,11 @@ function Jy(e) {
     let n = 0;
     const r = e.match(wc);
     r && (n = r.length,
-    e = e.replace(wc, Wy),
+    e = e.replace(wc, Gy),
     t.push(...r.map(Ht.parse)));
     const i = e.match(Co);
-    return i && (e = e.replace(Co, Gy),
-    t.push(...i.map(Wo.parse))),
+    return i && (e = e.replace(Co, Wy),
+    t.push(...i.map(Go.parse))),
     {
         values: t,
         numColors: n,
@@ -24783,7 +24787,7 @@ function Qy(e) {
     return o=>{
         let s = r;
         for (let a = 0; a < i; a++)
-            s = s.replace(a < n ? Wy : Gy, a < n ? Ht.transform(o[a]) : oo(o[a]));
+            s = s.replace(a < n ? Gy : Wy, a < n ? Ht.transform(o[a]) : oo(o[a]));
         return s
     }
 }
@@ -24792,7 +24796,7 @@ function CR(e) {
     const t = zy(e);
     return Qy(e)(t.map(LR))
 }
-const Go = {
+const Wo = {
     test: AR,
     parse: zy,
     createTransformer: Qy,
@@ -24812,7 +24816,7 @@ function RR(e) {
     t + "(" + o + i + ")"
 }
 const IR = /([a-z-]*)\(.*?\)/g
-  , Lc = Object.assign(Object.assign({}, Go), {
+  , Lc = Object.assign(Object.assign({}, Wo), {
     getAnimatableNone: e=>{
         const t = e.match(IR);
         return t ? t.map(RR).join(" ") : e
@@ -24899,7 +24903,7 @@ const ev = (e,t)=>{
 }
 ;
 function Hh(e) {
-    const t = Go.parse(e)
+    const t = Wo.parse(e)
       , n = t.length;
     let r = 0
       , i = 0
@@ -24914,7 +24918,7 @@ function Hh(e) {
     }
 }
 const tv = (e,t)=>{
-    const n = Go.createTransformer(t)
+    const n = Wo.createTransformer(t)
       , r = Hh(e)
       , i = Hh(t);
     return r.numHSL === i.numHSL && r.numRGB === i.numRGB && r.numNumbers >= i.numNumbers ? Zy(ev(r.parsed, i.parsed), n) : s=>`${s > 0 ? t : e}`
@@ -24988,10 +24992,10 @@ const Aa = e=>t=>1 - e(1 - t)
   , iv = 1.525
   , YR = 4 / 11
   , qR = 8 / 11
-  , WR = 9 / 10
+  , GR = 9 / 10
   , ov = e=>e
   , xu = jR(2)
-  , GR = Aa(xu)
+  , WR = Aa(xu)
   , sv = Fu(xu)
   , av = e=>1 - Math.sin(Math.acos(e))
   , lv = Aa(av)
@@ -25003,14 +25007,14 @@ const Aa = e=>t=>1 - e(1 - t)
   , ZR = 4356 / 361
   , $R = 35442 / 1805
   , eI = 16061 / 1805
-  , Ws = e=>{
+  , Gs = e=>{
     if (e === 1 || e === 0)
         return e;
     const t = e * e;
-    return e < YR ? 7.5625 * t : e < qR ? 9.075 * t - 9.9 * e + 3.4 : e < WR ? ZR * t - $R * e + eI : 10.8 * e * e - 20.52 * e + 10.72
+    return e < YR ? 7.5625 * t : e < qR ? 9.075 * t - 9.9 * e + 3.4 : e < GR ? ZR * t - $R * e + eI : 10.8 * e * e - 20.52 * e + 10.72
 }
-  , tI = Aa(Ws)
-  , nI = e=>e < .5 ? .5 * (1 - Ws(1 - e * 2)) : .5 * Ws(e * 2 - 1) + .5;
+  , tI = Aa(Gs)
+  , nI = e=>e < .5 ? .5 * (1 - Gs(1 - e * 2)) : .5 * Gs(e * 2 - 1) + .5;
 function rI(e, t) {
     return e.map(()=>t || sv).splice(0, e.length - 1)
 }
@@ -25119,9 +25123,9 @@ function uv(e) {
         g.stop(),
         d && d()
     }
-    function F(W) {
-        if (w || (W = -W),
-        s += W,
+    function F(G) {
+        if (w || (G = -G),
+        s += G,
         !T) {
             const K = O.next(Math.max(0, s));
             y = K.value,
@@ -25219,7 +25223,7 @@ function fI({from: e=0, velocity: t=0, min: n, max: r, power: i=.8, timeConstant
 const dv = (e,t)=>1 - 3 * t + 3 * e
   , hv = (e,t)=>3 * t - 6 * e
   , pv = e=>3 * e
-  , Gs = (e,t,n)=>((dv(t, n) * e + hv(t, n)) * e + pv(t)) * e
+  , Ws = (e,t,n)=>((dv(t, n) * e + hv(t, n)) * e + pv(t)) * e
   , mv = (e,t,n)=>3 * dv(t, n) * e * e + 2 * hv(t, n) * e + pv(t)
   , dI = 1e-7
   , hI = 10;
@@ -25227,7 +25231,7 @@ function pI(e, t, n, r, i) {
     let o, s, a = 0;
     do
         s = t + (n - t) / 2,
-        o = Gs(s, r, i) - e,
+        o = Ws(s, r, i) - e,
         o > 0 ? n = s : t = s;
     while (Math.abs(o) > dI && ++a < hI);
     return s
@@ -25239,7 +25243,7 @@ function yI(e, t, n, r) {
         const o = mv(t, n, r);
         if (o === 0)
             return t;
-        const s = Gs(t, n, r) - e;
+        const s = Ws(t, n, r) - e;
         t -= s / o
     }
     return t
@@ -25251,7 +25255,7 @@ function vI(e, t, n, r) {
         return ov;
     const i = new Float32Array(bs);
     for (let s = 0; s < bs; ++s)
-        i[s] = Gs(s * ds, e, n);
+        i[s] = Ws(s * ds, e, n);
     function o(s) {
         let a = 0
           , l = 1;
@@ -25264,7 +25268,7 @@ function vI(e, t, n, r) {
           , d = mv(f, e, n);
         return d >= gI ? yI(s, f, e, n) : d === 0 ? f : pI(s, a, a + ds, e, n)
     }
-    return s=>s === 0 || s === 1 ? s : Gs(o(s), t, r)
+    return s=>s === 0 || s === 1 ? s : Ws(o(s), t, r)
 }
 const cl = {};
 var _I = Object.defineProperty
@@ -25474,7 +25478,7 @@ function gv(e, t) {
     }
 }
 const qh = {
-    ...Wo,
+    ...Go,
     transform: Math.round
 }
   , yv = {
@@ -25555,14 +25559,14 @@ function vv(e, t) {
 }
 function PI(e, t) {
     let n = Bu(e);
-    return n !== Lc && (n = Go),
+    return n !== Lc && (n = Wo),
     n.getAnimatableNone ? n.getAnimatableNone(t) : void 0
 }
 const MI = {
     linear: ov,
     easeIn: xu,
     easeInOut: sv,
-    easeOut: GR,
+    easeOut: WR,
     circIn: av,
     circInOut: JR,
     circOut: lv,
@@ -25572,9 +25576,9 @@ const MI = {
     anticipate: XR,
     bounceIn: tI,
     bounceInOut: nI,
-    bounceOut: Ws
+    bounceOut: Gs
 };
-function Wh(e) {
+function Gh(e) {
     if (Array.isArray(e)) {
         const [t,n,r,i] = e;
         return vI(t, n, r, i)
@@ -25585,8 +25589,8 @@ function Wh(e) {
 function DI(e) {
     return Array.isArray(e) && typeof e[0] != "number"
 }
-function Gh(e, t) {
-    return e === "zIndex" ? !1 : !!(typeof t == "number" || Array.isArray(t) || typeof t == "string" && Go.test(t) && !t.startsWith("url("))
+function Wh(e, t) {
+    return e === "zIndex" ? !1 : !!(typeof t == "number" || Array.isArray(t) || typeof t == "string" && Wo.test(t) && !t.startsWith("url("))
 }
 function NI(e) {
     return Array.isArray(e.to) && e.to[0] === null && (e.to = [...e.to],
@@ -25598,7 +25602,7 @@ function VI({ease: e, times: t, delay: n, ...r}) {
         ...r
     };
     return t && (i.offset = t),
-    e && (i.ease = DI(e) ? e.map(Wh) : Wh(e)),
+    e && (i.ease = DI(e) ? e.map(Gh) : Gh(e)),
     n && (i.elapsed = -n),
     i
 }
@@ -25623,9 +25627,9 @@ function UI(e, t) {
 function BI(e, t, n, r, i) {
     const o = UI(r, e);
     let s = o.from === null || o.from === void 0 ? t.get() : o.from;
-    const a = Gh(e, n);
+    const a = Wh(e, n);
     s === "none" && a && typeof n == "string" && (s = PI(e, n));
-    const l = Gh(e, s);
+    const l = Wh(e, s);
     function u(f) {
         const d = {
             from: s,
@@ -25679,7 +25683,7 @@ function HI() {
     }
 }
 function jI(e, t={}, {motionValues: n, push: r, stop: i}=HI()) {
-    const o = G(t)
+    const o = W(t)
       , s = le(!1);
     je(n, f=>{
         s.value = Object.values(f).filter(d=>d.isAnimating()).length > 0
@@ -25731,8 +25735,8 @@ const Hu = typeof window < "u"
   , KI = ()=>Hu && window.onpointerdown === null
   , YI = ()=>Hu && window.ontouchstart === null
   , qI = ()=>Hu && window.onmousedown === null;
-function WI({target: e, state: t, variants: n, apply: r}) {
-    const i = G(n)
+function GI({target: e, state: t, variants: n, apply: r}) {
+    const i = W(n)
       , o = le(!1)
       , s = le(!1)
       , a = le(!1)
@@ -25776,8 +25780,8 @@ function WI({target: e, state: t, variants: n, apply: r}) {
     Ut(e, "blur", ()=>a.value = !1)),
     je(u, r)
 }
-function GI({set: e, target: t, variants: n, variant: r}) {
-    const i = G(n);
+function WI({set: e, target: t, variants: n, variant: r}) {
+    const i = W(n);
     je(()=>t, ()=>{
         i && (i.initial && e("initial"),
         i.enter && (r.value = "enter"))
@@ -25796,7 +25800,7 @@ function JI({state: e, apply: t}) {
     })
 }
 function _v({target: e, variants: t, variant: n}) {
-    const r = G(t);
+    const r = W(t);
     r && (r.visible || r.visibleOnce) && sR(e, ([{isIntersecting: i}])=>{
         r.visible ? i ? n.value = "visible" : n.value = "initial" : r.visibleOnce && (i && n.value !== "visibleOnce" ? n.value = "visibleOnce" : n.value || (n.value = "initial"))
     }
@@ -25808,13 +25812,13 @@ function zI(e, t={
     visibilityHooks: !0,
     eventListeners: !0
 }) {
-    t.lifeCycleHooks && GI(e),
+    t.lifeCycleHooks && WI(e),
     t.syncVariants && JI(e),
     t.visibilityHooks && _v(e),
-    t.eventListeners && WI(e)
+    t.eventListeners && GI(e)
 }
 function bv(e={}) {
-    const t = St({
+    const t = wt({
         ...e
     })
       , n = le({});
@@ -25850,7 +25854,7 @@ const QI = {
     z: "translateZ"
 };
 function Ev(e={}, t=!0) {
-    const n = St({
+    const n = wt({
         ...e
     })
       , r = le("");
@@ -26016,7 +26020,7 @@ function oP(e, t) {
     }
 }
 function sP(e, t) {
-    const n = St({})
+    const n = wt({})
       , r = s=>Object.entries(s).forEach(([a,l])=>n[a] = l)
       , {style: i} = nP(e, r)
       , {transform: o} = oP(e, r);
@@ -26039,7 +26043,7 @@ function sP(e, t) {
     }
 }
 function aP(e={}) {
-    const t = G(e)
+    const t = W(e)
       , n = le();
     return {
         state: ue(()=>{
@@ -26126,7 +26130,7 @@ function dl(e) {
         ,
         getSSRProps(r, i) {
             let {initial: o} = r.value || i && (i == null ? void 0 : i.props) || {};
-            o = G(o);
+            o = W(o);
             const s = su((e == null ? void 0 : e.initial) || {}, o || {});
             return !s || Object.keys(s).length === 0 ? void 0 : {
                 style: Sv(s)
@@ -26543,7 +26547,7 @@ const uP = {
     setup(e) {
         var a;
         const t = z0()
-          , n = St({});
+          , n = wt({});
         if (!e.is && !t.default)
             return ()=>ft("div", {});
         const r = ue(()=>{
@@ -26579,7 +26583,7 @@ const uP = {
             if (!e.is)
                 return;
             let l = e.is;
-            return typeof s.value == "string" && !Fv(l) && (l = Wr(l)),
+            return typeof s.value == "string" && !Fv(l) && (l = Gr(l)),
             l
         }
         );
@@ -26705,7 +26709,7 @@ function qP(e) {
         }
     }
 }
-const WP = Ft(()=>{
+const GP = Ft(()=>{
     const e = qP();
     return {
         provide: {
@@ -26716,7 +26720,7 @@ const WP = Ft(()=>{
     }
 }
 )
-  , GP = [KT, qT, l1, u1, f1, g1, y1, v1, j1, YO, qO, XO, KP, YP, WP]
+  , WP = [KT, qT, l1, u1, f1, g1, y1, v1, j1, YO, qO, XO, KP, YP, GP]
   , JP = xe({
     props: {
         vnode: {
@@ -26771,12 +26775,12 @@ const WP = Ft(()=>{
     setup(e, {attrs: t, expose: n}) {
         const r = ne()
           , i = le()
-          , o = kt(Fo, null);
+          , o = St(Fo, null);
         let s;
         n({
             pageRef: i
         });
-        const a = kt(Sm, null);
+        const a = St(Sm, null);
         let l;
         const u = r.deferHydration();
         if (r.isHydrating) {
@@ -26815,7 +26819,7 @@ const WP = Ft(()=>{
                     }
                 }].filter(Boolean))
                   , S = e.keepalive ?? c.route.meta.keepalive ?? NT;
-                return l = ng(Do, _ && b, Qk(S, ft(Gc, {
+                return l = ng(Do, _ && b, Qk(S, ft(Wc, {
                     suspensible: !0,
                     onPending: ()=>r.callHook("page:start", c.Component),
                     onResolve: ()=>{
@@ -26901,11 +26905,11 @@ const $P = xe({
     },
     setup(e, t) {
         const n = ne()
-          , r = kt(Fo)
+          , r = St(Fo)
           , i = r === aa() ? Jk() : r
           , o = ue(()=>{
-            let l = G(e.name) ?? i.meta.layout ?? "default";
-            return l && !(l in hr) && e.fallback && (l = G(e.fallback)),
+            let l = W(e.name) ?? i.meta.layout ?? "default";
+            return l && !(l in hr) && e.fallback && (l = W(e.fallback)),
             l
         }
         )
@@ -26922,7 +26926,7 @@ const $P = xe({
             const l = o.value && o.value in hr
               , u = i.meta.layoutTransition ?? DT;
             return ng(Do, l && u, {
-                default: ()=>ft(Gc, {
+                default: ()=>ft(Wc, {
                     suspensible: !0,
                     onResolve: ()=>{
                         Jt(a)
@@ -26985,7 +26989,7 @@ function iM(e, t) {
     const n = zP
       , r = eM;
     return pe(),
-    bt(r, null, {
+    Et(r, null, {
         default: un(()=>[$e(n)]),
         _: 1
     })
@@ -27055,12 +27059,12 @@ const oM = nM(rM, [["render", iM]])
         t = await t,
         n(),
         t);
-        return (s,a)=>G(o) ? (pe(),
+        return (s,a)=>W(o) ? (pe(),
         Je("div", {
             key: 0,
             class: "icon",
-            innerHTML: G(o)
-        }, null, 8, sM)) : Wt("", !0)
+            innerHTML: W(o)
+        }, null, 8, sM)) : Gt("", !0)
     }
 })
   , lM = {
@@ -27073,13 +27077,13 @@ const oM = nM(rM, [["render", iM]])
     setup(e) {
         return (t,n)=>(pe(),
         Je("picture", lM, [me("source", {
-            srcset: G(lc).TOKEN_WEBP,
+            srcset: W(lc).TOKEN_WEBP,
             type: "image/webp",
-            alt: G($t).GAME_NAME
+            alt: W($t).GAME_NAME
         }, null, 8, cM), me("img", {
             class: "img-responsive",
-            src: G(lc).TOKEN,
-            alt: G($t).GAME_NAME
+            src: W(lc).TOKEN,
+            alt: W($t).GAME_NAME
         }, null, 8, uM)]))
     }
 })
@@ -27097,7 +27101,7 @@ const oM = nM(rM, [["render", iM]])
         }
     },
     setup(e, {slots: t}) {
-        const n = Wg()
+        const n = Gg()
           , r = ue(()=>{
             const s = e.to ?? e.href;
             return s != null ? n(s, e.locale) : s
@@ -27188,7 +27192,7 @@ const pM = {
     },
     setup(e) {
         var s;
-        const t = Gt()
+        const t = Wt()
           , n = e;
         OT({
             title: `${((s = n.error) == null ? void 0 : s.statusCode) ?? 500} - ${$t.GAME_NAME}`
@@ -27216,29 +27220,29 @@ const pM = {
             return pe(),
             Je("main", pM, [me("div", mM, [me("div", gM, [me("div", yM, [me("a", {
                 class: "is-x",
-                href: G(t).link_twitter,
+                href: W(t).link_twitter,
                 target: "_blank"
             }, [$e(u, {
                 name: "ln-x"
             })], 8, vM), me("a", {
                 class: "is-telegram",
-                href: G(t).link_telegram,
+                href: W(t).link_telegram,
                 target: "_blank"
             }, [$e(u, {
                 name: "ln-telegram"
             })], 8, _M), me("p", {
                 innerHTML: a.$t("landing.join_us")
-            }, null, 8, bM)])]), me("div", EM, [me("div", TM, [$e(c)]), me("p", null, en(G($t).GAME_NAME), 1)]), me("div", kM, [me("button", SM, [me("p", {
+            }, null, 8, bM)])]), me("div", EM, [me("div", TM, [$e(c)]), me("p", null, en(W($t).GAME_NAME), 1)]), me("div", kM, [me("button", SM, [me("p", {
                 innerHTML: a.$t("landing.whitepaper")
             }, null, 8, wM), $e(u, {
                 class: "is-ln-arrow",
                 name: "ln-arrow"
             }), AM])])]), me("div", LM, [me("h1", null, en(e.error.statusCode ?? 500), 1), (d = e.error) != null && d.statusMessage ? (pe(),
-            Je("p", CM, "Status: " + en(((m = e.error) == null ? void 0 : m.statusMessage) ?? ""), 1)) : Wt("", !0), me("p", OM, en((_ = e.error) == null ? void 0 : _.toJSON()), 1), G(r) ? (pe(),
-            Je("p", RM, "User Agent: " + en(G(r)), 1)) : Wt("", !0), G(o) ? (pe(),
-            Je("p", IM, "TimeZone: " + en(G(o)), 1)) : Wt("", !0), me("div", PM, [$e(f, {
+            Je("p", CM, "Status: " + en(((m = e.error) == null ? void 0 : m.statusMessage) ?? ""), 1)) : Gt("", !0), me("p", OM, en((_ = e.error) == null ? void 0 : _.toJSON()), 1), W(r) ? (pe(),
+            Je("p", RM, "User Agent: " + en(W(r)), 1)) : Gt("", !0), W(o) ? (pe(),
+            Je("p", IM, "TimeZone: " + en(W(o)), 1)) : Gt("", !0), me("div", PM, [$e(f, {
                 class: "button",
-                to: G(Ho).LANDING
+                to: W(Ho).LANDING
             }, {
                 default: un(()=>[me("span", {
                     innerHTML: a.$t("buttons.home")
@@ -27271,22 +27275,22 @@ const pM = {
         );
         const s = !1;
         return (a,l)=>(pe(),
-        bt(Gc, {
-            onResolve: G(r)
+        Et(Wc, {
+            onResolve: W(r)
         }, {
-            default: un(()=>[G(o) ? (pe(),
-            bt(G(NM), {
+            default: un(()=>[W(o) ? (pe(),
+            Et(W(NM), {
                 key: 0,
-                error: G(o)
-            }, null, 8, ["error"])) : G(s) ? (pe(),
-            bt(G(t), {
+                error: W(o)
+            }, null, 8, ["error"])) : W(s) ? (pe(),
+            Et(W(t), {
                 key: 1,
-                context: G(s)
-            }, null, 8, ["context"])) : G(i) ? (pe(),
-            bt(_l(G(i)), {
+                context: W(s)
+            }, null, 8, ["context"])) : W(i) ? (pe(),
+            Et(_l(W(i)), {
                 key: 2
             })) : (pe(),
-            bt(G(oM), {
+            Et(W(oM), {
                 key: 3
             }))]),
             _: 1
@@ -27310,7 +27314,7 @@ let Qh;
         }
         r.config.errorHandler = o;
         try {
-            await fE(i, GP)
+            await fE(i, WP)
         } catch (l) {
             o(l)
         }
@@ -27333,10 +27337,10 @@ let Qh;
     }
     )
 }
-export {JM as $, NL as A, Ct as B, VM as C, FM as D, xL as E, mt as F, G0 as G, UM as H, wL as I, fM as J, UL as K, AL as L, Wg as M, At as N, xo as O, IL as P, WM as Q, nM as R, cc as S, HC as T, Ho as U, dM as V, hM as W, $t as X, LL as Y, GM as Z, aM as _, Je as a, PL as a0, dn as a1, Ye as a2, Eo as a3, Dt as a4, $p as a5, Ng as a6, zM as a7, QM as a8, Mn as a9, lc as aA, Jn as aB, xM as aC, OT as aD, Dm as aE, Ri as aF, nD as aG, Do as aH, _l as aI, _i as aJ, wv as aK, aa as aL, YM as aM, jL as aN, tt as aO, zP as aP, jM as aQ, $M as aR, qM as aS, KM as aT, XM as aU, un as aa, ch as ab, BM as ac, lt as ad, HM as ae, nl as af, tl as ag, ML as ah, DL as ai, k as aj, RL as ak, X0 as al, OL as am, CL as an, VL as ao, Wr as ap, St as aq, Kr as ar, Qc as as, je as at, Jt as au, ft as av, K0 as aw, FL as ax, ZM as ay, Er as az, me as b, ue as c, xe as d, bt as e, G as f, $e as g, Ne as h, vt as i, Mi as j, tD as k, $g as l, Lt as m, Mt as n, pe as o, yn as p, ne as q, le as r, Gt as s, Vt as t, ma as u, kn as v, en as w, ht as x, Wt as y, eD as z};
+export {JM as $, NL as A, Ot as B, VM as C, FM as D, xL as E, mt as F, W0 as G, UM as H, wL as I, fM as J, UL as K, AL as L, Gg as M, Lt as N, xo as O, IL as P, GM as Q, nM as R, cc as S, HC as T, Ho as U, dM as V, hM as W, $t as X, LL as Y, WM as Z, aM as _, Je as a, PL as a0, dn as a1, Ye as a2, Eo as a3, bt as a4, $p as a5, Ng as a6, zM as a7, QM as a8, Mn as a9, lc as aA, Jn as aB, xM as aC, OT as aD, Dm as aE, Ri as aF, nD as aG, Do as aH, _l as aI, _i as aJ, wv as aK, aa as aL, YM as aM, jL as aN, tt as aO, zP as aP, jM as aQ, $M as aR, qM as aS, KM as aT, XM as aU, un as aa, ch as ab, BM as ac, lt as ad, HM as ae, nl as af, tl as ag, ML as ah, DL as ai, k as aj, RL as ak, X0 as al, OL as am, CL as an, VL as ao, Gr as ap, wt as aq, Kr as ar, Qc as as, je as at, Jt as au, ft as av, K0 as aw, FL as ax, ZM as ay, Er as az, me as b, ue as c, xe as d, Et as e, W as f, $e as g, Ne as h, vt as i, Mi as j, tD as k, $g as l, Ct as m, Dt as n, pe as o, yn as p, ne as q, le as r, Wt as s, Vt as t, ma as u, kn as v, en as w, ht as x, Gt as y, eD as z};
 function __vite__mapDeps(indexes) {
     if (!__vite__mapDeps.viteFileDeps) {
-        __vite__mapDeps.viteFileDeps = ["https://hamsterkombatgame.io/_nuxt/airdrop.DCoBffcH.js", "https://hamsterkombatgame.io/_nuxt/Image.vue.B19s8tJq.js", "https://hamsterkombatgame.io/_nuxt/airdrop.BRS5nWyr.js", "https://hamsterkombatgame.io/_nuxt/Preloader.vue.Dx7nGg1a.js", "https://hamsterkombatgame.io/_nuxt/boost.CTOSzdmF.js", "https://hamsterkombatgame.io/_nuxt/BalanceLarge.vue.BPPdK4SA.js", "https://hamsterkombatgame.io/_nuxt/Price.vue.ChqceIBP.js", "https://hamsterkombatgame.io/_nuxt/earn.CGNYLH94.js", "https://hamsterkombatgame.io/_nuxt/attraction.DyYkpMol.js", "https://hamsterkombatgame.io/_nuxt/friends.55w8a9DQ.js", "https://hamsterkombatgame.io/_nuxt/index.DuCkz0Ip.js", "https://hamsterkombatgame.io/_nuxt/Earn.vue.CgB048DV.js", "https://hamsterkombatgame.io/_nuxt/image.vue.BwgRSvCF.js", "https://hamsterkombatgame.io/_nuxt/Hamster.vue.XapgdJz2.js", "https://hamsterkombatgame.io/_nuxt/navigation.Dl7KVRev.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.mYzMHE8P.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.vkSr05gD.css", "https://hamsterkombatgame.io/_nuxt/navigation.Bw5XmvsK.css", "https://hamsterkombatgame.io/_nuxt/MiniGameLose.vue.DvKwNi7j.js", "https://hamsterkombatgame.io/_nuxt/index.C3tcUQAK.js", "https://hamsterkombatgame.io/_nuxt/mine.D6ob7P6b.js", "https://hamsterkombatgame.io/_nuxt/playground.CJ-lGLcP.js", "https://hamsterkombatgame.io/_nuxt/bingx.Bo0v9Fgd.js", "https://hamsterkombatgame.io/_nuxt/exchange.DyvKTr2J.js", "https://hamsterkombatgame.io/_nuxt/index.C01Jr9J9.js", "https://hamsterkombatgame.io/_nuxt/achievements.E_YTHutk.js", "https://hamsterkombatgame.io/_nuxt/AchievementStat.vue.Dmv1usue.js", "https://hamsterkombatgame.io/_nuxt/Circles.vue.C96NBHkz.js", "https://hamsterkombatgame.io/_nuxt/index.C-sV_QzG.js", "https://hamsterkombatgame.io/_nuxt/index.ChUzcjB-.js", "https://hamsterkombatgame.io/_nuxt/LandingHeader.vue.C0SyCbmw.js", "https://hamsterkombatgame.io/_nuxt/privacy-policy.DrKWYLGM.js", "https://hamsterkombatgame.io/_nuxt/default.DKkQc1eL.js"]
+        __vite__mapDeps.viteFileDeps = ["https://hamsterkombatgame.io/_nuxt/airdrop.YhsdJI6w.js", "https://hamsterkombatgame.io/_nuxt/Image.vue.C5m5QUGs.js", "https://hamsterkombatgame.io/_nuxt/airdrop.B4PXIzsH.js", "https://hamsterkombatgame.io/_nuxt/Preloader.vue.CkdpfeGC.js", "https://hamsterkombatgame.io/_nuxt/boost.CRTvl1Ri.js", "https://hamsterkombatgame.io/_nuxt/BalanceLarge.vue.iQcjYUH_.js", "https://hamsterkombatgame.io/_nuxt/Price.vue.Bj035ArA.js", "https://hamsterkombatgame.io/_nuxt/earn.D_s0DviC.js", "https://hamsterkombatgame.io/_nuxt/attraction.y1fcVEuk.js", "https://hamsterkombatgame.io/_nuxt/friends.B3UrVHKW.js", "https://hamsterkombatgame.io/_nuxt/index.CEFtRX4g.js", "https://hamsterkombatgame.io/_nuxt/Earn.vue.BA3-7C1P.js", "https://hamsterkombatgame.io/_nuxt/image.vue.CIEsT132.js", "https://hamsterkombatgame.io/_nuxt/Hamster.vue.CuYq2AdN.js", "https://hamsterkombatgame.io/_nuxt/navigation.CxmtP1rp.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.BoMCae20.js", "https://hamsterkombatgame.io/_nuxt/effect-fade.vkSr05gD.css", "https://hamsterkombatgame.io/_nuxt/navigation.Bw5XmvsK.css", "https://hamsterkombatgame.io/_nuxt/MiniGameLose.vue.Dcml_udI.js", "https://hamsterkombatgame.io/_nuxt/index.Cxrr3cN1.js", "https://hamsterkombatgame.io/_nuxt/mine.Cl9rA7qK.js", "https://hamsterkombatgame.io/_nuxt/playground.BHXStmQM.js", "https://hamsterkombatgame.io/_nuxt/bingx.BmkCE8hT.js", "https://hamsterkombatgame.io/_nuxt/exchange.BL0zR9_e.js", "https://hamsterkombatgame.io/_nuxt/index.dYBP8PwQ.js", "https://hamsterkombatgame.io/_nuxt/achievements.Ck9s93Vf.js", "https://hamsterkombatgame.io/_nuxt/AchievementStat.vue.CYRTMCde.js", "https://hamsterkombatgame.io/_nuxt/Circles.vue.DyCMI1I4.js", "https://hamsterkombatgame.io/_nuxt/index.DNLhCBB2.js", "https://hamsterkombatgame.io/_nuxt/index.CLrQyzqV.js", "https://hamsterkombatgame.io/_nuxt/LandingHeader.vue.BqW7jNZQ.js", "https://hamsterkombatgame.io/_nuxt/privacy-policy.Cmqyvl70.js", "https://hamsterkombatgame.io/_nuxt/default.D-e8snMr.js"]
     }
     return indexes.map((i)=>__vite__mapDeps.viteFileDeps[i])
 }
