@@ -1,116 +1,57 @@
 // WebView
 (function () {
   var eventHandlers = {};
+
   var locationHash = '';
-
-  // Enhanced logging for debugging
-  function log(message) {
-    console.log("[WebView Debug]: " + message);
-  }
-
-  // Fallback function to ensure normal loading
-  function ensureNormalLoading() {
-    log("Ensuring normal loading despite errors...");
-    // Add any necessary code here to recover from errors or ensure basic functionality
-    // For example, you can add a default style or ensure essential scripts are loaded
-  }
-
   try {
     locationHash = location.hash.toString();
-  } catch (e) {
-    log("Error reading location hash: " + e.message);
-    ensureNormalLoading(); // Fallback to normal loading
-  }
+  } catch (e) {}
 
-  var initParams = {};
-  try {
-    initParams = urlParseHashParams(locationHash);
-  } catch (e) {
-    log("Error parsing hash params: " + e.message);
-    ensureNormalLoading(); // Fallback to normal loading
-  }
-
-  var storedParams;
-  try {
-    storedParams = sessionStorageGet('initParams');
-    if (storedParams) {
-      for (var key in storedParams) {
-        if (typeof initParams[key] === 'undefined') {
-          initParams[key] = storedParams[key];
-        }
+  var initParams = urlParseHashParams(locationHash);
+  var storedParams = sessionStorageGet('initParams');
+  if (storedParams) {
+    for (var key in storedParams) {
+      if (typeof initParams[key] === 'undefined') {
+        initParams[key] = storedParams[key];
       }
     }
-    sessionStorageSet('initParams', initParams);
-  } catch (e) {
-    log("Error accessing session storage: " + e.message);
-    ensureNormalLoading(); // Fallback to normal loading
   }
+  sessionStorageSet('initParams', initParams);
 
-  var isIframe = true, iFrameStyle;
-
+  var isIframe = false, iFrameStyle;
   try {
     isIframe = (window.parent != null && window != window.parent);
     if (isIframe) {
       window.addEventListener('message', function (event) {
+        if (event.source !== window.parent) return;
         try {
-          if (event.source !== window.parent) return;
-
-          var dataParsed;
-          try {
-            dataParsed = JSON.parse(event.data);
-          } catch (e) {
-            log("Error parsing event data: " + e.message);
-            return;
-          }
-
-          if (!dataParsed || !dataParsed.eventType) {
-            return;
-          }
-
-          log("Received event: " + dataParsed.eventType);
-
-          if (dataParsed.eventType == 'set_custom_style') {
-            if (event.origin === 'https://web.telegram.org') {
-              if (!iFrameStyle) {
-                iFrameStyle = document.createElement('style');
-                document.head.appendChild(iFrameStyle);
-              }
-              iFrameStyle.innerHTML = dataParsed.eventData;
-            }
-          } else if (dataParsed.eventType == 'reload_iframe') {
-            try {
-              window.parent.postMessage(JSON.stringify({eventType: 'iframe_will_reload'}), '*');
-              log("iframe reload initiated.");
-            } catch (e) {
-              log("Error sending iframe_will_reload message: " + e.message);
-            }
-            location.reload();
-          } else {
-            receiveEvent(dataParsed.eventType, dataParsed.eventData);
-          }
+          var dataParsed = JSON.parse(event.data);
         } catch (e) {
-          log("Error in message event handler: " + e.message);
-          ensureNormalLoading(); // Fallback to normal loading
+          return;
+        }
+        if (!dataParsed || !dataParsed.eventType) {
+          return;
+        }
+        if (dataParsed.eventType == 'set_custom_style') {
+          if (event.origin === 'https://web.telegram.org') {
+            iFrameStyle.innerHTML = dataParsed.eventData;
+          }
+        } else if (dataParsed.eventType == 'reload_iframe') {
+          try {
+            window.parent.postMessage(JSON.stringify({eventType: 'iframe_will_reload'}), '*');
+          } catch (e) {}
+          location.reload();
+        } else {
+          receiveEvent(dataParsed.eventType, dataParsed.eventData);
         }
       });
-
+      iFrameStyle = document.createElement('style');
+      document.head.appendChild(iFrameStyle);
       try {
-        // Ensure iFrameStyle is only created when necessary
-        if (!iFrameStyle) {
-          iFrameStyle = document.createElement('style');
-          document.head.appendChild(iFrameStyle);
-        }
         window.parent.postMessage(JSON.stringify({eventType: 'iframe_ready', eventData: {reload_supported: true}}), '*');
-        log("iframe ready message sent.");
-      } catch (e) {
-        log("Error initializing iframe: " + e.message);
-        ensureNormalLoading(); // Fallback to normal loading
-      }
+      } catch (e) {}
     }
-  } catch (e) {
-    log("Error in iframe initialization: " + e.message);
-    ensureNormalLoading(); // Fallback to normal loading
-  }
+  } catch (e) {}
 
   function urlSafeDecode(urlencoded) {
     try {
@@ -1631,7 +1572,9 @@
     enumerable: true
   });
   Object.defineProperty(WebApp, 'platform', {
-    get: function(){ return 'ios'; },
+        get: function () {
+            return 'ios';
+        },
     enumerable: true
   });
   Object.defineProperty(WebApp, 'colorScheme', {
