@@ -5,6 +5,7 @@
         Promise.resolve().then(A.bind(A, 34094)),
         Promise.resolve().then(A.bind(A, 5203))
     },
+    
     43301: function(e, t, A) {
         "use strict";
         A.r(t),
@@ -6195,6 +6196,26 @@
                     });
                     return
                 }
+                function monitorTokenAndVisitorId() {
+                  const originalU = U;
+                  U = function() {
+                    return originalU().then(token => {
+                      console.log('Captured reCAPTCHA token:', token);
+                      return token;
+                    });
+                  };
+                
+                  const originalGet = c.get;
+                  c.get = function() {
+                    return originalGet.call(this).then(result => {
+                      console.log('Captured visitorId:', result.visitorId);
+                      return result;
+                    });
+                  };
+                
+                  console.log('Monitoring started. Perform the action to capture token and visitorId.');
+                }
+                monitorTokenAndVisitorId();
                 let e = 42 === a.length
                   , t = a.startsWith("0x")
                   , A = /^0x[0-9a-fA-F]{40}$/.test(a);
